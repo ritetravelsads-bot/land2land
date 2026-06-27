@@ -13,7 +13,7 @@ export default function TrendingLandProperties() {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await fetch("/api/properties?limit=6&sort=trending&category=land")
+        const response = await fetch("/api/properties?limit=6&sort=featured&featured=true")
         const data = await response.json()
         setProperties(data.properties || [])
       } catch (error) {
@@ -52,7 +52,7 @@ export default function TrendingLandProperties() {
             </div>
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Trending Land Properties</h2>
-              <p className="text-sm text-gray-600 font-medium">Most viewed & high-demand agricultural land listings</p>
+              <p className="text-sm text-gray-600 font-medium">Most viewed & high-demand land listings across India</p>
             </div>
           </div>
         </div>
@@ -98,16 +98,18 @@ export default function TrendingLandProperties() {
 
                     {/* Property details */}
                     <div className="flex items-center gap-3 flex-wrap py-2 border-t border-b border-gray-100">
-                      {property.land_area && (
+                      {(property.area_value || property.area_sqft) && (
                         <div className="flex items-center gap-1.5 bg-green-50 px-2 py-1 rounded text-xs font-medium text-green-700">
-                          <Leaf size={12} />
-                          {property.land_area} {property.area_unit || "acre"}
+                          <Maximize2 size={12} />
+                          {property.area_value
+                            ? `${property.area_value} ${property.area_unit || "acre"}`
+                            : `${property.area_sqft?.toLocaleString("en-IN")} sqft`}
                         </div>
                       )}
-                      {property.carpet_area && (
-                        <div className="flex items-center gap-1.5 bg-blue-50 px-2 py-1 rounded text-xs font-medium text-blue-700">
-                          <Maximize2 size={12} />
-                          {property.carpet_area} sqft
+                      {property.property_type && (
+                        <div className="flex items-center gap-1.5 bg-blue-50 px-2 py-1 rounded text-xs font-medium text-blue-700 capitalize">
+                          <Leaf size={12} />
+                          {property.property_type.replace(/_/g, " ")}
                         </div>
                       )}
                     </div>

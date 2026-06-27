@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, LogOut, User, ChevronDown, IndianRupee, MapPin, Building2, Leaf, TrendingUp, Settings } from "lucide-react"
+import { Menu, X, LogOut, User, ChevronDown, Map, TrendingUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -12,8 +12,8 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
-import { BUDGET_RANGES } from "@/lib/utils"
 import HeaderSearch from "./header-search"
+import { LAND_TYPE_LIST } from "@/lib/land-types-content"
 
 interface CurrentUser {
   id: string
@@ -22,14 +22,7 @@ interface CurrentUser {
   user_type: "customer" | "agent" | "admin"
 }
 
-const landTypes = [
-  { name: "Agricultural Land", href: "/agricultural-land", icon: "🌾" },
-  { name: "Farmland", href: "/farmland", icon: "🚜" },
-  { name: "Plots & Vacant Land", href: "/plots-vacant", icon: "🏞️" },
-  { name: "Land with Infrastructure", href: "/land-with-infrastructure", icon: "🛣️" },
-  { name: "Orchard Land", href: "/orchard-land", icon: "🍊" },
-  { name: "Irrigation Land", href: "/irrigation-land", icon: "💧" },
-]
+const landTypes = LAND_TYPE_LIST.map((t) => ({ name: t.label, href: `/land/${t.slug}` }))
 
 export default function MegaMenuHeader() {
   const [mounted, setMounted] = useState(false)
@@ -85,7 +78,7 @@ export default function MegaMenuHeader() {
 
   const getDashboardLabel = () => {
     if (!currentUser) return "My Dashboard"
-    if (currentUser.user_type === "agent") return "Builder Dashboard"
+    if (currentUser.user_type === "agent") return "Seller Dashboard"
     if (currentUser.user_type === "admin") return "Admin Dashboard"
     return "Buyer Dashboard"
   }
@@ -155,8 +148,8 @@ export default function MegaMenuHeader() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors flex items-center gap-1">
-                  <Leaf className="h-4 w-4" />
-                  Farms
+                  <Map className="h-4 w-4" />
+                  Land Types
                   <ChevronDown className="h-4 w-4" />
                 </button>
               </DropdownMenuTrigger>
@@ -177,14 +170,6 @@ export default function MegaMenuHeader() {
             >
               <TrendingUp className="h-4 w-4" />
               Investments
-            </Link>
-
-            <Link
-              href="/property-management"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors flex items-center gap-1"
-            >
-              <Settings className="h-4 w-4" />
-              Property Management
             </Link>
           </div>
 
@@ -235,7 +220,7 @@ export default function MegaMenuHeader() {
                     size="sm"
                     className="text-sm h-9 border-[#2d5016] text-[#2d5016] bg-transparent hover:bg-[#2d5016]/5"
                   >
-                    <Link href="/auth/login">Post Property</Link>
+                    <Link href="/auth/login">List Land</Link>
                   </Button>
                   <Button asChild size="sm" className="text-sm h-9 bg-[#2d5016] hover:bg-[#1d3610]">
                     <Link href="/auth/register">Sign Up</Link>
@@ -326,13 +311,6 @@ export default function MegaMenuHeader() {
               Investments
             </Link>
 
-            <Link
-              href="/property-management"
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] hover:bg-gray-50 rounded transition-colors"
-            >
-              Property Management
-            </Link>
-
             <div className="border-t border-gray-100 my-2" />
             {mounted && (
               <div className="flex gap-2 mt-3">
@@ -362,7 +340,7 @@ export default function MegaMenuHeader() {
                       size="sm"
                       className="text-xs h-9 flex-1 border-[#2d5016] text-[#2d5016] bg-transparent"
                     >
-                      <Link href="/auth/login">Post Property</Link>
+                      <Link href="/auth/login">List Land</Link>
                     </Button>
                     <Button asChild size="sm" className="text-xs h-9 flex-1 bg-[#2d5016] hover:bg-[#1d3610]">
                       <Link href="/auth/register">Sign Up</Link>

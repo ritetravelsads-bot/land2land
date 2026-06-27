@@ -13,7 +13,7 @@ export default function CTA() {
       <div className="max-w-4xl mx-auto text-center space-y-8">
         <h2 className="text-white text-balance text-3xl md:text-4xl font-bold">Start Your Land Investment Journey Today</h2>
         <p className="text-white/90 text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto">
-          Join 15,000+ farmers and investors who trust Land2Land for transparent, verified agricultural land investments across India.
+          Join 15,000+ buyers, sellers and investors who trust Land2Land for transparent, verified land of every type across India.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">

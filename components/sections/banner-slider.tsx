@@ -11,25 +11,25 @@ const slides = [
   {
     id: 1,
     image: "/banners/land-banner-1.png",
-    tag: "Agricultural Land",
-    title: "Find & Invest in Land Anywhere",
-    subtitle: "Explore verified agricultural land, current prices, and ownership records to make confident investment decisions across India.",
+    tag: "All Land Types",
+    title: "Buy & Sell Any Type of Land",
+    subtitle: "Explore verified agricultural, residential, commercial and industrial land with current prices and ownership records to invest with confidence across India.",
     cta: { label: "Browse Land", href: "/buy" },
   },
   {
     id: 2,
     image: "/banners/land-banner-2.png",
-    tag: "Verified Farmland",
-    title: "Own Productive Farmland",
-    subtitle: "Discover fertile farmland with irrigation and water rights, vetted for legal clearance and ready for cultivation.",
-    cta: { label: "Explore Farms", href: "/farms" },
+    tag: "Residential & Commercial Plots",
+    title: "Find the Perfect Plot",
+    subtitle: "Discover ready-to-build residential plots and high-visibility commercial land, vetted for clear titles and legal clearance.",
+    cta: { label: "Explore Plots", href: "/land/residential-plot" },
   },
   {
     id: 3,
     image: "/banners/land-banner-3.png",
     tag: "Land Investment",
     title: "Grow Your Wealth with Land",
-    subtitle: "High-ROI land opportunities across India's fastest-growing agricultural corridors with transparent pricing.",
+    subtitle: "High-ROI land opportunities across India's fastest-growing corridors with transparent pricing and verified records.",
     cta: { label: "View Investments", href: "/investments" },
   },
   {
@@ -37,7 +37,7 @@ const slides = [
     image: "/banners/land-banner-4.png",
     tag: "Sell Your Land",
     title: "List Your Land for Free",
-    subtitle: "Reach thousands of verified buyers and investors. Post your agricultural land or farm plot in minutes.",
+    subtitle: "Reach thousands of verified buyers and investors. Post your agricultural, residential, commercial or industrial land in minutes.",
     cta: { label: "Sell Land", href: "/sell" },
   },
 ]
@@ -50,7 +50,7 @@ function FirstSlideStatic() {
       <div className="absolute inset-0">
         <Image
           src="/banners/land-banner-1.png"
-          alt="Land2Land - Agricultural Land and Farm Property Marketplace in India"
+          alt="Land2Land - Buy and Sell All Types of Land in India"
           fill
           priority
           fetchPriority="high"
@@ -63,7 +63,7 @@ function FirstSlideStatic() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
       <SlideContent slide={slide} active />
       {/* SEO H1 - Visually hidden but accessible to search engines */}
-      <h1 className="sr-only">Land2Land — Buy, Sell & Invest in Agricultural Land and Farmland</h1>
+      <h1 className="sr-only">Land2Land — Buy, Sell & Invest in All Types of Land in India</h1>
     </div>
   )
 }

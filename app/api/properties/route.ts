@@ -33,8 +33,9 @@ export async function GET(req: NextRequest) {
           { address: { $regex: search, $options: "i" } },
           { neighborhood: { $regex: search, $options: "i" } },
           { city: { $regex: search, $options: "i" } },
-          { developer_name: { $regex: search, $options: "i" } },
-          { bhk_configuration: { $regex: search, $options: "i" } },
+          { state: { $regex: search, $options: "i" } },
+          { seller_name: { $regex: search, $options: "i" } },
+          { zoning: { $regex: search, $options: "i" } },
         ]
       })
     }
@@ -141,31 +142,60 @@ export async function GET(req: NextRequest) {
       })
     }
 
-    // Bedrooms filter
-    const bedrooms = searchParams.get("bedrooms")
-    if (bedrooms) {
-      if (bedrooms === "5+") {
-        andConditions.push({ bedrooms: { $gte: 5 } })
-      } else {
-        andConditions.push({
-          $or: [
-            { bedrooms: Number.parseInt(bedrooms) },
-            { bhk_configuration: { $regex: `^${bedrooms}`, $options: "i" } }
-          ]
-        })
-      }
+    // --- Land-specific filters ---
+
+    // Area unit filter (acre, bigha, hectare, sqft, etc.)
+    const areaUnit = searchParams.get("area_unit")
+    if (areaUnit) {
+      andConditions.push({ area_unit: areaUnit })
     }
 
-    // Furnished type filter
-    const furnished = searchParams.get("furnished_type")
-    if (furnished) {
-      andConditions.push({ furnished_type: furnished })
+    // Ownership type filter (freehold, leasehold, etc.)
+    const ownershipType = searchParams.get("ownership_type")
+    if (ownershipType) {
+      andConditions.push({ ownership_type: ownershipType })
     }
 
-    // Possession type filter
-    const possession = searchParams.get("possession_type")
-    if (possession) {
-      andConditions.push({ possession_type: possession })
+    // Facing filter (north, south, east, west, etc.)
+    const facing = searchParams.get("facing")
+    if (facing) {
+      andConditions.push({ facing: facing })
+    }
+
+    // Zoning filter
+    const zoning = searchParams.get("zoning")
+    if (zoning) {
+      andConditions.push({ zoning: { $regex: zoning, $options: "i" } })
+    }
+
+    // Corner plot filter
+    if (searchParams.get("corner_plot") === "true") {
+      andConditions.push({ corner_plot: true })
+    }
+
+    // Road access filter
+    if (searchParams.get("road_access") === "true") {
+      andConditions.push({ road_access: true })
+    }
+
+    // Water availability filter
+    if (searchParams.get("water_available") === "true") {
+      andConditions.push({ water_available: true })
+    }
+
+    // Electricity availability filter
+    if (searchParams.get("electricity_available") === "true") {
+      andConditions.push({ electricity_available: true })
+    }
+
+    // Boundary wall filter
+    if (searchParams.get("boundary_wall") === "true") {
+      andConditions.push({ boundary_wall: true })
+    }
+
+    // Negotiable price filter
+    if (searchParams.get("is_negotiable") === "true") {
+      andConditions.push({ is_negotiable: true })
     }
 
     // RERA registered filter
@@ -180,20 +210,24 @@ export async function GET(req: NextRequest) {
       })
     }
 
-    // Developer filter
-    const developerId = searchParams.get("developer_id")
-    if (developerId) {
+    // Seller filter (supports legacy developer_id param)
+    const sellerId = searchParams.get("seller_id") || searchParams.get("developer_id")
+    if (sellerId) {
       try {
-        andConditions.push({ developer_id: new ObjectId(developerId) })
+        andConditions.push({ seller_id: new ObjectId(sellerId) })
       } catch (e) {
         // Invalid ObjectId, skip
       }
     }
 
-    // Developer name filter (supports both "developer" and "developer_name" params)
-    const developerName = searchParams.get("developer") || searchParams.get("developer_name")
-    if (developerName) {
-      andConditions.push({ developer_name: { $regex: developerName, $options: "i" } })
+    // Seller name filter (supports legacy developer/developer_name params)
+    const sellerName =
+      searchParams.get("seller") ||
+      searchParams.get("seller_name") ||
+      searchParams.get("developer") ||
+      searchParams.get("developer_name")
+    if (sellerName) {
+      andConditions.push({ seller_name: { $regex: sellerName, $options: "i" } })
     }
 
     // Featured filter
@@ -202,62 +236,14 @@ export async function GET(req: NextRequest) {
       andConditions.push({ is_featured: true })
     }
 
-    // Office Space specific filters
-    const spaceType = searchParams.get("space_type")
-    if (spaceType) {
-      andConditions.push({ "office_space.space_type": spaceType })
-    }
-
-    const minSeats = searchParams.get("min_seats")
-    if (minSeats) {
-      andConditions.push({ "office_space.available_seats": { $gte: Number.parseInt(minSeats) } })
-    }
-
-    const maxSeats = searchParams.get("max_seats")
-    if (maxSeats) {
-      andConditions.push({ "office_space.available_seats": { $lte: Number.parseInt(maxSeats) } })
-    }
-
-    const minCabins = searchParams.get("min_cabins")
-    if (minCabins) {
-      andConditions.push({ "office_space.available_cabins": { $gte: Number.parseInt(minCabins) } })
-    }
-
-    const pricingModel = searchParams.get("pricing_model")
-    if (pricingModel) {
-      andConditions.push({ "office_space.pricing_model": pricingModel })
-    }
-
-    const buildingGrade = searchParams.get("building_grade")
-    if (buildingGrade) {
-      andConditions.push({ "office_space.building_grade": buildingGrade })
-    }
-
-    const fitOutStatus = searchParams.get("fit_out_status")
-    if (fitOutStatus) {
-      andConditions.push({ "office_space.fit_out_status": fitOutStatus })
-    }
-
-    // Area filters (min/max sqft)
+    // Area filters (min/max sqft, canonical area_sqft)
     const minArea = searchParams.get("minArea")
     const maxArea = searchParams.get("maxArea")
     if (minArea) {
-      andConditions.push({
-        $or: [
-          { area_sqft: { $gte: Number.parseInt(minArea) } },
-          { carpet_area: { $gte: Number.parseInt(minArea) } },
-          { super_area: { $gte: Number.parseInt(minArea) } }
-        ]
-      })
+      andConditions.push({ area_sqft: { $gte: Number.parseInt(minArea) } })
     }
     if (maxArea) {
-      andConditions.push({
-        $or: [
-          { area_sqft: { $lte: Number.parseInt(maxArea) } },
-          { carpet_area: { $lte: Number.parseInt(maxArea) } },
-          { super_area: { $lte: Number.parseInt(maxArea) } }
-        ]
-      })
+      andConditions.push({ area_sqft: { $lte: Number.parseInt(maxArea) } })
     }
 
     // Build final query

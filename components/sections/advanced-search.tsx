@@ -11,26 +11,26 @@ import { useGeolocation, type GeoLocation } from "@/hooks/use-geolocation"
 
 const PLACEHOLDER_SUGGESTIONS = [
   "Agricultural land in Punjab",
-  "Farmland near me",
+  "Residential plot near me",
   "1 Acre land in Haryana",
-  "Farm property with irrigation",
-  "Organic farm 50 bigha",
+  "Commercial plot on main road",
+  "Industrial land in Gujarat",
   "Land investment in Rajasthan",
-  "Plot near highways",
-  "Farmland for dairy farming",
+  "Plot near highway",
+  "Farmland with irrigation",
   "Land under 30 lakh",
-  "Agricultural plot listings",
-  "Land with water rights",
-  "Farmland for horticulture",
+  "Corner plot listings",
+  "Land with water & electricity",
+  "Freehold land for sale",
 ]
 
 const CATEGORIES = [
-  { name: "Agricultural Land", icon: MapPin, href: "/properties?category=agricultural_land", color: "bg-green-500/10 text-green-700" },
-  { name: "Farmland", icon: Home, href: "/properties?category=farmland", color: "bg-emerald-500/10 text-emerald-700" },
-  { name: "Plots", icon: MapPin, href: "/properties?category=plot", color: "bg-amber-600/10 text-amber-700" },
-  { name: "Orchards", icon: Building2, href: "/properties?category=orchard", color: "bg-yellow-500/10 text-yellow-700" },
-  { name: "Investment Land", icon: Building2, href: "/properties?category=investment_land", color: "bg-blue-500/10 text-blue-700" },
-  { name: "Irrigation Land", icon: Home, href: "/properties?category=irrigation_land", color: "bg-cyan-500/10 text-cyan-700" },
+  { name: "Agricultural Land", icon: MapPin, href: "/land/agricultural", color: "bg-green-500/10 text-green-700" },
+  { name: "Residential Plot", icon: Home, href: "/land/residential-plot", color: "bg-emerald-500/10 text-emerald-700" },
+  { name: "Commercial Plot", icon: Building2, href: "/land/commercial-plot", color: "bg-amber-600/10 text-amber-700" },
+  { name: "Industrial Land", icon: Building2, href: "/land/industrial", color: "bg-blue-500/10 text-blue-700" },
+  { name: "Farmland", icon: MapPin, href: "/land/farmland", color: "bg-yellow-500/10 text-yellow-700" },
+  { name: "Vacant Land", icon: Home, href: "/land/vacant", color: "bg-cyan-500/10 text-cyan-700" },
 ]
 
 // Budget categories for quick selection
@@ -52,14 +52,14 @@ const locations = [
 
 const projectTypes = [
   "Agricultural Land",
+  "Residential Plot",
+  "Commercial Plot",
+  "Industrial Land",
   "Farmland",
-  "Orchard Land",
-  "Irrigation Land",
-  "Investment Land",
-  "Dairy Farming Land",
+  "Vacant Land",
 ]
 
-const projectStatus = ["Available Now", "Under Lease", "Certified Organic", "High ROI Potential"]
+const projectStatus = ["Available Now", "Clear Title", "Corner Plot", "High ROI Potential"]
 
 // Near me search patterns to detect
 const NEAR_ME_PATTERNS = [
@@ -391,7 +391,7 @@ export default function AdvancedSearch() {
             </div>
             <div>
               <h2 className="text-lg md:text-xl font-bold text-foreground">Find Verified Land Across India</h2>
-              <p className="text-xs text-muted-foreground">Explore agricultural land, farmland & plots with verified ownership records and transparent pricing. Buy and sell directly with confidence.</p>
+              <p className="text-xs text-muted-foreground">Explore agricultural, residential, commercial & industrial land with verified ownership records and transparent pricing. Buy and sell directly with confidence.</p>
             </div>
           </div>
 
@@ -435,7 +435,7 @@ export default function AdvancedSearch() {
                       : "text-muted-foreground hover:text-primary hover:bg-primary/10"
                   )}
                   aria-label={isListening ? "Stop voice search" : "Start voice search"}
-                  title={isListening ? 'Listening... Try "2 BHK near me"' : 'Search by voice - Try "2 BHK near me"'}
+                  title={isListening ? 'Listening... Try "1 acre land near me"' : 'Search by voice - Try "1 acre land near me"'}
                 >
                   {isListening ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
                 </button>

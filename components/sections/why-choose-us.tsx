@@ -9,12 +9,12 @@ const features = [
   {
     icon: Award,
     title: "Expert Land Advisory",
-    description: "Personalized guidance from agricultural land specialists and market experts.",
+    description: "Personalized guidance from land specialists and market experts across every land type.",
   },
   {
     icon: Users,
-    title: "Direct Farmer & Investor Network",
-    description: "Connect directly with verified sellers, investors, and agricultural partners.",
+    title: "Direct Seller & Buyer Network",
+    description: "Connect directly with verified sellers, agents, buyers, and investors.",
   },
   {
     icon: TrendingUp,
@@ -28,8 +28,8 @@ const features = [
   },
   {
     icon: HeadphonesIcon,
-    title: "24/7 Farmer Support",
-    description: "Round-the-clock assistance for buying, selling, and farming queries.",
+    title: "24/7 Customer Support",
+    description: "Round-the-clock assistance for all your buying and selling queries.",
   },
 ]
 
@@ -40,7 +40,7 @@ export default function WhyChooseUs() {
         <div className="text-center mb-12">
           <h2 className="text-green-700 mb-4 text-3xl md:text-4xl font-bold">Why Choose Land2Land</h2>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            India's Most Trusted Agricultural Land Marketplace
+            India's Most Trusted Marketplace for All Types of Land
           </p>
         </div>
 
