@@ -1,11 +1,16 @@
 // Database collection names
+// Land2Land marketplace: "properties" -> "listings", "developers" -> "sellers".
+// Old keys (PROPERTIES/DEVELOPERS) are kept as aliases so existing code keeps
+// compiling; they now point at the renamed collections.
 export const COLLECTIONS = {
   USERS: "users",
-  PROPERTIES: "properties",
+  LISTINGS: "listings",
+  PROPERTIES: "listings", // deprecated alias -> listings
   STATES: "states",
   CATEGORIES: "categories",
   AMENITIES: "amenities",
-  DEVELOPERS: "developers",
+  SELLERS: "sellers",
+  DEVELOPERS: "sellers", // deprecated alias -> sellers
   FACILITIES: "facilities",
   REVIEWS: "reviews",
   TICKETS: "tickets",
@@ -30,27 +35,72 @@ export interface User {
   is_verified?: boolean
 }
 
-export interface Property {
+// Land2Land land categories (top-level "Property Category")
+export const LAND_TYPES = [
+  "agricultural",
+  "residential_plot",
+  "commercial_plot",
+  "industrial",
+  "farmland",
+  "vacant",
+] as const
+export type LandType = (typeof LAND_TYPES)[number]
+
+export const LAND_TYPE_LABELS: Record<LandType, string> = {
+  agricultural: "Agricultural Land",
+  residential_plot: "Residential Plot",
+  commercial_plot: "Commercial Plot",
+  industrial: "Industrial Land",
+  farmland: "Farmland",
+  vacant: "Vacant / Other Land",
+}
+
+// Units of area used for land
+export const AREA_UNITS = ["sqft", "sqyd", "acre", "bigha", "hectare", "marla", "kanal"] as const
+export type AreaUnit = (typeof AREA_UNITS)[number]
+
+export type OwnershipType = "freehold" | "leasehold" | "cooperative" | "power_of_attorney"
+export type Facing = "north" | "south" | "east" | "west" | "north_east" | "north_west" | "south_east" | "south_west"
+
+// A land Listing. (Formerly "Property" — building-specific fields are retained
+// as optional/legacy only and are no longer surfaced in the UI.)
+export interface Listing {
   _id?: string
+  // `property_type` now holds the LandType value
   property_type: string
   property_name: string
   slug: string
-  status: "available" | "sold" | "rented"
+  status: "available" | "sold" | "reserved"
   lowest_price: number
   max_price: number
-  area_sqft: number
-  bedrooms: number
-  bathrooms: number
-  garage: number
-  garage_size?: number
+
+  // --- Land-specific fields ---
+  area_value?: number        // numeric area in the chosen unit
+  area_unit?: AreaUnit
+  plot_length?: number       // dimensions in feet
+  plot_width?: number
+  road_access?: boolean
+  road_width?: number        // approach road width (ft)
+  zoning?: string            // e.g. agricultural / residential / mixed-use
+  ownership_type?: OwnershipType
+  facing?: Facing
+  corner_plot?: boolean
+  boundary_wall?: boolean
+  water_available?: boolean
+  electricity_available?: boolean
+  survey_number?: string     // survey / khasra / khata number
+  is_negotiable?: boolean
+
+  area_sqft: number          // canonical area in sqft (kept for compatibility/search)
   address: string
   city: string
   state: string
   postal_code: string
-  property_size: number
+  property_size: number      // legacy size field (sqft)
   property_video?: string
   neighborhood: string
-  builder?: string
+  seller?: string            // seller / agent id (was `builder`)
+  builder?: string           // deprecated alias of `seller`
   possession: string
   latitude: number
   longitude: number
@@ -69,8 +119,13 @@ export interface Property {
   meta_description: string
   created_at: Date
   updated_at: Date
-  
-  // New fields for enhanced property detail page
+
+  // --- Legacy building fields (optional, not used by the land UI) ---
+  bedrooms?: number
+  bathrooms?: number
+  garage?: number
+  garage_size?: number
+
   about_project?: string
   project_highlights?: string[]
   units?: Array<{
@@ -91,6 +146,9 @@ export interface Property {
   payment_plan_details?: string
 }
 
+// Deprecated alias — prefer `Listing`.
+export type Property = Listing
+
 export interface State {
   _id?: string
   name: string
@@ -110,12 +168,19 @@ export interface Amenities {
   icon_class: string
 }
 
-export interface Builder {
+// A land Seller / Agent (formerly "Builder"/"Developer").
+export interface Seller {
   _id?: string
   name: string
   slug: string
   logo?: string
+  seller_type?: "owner" | "agent" | "broker"
+  phone?: string
+  email?: string
 }
+
+// Deprecated alias — prefer `Seller`.
+export type Builder = Seller
 
 export interface Facilities {
   _id?: string

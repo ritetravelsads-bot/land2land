@@ -7,8 +7,8 @@ export default function AdminAddPropertyPage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Add New Property"
-        description="Create a new property listing on the platform"
+        title="Add New Listing"
+        description="Create a new land listing on the platform"
         showBackButton
         backHref="/admin/properties"
       />

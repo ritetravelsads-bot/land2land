@@ -32,7 +32,7 @@ export default function AdminDevelopersPage() {
   }, [])
 
   const handleDelete = async (id: string) => {
-    if (confirm("Are you sure you want to delete this developer?")) {
+    if (confirm("Are you sure you want to delete this seller / agent?")) {
       try {
         const res = await fetch(`/api/admin/developers/${id}`, { method: "DELETE" })
         if (res.ok) {
@@ -53,11 +53,11 @@ export default function AdminDevelopersPage() {
             <div className="max-w-6xl mx-auto space-y-6">
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <h1 className="text-2xl font-bold text-foreground">Developers/Builders</h1>
-                  <p className="text-sm text-muted-foreground">Manage property developers and builders</p>
+                  <h1 className="text-2xl font-bold text-foreground">Sellers / Agents</h1>
+                  <p className="text-sm text-muted-foreground">Manage land sellers, owners and agents</p>
                 </div>
                 <Button asChild className="text-xs h-8">
-                  <Link href="/admin/developers/new">Add Developer</Link>
+                  <Link href="/admin/developers/new">Add Seller / Agent</Link>
                 </Button>
               </div>
 
@@ -83,7 +83,7 @@ export default function AdminDevelopersPage() {
                     ) : developers.length === 0 ? (
                       <tr>
                         <td colSpan={4} className="px-4 py-8 text-center text-xs text-muted-foreground">
-                          No developers found
+                          No sellers / agents found
                         </td>
                       </tr>
                     ) : (
