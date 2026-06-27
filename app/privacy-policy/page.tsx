@@ -32,7 +32,7 @@ export default function PrivacyPolicyPage() {
               <h2 className="text-2xl font-semibold text-foreground">Part I – Privacy Policy</h2>
               <h3 className="text-lg font-semibold text-foreground">1. Introduction</h3>
               <p className="text-muted-foreground">
-                Land2Land ("Company", "We", "Us", "Our") operates as an independent real estate advisory and marketing platform in Gurugram and Delhi NCR.
+                Land2Land ("Company", "We", "Us", "Our") operates as an independent land advisory and marketing platform in Gurugram and Delhi NCR.
               </p>
               <p className="text-muted-foreground">
                 This Privacy Policy governs the collection, processing, storage, and protection of personal data in accordance with the Information Technology Act, 2000 and applicable Indian regulations.
@@ -51,7 +51,7 @@ export default function PrivacyPolicyPage() {
                   <li>Name</li>
                   <li>Email Address</li>
                   <li>Phone Number</li>
-                  <li>Property Preferences</li>
+                  <li>land Preferences</li>
                   <li>Budget Range</li>
                   <li>Investment Intent</li>
                 </ul>
@@ -80,7 +80,7 @@ export default function PrivacyPolicyPage() {
               <h3 className="text-lg font-semibold text-foreground">3. Purpose of Processing</h3>
               <p className="text-muted-foreground">Data is used for:</p>
               <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
-                <li>Property consultation</li>
+                <li>land consultation</li>
                 <li>Site visit coordination</li>
                 <li>Sharing project information</li>
                 <li>Marketing communication</li>
