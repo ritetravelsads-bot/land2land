@@ -69,7 +69,7 @@ function FirstSlideStatic() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/_next/image?url=%2Fbanners%2Fhome-mob-banner-7.webp&w=640&q=75"
-            alt="Country Roof Real Estate - Premium Properties in Gurgaon"
+            alt="Land2Land - Agricultural Land and Farm Property Marketplace in India"
             fetchPriority="high"
             decoding="sync"
             loading="eager"
@@ -85,7 +85,7 @@ function FirstSlideStatic() {
         </picture>
       </div>
       {/* SEO H1 - Visually hidden but accessible to search engines */}
-      <h1 className="sr-only">CountryRoof — Premium Luxury Properties in Gurgaon</h1>
+      <h1 className="sr-only">Land2Land — Buy, Sell & Invest in Agricultural Land and Farmland</h1>
     </div>
   )
 }

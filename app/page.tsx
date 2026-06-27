@@ -30,34 +30,24 @@ const AdvancedSearch = dynamic(() => import("@/components/sections/advanced-sear
 export const revalidate = 0
 
 // Lazy load below-the-fold components for better LCP
-const RecentlyViewed = dynamic(() => import("@/components/sections/recently-viewed"), {
-  ssr: true,
-  loading: () => <div className="h-32" />,
-})
-
-const FeaturedVideoProperties = dynamic(() => import("@/components/sections/featured-video-properties"), {
+const TrendingLandProperties = dynamic(() => import("@/components/sections/trending-land-properties"), {
   ssr: true,
   loading: () => <div className="h-96 bg-slate-50 animate-pulse" />,
 })
 
-const FeaturedOfficeSpaces = dynamic(() => import("@/components/sections/featured-office-spaces"), {
-  ssr: true,
-  loading: () => <div className="h-[600px] bg-slate-50 animate-pulse" />,
-})
-
-const TrendingLocations = dynamic(() => import("@/components/sections/trending-locations"), {
+const PopularRegions = dynamic(() => import("@/components/sections/popular-regions"), {
   ssr: true,
   loading: () => <div className="h-64 bg-slate-50 animate-pulse" />,
 })
 
-const DynamicSections = dynamic(() => import("@/components/sections/dynamic-sections"), {
+const InvestmentOpportunities = dynamic(() => import("@/components/sections/investment-opportunities"), {
   ssr: true,
   loading: () => <div className="h-96 bg-slate-50 animate-pulse" />,
 })
 
-const FeaturedDevelopers = dynamic(() => import("@/components/sections/featured-developers"), {
+const FarmTestimonials = dynamic(() => import("@/components/sections/farm-testimonials"), {
   ssr: true,
-  loading: () => <div className="h-96 bg-slate-50 animate-pulse" />,
+  loading: () => <div className="h-80 bg-slate-50 animate-pulse" />,
 })
 
 const WhyChooseUs = dynamic(() => import("@/components/sections/why-choose-us"), {
@@ -68,16 +58,6 @@ const WhyChooseUs = dynamic(() => import("@/components/sections/why-choose-us"),
 const CTA = dynamic(() => import("@/components/sections/cta"), {
   ssr: true,
   loading: () => <div className="h-48 bg-slate-50 animate-pulse" />,
-})
-
-const StatsBar = dynamic(() => import("@/components/sections/stats-bar"), {
-  ssr: true,
-  loading: () => <div className="h-40 bg-[#002366] animate-pulse" />,
-})
-
-const Testimonials = dynamic(() => import("@/components/sections/testimonials"), {
-  ssr: true,
-  loading: () => <div className="h-80 bg-slate-50 animate-pulse" />,
 })
 
 const FAQs = dynamic(() => import("@/components/sections/faqs"), {
@@ -93,32 +73,20 @@ export default function Home() {
       <AdvancedSearch />
       
       {/* Below-the-fold content - lazy loaded */}
-      <Suspense fallback={<div className="h-32" />}>
-        <RecentlyViewed />
-      </Suspense>
-<Suspense fallback={<div className="h-96 bg-slate-50 animate-pulse" />}>
-        <FeaturedVideoProperties />
-      </Suspense>
-      <Suspense fallback={<div className="h-[600px] bg-slate-50 animate-pulse" />}>
-        <FeaturedOfficeSpaces />
+      <Suspense fallback={<div className="h-96 bg-slate-50 animate-pulse" />}>
+        <TrendingLandProperties />
       </Suspense>
       <Suspense fallback={<div className="h-64 bg-slate-50 animate-pulse" />}>
-        <TrendingLocations />
+        <PopularRegions />
       </Suspense>
       <Suspense fallback={<div className="h-96 bg-slate-50 animate-pulse" />}>
-        <DynamicSections />
+        <InvestmentOpportunities />
       </Suspense>
-      <Suspense fallback={<div className="h-96 bg-slate-50 animate-pulse" />}>
-        <FeaturedDevelopers />
+      <Suspense fallback={<div className="h-80 bg-slate-50 animate-pulse" />}>
+        <FarmTestimonials />
       </Suspense>
       <Suspense fallback={<div className="h-64 bg-slate-50 animate-pulse" />}>
         <WhyChooseUs />
-      </Suspense>
-      <Suspense fallback={<div className="h-40 bg-[#002366] animate-pulse" />}>
-        <StatsBar />
-      </Suspense>
-      <Suspense fallback={<div className="h-80 bg-slate-50 animate-pulse" />}>
-        <Testimonials />
       </Suspense>
       <Suspense fallback={<div className="h-96 bg-white animate-pulse" />}>
         <FAQs />

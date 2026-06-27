@@ -10,27 +10,27 @@ import { useVoiceSearch } from "@/hooks/use-voice-search"
 import { useGeolocation, type GeoLocation } from "@/hooks/use-geolocation"
 
 const PLACEHOLDER_SUGGESTIONS = [
-  "3 BHK in Gurgaon",
-  "2 BHK near me",
-  "Luxury apartments Sector 65",
-  "Properties near metro",
-  "4 BHK with swimming pool",
-  "Ready to move in DLF Phase 5",
-  "Villas close to airport",
-  "Golf Course Road",
-  "Under 2 Cr apartments",
-  "New launch projects near me",
-  "3 BHK with gym nearby",
-  "SCO Plots Dwarka Expressway",
+  "Agricultural land in Punjab",
+  "Farmland near me",
+  "1 Acre land in Haryana",
+  "Farm property with irrigation",
+  "Organic farm 50 bigha",
+  "Land investment in Rajasthan",
+  "Plot near highways",
+  "Farmland for dairy farming",
+  "Land under 30 lakh",
+  "Agricultural plot listings",
+  "Land with water rights",
+  "Farmland for horticulture",
 ]
 
 const CATEGORIES = [
-  { name: "Apartments", icon: Building2, href: "/properties?category=apartment", color: "bg-blue-500/10 text-blue-600" },
-  { name: "Villas", icon: Home, href: "/properties?category=villa", color: "bg-emerald-500/10 text-emerald-600" },
-  { name: "Plots", icon: MapPin, href: "/properties?category=plot", color: "bg-amber-500/10 text-amber-600" },
-  { name: "SCO", icon: Building2, href: "/properties?category=sco", color: "bg-purple-500/10 text-purple-600" },
-  { name: "Commercial", icon: Building2, href: "/properties?category=commercial", color: "bg-rose-500/10 text-rose-600" },
-  { name: "Floors", icon: Home, href: "/properties?category=independent_floor", color: "bg-cyan-500/10 text-cyan-600" },
+  { name: "Agricultural Land", icon: MapPin, href: "/properties?category=agricultural_land", color: "bg-green-500/10 text-green-700" },
+  { name: "Farmland", icon: Home, href: "/properties?category=farmland", color: "bg-emerald-500/10 text-emerald-700" },
+  { name: "Plots", icon: MapPin, href: "/properties?category=plot", color: "bg-amber-600/10 text-amber-700" },
+  { name: "Orchards", icon: Building2, href: "/properties?category=orchard", color: "bg-yellow-500/10 text-yellow-700" },
+  { name: "Investment Land", icon: Building2, href: "/properties?category=investment_land", color: "bg-blue-500/10 text-blue-700" },
+  { name: "Irrigation Land", icon: Home, href: "/properties?category=irrigation_land", color: "bg-cyan-500/10 text-cyan-700" },
 ]
 
 // Budget categories for quick selection
@@ -40,26 +40,26 @@ const BUDGET_CATEGORIES = BUDGET_RANGES.slice(0, 6).map((range) => ({
 }))
 
 const locations = [
-  "Dwarka Expressway",
-  "Golf Course Road",
-  "Sohna Road",
-  "Sushant Lok",
-  "New Gurgaon",
-  "Southern Peripheral Road",
-  "Golf Course Extn Road",
-  "NH-48",
+  "Punjab",
+  "Haryana",
+  "Uttar Pradesh",
+  "Rajasthan",
+  "Madhya Pradesh",
+  "Maharashtra",
+  "Karnataka",
+  "Tamil Nadu",
 ]
 
 const projectTypes = [
-  "SCO Plots",
-  "Plots In Gurugram",
-  "Luxury Apartment",
-  "Residential Projects",
-  "Commercial Projects",
-  "Independent Floors",
+  "Agricultural Land",
+  "Farmland",
+  "Orchard Land",
+  "Irrigation Land",
+  "Investment Land",
+  "Dairy Farming Land",
 ]
 
-const projectStatus = ["Upcoming Projects", "New Launch Projects", "Under Construction", "Ready To Move"]
+const projectStatus = ["Available Now", "Under Lease", "Certified Organic", "High ROI Potential"]
 
 // Near me search patterns to detect
 const NEAR_ME_PATTERNS = [
@@ -119,7 +119,7 @@ export default function AdvancedSearch() {
   const [properties, setProperties] = useState<any[]>([])
   const [placeholderIndex, setPlaceholderIndex] = useState(0)
   const [isTyping, setIsTyping] = useState(false)
-  const [displayedPlaceholder, setDisplayedPlaceholder] = useState("3 BHK in Gurgaon")
+  const [displayedPlaceholder, setDisplayedPlaceholder] = useState("Agricultural land in Punjab")
   const searchRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
