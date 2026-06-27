@@ -41,7 +41,7 @@ export async function GET(
     let property = null
     if (lead.property_id) {
       try {
-        property = await db.collection("properties").findOne({ 
+        property = await db.collection("listings").findOne({ 
           _id: new ObjectId(lead.property_id) 
         })
         if (property) {

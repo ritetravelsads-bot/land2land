@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
     
     if (property_id) {
       try {
-        const property = await db.collection("properties").findOne({ 
+        const property = await db.collection("listings").findOne({ 
           _id: new ObjectId(property_id) 
         })
         if (property && property.agent) {

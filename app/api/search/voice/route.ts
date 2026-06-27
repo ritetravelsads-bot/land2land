@@ -376,8 +376,8 @@ async function parseVoiceQuery(query: string, db: any): Promise<ParsedQuery> {
     
     // Also check property addresses/neighborhoods from existing data
     try {
-      const neighborhoods = await db.collection("properties").distinct("neighborhood")
-      const cities = await db.collection("properties").distinct("city")
+      const neighborhoods = await db.collection("listings").distinct("neighborhood")
+      const cities = await db.collection("listings").distinct("city")
       
       for (const neighborhood of neighborhoods) {
         if (!neighborhood) continue
@@ -464,7 +464,7 @@ async function parseVoiceQuery(query: string, db: any): Promise<ParsedQuery> {
   }
   
   // Get developers from database for matching
-  const developers = await db.collection("developers").find({}).project({ name: 1, slug: 1 }).toArray()
+  const developers = await db.collection("sellers").find({}).project({ name: 1, slug: 1 }).toArray()
   for (const dev of developers) {
     const devName = dev.name.toLowerCase()
     if (normalized.includes(devName) || tokens.some(t => fuzzyMatch(t, devName))) {
@@ -473,7 +473,7 @@ async function parseVoiceQuery(query: string, db: any): Promise<ParsedQuery> {
   }
   
   // Also check for developer names in properties (for developers not in developers collection)
-  const developerNames = await db.collection("properties").distinct("developer_name")
+  const developerNames = await db.collection("listings").distinct("developer_name")
   for (const devName of developerNames) {
     if (!devName) continue
     const lowerName = devName.toLowerCase()
@@ -759,13 +759,13 @@ export async function GET(req: NextRequest) {
     
     // Execute search
     const [properties, total] = await Promise.all([
-      db.collection("properties")
+      db.collection("listings")
         .find(mongoQuery)
         .sort({ is_featured: -1, created_at: -1 })
         .skip(fetchSkip)
         .limit(fetchLimit)
         .toArray(),
-      db.collection("properties").countDocuments(mongoQuery)
+      db.collection("listings").countDocuments(mongoQuery)
     ])
     
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -287,9 +287,9 @@ export async function GET(req: NextRequest) {
         break
     }
 
-    const total = await db.collection("properties").countDocuments(query)
+    const total = await db.collection("listings").countDocuments(query)
     const properties = await db
-      .collection("properties")
+      .collection("listings")
       .find(query)
       .sort(sortOption)
       .skip(skip)

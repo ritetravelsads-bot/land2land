@@ -32,39 +32,34 @@ export interface PropertyFiltersProps {
 }
 
 const PROPERTY_TYPES = [
-  { value: "apartment", label: "Apartment" },
-  { value: "independent_floor", label: "Independent Floor" },
-  { value: "township", label: "Township" },
-  { value: "villa", label: "Villa" },
-  { value: "plot", label: "Plot" },
-  { value: "sco", label: "SCO" },
-  { value: "office", label: "Office Space" },
-  { value: "warehouse", label: "Warehouse" },
-  { value: "shop", label: "Shop/Retail" },
+  { value: "agricultural", label: "Agricultural Land" },
+  { value: "residential_plot", label: "Residential Plot" },
+  { value: "commercial_plot", label: "Commercial Plot" },
+  { value: "industrial", label: "Industrial Land" },
+  { value: "farmland", label: "Farmland" },
+  { value: "vacant", label: "Vacant / Other Land" },
 ]
 
 const STATUS_OPTIONS = [
   { value: "active", label: "Active" },
   { value: "available", label: "Available" },
-  { value: "under_construction", label: "Under Construction" },
-  { value: "ready_to_move", label: "Ready to Move" },
+  { value: "reserved", label: "Reserved" },
   { value: "sold", label: "Sold" },
   { value: "inactive", label: "Inactive" },
 ]
 
 const LISTING_TYPES = [
-  { value: "builder_project", label: "Builder Project" },
+  { value: "sale", label: "For Sale" },
   { value: "resale", label: "Resale" },
-  { value: "rental", label: "Rental" },
-  { value: "new", label: "New Launch" },
+  { value: "lease", label: "For Lease" },
+  { value: "auction", label: "Auction" },
 ]
 
-const BEDROOM_OPTIONS = [
-  { value: "1", label: "1 BHK" },
-  { value: "2", label: "2 BHK" },
-  { value: "3", label: "3 BHK" },
-  { value: "4", label: "4 BHK" },
-  { value: "5", label: "5+ BHK" },
+const OWNERSHIP_OPTIONS = [
+  { value: "freehold", label: "Freehold" },
+  { value: "leasehold", label: "Leasehold" },
+  { value: "cooperative", label: "Co-operative Society" },
+  { value: "power_of_attorney", label: "Power of Attorney" },
 ]
 
 export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps) {
@@ -116,7 +111,7 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
             <Input
               type="text"
               name="search"
-              placeholder="Search by property name, address, developer..."
+              placeholder="Search by listing title, address, seller..."
               className="pl-10 pr-10 h-10 bg-background border-border"
               value={filters.search || ""}
               onChange={handleInputChange}
@@ -141,7 +136,7 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
             >
               <SelectTrigger className="w-full sm:w-[160px] h-10 bg-background">
                 <Home className="h-4 w-4 mr-2 text-muted-foreground" />
-                <SelectValue placeholder="Property Type" />
+                <SelectValue placeholder="Land Type" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Types</SelectItem>
@@ -230,22 +225,22 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
                 </Select>
               </div>
 
-              {/* Bedrooms */}
+              {/* Ownership */}
               <div className="space-y-1.5">
                 <label className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
                   <Home className="h-3 w-3" />
-                  Bedrooms
+                  Ownership
                 </label>
                 <Select 
-                  value={filters.bedrooms || "all"} 
-                  onValueChange={(value) => handleChange("bedrooms", value)}
+                  value={filters.ownership_type || "all"} 
+                  onValueChange={(value) => handleChange("ownership_type", value)}
                 >
                   <SelectTrigger className="h-9 bg-background">
-                    <SelectValue placeholder="Any BHK" />
+                    <SelectValue placeholder="Any Ownership" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">Any BHK</SelectItem>
-                    {BEDROOM_OPTIONS.map((option) => (
+                    <SelectItem value="all">Any Ownership</SelectItem>
+                    {OWNERSHIP_OPTIONS.map((option) => (
                       <SelectItem key={option.value} value={option.value}>
                         {option.label}
                       </SelectItem>
@@ -270,16 +265,16 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
                 />
               </div>
 
-              {/* Developer */}
+              {/* Seller / Agent */}
               <div className="space-y-1.5">
                 <label className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
                   <Building2 className="h-3 w-3" />
-                  Developer
+                  Seller / Agent
                 </label>
                 <Input
                   type="text"
                   name="developer"
-                  placeholder="Developer name"
+                  placeholder="Seller / agent name"
                   className="h-9 bg-background"
                   value={filters.developer || ""}
                   onChange={handleInputChange}
@@ -367,7 +362,7 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
                          key === "property_type" ? (PROPERTY_TYPES.find(t => t.value === value)?.label || String(value)) :
                          key === "status" ? (STATUS_OPTIONS.find(s => s.value === value)?.label || String(value)) :
                          key === "listing_type" ? (LISTING_TYPES.find(l => l.value === value)?.label || String(value)) :
-                         key === "bedrooms" ? (BEDROOM_OPTIONS.find(b => b.value === value)?.label || String(value)) :
+                         key === "ownership_type" ? (OWNERSHIP_OPTIONS.find(o => o.value === value)?.label || String(value)) :
                          key === "minPrice" ? `Min: ₹${Number(value).toLocaleString()}` :
                          key === "maxPrice" ? `Max: ₹${Number(value).toLocaleString()}` :
                          String(value)

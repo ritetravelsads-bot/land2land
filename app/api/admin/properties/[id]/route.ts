@@ -23,7 +23,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
     let property
     try {
       const objectId = new ObjectId(id)
-      property = await db.collection("properties").findOne({ _id: objectId })
+      property = await db.collection("listings").findOne({ _id: objectId })
       
       if (property) {
         // Convert _id to string for consistent handling
@@ -106,7 +106,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       // Ensure unique slug (excluding current property)
       let counter = 1
       let uniqueSlug = slug
-      while (await db.collection("properties").findOne({ slug: uniqueSlug, _id: { $ne: objectId } })) {
+      while (await db.collection("listings").findOne({ slug: uniqueSlug, _id: { $ne: objectId } })) {
         uniqueSlug = `${slug}-${counter}`
         counter++
       }
@@ -136,7 +136,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       updated_at: new Date(),
     }
 
-    const result = await db.collection("properties").updateOne(
+    const result = await db.collection("listings").updateOne(
       { _id: objectId },
       { $set: updateData }
     )
@@ -145,7 +145,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       return NextResponse.json({ error: "Property not found" }, { status: 404 })
     }
 
-    const updatedProperty = await db.collection("properties").findOne({ _id: objectId })
+    const updatedProperty = await db.collection("listings").findOne({ _id: objectId })
     
     // Convert _id to string for consistent frontend handling
     const serializedProperty = updatedProperty ? {
@@ -184,7 +184,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
       return NextResponse.json({ error: "Invalid property ID format" }, { status: 400 })
     }
 
-    const result = await db.collection("properties").deleteOne({ _id: objId })
+    const result = await db.collection("listings").deleteOne({ _id: objId })
 
     if (result.deletedCount === 0) {
       return NextResponse.json({ error: "Property not found" }, { status: 404 })

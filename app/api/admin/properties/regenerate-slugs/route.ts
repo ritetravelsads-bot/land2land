@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     const db = await getDatabase()
     
     // Find all properties without slugs
-    const propertiesWithoutSlugs = await db.collection("properties")
+    const propertiesWithoutSlugs = await db.collection("listings")
       .find({ $or: [{ slug: { $exists: false } }, { slug: null }, { slug: "" }] })
       .toArray()
     
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       // Ensure unique slug
       let counter = 1
       let uniqueSlug = slug
-      while (await db.collection("properties").findOne({ 
+      while (await db.collection("listings").findOne({ 
         slug: uniqueSlug, 
         _id: { $ne: property._id } 
       })) {
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
         counter++
       }
       
-      await db.collection("properties").updateOne(
+      await db.collection("listings").updateOne(
         { _id: property._id },
         { $set: { slug: uniqueSlug, updated_at: new Date() } }
       )

@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
     let propertyData = null
     if (property_id) {
       try {
-        propertyData = await db.collection("properties").findOne({ _id: new ObjectId(property_id) })
+        propertyData = await db.collection("listings").findOne({ _id: new ObjectId(property_id) })
       } catch {
         // Invalid property ID, continue without property data
       }

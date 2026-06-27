@@ -58,7 +58,7 @@ async function getProperties() {
   try {
     const db = client.db("land2land")
     const properties = await db
-      .collection("properties")
+      .collection("listings")
       .find({ status: "active" })
       .project({ slug: 1, updated_at: 1, property_name: 1, property_type: 1 })
       .toArray()
@@ -98,7 +98,7 @@ async function getDevelopers() {
   try {
     const db = client.db("land2land")
     const developers = await db
-      .collection("developers")
+      .collection("sellers")
       .find({})
       .project({ slug: 1, updated_at: 1, name: 1 })
       .toArray()

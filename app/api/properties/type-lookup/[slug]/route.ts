@@ -28,7 +28,7 @@ export async function GET(
     const { slug } = await params
     const db = await connectDB()
     
-    const property = await db.collection("properties").findOne(
+    const property = await db.collection("listings").findOne(
       { slug },
       { projection: { property_type: 1 } }
     )

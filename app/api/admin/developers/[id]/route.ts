@@ -11,7 +11,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
   try {
     const { id } = await params
     const db = await getDatabase()
-    const developer = await db.collection("developers").findOne({ _id: new ObjectId(id) })
+    const developer = await db.collection("sellers").findOne({ _id: new ObjectId(id) })
 
     if (!developer) {
       return NextResponse.json({ error: "Developer not found" }, { status: 404 })
@@ -51,7 +51,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       updated_at: new Date(),
     }
 
-    const result = await db.collection("developers").updateOne(
+    const result = await db.collection("sellers").updateOne(
       { _id: new ObjectId(id) },
       { $set: updateData },
     )
@@ -61,7 +61,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     }
 
     // Fetch and return the updated developer
-    const updatedDeveloper = await db.collection("developers").findOne({ _id: new ObjectId(id) })
+    const updatedDeveloper = await db.collection("sellers").findOne({ _id: new ObjectId(id) })
 
     return NextResponse.json({ message: "Developer updated", developer: updatedDeveloper })
   } catch (error) {
@@ -79,7 +79,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
     }
 
     const db = await getDatabase()
-    const result = await db.collection("developers").deleteOne({ _id: new ObjectId(id) })
+    const result = await db.collection("sellers").deleteOne({ _id: new ObjectId(id) })
 
     if (result.deletedCount === 0) {
       return NextResponse.json({ error: "Developer not found" }, { status: 404 })

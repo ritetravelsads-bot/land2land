@@ -8,7 +8,6 @@ import PropertyFormStep1 from "./property-form-step-1"
 import PropertyFormStep2 from "./property-form-step-2"
 import PropertyFormStep3 from "./property-form-step-3"
 import PropertyFormStep4 from "./property-form-step-4"
-import PropertyFormOfficeSpace from "./property-form-office-space"
 
 export default function PropertyFormMultiStep({
   apiEndpoint = "/api/agent/properties",
@@ -28,25 +27,34 @@ export default function PropertyFormMultiStep({
   const defaultFormData = {
     property_name: "",
     slug: "",
-    property_type: "apartment",
-    listing_type: "new",
-    property_category: "residential",
+    property_type: "agricultural",
+    listing_type: "sale",
+    property_category: "agricultural",
     lowest_price: "",
     max_price: "",
-    bedrooms: "",
-    bathrooms: "",
     area_sqft: "",
-    parking_type: "open",
-    parking_count: "",
+    // Land-specific fields
+    area_value: "",
+    area_unit: "acre",
+    plot_length: "",
+    plot_width: "",
+    road_width: "",
+    road_access: false,
+    water_available: false,
+    electricity_available: false,
+    boundary_wall: false,
+    corner_plot: false,
+    is_negotiable: false,
+    zoning: "",
+    survey_number: "",
+    ownership_type: "freehold",
+    facing: "",
     address: "",
     city: "",
     state: "",
     postal_code: "",
     country: "India",
     status: "active",
-    furnished_type: "unfurnished",
-    floor_number: "",
-    total_floors: "",
     possession: "",
     possession_type: "ready",
     possession_date: "",
@@ -181,11 +189,9 @@ export default function PropertyFormMultiStep({
         
         // Convert numeric string fields to numbers
         const numericFields = [
-          "lowest_price", "max_price", "bedrooms", "bathrooms", "area_sqft",
-          "parking_count", "floor_number", "total_floors", "balconies_count",
-          "carpet_area", "built_up_area", "super_area", "total_towers",
-          "total_units", "floors_per_tower", "total_acreage", "open_area_percentage",
-          "clubhouse_size", "booking_amount", "latitude", "longitude"
+          "lowest_price", "max_price", "area_sqft",
+          "area_value", "plot_length", "plot_width", "road_width",
+          "latitude", "longitude"
         ]
         
         if (numericFields.includes(key) && value !== "" && value !== null && value !== undefined) {
@@ -239,7 +245,7 @@ export default function PropertyFormMultiStep({
 
   const steps = [
     { number: 1, title: "Basic Info" },
-    { number: 2, title: "Pricing & Size" },
+    { number: 2, title: "Pricing & Land Details" },
     { number: 3, title: "Location" },
     { number: 4, title: "Media & SEO" },
   ]
@@ -274,18 +280,7 @@ export default function PropertyFormMultiStep({
       {/* Form Steps */}
       <div className="bg-card border border-border rounded-lg p-6 mb-6">
         {currentStep === 1 && <PropertyFormStep1 formData={formData} onChange={handleStepChange} />}
-        {currentStep === 2 && (
-          <>
-            <PropertyFormStep2 formData={formData} onChange={handleStepChange} />
-            {/* Show Office Space form for commercial/office properties */}
-            {(formData.property_category === 'commercial' || 
-              ['office', 'office_space', 'coworking', 'managed_office', 'virtual_office', 'private_office', 'sco', 'commercial'].includes(formData.property_type?.toLowerCase())) && (
-              <div className="mt-8 pt-8 border-t border-border">
-                <PropertyFormOfficeSpace formData={formData} onChange={handleStepChange} />
-              </div>
-            )}
-          </>
-        )}
+        {currentStep === 2 && <PropertyFormStep2 formData={formData} onChange={handleStepChange} />}
         {currentStep === 3 && <PropertyFormStep3 formData={formData} onChange={handleStepChange} />}
         {currentStep === 4 && <PropertyFormStep4 formData={formData} onChange={handleStepChange} />}
       </div>
@@ -299,7 +294,7 @@ export default function PropertyFormMultiStep({
 
         {currentStep === 4 ? (
           <Button onClick={handleSubmit} disabled={loading} className="px-8">
-            {loading ? "Submitting..." : "Publish Property"}
+            {loading ? "Submitting..." : "Publish Listing"}
           </Button>
         ) : (
           <Button onClick={handleNext} className="px-6">

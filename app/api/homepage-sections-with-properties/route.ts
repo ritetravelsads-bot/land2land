@@ -116,7 +116,7 @@ export async function GET() {
         if (section.property_ids && section.property_ids.length > 0) {
           try {
             properties = await db
-              .collection("properties")
+              .collection("listings")
               .find({
                 _id: { $in: section.property_ids.map((id) => new ObjectId(id)) },
                 status: "active"

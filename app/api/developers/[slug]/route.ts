@@ -19,17 +19,17 @@ export async function GET(
     let developer = null
     
     // 1. Try to find by exact slug
-    developer = await db.collection("developers").findOne({ slug })
+    developer = await db.collection("sellers").findOne({ slug })
     
     // 2. Try to find by ObjectId
     if (!developer && ObjectId.isValid(slug)) {
-      developer = await db.collection("developers").findOne({ _id: new ObjectId(slug) })
+      developer = await db.collection("sellers").findOne({ _id: new ObjectId(slug) })
     }
     
     // 3. Try to find by name (case-insensitive, convert slug back to name)
     if (!developer) {
       const possibleName = slug.replace(/-/g, " ")
-      developer = await db.collection("developers").findOne({ 
+      developer = await db.collection("sellers").findOne({ 
         name: { $regex: new RegExp(`^${possibleName}$`, "i") }
       })
     }
@@ -38,7 +38,7 @@ export async function GET(
     // and create a virtual developer object
     if (!developer) {
       const possibleName = slug.replace(/-/g, " ")
-      const propertyWithDeveloper = await db.collection("properties").findOne({
+      const propertyWithDeveloper = await db.collection("listings").findOne({
         $or: [
           { developer_name: { $regex: new RegExp(`^${possibleName}$`, "i") } },
           { developer_name: { $regex: new RegExp(possibleName, "i") } }
@@ -80,13 +80,13 @@ export async function GET(
 
     const [properties, totalCount] = await Promise.all([
       db
-        .collection("properties")
+        .collection("listings")
         .find(propertyQuery)
         .sort({ is_featured: -1, created_at: -1 })
         .skip(skip)
         .limit(limit)
         .toArray(),
-      db.collection("properties").countDocuments(propertyQuery),
+      db.collection("listings").countDocuments(propertyQuery),
     ])
 
     // Serialize ObjectIds to strings

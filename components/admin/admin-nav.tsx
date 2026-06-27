@@ -42,7 +42,7 @@ export default function AdminNav() {
     {
       title: "Management",
       items: [
-        { href: "/admin/properties", label: "Properties", icon: Package },
+        { href: "/admin/properties", label: "Listings", icon: Package },
         { href: "/admin/leads", label: "Leads", icon: UserPlus },
         { href: "/admin/users", label: "Users", icon: Users },
         { href: "/admin/reviews", label: "Reviews", icon: Star },
@@ -56,7 +56,7 @@ export default function AdminNav() {
         { href: "/admin/categories", label: "Categories", icon: Grid3X3 },
         { href: "/admin/states", label: "States", icon: MapPin },
         { href: "/admin/amenities", label: "Amenities", icon: Zap },
-        { href: "/admin/developers", label: "Developers", icon: Building2 },
+        { href: "/admin/developers", label: "Sellers / Agents", icon: Building2 },
         { href: "/admin/facilities", label: "Facilities", icon: Hammer },
       ],
     },

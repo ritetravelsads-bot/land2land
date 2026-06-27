@@ -12,13 +12,13 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
     let property = null
     
     // First try slug
-    property = await db.collection("properties").findOne({ slug: id })
+    property = await db.collection("listings").findOne({ slug: id })
     
     // If not found by slug, try _id
     if (!property) {
       try {
         const objectId = new ObjectId(id)
-        property = await db.collection("properties").findOne({ _id: objectId })
+        property = await db.collection("listings").findOne({ _id: objectId })
       } catch (e) {
         // Invalid ObjectId format, that's ok - we already tried slug
       }

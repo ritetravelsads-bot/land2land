@@ -210,164 +210,130 @@ export default function PropertyFormStep2({ formData, onChange }: any) {
         </>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">
-            {formData.listing_type === "builder_project" ? "Super Area (Sq Ft)" : "Area (Sq Ft)"}
-          </label>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Plot Area</label>
+          <input
+            type="number"
+            value={formData.area_value || ""}
+            onChange={(e) => onChange("area_value", e.target.value)}
+            placeholder="e.g., 2"
+            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
+          />
+        </div>
+        <div>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Area Unit</label>
+          <select
+            value={formData.area_unit || "acre"}
+            onChange={(e) => onChange("area_unit", e.target.value)}
+            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
+          >
+            <option value="sqft">Sq Ft</option>
+            <option value="sqyd">Sq Yard</option>
+            <option value="acre">Acre</option>
+            <option value="bigha">Bigha</option>
+            <option value="hectare">Hectare</option>
+            <option value="marla">Marla</option>
+            <option value="kanal">Kanal</option>
+          </select>
+        </div>
+        <div>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Area (Sq Ft)</label>
           <input
             type="number"
             value={formData.area_sqft}
             onChange={(e) => onChange("area_sqft", e.target.value)}
-            placeholder="e.g., 1500"
+            placeholder="Total area in sq ft"
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           />
-        </div>
-        <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Property Size</label>
-          <input
-            type="text"
-            value={formData.property_size}
-            onChange={(e) => onChange("property_size", e.target.value)}
-            placeholder="e.g., 1500 Sq Ft"
-            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-          />
+          <p className="text-xs text-muted-foreground mt-1">Used for search &amp; sorting</p>
         </div>
       </div>
 
-      {(formData.listing_type === "resale" || formData.listing_type === "rental") && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <label className="text-xs font-medium text-muted-foreground block mb-1.5">Carpet Area (Sq Ft)</label>
-            <input
-              type="number"
-              value={formData.carpet_area || ""}
-              onChange={(e) => onChange("carpet_area", e.target.value)}
-              placeholder="e.g., 1200"
-              className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-            />
-          </div>
-          <div>
-            <label className="text-xs font-medium text-muted-foreground block mb-1.5">Built-Up Area (Sq Ft)</label>
-            <input
-              type="number"
-              value={formData.built_up_area || ""}
-              onChange={(e) => onChange("built_up_area", e.target.value)}
-              placeholder="e.g., 1350"
-              className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-            />
-          </div>
-          <div>
-            <label className="text-xs font-medium text-muted-foreground block mb-1.5">Direction Facing</label>
-            <select
-              value={formData.direction_facing || ""}
-              onChange={(e) => onChange("direction_facing", e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-            >
-              <option value="">Select</option>
-              <option value="north">North</option>
-              <option value="south">South</option>
-              <option value="east">East</option>
-              <option value="west">West</option>
-              <option value="north_east">North-East</option>
-              <option value="north_west">North-West</option>
-              <option value="south_east">South-East</option>
-              <option value="south_west">South-West</option>
-            </select>
-          </div>
-        </div>
-      )}
-
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {(formData.listing_type === "resale" || formData.listing_type === "rental") && (
-          <div>
-            <label className="text-xs font-medium text-muted-foreground block mb-1.5">BHK Configuration</label>
-            <input
-              type="text"
-              value={formData.bhk_configuration || ""}
-              onChange={(e) => onChange("bhk_configuration", e.target.value)}
-              placeholder="e.g., 3BHK"
-              className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-            />
-          </div>
-        )}
-        <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Bedrooms</label>
-          <input
-            type="number"
-            value={formData.bedrooms}
-            onChange={(e) => onChange("bedrooms", e.target.value)}
-            placeholder="0"
-            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-          />
-        </div>
-        <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Bathrooms</label>
-          <input
-            type="number"
-            value={formData.bathrooms}
-            onChange={(e) => onChange("bathrooms", e.target.value)}
-            placeholder="0"
-            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-          />
-        </div>
-        <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Balconies</label>
-          <input
-            type="number"
-            value={formData.balconies_count || ""}
-            onChange={(e) => onChange("balconies_count", e.target.value)}
-            placeholder="0"
-            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-          />
-        </div>
-      </div>
-
+      {/* Plot dimensions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Floor Number</label>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Plot Length (ft)</label>
           <input
             type="number"
-            value={formData.floor_number}
-            onChange={(e) => onChange("floor_number", e.target.value)}
-            placeholder="e.g., 5"
+            value={formData.plot_length || ""}
+            onChange={(e) => onChange("plot_length", e.target.value)}
+            placeholder="e.g., 60"
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Total Floors</label>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Plot Width (ft)</label>
           <input
             type="number"
-            value={formData.total_floors}
-            onChange={(e) => onChange("total_floors", e.target.value)}
-            placeholder="e.g., 20"
+            value={formData.plot_width || ""}
+            onChange={(e) => onChange("plot_width", e.target.value)}
+            placeholder="e.g., 40"
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Parking Type</label>
-          <select
-            value={formData.parking_type}
-            onChange={(e) => onChange("parking_type", e.target.value)}
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Approach Road Width (ft)</label>
+          <input
+            type="number"
+            value={formData.road_width || ""}
+            onChange={(e) => onChange("road_width", e.target.value)}
+            placeholder="e.g., 30"
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-          >
-            <option value="open">Open</option>
-            <option value="covered">Covered</option>
-            <option value="basement">Basement</option>
-            <option value="none">None</option>
-          </select>
+          />
         </div>
       </div>
 
+      {/* Zoning & survey */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Zoning / Land Use</label>
+          <input
+            type="text"
+            value={formData.zoning || ""}
+            onChange={(e) => onChange("zoning", e.target.value)}
+            placeholder="e.g., Agricultural, Residential, Mixed-use"
+            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
+          />
+        </div>
+        <div>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Survey / Khasra No.</label>
+          <input
+            type="text"
+            value={formData.survey_number || ""}
+            onChange={(e) => onChange("survey_number", e.target.value)}
+            placeholder="e.g., 124/2"
+            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
+          />
+        </div>
+      </div>
+
+      {/* Land features */}
       <div>
-        <label className="text-xs font-medium text-muted-foreground block mb-1.5">Parking Count</label>
-        <input
-          type="number"
-          value={formData.parking_count}
-          onChange={(e) => onChange("parking_count", e.target.value)}
-          placeholder="Number of parking spaces"
-          className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-        />
+        <label className="text-xs font-medium text-muted-foreground block mb-2">Land Features</label>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          {[
+            { key: "road_access", label: "Road Access" },
+            { key: "water_available", label: "Water Available" },
+            { key: "electricity_available", label: "Electricity Available" },
+            { key: "boundary_wall", label: "Boundary Wall" },
+            { key: "corner_plot", label: "Corner Plot" },
+            { key: "is_negotiable", label: "Price Negotiable" },
+          ].map((feature) => (
+            <label
+              key={feature.key}
+              className="flex items-center gap-2 text-sm border border-border rounded-md px-3 py-2 bg-input cursor-pointer"
+            >
+              <input
+                type="checkbox"
+                checked={!!formData[feature.key]}
+                onChange={(e) => onChange(feature.key, e.target.checked)}
+                className="h-4 w-4 rounded border-border text-primary focus:ring-ring"
+              />
+              <span>{feature.label}</span>
+            </label>
+          ))}
+        </div>
       </div>
 
       {formData.listing_type === "builder_project" && (

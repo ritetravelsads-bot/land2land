@@ -146,12 +146,12 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
     propertyQuery.$and = andConditions
 
     // Get total count
-    const totalProperties = await db.collection("properties").countDocuments(propertyQuery)
+    const totalProperties = await db.collection("listings").countDocuments(propertyQuery)
     const totalPages = Math.ceil(totalProperties / limit)
 
     // Get paginated properties
     const properties = await db
-      .collection("properties")
+      .collection("listings")
       .find(propertyQuery)
       .sort({ is_featured: -1, created_at: -1 })
       .skip(skip)

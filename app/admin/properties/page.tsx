@@ -26,7 +26,7 @@ export default function AdminPropertiesPage() {
     if (filters.minPrice) params.append("minPrice", filters.minPrice);
     if (filters.maxPrice) params.append("maxPrice", filters.maxPrice);
     if (filters.listing_type) params.append("listing_type", filters.listing_type);
-    if (filters.bedrooms) params.append("bedrooms", filters.bedrooms);
+    if (filters.ownership_type) params.append("ownership_type", filters.ownership_type);
     if (filters.city) params.append("city", filters.city);
     if (filters.developer) params.append("developer", filters.developer);
     params.append("limit", "100");
@@ -172,8 +172,8 @@ export default function AdminPropertiesPage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Properties Management"
-        description="Manage all properties on the platform"
+        title="Listings Management"
+        description="Manage all land listings on the platform"
         actions={
           <div className="flex items-center gap-2">
             <Button 
@@ -188,7 +188,7 @@ export default function AdminPropertiesPage() {
             <Button asChild size="sm">
               <Link href="/admin/properties/new">
                 <Plus className="h-4 w-4 mr-2" />
-                Add Property
+                Add Listing
               </Link>
             </Button>
           </div>
@@ -233,10 +233,10 @@ export default function AdminPropertiesPage() {
                   />
                 </th>
                 <th className="px-2 py-2 text-left text-xs font-semibold">Thumbnail</th>
-                <th className="px-4 py-2 text-left text-xs font-semibold">Property Name</th>
+                <th className="px-4 py-2 text-left text-xs font-semibold">Listing Title</th>
                 <th className="px-4 py-2 text-left text-xs font-semibold">Location</th>
                 <th className="px-4 py-2 text-left text-xs font-semibold">Price</th>
-                <th className="px-4 py-2 text-left text-xs font-semibold">Type</th>
+                <th className="px-4 py-2 text-left text-xs font-semibold">Land Type</th>
                 <th className="px-4 py-2 text-left text-xs font-semibold">Actions</th>
               </tr>
             </thead>
@@ -251,17 +251,17 @@ export default function AdminPropertiesPage() {
                 <tr>
                   <td colSpan={7} className="px-4 py-16 text-center">
                     <Building2 className="h-12 w-12 mx-auto text-muted-foreground/50 mb-3" />
-                    <p className="text-sm font-medium text-muted-foreground">No properties found</p>
+                    <p className="text-sm font-medium text-muted-foreground">No listings found</p>
                     <p className="text-xs text-muted-foreground/70 mt-1">
                       {Object.keys(filters).length > 0 
                         ? "Try adjusting your filters to see more results" 
-                        : "Get started by adding your first property"}
+                        : "Get started by adding your first listing"}
                     </p>
                     {Object.keys(filters).length === 0 && (
                       <Button asChild size="sm" className="mt-4">
                         <Link href="/admin/properties/new">
                           <Plus className="h-4 w-4 mr-2" />
-                          Add Property
+                          Add Listing
                         </Link>
                       </Button>
                     )}

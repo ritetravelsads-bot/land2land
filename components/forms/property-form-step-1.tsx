@@ -225,84 +225,58 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
         <div>
           <label className="text-xs font-medium text-muted-foreground block mb-1.5">Listing Type</label>
           <select
-            value={formData.listing_type || "new"}
+            value={formData.listing_type || "sale"}
             onChange={(e) => onChange("listing_type", e.target.value)}
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           >
-            <option value="builder_project">Builder Project</option>
-            <option value="new">New</option>
+            <option value="sale">For Sale</option>
             <option value="resale">Resale</option>
-            <option value="rental">Rental</option>
+            <option value="lease">For Lease</option>
+            <option value="auction">Auction</option>
           </select>
         </div>
         <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Property Category</label>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Land Category</label>
           <select
-            value={formData.property_category || "residential"}
+            value={formData.property_category || "agricultural"}
             onChange={(e) => onChange("property_category", e.target.value)}
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           >
-            <option value="residential">Residential</option>
-            <option value="commercial">Commercial</option>
-            <option value="mixed_use">Mixed-use</option>
+            <option value="agricultural">Agricultural Land</option>
+            <option value="residential_plot">Residential Plot</option>
+            <option value="commercial_plot">Commercial Plot</option>
+            <option value="industrial">Industrial Land</option>
+            <option value="farmland">Farmland</option>
+            <option value="vacant">Vacant / Other Land</option>
           </select>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Property Name *</label>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Listing Title *</label>
           <input
             type="text"
             value={formData.property_name}
             onChange={(e) => handlePropertyNameChange(e.target.value)}
-            placeholder="e.g., Modern 3BHK Apartment"
+            placeholder="e.g., 2 Acre Agricultural Land near NH-48"
             required
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Property Type</label>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Land Type</label>
           <select
             value={formData.property_type}
             onChange={(e) => onChange("property_type", e.target.value)}
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           >
-            <optgroup label="Residential">
-              <option value="apartment">Apartment</option>
-              <option value="house">House</option>
-              <option value="villa">Villa</option>
-              <option value="penthouse">Penthouse</option>
-              <option value="duplex">Duplex</option>
-              <option value="triplex">Triplex</option>
-              <option value="studio">Studio</option>
-            </optgroup>
-            <optgroup label="Plots & Land">
-              <option value="plot">Plot</option>
-              <option value="land">Land</option>
-              <option value="residential_plot">Residential Plot</option>
-              <option value="commercial_plot">Commercial Plot</option>
-              <option value="agricultural">Agricultural Land</option>
-              <option value="farmland">Farmland</option>
-            </optgroup>
-            <optgroup label="Commercial">
-              <option value="shop">Shop</option>
-              <option value="sco">SCO</option>
-              <option value="scf">SCF</option>
-              <option value="retail">Retail Space</option>
-              <option value="showroom">Showroom</option>
-              <option value="multiplex">Multiplex</option>
-              <option value="commercial">Commercial Building</option>
-              <option value="warehouse">Warehouse</option>
-            </optgroup>
-            <optgroup label="Office Spaces">
-              <option value="office">Office</option>
-              <option value="office_space">Office Space</option>
-              <option value="coworking">Coworking Space</option>
-              <option value="managed_office">Managed Office</option>
-              <option value="private_office">Private Office</option>
-              <option value="virtual_office">Virtual Office</option>
-            </optgroup>
+            <option value="agricultural">Agricultural Land</option>
+            <option value="residential_plot">Residential Plot</option>
+            <option value="commercial_plot">Commercial Plot</option>
+            <option value="industrial">Industrial Land</option>
+            <option value="farmland">Farmland</option>
+            <option value="vacant">Vacant / Other Land</option>
           </select>
         </div>
       </div>
@@ -369,139 +343,30 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
         </div>
       </div>
 
-      {formData.listing_type === "builder_project" && (
-        <>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <ComboSelect
-              label="Select Developer/Builder"
-              value={selectedDeveloperName}
-              onChange={handleDeveloperChange}
-              options={developers}
-              onAddNew={handleAddDeveloper}
-              placeholder="Select or add a developer..."
-              loading={loadingDevelopers}
-            />
-            <div>
-              <label className="text-xs font-medium text-muted-foreground block mb-1.5">Project Status</label>
-              <select
-                value={formData.project_status || "launched"}
-                onChange={(e) => onChange("project_status", e.target.value)}
-                className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-              >
-                <option value="pre_launch">Pre Launch</option>
-                <option value="new_launch">New Launch</option>
-                <option value="launched">Launched</option>
-                <option value="under_construction">Under Construction</option>
-                <option value="ready_to_move">Ready to Move</option>
-              </select>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div ref={targetSegmentRef} className="relative">
-              <label className="text-xs font-medium text-muted-foreground block mb-1.5">Target Segment</label>
-              <div
-                onClick={() => setTargetSegmentOpen(true)}
-                className={cn(
-                  "flex items-center justify-between px-3 py-2 border border-border rounded-md bg-input cursor-pointer transition-colors",
-                  targetSegmentOpen && "ring-1 ring-ring"
-                )}
-              >
-                {targetSegmentOpen ? (
-                  <input
-                    type="text"
-                    value={targetSegmentSearch}
-                    onChange={(e) => setTargetSegmentSearch(e.target.value)}
-                    onKeyDown={handleTargetSegmentKeyDown}
-                    placeholder="Select or type custom..."
-                    className="flex-1 bg-transparent text-sm outline-none"
-                    autoFocus
-                  />
-                ) : (
-                  <span className={cn("text-sm", !formData.target_segment && "text-muted-foreground")}>
-                    {getTargetSegmentDisplay() || "Select target segment..."}
-                  </span>
-                )}
-                <ChevronDown
-                  size={16}
-                  className={cn(
-                    "text-muted-foreground transition-transform ml-2",
-                    targetSegmentOpen && "rotate-180"
-                  )}
-                />
-              </div>
-              
-              {/* Dropdown */}
-              {targetSegmentOpen && (
-                <div className="absolute z-[100] w-full top-full mt-1 bg-card border border-border rounded-md shadow-lg max-h-60 overflow-auto">
-                  {filteredTargetSegments.length > 0 ? (
-                    filteredTargetSegments.map((option) => (
-                      <div
-                        key={option._id}
-                        onClick={() => handleTargetSegmentSelect(option.name)}
-                        className={cn(
-                          "flex items-center justify-between px-3 py-2 text-sm cursor-pointer hover:bg-muted/50 transition-colors",
-                          formData.target_segment?.toLowerCase() === option.name.toLowerCase() && "bg-primary/5"
-                        )}
-                      >
-                        <span>{option.name}</span>
-                        {formData.target_segment?.toLowerCase() === option.name.toLowerCase() && (
-                          <Check size={14} className="text-primary" />
-                        )}
-                      </div>
-                    ))
-                  ) : targetSegmentSearch ? (
-                    <div className="px-3 py-2 text-sm text-muted-foreground">
-                      No matching options found
-                    </div>
-                  ) : (
-                    <div className="px-3 py-2 text-sm text-muted-foreground">
-                      No options available
-                    </div>
-                  )}
-
-                  {/* Add New Option Button */}
-                  {showAddTargetSegmentButton && (
-                    <div
-                      onClick={handleAddTargetSegment}
-                      className="flex items-center gap-2 px-3 py-2 text-sm cursor-pointer hover:bg-muted/50 transition-colors border-t border-border text-primary"
-                    >
-                      <Plus size={14} />
-                      <span>Add &quot;{targetSegmentSearch.trim()}&quot;</span>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        </>
-      )}
-
-      {(formData.listing_type === "resale" || formData.listing_type === "rental") && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="text-xs font-medium text-muted-foreground block mb-1.5">Unit Status</label>
-            <select
-              value={formData.unit_status || "vacant"}
-              onChange={(e) => onChange("unit_status", e.target.value)}
-              className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-            >
-              <option value="vacant">Vacant</option>
-              <option value="occupied">Occupied</option>
-              <option value="leased">Leased</option>
-            </select>
-          </div>
-          <div>
-            <label className="text-xs font-medium text-muted-foreground block mb-1.5">Age of Property (Years)</label>
-            <input
-              type="number"
-              value={formData.age_of_property || ""}
-              onChange={(e) => onChange("age_of_property", e.target.value)}
-              placeholder="e.g., 5"
-              className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-            />
-          </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <ComboSelect
+          label="Seller / Agent"
+          value={selectedDeveloperName}
+          onChange={handleDeveloperChange}
+          options={developers}
+          onAddNew={handleAddDeveloper}
+          placeholder="Select or add a seller / agent..."
+          loading={loadingDevelopers}
+        />
+        <div>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Ownership Type</label>
+          <select
+            value={formData.ownership_type || "freehold"}
+            onChange={(e) => onChange("ownership_type", e.target.value)}
+            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
+          >
+            <option value="freehold">Freehold</option>
+            <option value="leasehold">Leasehold</option>
+            <option value="cooperative">Co-operative Society</option>
+            <option value="power_of_attorney">Power of Attorney</option>
+          </select>
         </div>
-      )}
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
@@ -567,15 +432,21 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Furnishing Type</label>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Land Facing</label>
           <select
-            value={formData.furnished_type}
-            onChange={(e) => onChange("furnished_type", e.target.value)}
+            value={formData.facing || ""}
+            onChange={(e) => onChange("facing", e.target.value)}
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           >
-            <option value="unfurnished">Unfurnished</option>
-            <option value="semi_furnished">Semi-Furnished</option>
-            <option value="fully_furnished">Fully Furnished</option>
+            <option value="">Not specified</option>
+            <option value="north">North</option>
+            <option value="south">South</option>
+            <option value="east">East</option>
+            <option value="west">West</option>
+            <option value="north_east">North-East</option>
+            <option value="north_west">North-West</option>
+            <option value="south_east">South-East</option>
+            <option value="south_west">South-West</option>
           </select>
         </div>
         <div>
