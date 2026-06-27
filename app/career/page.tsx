@@ -7,12 +7,12 @@ import Link from "next/link"
 import { Briefcase, MapPin, Clock, Users, TrendingUp, Heart, Send } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Careers | CountryRoof - Join Our Team",
-  description: "Join CountryRoof and build your career in real estate. Explore exciting opportunities in sales, marketing, and property consulting in Gurugram.",
+  title: "Careers | Land2Land - Join Our Team",
+  description: "Join Land2Land and build your career in real estate. Explore exciting opportunities in sales, marketing, and property consulting in Gurugram.",
   openGraph: {
-    title: "Careers at CountryRoof",
+    title: "Careers at Land2Land",
     description: "Build your career with Gurugram's leading real estate advisory firm.",
-    url: "https://countryroof.in/career",
+    url: "https://land2land.in/career",
   },
 }
 
@@ -80,14 +80,14 @@ export default function CareerPage() {
       <Header />
       <main className="min-h-screen bg-background">
         {/* Hero */}
-        <section className="w-full py-16 md:py-24 px-4 bg-gradient-to-br from-[#002366] to-[#003d99] text-white">
+        <section className="w-full py-16 md:py-24 px-4 bg-gradient-to-br from-[#2d5016] to-[#4a7c2e] text-white">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold">Join Our Team</h1>
             <p className="text-lg text-blue-100 max-w-2xl mx-auto">
               Build your career with Gurugram's leading real estate advisory firm.
               We're looking for passionate individuals who want to make a difference in the property industry.
             </p>
-            <Button asChild size="lg" className="bg-white text-[#002366] hover:bg-blue-50">
+            <Button asChild size="lg" className="bg-white text-[#2d5016] hover:bg-blue-50">
               <a href="#openings">View Open Positions</a>
             </Button>
           </div>
@@ -97,7 +97,7 @@ export default function CareerPage() {
         <section className="w-full py-16 px-4">
           <div className="max-w-5xl mx-auto space-y-12">
             <div className="text-center space-y-3">
-              <h2 className="text-3xl font-bold">Why Join CountryRoof?</h2>
+              <h2 className="text-3xl font-bold">Why Join Land2Land?</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 We believe in nurturing talent and providing the best environment for professional growth.
               </p>

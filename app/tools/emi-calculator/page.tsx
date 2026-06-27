@@ -59,7 +59,7 @@ export default function EMICalculatorPage() {
       <Header />
       <main className="min-h-screen bg-background">
         {/* Hero */}
-        <section className="w-full py-12 md:py-16 px-4 bg-gradient-to-br from-[#002366] to-[#003d99] text-white">
+        <section className="w-full py-12 md:py-16 px-4 bg-gradient-to-br from-[#2d5016] to-[#4a7c2e] text-white">
           <div className="max-w-4xl mx-auto text-center space-y-4">
             <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 rounded-2xl mb-4">
               <Calculator className="w-8 h-8" />
@@ -188,7 +188,7 @@ export default function EMICalculatorPage() {
               {/* Results Section */}
               <div className="space-y-6">
                 {/* EMI Display */}
-                <Card className="bg-gradient-to-br from-[#002366] to-[#003d99] text-white border-0">
+                <Card className="bg-gradient-to-br from-[#2d5016] to-[#4a7c2e] text-white border-0">
                   <CardContent className="p-8 text-center">
                     <p className="text-blue-100 text-sm mb-2">Your Monthly EMI</p>
                     <p className="text-4xl md:text-5xl font-bold mb-1">

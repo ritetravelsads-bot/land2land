@@ -118,18 +118,18 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "RealEstateAgent",
-              "@id": "https://countryroof.in/#organization",
-              name: "CountryRoof",
-              alternateName: "Country Roof Real Estate",
+              "@id": "https://land2land.in/#organization",
+              name: "Land2Land",
+              alternateName: "Land2Land Real Estate",
               description: "Premium property marketplace connecting buyers, sellers, and agents in Gurgaon and Delhi NCR",
-              url: "https://countryroof.in",
+              url: "https://land2land.in",
               logo: {
                 "@type": "ImageObject",
-                url: "https://countryroof.in/logo.png",
+                url: "https://land2land.in/logo.png",
                 width: 512,
                 height: 512,
               },
-              image: "https://countryroof.in/og-image.png",
+              image: "https://land2land.in/og-image.png",
               telephone: "+91-1244765940",
               priceRange: "$$-$$$$",
               address: {
@@ -160,9 +160,9 @@ export default function RootLayout({
                 }
               ],
               sameAs: [
-                "https://www.facebook.com/countryroof",
-                "https://www.instagram.com/countryroof",
-                "https://www.linkedin.com/company/countryroof"
+                "https://www.facebook.com/land2land",
+                "https://www.instagram.com/land2land",
+                "https://www.linkedin.com/company/land2land"
               ],
               contactPoint: {
                 "@type": "ContactPoint",
@@ -186,18 +186,18 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "@id": "https://countryroof.in/#website",
-              url: "https://countryroof.in",
-              name: "CountryRoof",
+              "@id": "https://land2land.in/#website",
+              url: "https://land2land.in",
+              name: "Land2Land",
               description: "Find the best property in Gurgaon including flats, plots, villas and commercial spaces",
               publisher: {
-                "@id": "https://countryroof.in/#organization"
+                "@id": "https://land2land.in/#organization"
               },
               potentialAction: {
                 "@type": "SearchAction",
                 target: {
                   "@type": "EntryPoint",
-                  urlTemplate: "https://countryroof.in/properties?search={search_term_string}"
+                  urlTemplate: "https://land2land.in/properties?search={search_term_string}"
                 },
                 "query-input": "required name=search_term_string"
               },

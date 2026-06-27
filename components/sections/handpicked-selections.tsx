@@ -36,7 +36,7 @@ export default function HandpickedSelections({ limit = 4 }: HandpickedSelections
       <div className="max-w-7xl mx-auto">
         <div className="space-y-1.5 mb-4 md:mb-5">
           <div className="flex items-center gap-2">
-            <h2 className="text-xl md:text-2xl font-bold">Countryroof's Handpicked Selections</h2>
+            <h2 className="text-xl md:text-2xl font-bold">Land2Land's Handpicked Selections</h2>
             <Star size={16} className="text-primary fill-primary" />
           </div>
           <p className="text-xs md:text-sm text-muted-foreground font-medium">Expertly curated premium properties</p>

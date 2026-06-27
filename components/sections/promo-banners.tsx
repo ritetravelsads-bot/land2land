@@ -13,7 +13,7 @@ const PROMO_BANNERS = [
     description: "Premium 3 & 4 BHK apartments starting from ₹1.5 Cr",
     cta: "Explore Now",
     href: "/properties?location=dwarka-expressway&status=new-launch",
-    gradient: "from-[#002366] via-[#003399] to-[#0044cc]",
+    gradient: "from-[#2d5016] via-[#003399] to-[#0044cc]",
     icon: Sparkles,
     badge: "Limited Units",
   },

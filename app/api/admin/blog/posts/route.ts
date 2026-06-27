@@ -66,7 +66,7 @@ export async function GET() {
 
     try {
       await client.connect()
-      const db = client.db("countryroof")
+      const db = client.db("land2land")
       const collection = db.collection("blog_posts")
 
       const rawPosts = await collection.find({}).sort({ createdAt: -1 }).toArray()
@@ -145,7 +145,7 @@ export async function POST(request: Request) {
 
     try {
       await client.connect()
-      const db = client.db("countryroof")
+      const db = client.db("land2land")
       const collection = db.collection("blog_posts")
 
       // Use custom slug if provided, otherwise generate from title

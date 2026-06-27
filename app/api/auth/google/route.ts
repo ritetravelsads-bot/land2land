@@ -21,7 +21,7 @@ async function handleGoogleAuth(payload: GoogleAuthPayload) {
 
   try {
     await client.connect()
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const collection = db.collection("users")
 
     // Check if user already exists by email or firebase UID

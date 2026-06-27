@@ -7,7 +7,7 @@ import { formatPriceToIndian } from "@/lib/utils"
 import Script from "next/script"
 
 const mongoUrl = process.env.MONGODB_URI || ""
-const baseUrl = "https://countryroof.in"
+const baseUrl = "https://land2land.in"
 
 // Property type slug mapping
 const PROPERTY_TYPE_MAP: Record<string, string[]> = {
@@ -80,7 +80,7 @@ async function getProperty(slug: string): Promise<Property | null> {
   const client = new MongoClient(mongoUrl)
   try {
     await client.connect()
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const collection = db.collection("properties")
     
     // Try to find by slug first
@@ -111,7 +111,7 @@ async function getDeveloper(developerId: string) {
   const client = new MongoClient(mongoUrl)
   try {
     await client.connect()
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const collection = db.collection("developers")
     
     let developer = null
@@ -145,13 +145,13 @@ export async function generateMetadata({
   
   if (!property) {
     return { 
-      title: "Property Not Found | CountryRoof",
+      title: "Property Not Found | Land2Land",
       robots: { index: false, follow: false }
     }
   }
 
   const propertyTypeSlug = getPropertyTypeSlug(property.property_type || "")
-  const title = property.meta_title || `${property.property_name} | ${property.city} | CountryRoof`
+  const title = property.meta_title || `${property.property_name} | ${property.city} | Land2Land`
   const description = property.meta_description || 
     property.about_project?.substring(0, 160) || 
     `${property.property_name} - ${property.property_type || "Property"} in ${property.city}, ${property.state}. ${property.bedrooms ? `${property.bedrooms} BHK` : ""} ${property.area_sqft ? `${property.area_sqft} sqft` : ""}. Price: ${formatPriceToIndian(property.lowest_price)}${property.max_price ? ` - ${formatPriceToIndian(property.max_price)}` : ""}`
@@ -186,7 +186,7 @@ export async function generateMetadata({
       description: property.og_description || description,
       url: canonicalUrl,
       type: "website",
-      siteName: "CountryRoof",
+      siteName: "Land2Land",
       locale: "en_IN",
       images: ogImage ? [
         {

@@ -4,7 +4,7 @@ import { requireAdmin } from "@/lib/auth"
 import AdminLeadsList from "@/components/admin/leads-list"
 
 export const metadata: Metadata = {
-  title: "Lead Management | CountryRoof Admin",
+  title: "Lead Management | Land2Land Admin",
   description: "Manage property enquiry leads, assign to agents, and track conversions",
 }
 

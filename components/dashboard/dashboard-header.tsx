@@ -101,7 +101,7 @@ export default function DashboardHeader({ userName, userRole }: DashboardHeaderP
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-sm">CR</span>
             </div>
-            <span className="hidden sm:inline-block font-semibold text-foreground">CountryRoof</span>
+            <span className="hidden sm:inline-block font-semibold text-foreground">Land2Land</span>
           </Link>
           <span className={`text-xs px-2 py-0.5 rounded-full font-medium capitalize ${getRoleBadgeColor()}`}>
             {userRole === "customer" ? "Buyer" : userRole}

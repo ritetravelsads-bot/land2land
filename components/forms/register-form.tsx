@@ -66,7 +66,7 @@ export default function RegisterForm() {
         throw new Error(data.error || "Registration failed")
       }
 
-      toast.success("Welcome to Country Roof!", {
+      toast.success("Welcome to Land2Land!", {
         description: "Your account has been created successfully. Check your email for a welcome message.",
       })
       router.push("/auth/login?success=registered")

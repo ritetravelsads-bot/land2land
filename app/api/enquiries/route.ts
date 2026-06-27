@@ -8,7 +8,7 @@ import {
   propertyEnquiryUserTemplate,
 } from "@/lib/email"
 
-const COMPANY_EMAIL = process.env.SMTP_USER || "countryroof.infobirth@gmail.com"
+const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.infobirth@gmail.com"
 
 export async function POST(req: NextRequest) {
   try {
@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
       if (email) {
         await sendEmail({
           to: email,
-          subject: `Thank you for your ${service_name} enquiry - Country Roof`,
+          subject: `Thank you for your ${service_name} enquiry - Land2Land`,
           html: serviceEnquiryUserTemplate({
             name,
             service_name,
@@ -112,7 +112,7 @@ export async function POST(req: NextRequest) {
       if (email) {
         await sendEmail({
           to: email,
-          subject: `Thank you for your enquiry - Country Roof`,
+          subject: `Thank you for your enquiry - Land2Land`,
           html: propertyEnquiryUserTemplate({
             name,
             property_name,
@@ -138,7 +138,7 @@ export async function POST(req: NextRequest) {
       if (email) {
         await sendEmail({
           to: email,
-          subject: `Thank you for your enquiry - Country Roof`,
+          subject: `Thank you for your enquiry - Land2Land`,
           html: serviceEnquiryUserTemplate({
             name,
             service_name: "our services",

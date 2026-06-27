@@ -60,8 +60,8 @@ export default function TrendingLocations() {
     <section className="py-16 px-4 md:px-6 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-center gap-3 mb-3">
-          <TrendingUp className="h-8 w-8 text-[#002366]" />
-          <h2 className="text-3xl md:text-4xl font-bold text-[#002366] text-center">Prime Investment Corridors</h2>
+          <TrendingUp className="h-8 w-8 text-[#2d5016]" />
+          <h2 className="text-3xl md:text-4xl font-bold text-[#2d5016] text-center">Prime Investment Corridors</h2>
         </div>
         <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
           Invest in rapidly developing Gurugram areas with strong appreciation potential
@@ -92,7 +92,7 @@ export default function TrendingLocations() {
                 </div>
                 <p className="text-xs md:text-sm text-white/90">{location.properties}</p>
               </div>
-              <div className="absolute top-2 right-2 md:top-3 md:right-3 bg-[#002366] text-white text-[10px] md:text-xs font-semibold px-2 md:px-3 py-0.5 md:py-1 rounded-full">
+              <div className="absolute top-2 right-2 md:top-3 md:right-3 bg-[#2d5016] text-white text-[10px] md:text-xs font-semibold px-2 md:px-3 py-0.5 md:py-1 rounded-full">
                 Trending
               </div>
             </Link>

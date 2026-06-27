@@ -5,7 +5,7 @@ import { getBlogPostById } from "@/app/blogs/_actions"
 import WordPressBlogEditor from "@/components/admin/wordpress-blog-editor"
 
 export const metadata: Metadata = {
-  title: "Edit Blog Post | CountryRoof Admin",
+  title: "Edit Blog Post | Land2Land Admin",
 }
 
 export default async function EditBlogPostPage({

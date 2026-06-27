@@ -19,13 +19,13 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "After-Sales Support | Property Registration & Management | CountryRoof",
+  title: "After-Sales Support | Property Registration & Management | Land2Land",
   description:
     "Comprehensive after-sales support including property registration, possession assistance, interior design referrals, rental management, and resale assistance.",
   openGraph: {
-    title: "After-Sales Support | CountryRoof",
+    title: "After-Sales Support | Land2Land",
     description: "Complete post-purchase property support and management services.",
-    url: "https://countryroof.in/services/after-sales",
+    url: "https://land2land.in/services/after-sales",
   },
 }
 

@@ -98,7 +98,7 @@ function NewSEOPageForm() {
       },
       "publisher": {
         "@type": "Organization",
-        "name": "Country Roof",
+        "name": "Land2Land",
         "logo": {
           "@type": "ImageObject",
           "url": "{{logo_url}}"
@@ -196,7 +196,7 @@ function NewSEOPageForm() {
             <Input
               value={formData.page_title}
               onChange={(e) => setFormData({ ...formData, page_title: e.target.value })}
-              placeholder="Page Title | Country Roof"
+              placeholder="Page Title | Land2Land"
               className="h-9 text-sm"
             />
           </div>

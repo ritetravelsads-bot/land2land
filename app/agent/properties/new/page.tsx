@@ -7,7 +7,7 @@ export default function AgentAddPropertyPage() {
   return (
     <PropertyFormWrapper
       title="List New Property"
-      description="Fill in the details to add your property to CountryRoof"
+      description="Fill in the details to add your property to Land2Land"
     >
       <PropertyFormMultiStep apiEndpoint="/api/agent/properties" />
     </PropertyFormWrapper>

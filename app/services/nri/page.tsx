@@ -17,13 +17,13 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "NRI Services | Property Investment for NRIs | CountryRoof",
+  title: "NRI Services | Property Investment for NRIs | Land2Land",
   description:
     "Comprehensive real estate services for Non-Resident Indians. Virtual property tours, POA assistance, regulatory compliance, and property management.",
   openGraph: {
-    title: "NRI Services | CountryRoof",
+    title: "NRI Services | Land2Land",
     description: "Hassle-free property investment in India for NRIs.",
-    url: "https://countryroof.in/services/nri",
+    url: "https://land2land.in/services/nri",
   },
 }
 

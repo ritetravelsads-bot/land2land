@@ -18,13 +18,13 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Property Advisory Services | Expert Real Estate Guidance | CountryRoof",
+  title: "Property Advisory Services | Expert Real Estate Guidance | Land2Land",
   description:
     "Get expert property advisory services for buying, selling, and investing in real estate. Personalized recommendations, market analysis, and end-to-end transaction support.",
   openGraph: {
-    title: "Property Advisory Services | CountryRoof",
+    title: "Property Advisory Services | Land2Land",
     description: "Expert guidance for all your real estate decisions in Gurugram.",
-    url: "https://countryroof.in/services/advisory",
+    url: "https://land2land.in/services/advisory",
   },
 }
 
@@ -99,7 +99,7 @@ export default function PropertyAdvisoryPage() {
       <Header />
       <main className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative w-full py-16 md:py-24 px-4 bg-gradient-to-br from-[#002366] via-[#003080] to-[#001a4d] text-white overflow-hidden">
+        <section className="relative w-full py-16 md:py-24 px-4 bg-gradient-to-br from-[#2d5016] via-[#003080] to-[#1d3610] text-white overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl" />
           </div>

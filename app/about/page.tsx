@@ -6,16 +6,16 @@ import Footer from "@/components/layout/footer"
 import { generateWebPageSchema, generateOrganizationSchema } from "@/lib/schema-markup-generator"
 
 export const metadata: Metadata = {
-  title: "CountryRoof | Trusted Real Estate Advisory Gurgaon Since 2008",
+  title: "Land2Land | Trusted Real Estate Advisory Gurgaon Since 2008",
   description:
     "Meet DP Chaudhary & team — 15+ years of real estate advisory in Gurgaon. 100% transparent, RERA-verified listings, zero brokerage. Trusted by HNIs & NRIs since 2008.",
   alternates: {
-    canonical: "https://countryroof.in/about",
+    canonical: "https://land2land.in/about",
   },
   openGraph: {
-    title: "CountryRoof | Trusted Real Estate Advisory Gurgaon Since 2008",
+    title: "Land2Land | Trusted Real Estate Advisory Gurgaon Since 2008",
     description: "Meet DP Chaudhary & team — 15+ years of real estate advisory in Gurgaon. 100% transparent, RERA-verified listings, zero brokerage. Trusted by HNIs & NRIs since 2008.",
-    url: "https://countryroof.in/about",
+    url: "https://land2land.in/about",
   },
 }
 
@@ -68,9 +68,9 @@ const values = [
 export default function AboutPage() {
   // Generate schema markup for SEO
   const pageSchemas = generateWebPageSchema({
-    title: "About Countryroof | Real Estate Advisory & Development",
-    description: "Countryroof - Building Trust. Building Communities. Building the Future. A Gurugram-based real estate advisory committed to delivering clarity, credibility, and long-term value.",
-    url: "https://countryroof.in/about",
+    title: "About Land2Land | Real Estate Advisory & Development",
+    description: "Land2Land - Building Trust. Building Communities. Building the Future. A Gurugram-based real estate advisory committed to delivering clarity, credibility, and long-term value.",
+    url: "https://land2land.in/about",
     breadcrumbs: [
       { name: "Home", url: "/" },
       { name: "About", url: "/about" }
@@ -106,7 +106,7 @@ export default function AboutPage() {
           <div className="max-w-5xl mx-auto relative z-10">
             <div className="space-y-4 text-center">
               <p className="text-primary font-semibold text-sm tracking-wider uppercase">About</p>
-              <h1 className="text-3xl md:text-5xl font-bold text-foreground">Countryroof</h1>
+              <h1 className="text-3xl md:text-5xl font-bold text-foreground">Land2Land</h1>
               <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
                 Building Trust. Building Communities. Building the Future.
               </p>
@@ -125,7 +125,7 @@ export default function AboutPage() {
                 </div>
                 <h2 className="text-2xl md:text-3xl font-bold">Real Estate Advisory & Development</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Countryroof is a Gurugram-based real estate advisory and development-focused brand committed to delivering clarity, credibility, and long-term value in property decisions. We work across Gurugram and Delhi NCR, connecting individuals, families, and investors with thoughtfully selected residential and commercial opportunities.
+                  Land2Land is a Gurugram-based real estate advisory and development-focused brand committed to delivering clarity, credibility, and long-term value in property decisions. We work across Gurugram and Delhi NCR, connecting individuals, families, and investors with thoughtfully selected residential and commercial opportunities.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   In a market where information can often feel overwhelming, we focus on transparency, research-backed guidance, and responsible advisory practices. Every property we recommend is evaluated on key factors such as location growth, structure development, developer reputation, and long-term appreciation potential.
@@ -177,7 +177,7 @@ export default function AboutPage() {
               </div>
               <div className="md:col-span-2 space-y-4">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  With over 15 years of experience in the real estate sector, Dharampal Chaudhary (DP Sir) has been the guiding force behind Countryroof's growth and vision.
+                  With over 15 years of experience in the real estate sector, Dharampal Chaudhary (DP Sir) has been the guiding force behind Land2Land's growth and vision.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Since 2008, he has been actively involved in land development, plotted projects, and residential planning. His deep understanding of market cycles, location potential, and ethical business practices has shaped multiple successful real estate ventures.
@@ -188,7 +188,7 @@ export default function AboutPage() {
                   </p>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Under his leadership, Countryroof continues to prioritize integrity, transparency, and long-term value creation.
+                  Under his leadership, Land2Land continues to prioritize integrity, transparency, and long-term value creation.
                 </p>
               </div>
             </div>
@@ -216,7 +216,7 @@ export default function AboutPage() {
               </div>
               <div className="md:col-span-2 space-y-4">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  As the CEO of Countryroof, Vinod Sir leads operations with a strong focus on customer satisfaction, strategic growth, and professional excellence.
+                  As the CEO of Land2Land, Vinod Sir leads operations with a strong focus on customer satisfaction, strategic growth, and professional excellence.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   He plays a vital role in building partnerships, streamlining advisory processes, and ensuring every client interaction reflects the company's commitment to clarity and trust. His leadership approach combines market insight with practical decision-making, helping clients navigate both residential and commercial real estate confidently.
@@ -229,13 +229,13 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Why Choose Countryroof */}
+        {/* Why Choose Land2Land */}
         <section className="w-full py-12 md:py-16 px-4 border-b border-border">
           <div className="max-w-5xl mx-auto space-y-8">
             <div className="text-center space-y-2">
-              <h2 className="text-2xl md:text-3xl font-bold">Why Choose Countryroof</h2>
+              <h2 className="text-2xl md:text-3xl font-bold">Why Choose Land2Land</h2>
               <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-                Choosing the right real estate partner makes all the difference. At Countryroof, we stand apart because of our commitment to your success.
+                Choosing the right real estate partner makes all the difference. At Land2Land, we stand apart because of our commitment to your success.
               </p>
             </div>
 
@@ -270,7 +270,7 @@ export default function AboutPage() {
         <section className="w-full py-12 md:py-16 px-4 bg-muted/30 border-b border-border">
           <div className="max-w-5xl mx-auto space-y-8">
             <div className="text-center space-y-2">
-              <h2 className="text-2xl md:text-3xl font-bold">What Does Countryroof Offer?</h2>
+              <h2 className="text-2xl md:text-3xl font-bold">What Does Land2Land Offer?</h2>
               <p className="text-sm text-muted-foreground">Comprehensive real estate guidance across multiple segments</p>
             </div>
 
@@ -362,7 +362,7 @@ export default function AboutPage() {
           <div className="max-w-3xl mx-auto text-center space-y-4">
             <h2 className="text-xl md:text-2xl font-bold">Building Trust, Not Just Portfolios</h2>
             <p className="text-sm text-muted-foreground">
-              As Gurugram continues to grow as one of India's most dynamic real estate destinations, Countryroof aims to contribute responsibly to its development by connecting people with properties that truly match their aspirations.
+              As Gurugram continues to grow as one of India's most dynamic real estate destinations, Land2Land aims to contribute responsibly to its development by connecting people with properties that truly match their aspirations.
             </p>
             <p className="text-xs text-muted-foreground italic">
               With experience, transparency, and a commitment to long-term relationships, we continue to build not just portfolios — but trust.

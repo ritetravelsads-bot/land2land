@@ -286,7 +286,7 @@ function PropertiesContent() {
         <div className="bg-gradient-to-b from-primary/5 to-background px-4 py-8 border-b border-border">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-2xl font-bold mb-1">Luxury Properties in Gurgaon | 3 BHK, 4 BHK, Villas & Commercial</h1>
-            <p className="text-sm text-muted-foreground">CountryRoof brings you a handpicked selection of luxury apartments, villas, plots, and commercial spaces across Gurgaon. Every listing is RERA-approved and verified by our advisory team. Whether you are looking for a ready-to-move 3 BHK, 4 BHK, or a high-growth investment property — find it here with zero brokerage and complete transparency. </p>
+            <p className="text-sm text-muted-foreground">Land2Land brings you a handpicked selection of luxury apartments, villas, plots, and commercial spaces across Gurgaon. Every listing is RERA-approved and verified by our advisory team. Whether you are looking for a ready-to-move 3 BHK, 4 BHK, or a high-growth investment property — find it here with zero brokerage and complete transparency. </p>
             <p className="text-sm text-muted-foreground">
               {pagination.total > 0 ? `${pagination.total} properties found` : "Browse our collection"}
             </p>

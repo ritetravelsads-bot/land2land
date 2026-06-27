@@ -27,7 +27,7 @@ export async function GET() {
 
     try {
       await client.connect()
-      const db = client.db("countryroof")
+      const db = client.db("land2land")
       const collection = db.collection("blog_categories")
 
       const categories = await collection.find({}).sort({ name: 1 }).toArray()
@@ -86,7 +86,7 @@ export async function POST(request: Request) {
 
     try {
       await client.connect()
-      const db = client.db("countryroof")
+      const db = client.db("land2land")
       const collection = db.collection("blog_categories")
 
       const slug = slugify(name.trim())
@@ -171,7 +171,7 @@ export async function DELETE(request: Request) {
 
     try {
       await client.connect()
-      const db = client.db("countryroof")
+      const db = client.db("land2land")
       const collection = db.collection("blog_categories")
 
       const result = await collection.deleteOne({ _id: new ObjectId(id) })

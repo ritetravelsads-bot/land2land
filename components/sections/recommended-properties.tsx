@@ -53,7 +53,7 @@ export default function RecommendedProperties() {
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         {/* Section Header */}
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#002366] mb-3">Recommended Properties in Gurugram</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#2d5016] mb-3">Recommended Properties in Gurugram</h2>
           <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto">
             Discover the most popular developer properties with premium locations, exceptional design, and unmatched
             amenities
@@ -91,7 +91,7 @@ export default function RecommendedProperties() {
                 <div className="p-5 space-y-4">
                   {/* Title & Location */}
                   <div>
-                    <h3 className="text-lg font-bold text-[#002366] hover:text-red-500 transition-colors duration-300 line-clamp-1">
+                    <h3 className="text-lg font-bold text-[#2d5016] hover:text-red-500 transition-colors duration-300 line-clamp-1">
                       {property.property_name}
                     </h3>
                     <div className="flex items-start gap-1 mt-2 text-gray-600">
@@ -101,11 +101,11 @@ export default function RecommendedProperties() {
                   </div>
 
                   {/* Price */}
-                  <div className="bg-gradient-to-r from-[#002366]/5 to-red-500/5 rounded-lg p-3">
+                  <div className="bg-gradient-to-r from-[#2d5016]/5 to-red-500/5 rounded-lg p-3">
                     <p className="text-xs text-gray-500 mb-1">Starting From</p>
                     <div className="flex items-center gap-1">
                       <IndianRupee size={16} className="text-red-500" />
-                      <p className="text-lg font-bold text-[#002366]">
+                      <p className="text-lg font-bold text-[#2d5016]">
                         {property.lowest_price
                           ? `₹${formatPriceToIndian(property.lowest_price)}`
                           : "Contact for price"}
@@ -118,25 +118,25 @@ export default function RecommendedProperties() {
                     {property.bhk_count && (
                       <div className="text-center">
                         <div className="flex items-center justify-center gap-1 text-gray-600 mb-1">
-                          <Bed size={14} className="text-[#002366]" />
+                          <Bed size={14} className="text-[#2d5016]" />
                         </div>
-                        <p className="text-xs font-semibold text-[#002366]">{property.bhk_count} BHK</p>
+                        <p className="text-xs font-semibold text-[#2d5016]">{property.bhk_count} BHK</p>
                       </div>
                     )}
                     {property.bathroom_count && (
                       <div className="text-center">
                         <div className="flex items-center justify-center gap-1 text-gray-600 mb-1">
-                          <Bath size={14} className="text-[#002366]" />
+                          <Bath size={14} className="text-[#2d5016]" />
                         </div>
-                        <p className="text-xs font-semibold text-[#002366]">{property.bathroom_count} Bath</p>
+                        <p className="text-xs font-semibold text-[#2d5016]">{property.bathroom_count} Bath</p>
                       </div>
                     )}
                     {property.area && (
                       <div className="text-center">
                         <div className="flex items-center justify-center gap-1 text-gray-600 mb-1">
-                          <Square size={14} className="text-[#002366]" />
+                          <Square size={14} className="text-[#2d5016]" />
                         </div>
-                        <p className="text-xs font-semibold text-[#002366]">
+                        <p className="text-xs font-semibold text-[#2d5016]">
                           {(property.area / 1000).toFixed(1)}K sqft
                         </p>
                       </div>
@@ -147,7 +147,7 @@ export default function RecommendedProperties() {
                   {property.developer_name && (
                     <div className="pt-2 border-t border-gray-100">
                       <p className="text-xs text-gray-500">
-                        By: <span className="font-semibold text-[#002366]">{property.developer_name}</span>
+                        By: <span className="font-semibold text-[#2d5016]">{property.developer_name}</span>
                       </p>
                     </div>
                   )}
@@ -160,7 +160,7 @@ export default function RecommendedProperties() {
         {/* CTA Button */}
         <div className="text-center mt-12">
           <Link href="/properties">
-            <button className="bg-[#002366] hover:bg-[#001a4d] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 mx-auto">
+            <button className="bg-[#2d5016] hover:bg-[#1d3610] text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 mx-auto">
               Explore All Properties
               <ArrowRight size={18} />
             </button>

@@ -56,7 +56,7 @@ async function getBlogPost(slug: string): Promise<BlogPost | null> {
   const client = new MongoClient(mongoUrl)
   try {
     await client.connect()
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const collection = db.collection("blog_posts")
     const post = await collection.findOne({
       slug,
@@ -81,7 +81,7 @@ async function getRelatedPosts(category: string, currentSlug: string): Promise<B
   const client = new MongoClient(mongoUrl)
   try {
     await client.connect()
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const collection = db.collection("blog_posts")
     const posts = await collection
       .find({
@@ -122,10 +122,10 @@ export async function generateMetadata({
   const { slug } = await params
   const post = await getBlogPost(slug)
   if (!post) return { title: "Post not found" }
-  const canonicalUrl = `https://countryroof.in/blog/${slug}`
-  const authorName = post.author || "CountryRoof"
+  const canonicalUrl = `https://land2land.in/blog/${slug}`
+  const authorName = post.author || "Land2Land"
   return {
-    title: post.meta_title || `${post.title} | CountryRoof Blog`,
+    title: post.meta_title || `${post.title} | Land2Land Blog`,
     description: post.meta_description || post.excerpt,
     keywords: post.meta_keywords || post.tags?.join(", "),
     authors: [{ name: authorName }],
@@ -170,8 +170,8 @@ export default async function BlogPostPage({
     day: "numeric"
   })
 
-  const schemaMarkup = generateBlogSchema(post, post.author || "CountryRoof")
-  const canonicalUrl = `https://countryroof.in/blog/${slug}`
+  const schemaMarkup = generateBlogSchema(post, post.author || "Land2Land")
+  const canonicalUrl = `https://land2land.in/blog/${slug}`
   const heroImage = post.banner_image || post.cover_image || post.og_image
 
   return (
@@ -356,7 +356,7 @@ export default async function BlogPostPage({
                         <p className="text-xs text-muted-foreground mb-1 font-medium uppercase tracking-wide">Written by</p>
                         <p className="text-base font-semibold text-foreground">{post.author}</p>
                         <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-                          Expert content creator at CountryRoof, covering real estate, property trends, and market insights.
+                          Expert content creator at Land2Land, covering real estate, property trends, and market insights.
                         </p>
                       </div>
                     </div>

@@ -390,8 +390,8 @@ export default function AdvancedSearch() {
               <Sparkles className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h2 className="text-lg md:text-xl font-bold text-foreground">Luxury Properties in Gurgaon</h2>
-              <p className="text-xs text-muted-foreground">Explore RERA-verified apartments, villas & plots across Dwarka Expressway, Golf Course Road & SPR. Zero brokerage. Trusted developers only. </p>
+              <h2 className="text-lg md:text-xl font-bold text-foreground">Find Verified Land Across India</h2>
+              <p className="text-xs text-muted-foreground">Explore agricultural land, farmland & plots with verified ownership records and transparent pricing. Buy and sell directly with confidence.</p>
             </div>
           </div>
 

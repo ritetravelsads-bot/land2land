@@ -18,7 +18,7 @@ export async function GET(request: Request) {
 
     try {
       await client.connect()
-      const db = client.db("countryroof")
+      const db = client.db("land2land")
       const collection = db.collection("quotes")
 
       const quotes = await collection.find({}).sort({ timestamp: -1 }).limit(100).toArray()

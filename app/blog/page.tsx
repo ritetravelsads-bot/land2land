@@ -4,13 +4,13 @@ import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 
 export const metadata: Metadata = {
-  title: "Blog | CountryRoof",
+  title: "Blog | Land2Land",
   description:
-    "Read expert tips on roofing maintenance, installation guides, and industry insights from CountryRoof professionals.",
+    "Read expert tips on roofing maintenance, installation guides, and industry insights from Land2Land professionals.",
   openGraph: {
-    title: "Blog | CountryRoof",
-    description: "Expert roofing tips and industry insights from CountryRoof professionals.",
-    url: "https://countryroof.in/blog",
+    title: "Blog | Land2Land",
+    description: "Expert roofing tips and industry insights from Land2Land professionals.",
+    url: "https://land2land.in/blog",
   },
 }
 
@@ -24,7 +24,7 @@ export default function BlogPage() {
           <div className="max-w-4xl mx-auto space-y-3">
             <h1 className="text-primary">Roofing Blog</h1>
             <p className="text-muted-foreground text-sm md:text-base max-w-2xl">
-              Expert tips, maintenance guides, and industry insights from CountryRoof professionals.
+              Expert tips, maintenance guides, and industry insights from Land2Land professionals.
             </p>
           </div>
         </section>

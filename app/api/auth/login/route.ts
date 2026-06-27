@@ -13,7 +13,7 @@ async function loginUser(email: string, password: string) {
 
   try {
     await client.connect()
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const collection = db.collection("users")
 
     // Find user

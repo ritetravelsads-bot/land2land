@@ -8,7 +8,7 @@ import {
 } from "@/lib/email"
 import type { LeadSource } from "@/lib/models"
 
-const COMPANY_EMAIL = process.env.SMTP_USER || "countryroof.infobirth@gmail.com"
+const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.infobirth@gmail.com"
 
 export async function POST(req: NextRequest) {
   try {
@@ -148,7 +148,7 @@ export async function POST(req: NextRequest) {
     if (email) {
       await sendEmail({
         to: email,
-        subject: `Thank you for your enquiry - Country Roof`,
+        subject: `Thank you for your enquiry - Land2Land`,
         html: propertyEnquiryUserTemplate({
           name,
           property_name,

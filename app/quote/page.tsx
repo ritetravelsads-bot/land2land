@@ -4,15 +4,15 @@ import Footer from "@/components/layout/footer"
 import QuoteForm from "@/components/forms/quote-form"
 
 export const metadata: Metadata = {
-  title: "Get a Free Quote | CountryRoof",
-  description: "Request a free property quote from CountryRoof. Fast, accurate estimates with no obligation.",
+  title: "Get a Free Quote | Land2Land",
+  description: "Request a free property quote from Land2Land. Fast, accurate estimates with no obligation.",
   alternates: {
-    canonical: "https://countryroof.in/quote",
+    canonical: "https://land2land.in/quote",
   },
   openGraph: {
-    title: "Get a Free Quote | CountryRoof",
+    title: "Get a Free Quote | Land2Land",
     description: "Get a free property quote from our expert team.",
-    url: "https://countryroof.in/quote",
+    url: "https://land2land.in/quote",
   },
 }
 

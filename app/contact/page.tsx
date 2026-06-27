@@ -4,15 +4,15 @@ import Header from "@/components/layout/header"
 import ContactForm from "@/components/forms/contact-form"
 
 export const metadata: Metadata = {
-  title: "Contact CountryRoof | Property Advisory Gurgaon | Call +91 98737-02365",
-  description: "Talk to CountryRoof's property experts in Gurgaon. Visit us at Sector 48, JMD Megapolis or call +91 98737-02365. Free advisory — Mon to Sat, 9AM–6PM.",
+  title: "Contact Land2Land | Property Advisory Gurgaon | Call +91 98737-02365",
+  description: "Talk to Land2Land's property experts in Gurgaon. Visit us at Sector 48, JMD Megapolis or call +91 98737-02365. Free advisory — Mon to Sat, 9AM–6PM.",
   alternates: {
-    canonical: "https://countryroof.in/contact",
+    canonical: "https://land2land.in/contact",
   },
   openGraph: {
-    title: "Contact CountryRoof | Property Advisory Gurgaon | Call +91 98737-02365",
-    description: "Talk to CountryRoof's property experts in Gurgaon. Visit us at Sector 48, JMD Megapolis or call +91 98737-02365. Free advisory — Mon to Sat, 9AM–6PM.",
-    url: "https://countryroof.in/contact",
+    title: "Contact Land2Land | Property Advisory Gurgaon | Call +91 98737-02365",
+    description: "Talk to Land2Land's property experts in Gurgaon. Visit us at Sector 48, JMD Megapolis or call +91 98737-02365. Free advisory — Mon to Sat, 9AM–6PM.",
+    url: "https://land2land.in/contact",
   },
 }
 
@@ -57,8 +57,8 @@ export default function ContactPage() {
                     <Mail size={14} className="text-primary" />
                     <p className="text-xs font-semibold text-foreground">Email</p>
                   </div>
-                  <a href="mailto:info@countryroof.in" className="text-xs text-primary hover:underline block">
-                    info@countryroof.in
+                  <a href="mailto:info@land2land.in" className="text-xs text-primary hover:underline block">
+                    info@land2land.in
                   </a>
                 </div>
 
@@ -96,7 +96,7 @@ export default function ContactPage() {
         {/* Why Choose */}
         <section className="w-full py-12 md:py-16 px-4 bg-muted/30 border-t border-border">
           <div className="max-w-4xl mx-auto space-y-4">
-            <h2>Why Contact CountryRoof?</h2>
+            <h2>Why Contact Land2Land?</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
                 { title: "Expert Support", desc: "Knowledgeable team available to assist" },

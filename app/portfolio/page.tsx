@@ -4,12 +4,12 @@ import Footer from "@/components/layout/footer"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export const metadata: Metadata = {
-  title: "Portfolio | CountryRoof",
+  title: "Portfolio | Land2Land",
   description: "View our completed roofing projects showcasing quality craftsmanship and customer satisfaction.",
   openGraph: {
-    title: "Portfolio | CountryRoof",
+    title: "Portfolio | Land2Land",
     description: "Completed roofing projects that showcase our expertise and quality work.",
-    url: "https://countryroof.in/portfolio",
+    url: "https://land2land.in/portfolio",
   },
 }
 

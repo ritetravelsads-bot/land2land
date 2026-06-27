@@ -6,7 +6,7 @@ import {
   quoteUserTemplate,
 } from "@/lib/email"
 
-const COMPANY_EMAIL = process.env.SMTP_USER || "countryroof.infobirth@gmail.com"
+const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.infobirth@gmail.com"
 
 export async function POST(request: Request) {
   try {
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
     // Send confirmation email to user
     await sendEmail({
       to: email,
-      subject: `Your quote request has been received - Country Roof`,
+      subject: `Your quote request has been received - Land2Land`,
       html: quoteUserTemplate({
         name,
         serviceType,

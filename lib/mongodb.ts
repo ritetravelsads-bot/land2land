@@ -27,7 +27,7 @@ export async function connectToDatabase() {
   console.log("[v0] Creating new MongoDB connection...")
   const client = new MongoClient(uri)
   await client.connect()
-  const db = client.db("countryroof")
+  const db = client.db(process.env.MONGODB_DB || "land2land")
 
   cachedClient = client
   cachedDb = db

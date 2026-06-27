@@ -7,12 +7,12 @@ import Link from "next/link"
 import { MapPin, Building2, Train, Trees, Download, ExternalLink } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Gurugram Master Plan 2031 | CountryRoof",
+  title: "Gurugram Master Plan 2031 | Land2Land",
   description: "Explore the Gurugram Master Plan 2031 - Comprehensive guide to upcoming infrastructure, development zones, and investment opportunities in Gurugram.",
   openGraph: {
-    title: "Gurugram Master Plan 2031 | CountryRoof",
+    title: "Gurugram Master Plan 2031 | Land2Land",
     description: "Complete guide to Gurugram's development plan and real estate investment zones.",
-    url: "https://countryroof.in/gurugram-master-plan",
+    url: "https://land2land.in/gurugram-master-plan",
   },
 }
 
@@ -78,7 +78,7 @@ export default function GurugramMasterPlanPage() {
       <Header />
       <main className="min-h-screen bg-background">
         {/* Hero */}
-        <section className="w-full py-16 md:py-24 px-4 bg-gradient-to-br from-[#002366] to-[#003d99] text-white">
+        <section className="w-full py-16 md:py-24 px-4 bg-gradient-to-br from-[#2d5016] to-[#4a7c2e] text-white">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <span className="inline-block px-4 py-1.5 bg-white/10 rounded-full text-sm font-medium">
               Urban Development Guide
@@ -88,7 +88,7 @@ export default function GurugramMasterPlanPage() {
               Comprehensive overview of Gurugram's development roadmap, infrastructure projects, and strategic investment zones for informed property decisions.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button asChild size="lg" className="bg-white text-[#002366] hover:bg-blue-50">
+              <Button asChild size="lg" className="bg-white text-[#2d5016] hover:bg-blue-50">
                 <a href="#zones">Explore Development Zones</a>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
@@ -202,14 +202,14 @@ export default function GurugramMasterPlanPage() {
         </section>
 
         {/* CTA */}
-        <section className="w-full py-16 px-4 bg-gradient-to-br from-[#002366] to-[#003d99] text-white">
+        <section className="w-full py-16 px-4 bg-gradient-to-br from-[#2d5016] to-[#4a7c2e] text-white">
           <div className="max-w-2xl mx-auto text-center space-y-6">
             <h2 className="text-2xl md:text-3xl font-bold">Ready to Invest in Gurugram?</h2>
             <p className="text-blue-100">
               Our experts can help you identify the best investment opportunities based on the Master Plan development zones.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button asChild size="lg" className="bg-white text-[#002366] hover:bg-blue-50">
+              <Button asChild size="lg" className="bg-white text-[#2d5016] hover:bg-blue-50">
                 <Link href="/properties">Browse Properties</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">

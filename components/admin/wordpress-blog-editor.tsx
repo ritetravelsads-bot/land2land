@@ -165,7 +165,7 @@ function GooglePreview({
   title,
   slug,
   description,
-  siteUrl = "countryroof.in"
+  siteUrl = "land2land.in"
 }: {
   title: string
   slug: string
@@ -225,7 +225,7 @@ function generateBlogSchema({
   faqs,
   datePublished,
   dateModified,
-  siteUrl = "https://countryroof.in"
+  siteUrl = "https://land2land.in"
 }: {
   title: string
   content: string
@@ -260,11 +260,11 @@ function generateBlogSchema({
     "description": extractExcerptFromContent(content, 200) || plainText.substring(0, 160),
     "author": {
       "@type": "Person",
-      "name": author || "Country Roof"
+      "name": author || "Land2Land"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "Country Roof",
+      "name": "Land2Land",
       "logo": {
         "@type": "ImageObject",
         "url": `${siteUrl}/logo.png`

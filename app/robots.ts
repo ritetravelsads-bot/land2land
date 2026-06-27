@@ -21,6 +21,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://countryroof.in/sitemap.xml",
+    sitemap: "https://land2land.in/sitemap.xml",
   }
 }
