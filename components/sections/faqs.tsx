@@ -9,13 +9,13 @@ const faqs = [
     id: 1,
     question: "What types of land does Land2Land specialise in?",
     answer:
-      "Land2Land specialises in agricultural land, farmland, orchards, and investment-grade land across India. We feature verified properties from Punjab, Haryana, Uttar Pradesh, Rajasthan, Madhya Pradesh, Maharashtra, Karnataka, and other agricultural regions. Every listing is thoroughly verified for ownership and legal clearance.",
+      "Land2Land covers every kind of land — agricultural and farmland, residential plots, commercial and industrial land, and investment-grade parcels across India. We feature verified listings from Punjab, Haryana, Uttar Pradesh, Rajasthan, Madhya Pradesh, Maharashtra, Karnataka, and many other states. Every listing is thoroughly verified for ownership and legal clearance.",
   },
   {
     id: 2,
     question: "How do I know if the land is legally verified?",
     answer:
-      "Every property on Land2Land undergoes rigorous verification including title check, legal clearance, water rights confirmation, and soil quality assessment. We provide detailed verification reports and connect you with certified legal advisors to ensure complete transparency.",
+      "Every property on Land2Land undergoes rigorous verification including title check, legal clearance, encumbrance checks, and zoning or land-use confirmation. We provide detailed verification reports and connect you with certified legal advisors to ensure complete transparency.",
   },
   {
     id: 3,

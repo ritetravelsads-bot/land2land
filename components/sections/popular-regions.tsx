@@ -7,7 +7,7 @@ import { MapPin, ArrowRight } from "lucide-react"
 const regions = [
   {
     name: "Punjab",
-    description: "Rich agricultural heritage, high-quality farmland",
+    description: "Fertile farmland and well-connected residential plots",
     count: "1,240+",
     image: "/regions/punjab.jpg",
     href: "/buy?region=punjab",
@@ -23,7 +23,7 @@ const regions = [
   },
   {
     name: "Uttar Pradesh",
-    description: "Largest agricultural market, diverse land types",
+    description: "Largest land market with every type of parcel",
     count: "2,150+",
     image: "/regions/up.jpg",
     href: "/buy?region=uttar-pradesh",
@@ -39,7 +39,7 @@ const regions = [
   },
   {
     name: "Madhya Pradesh",
-    description: "Central India hub, affordable agricultural land",
+    description: "Central India hub with affordable land of all kinds",
     count: "760+",
     image: "/regions/mp.jpg",
     href: "/buy?region=madhya-pradesh",
@@ -47,7 +47,7 @@ const regions = [
   },
   {
     name: "Maharashtra",
-    description: "Commercial farming, high-value orchards",
+    description: "Commercial, industrial and high-value land corridors",
     count: "1,120+",
     image: "/regions/maharashtra.jpg",
     href: "/buy?region=maharashtra",
@@ -66,7 +66,7 @@ export default function PopularRegions() {
             </div>
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Browse by Region</h2>
-              <p className="text-sm text-gray-600 font-medium">Explore agricultural land opportunities across India</p>
+              <p className="text-sm text-gray-600 font-medium">Explore land opportunities of every type across India</p>
             </div>
           </div>
         </div>
