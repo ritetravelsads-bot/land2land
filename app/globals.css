@@ -100,26 +100,26 @@ html {
 }
 
 :root {
-  /* Updated color system to use exact #002366 navy blue as requested */
-  /* Professional Navy Blue (#002366) & Clean White/Black Color System */
+  /* Land2Land - Earthy Green Theme */
+  /* Professional Earthy Green & Natural Earth Tones */
   --background: oklch(0.99 0 0);
   --foreground: oklch(0.15 0 0);
 
-  /* Primary: Exact #002366 Navy Blue */
-  --primary: oklch(0.28 0.08 265);
+  /* Primary: Earthy Green (#2d5016) */
+  --primary: oklch(0.38 0.11 140);
   --primary-foreground: oklch(1 0 0);
 
-  /* Secondary: Pure Black for contrast */
-  --secondary: oklch(0.1 0 0);
+  /* Secondary: Deep Earth Brown for contrast */
+  --secondary: oklch(0.25 0.08 40);
   --secondary-foreground: oklch(1 0 0);
 
-  /* Accent: Lighter blue for CTAs and highlights */
-  --accent: oklch(0.5 0.15 265);
+  /* Accent: Lighter sage green for CTAs and highlights */
+  --accent: oklch(0.58 0.12 140);
   --accent-foreground: oklch(1 0 0);
 
-  /* Neutrals - Clean whites and subtle grays */
+  /* Neutrals - Natural whites and warm grays */
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.48 0.01 265);
+  --muted-foreground: oklch(0.48 0.01 140);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.15 0 0);
   --popover: oklch(1 0 0);
@@ -128,16 +128,16 @@ html {
   /* UI Elements */
   --border: oklch(0.92 0 0);
   --input: oklch(0.98 0 0);
-  --ring: oklch(0.28 0.08 265);
+  --ring: oklch(0.38 0.11 140);
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(1 0 0);
 
-  /* Chart colors - all variations of navy blue */
-  --chart-1: oklch(0.28 0.08 265);
-  --chart-2: oklch(0.5 0.15 265);
-  --chart-3: oklch(0.65 0.08 265);
-  --chart-4: oklch(0.4 0.12 265);
-  --chart-5: oklch(0.35 0.08 265);
+  /* Chart colors - earthy green variations */
+  --chart-1: oklch(0.38 0.11 140);
+  --chart-2: oklch(0.58 0.12 140);
+  --chart-3: oklch(0.7 0.08 140);
+  --chart-4: oklch(0.48 0.12 140);
+  --chart-5: oklch(0.43 0.08 140);
 
   /* Radius - modern, soft curves */
   --radius: 0.75rem;
@@ -146,35 +146,36 @@ html {
   --sidebar: oklch(0.98 0 0);
   --sidebar-foreground: oklch(0.15 0 0);
 
-  /* Luxury Premium Colors */
-  --luxury-gold: #d4af37;
-  --luxury-navy: #002366;
-  --luxury-cream: #faf8f3;
-  --luxury-dark: #1a1a1a;
-  --luxury-border: #e8e6e1;
+  /* Land2Land Brand Colors */
+  --land-primary: #2d5016;
+  --land-accent: #6ba82b;
+  --land-earth: #8b7355;
+  --land-cream: #faf8f3;
+  --land-dark: #1a1a1a;
+  --land-border: #e8e6e1;
 }
 
 .dark {
   --background: oklch(0.12 0 0);
   --foreground: oklch(0.95 0 0);
 
-  --primary: oklch(0.45 0.15 265);
+  --primary: oklch(0.52 0.12 140);
   --primary-foreground: oklch(0.12 0 0);
 
-  --secondary: oklch(0.2 0 0);
+  --secondary: oklch(0.35 0.08 40);
   --secondary-foreground: oklch(0.95 0 0);
 
-  --accent: oklch(0.55 0.15 265);
+  --accent: oklch(0.65 0.12 140);
   --accent-foreground: oklch(0.12 0 0);
 
   --muted: oklch(0.18 0 0);
-  --muted-foreground: oklch(0.62 0.01 265);
+  --muted-foreground: oklch(0.62 0.01 140);
   --card: oklch(0.15 0 0);
   --card-foreground: oklch(0.95 0 0);
 
   --border: oklch(0.25 0 0);
   --input: oklch(0.2 0 0);
-  --ring: oklch(0.45 0.15 265);
+  --ring: oklch(0.52 0.12 140);
 
   --sidebar: oklch(0.15 0 0);
   --sidebar-foreground: oklch(0.95 0 0);

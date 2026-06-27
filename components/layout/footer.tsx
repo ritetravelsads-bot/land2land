@@ -65,37 +65,36 @@ export default function Footer() {
 
   const quickLinks = [
     { name: "Home", href: "/" },
-    { name: "About CountryRoof", href: "/about" },
-    { name: "Our Services", href: "/services" },
-    { name: "All Properties", href: "/properties" },
-    { name: "Real Estate Blog", href: "/blogs" },
+    { name: "About Land2Land", href: "/about" },
+    { name: "Buy Land", href: "/buy" },
+    { name: "Sell Land", href: "/sell" },
+    { name: "Farm Blog", href: "/blogs" },
     { name: "Career", href: "/career" },
     { name: "Contact", href: "/contact" },
   ]
 
-  const primeLocations = [
-    { name: "Golf Course Road", href: "/golf-course-road" },
-    { name: "Golf Course Extn Road", href: "/golf-course-extn-road" },
-    { name: "Dwarka Expressway", href: "/dwarka-expressway" },
-    { name: "Southern Peripheral Road", href: "/southern-peripheral-road" },
-    { name: "Sohna", href: "/sohna" },
-    { name: "New Gurgaon", href: "/new-gurgaon" },
+  const landCategories = [
+    { name: "Agricultural Land", href: "/agricultural-land" },
+    { name: "Farmland", href: "/farmland" },
+    { name: "Plots & Vacant Land", href: "/plots-vacant" },
+    { name: "Land with Infrastructure", href: "/land-with-infrastructure" },
+    { name: "Orchard Land", href: "/orchard-land" },
+    { name: "Irrigation Land", href: "/irrigation-land" },
   ]
 
-  const propertyTypes = [
-    { name: "Ready To Move", href: "/ready-to-move" },
-    { name: "New Launch", href: "/new-launch" },
-    { name: "Upcoming", href: "/upcoming" },
-    { name: "Luxury Apartments", href: "/luxury-apartments" },
-    { name: "Plots and Lands", href: "/plots-and-lands" },
-    { name: "Commercial Properties", href: "/commercial-properties" },
-    { name: "Furnished Flats", href: "/furnished-flats" },
+  const landTypes = [
+    { name: "Buy Land", href: "/buy" },
+    { name: "Sell Land", href: "/sell" },
+    { name: "Farm Investments", href: "/investments" },
+    { name: "Find Agent", href: "/find-agent" },
+    { name: "Property Management", href: "/property-management" },
+    { name: "Area Converter", href: "/area-converter" },
   ]
 
   const toolsServices = [
-    { name: "EMI Calculator", href: "/tools/emi-calculator" },
-    { name: "QR Code Generator", href: "/tools/qr-generator" },
-    { name: "Gurugram Master Plan 2031", href: "/gurugram-master-plan" },
+    { name: "Area Converter", href: "/area-converter" },
+    { name: "Land Calculator", href: "/tools/land-calculator" },
+    { name: "Farm Advisory", href: "/farm-advisory" },
     { name: "Privacy Policy", href: "/privacy-policy" },
     { name: "Terms & Conditions", href: "/terms-and-conditions" },
     { name: "Disclaimer", href: "/disclaimer" },
@@ -112,7 +111,7 @@ export default function Footer() {
       <div className="border-b border-gray-200 md:border-b-0">
         <button
           onClick={() => toggleSection(sectionKey)}
-          className="w-full md:w-auto flex items-center justify-between md:justify-start gap-2 py-3 md:py-0 text-sm font-semibold text-[#002366] hover:text-red-500 transition-colors"
+          className="w-full md:w-auto flex items-center justify-between md:justify-start gap-2 py-3 md:py-0 text-sm font-semibold text-[#2d5016] hover:text-[#6ba82b] transition-colors"
         >
           {title}
           <ChevronDown size={16} className={`md:hidden transition-transform ${isExpanded ? "rotate-180" : ""}`} />
@@ -123,7 +122,7 @@ export default function Footer() {
         >
           {items.map((item, idx) => (
             <li key={idx} className="pt-2 md:pt-0">
-              <Link href={item.href} className="text-xs text-gray-600 hover:text-red-500 transition-colors">
+              <Link href={item.href} className="text-xs text-gray-600 hover:text-[#2d5016] transition-colors">
                 {item.name}
               </Link>
             </li>
@@ -150,40 +149,40 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#002366] mb-4">About CountryRoof</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#2d5016] mb-4">About Land2Land</h2>
               <p className="text-sm text-gray-600 leading-relaxed max-w-sm">
-                Gurugram-based real estate advisory firm specializing in luxury residential and high-growth commercial investments. We assist elite homebuyers and investors in identifying premium properties across Golf Course Road, Dwarka Expressway, New Gurugram, and SPR. Our approach combines deep local expertise, verified inventory, and transparent advisory services to ensure secure and rewarding property decisions.
+                India&apos;s trusted agricultural land and farm property marketplace. We connect landowners, farmers, and investors with verified land opportunities across India. Our platform provides transparent pricing, expert advisory, and secure transactions for agricultural land, farmland, and land investments. Empowering rural India through digital real estate.
               </p>
             </div>
 
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#002366] rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-[#2d5016] rounded-lg flex items-center justify-center flex-shrink-0">
                   <Phone size={18} className="text-white" />
                 </div>
-                <a href="tel:+919873702365" className="text-sm text-gray-700 hover:text-red-500 transition-colors">
+                <a href="tel:+919873702365" className="text-sm text-gray-700 hover:text-[#2d5016] transition-colors">
                   +91 98737-02365
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#002366] rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-[#2d5016] rounded-lg flex items-center justify-center flex-shrink-0">
                   <Mail size={18} className="text-white" />
                 </div>
                 <a
-                  href="mailto:info@countryroof.in"
-                  className="text-sm text-gray-700 hover:text-red-500 transition-colors"
+                  href="mailto:info@land2land.in"
+                  className="text-sm text-gray-700 hover:text-[#2d5016] transition-colors"
                 >
-                  info@countryroof.in
+                  info@land2land.in
                 </a>
               </div>
             </div>
           </div>
 
           {/* Unique Enquiry Form */}
-          <div className="bg-gradient-to-br from-[#002366] to-[#003d99] rounded-2xl p-8 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-[#2d5016] to-[#4a7c2e] rounded-2xl p-8 text-white shadow-lg">
             <h3 className="text-xl font-bold mb-2">Get Instant Callback</h3>
-            <p className="text-sm text-blue-100 mb-6">
-              Get expert advice on your property investment. Our team will contact you within 30 minutes.
+            <p className="text-sm text-green-100 mb-6">
+              Get expert advice on your land investment. Our team will contact you within 30 minutes.
             </p>
 
             {formSubmitted ? (
@@ -203,7 +202,7 @@ export default function Footer() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-blue-100 text-sm focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-green-100 text-sm focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
                 <div>
@@ -213,13 +212,13 @@ export default function Footer() {
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-blue-100 text-sm focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-green-100 text-sm focus:outline-none focus:border-white/40 transition-colors"
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={formLoading}
-                  className="w-full bg-white hover:bg-gray-100 disabled:opacity-70 disabled:cursor-not-allowed text-[#002366] font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 flex items-center justify-center gap-2"
+                  className="w-full bg-white hover:bg-gray-100 disabled:opacity-70 disabled:cursor-not-allowed text-[#2d5016] font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 flex items-center justify-center gap-2"
                 >
                   <span>{formLoading ? "Submitting..." : "Get Callback"}</span>
                   {!formLoading && <Send size={16} aria-hidden="true" />}
@@ -227,7 +226,7 @@ export default function Footer() {
                 {formError && (
                   <p className="text-xs text-red-300 text-center">{formError}</p>
                 )}
-                <p className="text-xs text-blue-100 text-center">Get expert advice on your property investment.</p>
+                <p className="text-xs text-green-100 text-center">Get expert advice on your land investment.</p>
               </form>
             )}
           </div>
@@ -240,14 +239,14 @@ export default function Footer() {
             <FooterSection title="Quick Links" items={quickLinks} sectionKey="quickLinks" />
           </div>
 
-          {/* Prime Locations */}
+          {/* Land Categories */}
           <div>
-            <FooterSection title="Prime Locations" items={primeLocations} sectionKey="primeLocations" />
+            <FooterSection title="Land Categories" items={landCategories} sectionKey="landCategories" />
           </div>
 
-          {/* Property Types */}
+          {/* Land Types & Features */}
           <div>
-            <FooterSection title="Property Types" items={propertyTypes} sectionKey="propertyTypes" />
+            <FooterSection title="Buy & Sell" items={landTypes} sectionKey="landTypes" />
           </div>
 
           {/* Tools & Services */}
@@ -260,16 +259,16 @@ export default function Footer() {
         <div className="border-t border-gray-200 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-gray-600 text-center md:text-left">
-              © {currentYear} countryroof.in All rights reserved.
+              © {currentYear} land2land.in All rights reserved.
             </p>
             <div className="flex items-center gap-6">
-              <Link href="/privacy-policy" className="text-xs text-gray-600 hover:text-red-500 transition-colors">
+              <Link href="/privacy-policy" className="text-xs text-gray-600 hover:text-[#2d5016] transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/terms-and-conditions" className="text-xs text-gray-600 hover:text-red-500 transition-colors">
+              <Link href="/terms-and-conditions" className="text-xs text-gray-600 hover:text-[#2d5016] transition-colors">
                 Terms & Conditions
               </Link>
-              <Link href="/site-map" className="text-xs text-gray-600 hover:text-red-500 transition-colors">
+              <Link href="/site-map" className="text-xs text-gray-600 hover:text-[#2d5016] transition-colors">
                 Sitemap
               </Link>
             </div>

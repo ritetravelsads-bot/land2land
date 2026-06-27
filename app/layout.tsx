@@ -25,20 +25,22 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://countryroof.in'),
+  metadataBase: new URL('https://land2land.in'),
   alternates: {
-    canonical: 'https://countryroof.in',
+    canonical: 'https://land2land.in',
   },
-  title: "Luxury Properties in Gurgaon | RERA Verified | CountryRoof",
-  description: "Explore 630+ RERA-verified luxury apartments, villas & plots in Gurgaon. Trusted by HNIs & NRIs. Expert advisory on Golf Course Road, DXP & SPR. Zero brokerage.",
+  title: "Agricultural Land & Farm Property Marketplace | Land2Land",
+  description: "Buy, sell, and invest in agricultural land and farmland in India. Connect with verified land agents, get expert advisory, and find your perfect property on Land2Land.",
   keywords: [
-    "Gurgaon Property",
-    "Real Estate Gurgaon",
-    "Buy Property in Gurgaon",
-    "Property for Sale in Gurgaon",
-    "Commercial Property Gurgaon",
+    "Land for Sale",
+    "Agricultural Land",
+    "Farmland",
+    "Farm Property",
+    "Land Investment",
+    "Property Management",
+    "Area Converter",
   ],
-  authors: [{ name: "CountryRoof" }],
+  authors: [{ name: "Land2Land" }],
   verification: {
     google: "HMLmt_V-xGPk7KOvW60EO-cNggppOdM6OHT47vFLdQM",
   },
@@ -48,23 +50,23 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://countryroof.in",
-    siteName: "CountryRoof",
-    title: "Luxury Properties in Gurgaon | RERA Verified | CountryRoof",
-    description: "Find and list premium properties on CountryRoof marketplace.",
+    url: "https://land2land.in",
+    siteName: "Land2Land",
+    title: "Agricultural Land & Farm Property Marketplace | Land2Land",
+    description: "Buy, sell, and invest in agricultural land and farmland in India.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "CountryRoof Property Marketplace",
+        alt: "Land2Land Property Marketplace",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "CountryRoof | Premium Property Marketplace",
-    description: "Discover properties, connect with agents, secure transactions.",
+    title: "Land2Land | Land & Farm Property Marketplace",
+    description: "Buy, sell, and invest in agricultural land and farmland in India.",
     images: ["/og-image.png"],
   },
 }
