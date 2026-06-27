@@ -6,55 +6,55 @@ import Footer from "@/components/layout/footer"
 import { generateWebPageSchema, generateOrganizationSchema } from "@/lib/schema-markup-generator"
 
 export const metadata: Metadata = {
-  title: "Land2Land | Trusted Real Estate Advisory Gurgaon Since 2008",
+  title: "About Land2Land | Trusted Agricultural Land Marketplace in India",
   description:
-    "Meet DP Chaudhary & team — 15+ years of real estate advisory in Gurgaon. 100% transparent, RERA-verified listings, zero brokerage. Trusted by HNIs & NRIs since 2008.",
+    "Land2Land connects farmers, landowners, and investors with verified agricultural land and farmland across India. 100% verified titles, transparent pricing, and expert land advisory.",
   alternates: {
     canonical: "https://land2land.in/about",
   },
   openGraph: {
-    title: "Land2Land | Trusted Real Estate Advisory Gurgaon Since 2008",
-    description: "Meet DP Chaudhary & team — 15+ years of real estate advisory in Gurgaon. 100% transparent, RERA-verified listings, zero brokerage. Trusted by HNIs & NRIs since 2008.",
+    title: "About Land2Land | Trusted Agricultural Land Marketplace in India",
+    description: "Land2Land connects farmers, landowners, and investors with verified agricultural land and farmland across India. 100% verified titles, transparent pricing, and expert land advisory.",
     url: "https://land2land.in/about",
   },
 }
 
-const residentialServices = [
-  "Luxury apartments and premium penthouses",
-  "Budget-friendly homes",
-  "Independent floors and plotted developments",
-  "Gated community projects"
+const agriculturalServices = [
+  "Agricultural land and farmland",
+  "Orchard and plantation land",
+  "Irrigated and canal-fed land",
+  "Plots and vacant land parcels"
 ]
 
-const commercialServices = [
-  "SCO plots in prime sectors",
-  "Commercial retail spaces",
-  "Office spaces in business hubs",
-  "High-growth investment corridors"
+const investmentServices = [
+  "High-ROI land investment parcels",
+  "Land aggregation for bulk buyers",
+  "Farmland with lease-back options",
+  "Emerging high-growth land corridors"
 ]
 
 const advisoryServices = [
-  "Project comparison and evaluation",
-  "Location growth analysis",
-  "Site visit assistance",
-  "Transparent consultation",
-  "Post-selection guidance"
+  "Land title and ownership verification",
+  "Soil quality and water-rights analysis",
+  "On-site land visit assistance",
+  "Transparent price consultation",
+  "End-to-end documentation support"
 ]
 
 const whyChooseUs = [
-  "Customer-first advisory approach",
-  "Carefully curated and verified property listings",
-  "Focus on high-growth micro-markets in Gurugram",
-  "Transparent communication and clear documentation",
-  "Professional site visit coordination and guidance",
+  "Farmer-first advisory approach",
+  "100% verified land titles and ownership records",
+  "Coverage across India's key agricultural regions",
+  "Transparent pricing and clear documentation",
+  "Professional land-visit coordination and guidance",
   "Long-term relationship mindset"
 ]
 
 const commitments = [
-  "Ethical business practices",
+  "Ethical land transactions",
   "Clear and honest communication",
-  "Responsible advisory",
-  "Sustainable growth-focused projects",
+  "Responsible land advisory",
+  "Sustainable and productive land use",
   "Delivering value beyond expectations"
 ]
 
@@ -68,8 +68,8 @@ const values = [
 export default function AboutPage() {
   // Generate schema markup for SEO
   const pageSchemas = generateWebPageSchema({
-    title: "About Land2Land | Real Estate Advisory & Development",
-    description: "Land2Land - Building Trust. Building Communities. Building the Future. A Gurugram-based real estate advisory committed to delivering clarity, credibility, and long-term value.",
+    title: "About Land2Land | Agricultural Land Marketplace",
+    description: "Land2Land - Connecting Land. Empowering Growth. Building the Future. An India-wide agricultural land marketplace committed to verified listings, transparency, and long-term value.",
     url: "https://land2land.in/about",
     breadcrumbs: [
       { name: "Home", url: "/" },
@@ -108,7 +108,7 @@ export default function AboutPage() {
               <p className="text-primary font-semibold text-sm tracking-wider uppercase">About</p>
               <h1 className="text-3xl md:text-5xl font-bold text-foreground">Land2Land</h1>
               <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
-                Building Trust. Building Communities. Building the Future.
+                Connecting Land. Empowering Growth. Building the Future.
               </p>
             </div>
           </div>
@@ -121,25 +121,25 @@ export default function AboutPage() {
               <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium">
                   <MapPin className="h-3.5 w-3.5" />
-                  Gurugram & Delhi NCR
+                  Pan-India Coverage
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold">Real Estate Advisory & Development</h2>
+                <h2 className="text-2xl md:text-3xl font-bold">Agricultural Land Marketplace & Advisory</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Land2Land is a Gurugram-based real estate advisory and development-focused brand committed to delivering clarity, credibility, and long-term value in property decisions. We work across Gurugram and Delhi NCR, connecting individuals, families, and investors with thoughtfully selected residential and commercial opportunities.
+                  Land2Land is an India-wide agricultural land marketplace committed to delivering clarity, credibility, and long-term value in land transactions. We connect farmers, landowners, and investors with thoughtfully verified agricultural land, farmland, and investment-grade parcels across the country.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  In a market where information can often feel overwhelming, we focus on transparency, research-backed guidance, and responsible advisory practices. Every property we recommend is evaluated on key factors such as location growth, structure development, developer reputation, and long-term appreciation potential.
+                  In a market where land information can often feel opaque, we focus on transparency, research-backed guidance, and responsible advisory practices. Every parcel we list is evaluated on key factors such as title clarity, soil quality, water access, connectivity, and long-term appreciation potential.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed font-medium">
-                  Our goal is simple — to make real estate decisions informed, secure, and rewarding.
+                  Our goal is simple — to make land decisions informed, secure, and rewarding.
                 </p>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { stat: "15+", label: "Years Experience" },
-                  { stat: "2008", label: "Since" },
-                  { stat: "100%", label: "Transparency" },
-                  { stat: "NCR", label: "Coverage" },
+                  { stat: "15K+", label: "Verified Listings" },
+                  { stat: "12+", label: "States Covered" },
+                  { stat: "100%", label: "Title Verified" },
+                  { stat: "India", label: "Coverage" },
                 ].map((item, idx) => (
                   <div key={idx} className="p-4 bg-card border border-border rounded-lg text-center hover:border-primary/30 transition-colors">
                     <p className="text-2xl md:text-3xl font-bold text-primary">{item.stat}</p>
@@ -177,14 +177,14 @@ export default function AboutPage() {
               </div>
               <div className="md:col-span-2 space-y-4">
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  With over 15 years of experience in the real estate sector, Dharampal Chaudhary (DP Sir) has been the guiding force behind Land2Land's growth and vision.
+                  With over 15 years of experience in land and agriculture, Dharampal Chaudhary (DP Sir) has been the guiding force behind Land2Land's growth and vision.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Since 2008, he has been actively involved in land development, plotted projects, and residential planning. His deep understanding of market cycles, location potential, and ethical business practices has shaped multiple successful real estate ventures.
+                  Since 2008, he has been actively involved in land aggregation, farmland development, and agricultural advisory. His deep understanding of land cycles, regional potential, and ethical business practices has shaped multiple successful land ventures across India.
                 </p>
                 <div className="p-4 bg-card border border-border rounded-lg">
                   <p className="text-sm text-muted-foreground italic">
-                    "A home is more than four walls — it represents security, pride, and a future for generations."
+                    "Land is more than soil — it represents security, livelihood, and a future for generations."
                   </p>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -219,7 +219,7 @@ export default function AboutPage() {
                   As the CEO of Land2Land, Vinod Sir leads operations with a strong focus on customer satisfaction, strategic growth, and professional excellence.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  He plays a vital role in building partnerships, streamlining advisory processes, and ensuring every client interaction reflects the company's commitment to clarity and trust. His leadership approach combines market insight with practical decision-making, helping clients navigate both residential and commercial real estate confidently.
+                  He plays a vital role in building partnerships, streamlining advisory processes, and ensuring every client interaction reflects the company's commitment to clarity and trust. His leadership approach combines market insight with practical decision-making, helping farmers and investors navigate land transactions confidently.
                 </p>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Together, the leadership team brings experience, discipline, and a forward-thinking mindset to every project and client relationship.
@@ -235,7 +235,7 @@ export default function AboutPage() {
             <div className="text-center space-y-2">
               <h2 className="text-2xl md:text-3xl font-bold">Why Choose Land2Land</h2>
               <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-                Choosing the right real estate partner makes all the difference. At Land2Land, we stand apart because of our commitment to your success.
+                Choosing the right land partner makes all the difference. At Land2Land, we stand apart because of our commitment to your success.
               </p>
             </div>
 
@@ -271,20 +271,20 @@ export default function AboutPage() {
           <div className="max-w-5xl mx-auto space-y-8">
             <div className="text-center space-y-2">
               <h2 className="text-2xl md:text-3xl font-bold">What Does Land2Land Offer?</h2>
-              <p className="text-sm text-muted-foreground">Comprehensive real estate guidance across multiple segments</p>
+              <p className="text-sm text-muted-foreground">Comprehensive land guidance across multiple segments</p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              {/* Residential */}
+              {/* Agricultural Land */}
               <div className="p-5 bg-card border border-border rounded-lg space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                    <Home className="h-5 w-5" />
+                    <Landmark className="h-5 w-5" />
                   </div>
-                  <h3 className="text-base font-semibold">Residential Properties</h3>
+                  <h3 className="text-base font-semibold">Agricultural Land</h3>
                 </div>
                 <ul className="space-y-2">
-                  {residentialServices.map((item, idx) => (
+                  {agriculturalServices.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <span className="text-primary mt-1">•</span>
                       {item}
@@ -293,16 +293,16 @@ export default function AboutPage() {
                 </ul>
               </div>
 
-              {/* Commercial */}
+              {/* Investment */}
               <div className="p-5 bg-card border border-border rounded-lg space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                    <Building className="h-5 w-5" />
+                    <TrendingUp className="h-5 w-5" />
                   </div>
-                  <h3 className="text-base font-semibold">Commercial & Investment</h3>
+                  <h3 className="text-base font-semibold">Land Investment</h3>
                 </div>
                 <ul className="space-y-2">
-                  {commercialServices.map((item, idx) => (
+                  {investmentServices.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
                       <span className="text-primary mt-1">•</span>
                       {item}
@@ -331,7 +331,7 @@ export default function AboutPage() {
             </div>
 
             <p className="text-sm text-muted-foreground text-center max-w-2xl mx-auto">
-              Every recommendation is aligned with lifestyle goals, investment objectives, and long-term growth potential.
+              Every recommendation is aligned with farming goals, investment objectives, and long-term growth potential.
             </p>
           </div>
         </section>
@@ -360,16 +360,16 @@ export default function AboutPage() {
         {/* CTA Section */}
         <section className="w-full py-12 md:py-16 px-4">
           <div className="max-w-3xl mx-auto text-center space-y-4">
-            <h2 className="text-xl md:text-2xl font-bold">Building Trust, Not Just Portfolios</h2>
+            <h2 className="text-xl md:text-2xl font-bold">Building Trust, Not Just Transactions</h2>
             <p className="text-sm text-muted-foreground">
-              As Gurugram continues to grow as one of India's most dynamic real estate destinations, Land2Land aims to contribute responsibly to its development by connecting people with properties that truly match their aspirations.
+              As India's agricultural land market continues to grow, Land2Land aims to contribute responsibly to rural development by connecting people with land that truly matches their aspirations.
             </p>
             <p className="text-xs text-muted-foreground italic">
               With experience, transparency, and a commitment to long-term relationships, we continue to build not just portfolios — but trust.
             </p>
             <div className="flex flex-wrap justify-center gap-3 pt-2">
-              <a href="/properties" className="inline-flex items-center justify-center px-5 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors">
-                Browse Properties
+              <a href="/buy" className="inline-flex items-center justify-center px-5 py-2.5 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors">
+                Browse Land Listings
               </a>
               <a href="/contact" className="inline-flex items-center justify-center px-5 py-2.5 bg-transparent border border-border text-foreground text-sm font-medium rounded-lg hover:bg-muted transition-colors">
                 Contact Us

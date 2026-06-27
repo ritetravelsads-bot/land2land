@@ -4,14 +4,14 @@ import Header from "@/components/layout/header"
 import ContactForm from "@/components/forms/contact-form"
 
 export const metadata: Metadata = {
-  title: "Contact Land2Land | Property Advisory Gurgaon | Call +91 98737-02365",
-  description: "Talk to Land2Land's property experts in Gurgaon. Visit us at Sector 48, JMD Megapolis or call +91 98737-02365. Free advisory — Mon to Sat, 9AM–6PM.",
+  title: "Contact Land2Land | Land & Farm Advisory | Call +91 98737-02365",
+  description: "Talk to Land2Land's land experts. Call +91 98737-02365 for help buying, selling, or investing in agricultural land and farmland. Free advisory — Mon to Sat, 9AM–6PM.",
   alternates: {
     canonical: "https://land2land.in/contact",
   },
   openGraph: {
-    title: "Contact Land2Land | Property Advisory Gurgaon | Call +91 98737-02365",
-    description: "Talk to Land2Land's property experts in Gurgaon. Visit us at Sector 48, JMD Megapolis or call +91 98737-02365. Free advisory — Mon to Sat, 9AM–6PM.",
+    title: "Contact Land2Land | Land & Farm Advisory | Call +91 98737-02365",
+    description: "Talk to Land2Land's land experts. Call +91 98737-02365 for help buying, selling, or investing in agricultural land and farmland. Free advisory — Mon to Sat, 9AM–6PM.",
     url: "https://land2land.in/contact",
   },
 }
@@ -99,9 +99,9 @@ export default function ContactPage() {
             <h2>Why Contact Land2Land?</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
-                { title: "Expert Support", desc: "Knowledgeable team available to assist" },
+                { title: "Expert Support", desc: "Knowledgeable land team available to assist" },
                 { title: "24-Hour Response", desc: "Quick turnaround on all inquiries" },
-                { title: "Property Guidance", desc: "Free advice on buying and selling" },
+                { title: "Land Guidance", desc: "Free advice on buying and selling land" },
               ].map((item, idx) => (
                 <div key={idx} className="space-y-2">
                   <h3 className="text-sm font-semibold text-foreground">{item.title}</h3>
