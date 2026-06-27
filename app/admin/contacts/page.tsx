@@ -4,7 +4,7 @@ import { requireAdmin } from "@/lib/auth"
 import ContactsList from "@/components/admin/contacts-list"
 
 export const metadata: Metadata = {
-  title: "Manage Contacts | CountryRoof Admin",
+  title: "Manage Contacts | Land2Land Admin",
 }
 
 export default async function ContactsPage() {

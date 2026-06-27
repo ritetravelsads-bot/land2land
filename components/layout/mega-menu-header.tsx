@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, LogOut, User, ChevronDown, IndianRupee, MapPin, Building2 } from "lucide-react"
+import { Menu, X, LogOut, User, ChevronDown, IndianRupee, MapPin, Building2, Leaf, TrendingUp, Settings } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -22,26 +22,13 @@ interface CurrentUser {
   user_type: "customer" | "agent" | "admin"
 }
 
-const locations = [
-  { name: "Golf Course Road", href: "/golf-course-road", slug: "golf-course-road" },
-  { name: "Golf Course Extn Road", href: "/golf-course-extn-road", slug: "golf-course-extn-road" },
-  { name: "Dwarka Expressway", href: "/dwarka-expressway", slug: "dwarka-expressway" },
-  { name: "Southern Peripheral Road", href: "/southern-peripheral-road", slug: "southern-peripheral-road" },
-  { name: "Sohna", href: "/sohna", slug: "sohna" },
-  { name: "New Gurgaon", href: "/new-gurgaon", slug: "new-gurgaon" },
-  { name: "NH-48", href: "/nh-48", slug: "nh-48" },
-  { name: "Manesar", href: "/manesar", slug: "manesar" },
-]
-
-const projects = [
-  { name: "Ready To Move", href: "/ready-to-move", icon: "🏠" },
-  { name: "New Launch", href: "/new-launch", icon: "✨" },
-  { name: "Upcoming", href: "/upcoming", icon: "🔨" },
-  { name: "Luxury Apartments", href: "/luxury-apartments", icon: "💎" },
-  { name: "Plots and Lands", href: "/plots-and-lands", icon: "🏞️" },
-  { name: "Office Spaces", href: "/office-space", icon: "🏢" },
-  { name: "Commercial Properties", href: "/commercial-properties", icon: "🏢" },
-  { name: "Furnished Flats", href: "/furnished-flats", icon: "🛋️" },
+const landTypes = [
+  { name: "Agricultural Land", href: "/agricultural-land", icon: "🌾" },
+  { name: "Farmland", href: "/farmland", icon: "🚜" },
+  { name: "Plots & Vacant Land", href: "/plots-vacant", icon: "🏞️" },
+  { name: "Land with Infrastructure", href: "/land-with-infrastructure", icon: "🛣️" },
+  { name: "Orchard Land", href: "/orchard-land", icon: "🍊" },
+  { name: "Irrigation Land", href: "/irrigation-land", icon: "💧" },
 ]
 
 export default function MegaMenuHeader() {
@@ -110,7 +97,7 @@ export default function MegaMenuHeader() {
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image
               src="/images/logo.png"
-              alt="Country Roof Logo"
+              alt="Land2Land Logo"
               width={200}
               height={50}
               priority
@@ -124,68 +111,60 @@ export default function MegaMenuHeader() {
           <div className="hidden lg:flex items-center gap-1">
             <Link
               href="/"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#002366] transition-colors"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors"
             >
               Home
             </Link>
 
-            {/* Locations Dropdown */}
+            <Link
+              href="/buy"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors"
+            >
+              Buy
+            </Link>
+
+            <Link
+              href="/sell"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors"
+            >
+              Sell
+            </Link>
+
+            <Link
+              href="/area-converter"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors"
+            >
+              Area Converter
+            </Link>
+
+            <Link
+              href="/subscription"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors"
+            >
+              Subscription
+            </Link>
+
+            <Link
+              href="/find-agent"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors"
+            >
+              Find Agent
+            </Link>
+
+            {/* Land Types Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#002366] transition-colors flex items-center gap-1">
-                  <MapPin className="h-4 w-4" />
-                  Locations
+                <button className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors flex items-center gap-1">
+                  <Leaf className="h-4 w-4" />
+                  Farms
                   <ChevronDown className="h-4 w-4" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-56">
-                {locations.map((location) => (
-                  <DropdownMenuItem key={location.name} asChild>
-                    <Link href={location.href} className="w-full">
-                      {location.name}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {/* Projects Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#002366] transition-colors flex items-center gap-1">
-                  <Building2 className="h-4 w-4" />
-                  Projects
-                  <ChevronDown className="h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-48">
-                {projects.map((project) => (
-                  <DropdownMenuItem key={project.name} asChild>
-                    <Link href={project.href} className="w-full">
-                      {project.name}
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-
-            {/* Budget Dropdown */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#002366] transition-colors flex items-center gap-1">
-                  <IndianRupee className="h-4 w-4" />
-                  Budget
-                  <ChevronDown className="h-4 w-4" />
-                </button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-48">
-                {BUDGET_RANGES.map((range) => (
-                  <DropdownMenuItem key={range.value} asChild>
-                    <Link 
-                      href={`/properties?minPrice=${range.min}${range.max ? `&maxPrice=${range.max}` : ''}`}
-                      className="w-full"
-                    >
-                      {range.label}
+                {landTypes.map((type) => (
+                  <DropdownMenuItem key={type.name} asChild>
+                    <Link href={type.href} className="w-full">
+                      {type.name}
                     </Link>
                   </DropdownMenuItem>
                 ))}
@@ -193,16 +172,19 @@ export default function MegaMenuHeader() {
             </DropdownMenu>
 
             <Link
-              href="/about"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#002366] transition-colors"
+              href="/investments"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors flex items-center gap-1"
             >
-              About
+              <TrendingUp className="h-4 w-4" />
+              Investments
             </Link>
+
             <Link
-              href="/contact"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#002366] transition-colors"
+              href="/property-management"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors flex items-center gap-1"
             >
-              Contact
+              <Settings className="h-4 w-4" />
+              Property Management
             </Link>
           </div>
 
@@ -220,7 +202,7 @@ export default function MegaMenuHeader() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="text-sm h-9 border-[#002366] text-[#002366] bg-transparent"
+                      className="text-sm h-9 border-[#2d5016] text-[#2d5016] bg-transparent"
                     >
                       <User size={16} className="mr-2" />
                       {currentUser.username}
@@ -251,11 +233,11 @@ export default function MegaMenuHeader() {
                     asChild
                     variant="outline"
                     size="sm"
-                    className="text-sm h-9 border-[#002366] text-[#002366] bg-transparent hover:bg-[#002366]/5"
+                    className="text-sm h-9 border-[#2d5016] text-[#2d5016] bg-transparent hover:bg-[#2d5016]/5"
                   >
                     <Link href="/auth/login">Post Property</Link>
                   </Button>
-                  <Button asChild size="sm" className="text-sm h-9 bg-[#002366] hover:bg-[#001a4d]">
+                  <Button asChild size="sm" className="text-sm h-9 bg-[#2d5016] hover:bg-[#1d3610]">
                     <Link href="/auth/register">Sign Up</Link>
                   </Button>
                 </>
@@ -266,7 +248,7 @@ export default function MegaMenuHeader() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-gray-700 hover:text-[#002366] transition-colors"
+            className="lg:hidden p-2 text-gray-700 hover:text-[#2d5016] transition-colors"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -285,59 +267,70 @@ export default function MegaMenuHeader() {
 
             <Link
               href="/"
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#002366] hover:bg-gray-50 rounded transition-colors"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] hover:bg-gray-50 rounded transition-colors"
             >
               Home
             </Link>
 
-            <div className="border-t border-gray-100 my-2" />
-            <p className="px-3 py-1 text-xs font-semibold text-gray-500 uppercase">Locations</p>
-            {locations.map((location) => (
-              <Link
-                key={location.name}
-                href={location.href}
-                className="px-3 py-2 text-sm text-gray-600 hover:text-[#002366] hover:bg-gray-50 rounded transition-colors"
-              >
-                {location.name}
-              </Link>
-            ))}
-
-            <div className="border-t border-gray-100 my-2" />
-            <p className="px-3 py-1 text-xs font-semibold text-gray-500 uppercase">Projects</p>
-            {projects.map((project) => (
-              <Link
-                key={project.name}
-                href={project.href}
-                className="px-3 py-2 text-sm text-gray-600 hover:text-[#002366] hover:bg-gray-50 rounded transition-colors"
-              >
-                {project.name}
-              </Link>
-            ))}
-
-            <div className="border-t border-gray-100 my-2" />
-            <p className="px-3 py-1 text-xs font-semibold text-gray-500 uppercase">Budget</p>
-            {BUDGET_RANGES.map((range) => (
-              <Link
-                key={range.value}
-                href={`/properties?minPrice=${range.min}${range.max ? `&maxPrice=${range.max}` : ''}`}
-                className="px-3 py-2 text-sm text-gray-600 hover:text-[#002366] hover:bg-gray-50 rounded transition-colors"
-              >
-                {range.label}
-              </Link>
-            ))}
-
-            <div className="border-t border-gray-100 my-2" />
             <Link
-              href="/about"
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#002366] hover:bg-gray-50 rounded transition-colors"
+              href="/buy"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] hover:bg-gray-50 rounded transition-colors"
             >
-              About
+              Buy
             </Link>
+
             <Link
-              href="/contact"
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#002366] hover:bg-gray-50 rounded transition-colors"
+              href="/sell"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] hover:bg-gray-50 rounded transition-colors"
             >
-              Contact
+              Sell
+            </Link>
+
+            <Link
+              href="/area-converter"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] hover:bg-gray-50 rounded transition-colors"
+            >
+              Area Converter
+            </Link>
+
+            <Link
+              href="/subscription"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] hover:bg-gray-50 rounded transition-colors"
+            >
+              Subscription
+            </Link>
+
+            <Link
+              href="/find-agent"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] hover:bg-gray-50 rounded transition-colors"
+            >
+              Find Agent
+            </Link>
+
+            <div className="border-t border-gray-100 my-2" />
+            <p className="px-3 py-1 text-xs font-semibold text-gray-500 uppercase">Land Types</p>
+            {landTypes.map((type) => (
+              <Link
+                key={type.name}
+                href={type.href}
+                className="px-3 py-2 text-sm text-gray-600 hover:text-[#2d5016] hover:bg-gray-50 rounded transition-colors"
+              >
+                {type.name}
+              </Link>
+            ))}
+
+            <Link
+              href="/investments"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] hover:bg-gray-50 rounded transition-colors"
+            >
+              Investments
+            </Link>
+
+            <Link
+              href="/property-management"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] hover:bg-gray-50 rounded transition-colors"
+            >
+              Property Management
             </Link>
 
             <div className="border-t border-gray-100 my-2" />
@@ -349,14 +342,14 @@ export default function MegaMenuHeader() {
                       asChild
                       variant="outline"
                       size="sm"
-                      className="text-xs h-9 flex-1 border-[#002366] text-[#002366] bg-transparent"
+                      className="text-xs h-9 flex-1 border-[#2d5016] text-[#2d5016] bg-transparent"
                     >
                       <Link href={getDashboardLink()}>{getDashboardLabel()}</Link>
                     </Button>
                     <Button
                       onClick={handleLogout}
                       size="sm"
-                      className="text-xs h-9 flex-1 bg-[#002366] hover:bg-[#001a4d]"
+                      className="text-xs h-9 flex-1 bg-[#2d5016] hover:bg-[#1d3610]"
                     >
                       Logout
                     </Button>
@@ -367,11 +360,11 @@ export default function MegaMenuHeader() {
                       asChild
                       variant="outline"
                       size="sm"
-                      className="text-xs h-9 flex-1 border-[#002366] text-[#002366] bg-transparent"
+                      className="text-xs h-9 flex-1 border-[#2d5016] text-[#2d5016] bg-transparent"
                     >
                       <Link href="/auth/login">Post Property</Link>
                     </Button>
-                    <Button asChild size="sm" className="text-xs h-9 flex-1 bg-[#002366] hover:bg-[#001a4d]">
+                    <Button asChild size="sm" className="text-xs h-9 flex-1 bg-[#2d5016] hover:bg-[#1d3610]">
                       <Link href="/auth/register">Sign Up</Link>
                     </Button>
                   </>

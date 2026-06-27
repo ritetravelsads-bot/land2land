@@ -25,20 +25,22 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://countryroof.in'),
+  metadataBase: new URL('https://land2land.in'),
   alternates: {
-    canonical: 'https://countryroof.in',
+    canonical: 'https://land2land.in',
   },
-  title: "Luxury Properties in Gurgaon | RERA Verified | CountryRoof",
-  description: "Explore 630+ RERA-verified luxury apartments, villas & plots in Gurgaon. Trusted by HNIs & NRIs. Expert advisory on Golf Course Road, DXP & SPR. Zero brokerage.",
+  title: "Agricultural Land & Farm Property Marketplace | Land2Land",
+  description: "Buy, sell, and invest in agricultural land and farmland in India. Connect with verified land agents, get expert advisory, and find your perfect property on Land2Land.",
   keywords: [
-    "Gurgaon Property",
-    "Real Estate Gurgaon",
-    "Buy Property in Gurgaon",
-    "Property for Sale in Gurgaon",
-    "Commercial Property Gurgaon",
+    "Land for Sale",
+    "Agricultural Land",
+    "Farmland",
+    "Farm Property",
+    "Land Investment",
+    "Property Management",
+    "Area Converter",
   ],
-  authors: [{ name: "CountryRoof" }],
+  authors: [{ name: "Land2Land" }],
   verification: {
     google: "HMLmt_V-xGPk7KOvW60EO-cNggppOdM6OHT47vFLdQM",
   },
@@ -48,23 +50,23 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://countryroof.in",
-    siteName: "CountryRoof",
-    title: "Luxury Properties in Gurgaon | RERA Verified | CountryRoof",
-    description: "Find and list premium properties on CountryRoof marketplace.",
+    url: "https://land2land.in",
+    siteName: "Land2Land",
+    title: "Agricultural Land & Farm Property Marketplace | Land2Land",
+    description: "Buy, sell, and invest in agricultural land and farmland in India.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "CountryRoof Property Marketplace",
+        alt: "Land2Land Property Marketplace",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "CountryRoof | Premium Property Marketplace",
-    description: "Discover properties, connect with agents, secure transactions.",
+    title: "Land2Land | Land & Farm Property Marketplace",
+    description: "Buy, sell, and invest in agricultural land and farmland in India.",
     images: ["/og-image.png"],
   },
 }
@@ -116,18 +118,18 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "RealEstateAgent",
-              "@id": "https://countryroof.in/#organization",
-              name: "CountryRoof",
-              alternateName: "Country Roof Real Estate",
+              "@id": "https://land2land.in/#organization",
+              name: "Land2Land",
+              alternateName: "Land2Land Real Estate",
               description: "Premium property marketplace connecting buyers, sellers, and agents in Gurgaon and Delhi NCR",
-              url: "https://countryroof.in",
+              url: "https://land2land.in",
               logo: {
                 "@type": "ImageObject",
-                url: "https://countryroof.in/logo.png",
+                url: "https://land2land.in/logo.png",
                 width: 512,
                 height: 512,
               },
-              image: "https://countryroof.in/og-image.png",
+              image: "https://land2land.in/og-image.png",
               telephone: "+91-1244765940",
               priceRange: "$$-$$$$",
               address: {
@@ -158,9 +160,9 @@ export default function RootLayout({
                 }
               ],
               sameAs: [
-                "https://www.facebook.com/countryroof",
-                "https://www.instagram.com/countryroof",
-                "https://www.linkedin.com/company/countryroof"
+                "https://www.facebook.com/land2land",
+                "https://www.instagram.com/land2land",
+                "https://www.linkedin.com/company/land2land"
               ],
               contactPoint: {
                 "@type": "ContactPoint",
@@ -184,18 +186,18 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "@id": "https://countryroof.in/#website",
-              url: "https://countryroof.in",
-              name: "CountryRoof",
+              "@id": "https://land2land.in/#website",
+              url: "https://land2land.in",
+              name: "Land2Land",
               description: "Find the best property in Gurgaon including flats, plots, villas and commercial spaces",
               publisher: {
-                "@id": "https://countryroof.in/#organization"
+                "@id": "https://land2land.in/#organization"
               },
               potentialAction: {
                 "@type": "SearchAction",
                 target: {
                   "@type": "EntryPoint",
-                  urlTemplate: "https://countryroof.in/properties?search={search_term_string}"
+                  urlTemplate: "https://land2land.in/properties?search={search_term_string}"
                 },
                 "query-input": "required name=search_term_string"
               },

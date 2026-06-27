@@ -7,39 +7,39 @@ import { cn } from "@/lib/utils"
 const faqs = [
   {
     id: 1,
-    question: "What type of properties does CountryRoof specialise in?",
+    question: "What types of land does Land2Land specialise in?",
     answer:
-      "CountryRoof specialises exclusively in luxury ready-to-move and new launch properties across Gurgaon's prime corridors — Dwarka Expressway, Golf Course Road, Golf Course Extension Road, and Southern Peripheral Road (SPR). We deal in 3 BHK and 4 BHK premium apartments and flats from Gurgaon's most trusted RERA-approved developers.",
+      "Land2Land specialises in agricultural land, farmland, orchards, and investment-grade land across India. We feature verified properties from Punjab, Haryana, Uttar Pradesh, Rajasthan, Madhya Pradesh, Maharashtra, Karnataka, and other agricultural regions. Every listing is thoroughly verified for ownership and legal clearance.",
   },
   {
     id: 2,
-    question: "Does CountryRoof only deal in ready-to-move properties?",
+    question: "How do I know if the land is legally verified?",
     answer:
-      "We specialise in ready-to-move luxury properties for buyers who want immediate possession without construction risk. We also offer carefully selected new launch projects from trusted developers where early investment delivers strong long-term appreciation.",
+      "Every property on Land2Land undergoes rigorous verification including title check, legal clearance, water rights confirmation, and soil quality assessment. We provide detailed verification reports and connect you with certified legal advisors to ensure complete transparency.",
   },
   {
     id: 3,
-    question: "Which developers does CountryRoof work with?",
+    question: "Can I invest in land remotely without visiting in person?",
     answer:
-      "We partner exclusively with RERA-approved, trusted developers with a proven delivery track record in Gurgaon — including Sobha, TARC, Silverglades, and DLF. Every project listed on CountryRoof is vetted for legal clearance, construction quality, and investment potential.",
+      "Yes, absolutely. We provide high-resolution property photos, 360° tours, soil reports, ROI projections, and verified agent consultations. Our land specialists can guide your investment decisions remotely, and we handle all documentation and transfer processes with legal support.",
   },
   {
     id: 4,
-    question: "Does CountryRoof offer homes for senior citizens?",
+    question: "What is the average ROI on agricultural land investments?",
     answer:
-      "Yes. We have a dedicated advisory for senior citizen-friendly homes in Gurgaon — properties with ground floor access, lift facilities, medical amenities nearby, and gated security. We help senior buyers and their families find the right fit without any pressure.",
+      "Based on verified transactions on Land2Land, agricultural land typically delivers 15-25% annual returns through a combination of price appreciation and farming yield. We provide historical ROI data and connect you with established farming partners who can help maximize returns.",
   },
   {
     id: 5,
-    question: "How does CountryRoof help me choose the right property?",
+    question: "How does the Area Converter tool help?",
     answer:
-      "We do not just show listings — we advise. Our team understands your budget, lifestyle, and investment goals and recommends only those properties that genuinely match your needs. We believe in trust-based advisory, not commission-driven selling.",
+      "Our free Area Converter instantly converts between Bigha, Acre, Katha, Sq Yard, Sq Foot, and Hectare — eliminating confusion when comparing land sizes across regions. It's especially useful when investing across different Indian states with varying land measurement units.",
   },
   {
     id: 6,
-    question: "Are all properties on CountryRoof RERA verified?",
+    question: "Are there subscription plans for serious investors?",
     answer:
-      "Yes — 100%. Every property listed on CountryRoof is RERA approved and legally verified. We do not list any project that lacks proper regulatory clearance, ensuring complete peace of mind for every buyer.",
+      "Yes. Our Premium subscription gives you exclusive access to investment opportunities before public listing, priority expert consultations, ROI tracking dashboards, and market reports. We also offer custom farm advisory and partnership programs for bulk land purchases.",
   },
 ]
 
@@ -55,20 +55,20 @@ export default function FAQs() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#002366]/8 text-[#002366] text-xs font-bold tracking-widest uppercase mb-6 rounded-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-100 text-green-700 text-xs font-bold tracking-widest uppercase mb-6 rounded-sm">
             <HelpCircle className="w-3.5 h-3.5" />
             FAQs
           </div>
-          <h2 className="text-3xl md:text-4xl font-black text-[#002366] tracking-tight text-balance mb-3">
+          <h2 className="text-3xl md:text-4xl font-black text-green-700 tracking-tight text-balance mb-3">
             Frequently Asked Questions
           </h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Everything you need to know before buying your next home in Gurgaon.
+          <p className="text-gray-600 text-lg max-w-xl mx-auto">
+            Everything you need to know before investing in agricultural land.
           </p>
         </div>
 
         {/* FAQ Accordion */}
-        <div className="flex flex-col divide-y divide-slate-100 border border-slate-100 rounded-2xl overflow-hidden shadow-sm">
+        <div className="flex flex-col divide-y divide-green-100 border border-green-100 rounded-2xl overflow-hidden shadow-sm">
           {faqs.map((faq, index) => {
             const isOpen = openId === faq.id
             return (
@@ -77,7 +77,7 @@ export default function FAQs() {
                   onClick={() => toggle(faq.id)}
                   className={cn(
                     "w-full flex items-start justify-between gap-4 px-6 py-5 text-left transition-colors duration-150",
-                    isOpen ? "bg-[#002366]/4" : "hover:bg-slate-50"
+                    isOpen ? "bg-green-50/50" : "hover:bg-green-50/30"
                   )}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${faq.id}`}
@@ -87,8 +87,8 @@ export default function FAQs() {
                       className={cn(
                         "shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5",
                         isOpen
-                          ? "bg-[#002366] text-white"
-                          : "bg-slate-100 text-slate-500"
+                          ? "bg-green-600 text-white"
+                          : "bg-green-100 text-green-700"
                       )}
                     >
                       {index + 1}
@@ -96,7 +96,7 @@ export default function FAQs() {
                     <span
                       className={cn(
                         "font-semibold text-base leading-snug",
-                        isOpen ? "text-[#002366]" : "text-foreground"
+                        isOpen ? "text-green-700" : "text-gray-900"
                       )}
                     >
                       {faq.question}
@@ -105,7 +105,7 @@ export default function FAQs() {
                   <ChevronDown
                     size={18}
                     className={cn(
-                      "shrink-0 text-[#002366] transition-transform duration-300 mt-0.5",
+                      "shrink-0 text-green-600 transition-transform duration-300 mt-0.5",
                       isOpen && "rotate-180"
                     )}
                   />
@@ -129,13 +129,13 @@ export default function FAQs() {
         </div>
 
         {/* Bottom CTA */}
-        <p className="text-center text-muted-foreground mt-8 text-sm">
+        <p className="text-center text-gray-600 mt-8 text-sm">
           Still have questions?{" "}
           <a
-            href="/contact"
-            className="text-[#002366] font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
+            href="/find-agent"
+            className="text-green-700 font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
           >
-            Talk to a property specialist
+            Talk to a land expert
           </a>
         </p>
       </div>

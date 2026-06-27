@@ -6,7 +6,7 @@ const PREDEFINED_SECTIONS = [
   {
     name: "Handpicked Selections",
     section_type: "handpicked",
-    title: "Countryroof's Handpicked Selections",
+    title: "Land2Land's Handpicked Selections",
     subtitle: "Curated properties selected just for you",
     display_limit: 4,
     sort_order: 1,

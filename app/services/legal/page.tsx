@@ -17,13 +17,13 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Legal Assistance | Property Legal Services | CountryRoof",
+  title: "Legal Assistance | Property Legal Services | Land2Land",
   description:
     "Comprehensive legal assistance for property transactions. Document verification, title clearance, RERA compliance, and agreement drafting services.",
   openGraph: {
-    title: "Legal Assistance | CountryRoof",
+    title: "Legal Assistance | Land2Land",
     description: "Complete legal support for hassle-free property transactions.",
-    url: "https://countryroof.in/services/legal",
+    url: "https://land2land.in/services/legal",
   },
 }
 

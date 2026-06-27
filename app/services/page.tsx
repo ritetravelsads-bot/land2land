@@ -20,16 +20,16 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Real Estate Services in Gurugram | CountryRoof",
+  title: "Real Estate Services in Gurugram | Land2Land",
   description:
     "Comprehensive real estate services including property advisory, investment consulting, legal assistance, home loans, NRI services, and property management in Gurugram.",
   alternates: {
-    canonical: "https://countryroof.in/services",
+    canonical: "https://land2land.in/services",
   },
   openGraph: {
-    title: "Real Estate Services | CountryRoof",
+    title: "Real Estate Services | Land2Land",
     description: "Expert real estate advisory and consulting services in Gurugram.",
-    url: "https://countryroof.in/services",
+    url: "https://land2land.in/services",
   },
 }
 
@@ -188,7 +188,7 @@ export default function ServicesPage() {
       <Header />
       <main className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative w-full py-20 md:py-28 px-4 bg-gradient-to-br from-[#002366] via-[#003080] to-[#001a4d] text-white overflow-hidden">
+        <section className="relative w-full py-20 md:py-28 px-4 bg-gradient-to-br from-[#2d5016] via-[#003080] to-[#1d3610] text-white overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-0 w-72 h-72 bg-white/20 rounded-full blur-3xl" />
@@ -208,7 +208,7 @@ export default function ServicesPage() {
                 From property search to post-purchase support, we provide end-to-end solutions tailored to your unique real estate needs.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                <Button asChild size="lg" className="bg-white text-[#002366] hover:bg-white/90 h-12 px-8 font-semibold">
+                <Button asChild size="lg" className="bg-white text-[#2d5016] hover:bg-white/90 h-12 px-8 font-semibold">
                   <Link href="/contact">Get Free Consultation</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 h-12 px-8">
@@ -325,7 +325,7 @@ export default function ServicesPage() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                  Why Choose CountryRoof?
+                  Why Choose Land2Land?
                 </h2>
                 <p className="text-muted-foreground text-lg">
                   With over 15 years of experience in Gurugram&apos;s real estate market, we bring unmatched expertise and dedication to every client relationship.
@@ -352,7 +352,7 @@ export default function ServicesPage() {
               </div>
 
               {/* CTA Card */}
-              <div className="bg-gradient-to-br from-[#002366] to-[#003080] rounded-2xl p-8 text-white space-y-6">
+              <div className="bg-gradient-to-br from-[#2d5016] to-[#003080] rounded-2xl p-8 text-white space-y-6">
                 <h3 className="text-2xl font-bold">Ready to Get Started?</h3>
                 <p className="text-blue-100">
                   Connect with our expert team for a free consultation and personalized property recommendations.
@@ -380,7 +380,7 @@ export default function ServicesPage() {
                   </div>
                 </div>
 
-                <Button asChild size="lg" className="w-full bg-white text-[#002366] hover:bg-white/90 h-12 font-semibold">
+                <Button asChild size="lg" className="w-full bg-white text-[#2d5016] hover:bg-white/90 h-12 font-semibold">
                   <Link href="/contact">Schedule Free Consultation</Link>
                 </Button>
               </div>

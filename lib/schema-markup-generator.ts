@@ -7,13 +7,13 @@ interface FAQItem {
   answer: string
 }
 
-const BASE_URL = "https://countryroof.in"
+const BASE_URL = "https://land2land.in"
 
 // Organization reference for linking schemas
 const ORGANIZATION_REFERENCE = {
   "@type": "Organization",
   "@id": `${BASE_URL}/#organization`,
-  name: "CountryRoof",
+  name: "Land2Land",
 }
 
 export function generateBlogSchema(post: any, authorName: string) {
@@ -51,13 +51,13 @@ export function generateBlogSchema(post: any, authorName: string) {
     dateModified: modifiedDate ? new Date(modifiedDate).toISOString() : new Date().toISOString(),
     author: {
       "@type": "Person",
-      name: authorName || "CountryRoof",
+      name: authorName || "Land2Land",
       url: BASE_URL,
     },
     publisher: {
       "@type": "Organization",
       "@id": `${BASE_URL}/#organization`,
-      name: "CountryRoof",
+      name: "Land2Land",
       logo: {
         "@type": "ImageObject",
         url: `${BASE_URL}/logo.png`,
@@ -202,7 +202,7 @@ export function generatePropertySchema(property: any) {
     image: imageUrl,
     brand: {
       "@type": "Brand",
-      name: property.developer_name || "CountryRoof",
+      name: property.developer_name || "Land2Land",
     },
     offers: {
       "@type": "Offer",
@@ -279,8 +279,8 @@ export function generateOrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     "@id": `${BASE_URL}/#organization`,
-    name: "CountryRoof",
-    alternateName: "Country Roof Real Estate",
+    name: "Land2Land",
+    alternateName: "Land2Land Real Estate",
     url: BASE_URL,
     logo: {
       "@type": "ImageObject",
@@ -316,9 +316,9 @@ export function generateOrganizationSchema() {
       }
     ],
     sameAs: [
-      "https://www.facebook.com/countryroof",
-      "https://www.instagram.com/countryroof",
-      "https://www.linkedin.com/company/countryroof",
+      "https://www.facebook.com/land2land",
+      "https://www.instagram.com/land2land",
+      "https://www.linkedin.com/company/land2land",
     ],
     contactPoint: {
       "@type": "ContactPoint",
@@ -431,7 +431,7 @@ export function generateLocalBusinessSchema() {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     "@id": `${BASE_URL}/#organization`,
-    name: "CountryRoof",
+    name: "Land2Land",
     image: `${BASE_URL}/og-image.png`,
     url: BASE_URL,
     telephone: "+91-1244765940",
@@ -458,9 +458,9 @@ export function generateLocalBusinessSchema() {
       }
     ],
     sameAs: [
-      "https://www.facebook.com/countryroof",
-      "https://www.instagram.com/countryroof",
-      "https://www.linkedin.com/company/countryroof",
+      "https://www.facebook.com/land2land",
+      "https://www.instagram.com/land2land",
+      "https://www.linkedin.com/company/land2land",
     ],
   }
 }

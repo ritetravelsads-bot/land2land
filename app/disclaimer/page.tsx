@@ -3,8 +3,8 @@ import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 
 export const metadata: Metadata = {
-  title: "Disclaimer | CountryRoof",
-  description: "Legal disclaimer for CountryRoof real estate services. Important information about property listings and advisory services.",
+  title: "Disclaimer | Land2Land",
+  description: "Legal disclaimer for Land2Land real estate services. Important information about property listings and advisory services.",
 }
 
 export default function DisclaimerPage() {
@@ -29,7 +29,7 @@ export default function DisclaimerPage() {
             <section className="space-y-3">
               <h2 className="text-2xl font-semibold text-foreground">Property Information</h2>
               <p className="text-muted-foreground">
-                CountryRoof acts as a real estate advisory firm and property consultant. The property details, prices, specifications, amenities, and other information displayed on this website are provided by respective developers and property owners. While we strive to ensure accuracy, we:
+                Land2Land acts as a real estate advisory firm and property consultant. The property details, prices, specifications, amenities, and other information displayed on this website are provided by respective developers and property owners. While we strive to ensure accuracy, we:
               </p>
               <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
                 <li>Do not guarantee the accuracy or completeness of property information</li>
@@ -79,14 +79,14 @@ export default function DisclaimerPage() {
             <section className="space-y-3">
               <h2 className="text-2xl font-semibold text-foreground">Third-Party Links</h2>
               <p className="text-muted-foreground">
-                This website may contain links to third-party websites or services that are not owned or controlled by CountryRoof. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services.
+                This website may contain links to third-party websites or services that are not owned or controlled by Land2Land. We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites or services.
               </p>
             </section>
 
             <section className="space-y-3">
               <h2 className="text-2xl font-semibold text-foreground">Limitation of Liability</h2>
               <p className="text-muted-foreground">
-                Under no circumstances shall CountryRoof, its directors, employees, partners, agents, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:
+                Under no circumstances shall Land2Land, its directors, employees, partners, agents, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:
               </p>
               <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
                 <li>Your use or inability to use the website or services</li>
@@ -109,7 +109,7 @@ export default function DisclaimerPage() {
                 If you have any questions about this Disclaimer, please contact us:
               </p>
               <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
-                <li>By email: legal@countryroof.in</li>
+                <li>By email: legal@land2land.in</li>
                 <li>By phone: +91 8500-900-100</li>
                 <li>By visiting our office: IRIS Tech Park, Unit No. 407, Gurugram, Haryana</li>
               </ul>

@@ -43,7 +43,7 @@ export default function MessagesPage() {
         <Header />
         <main className="min-h-screen flex items-center justify-center">
           <div className="text-center">
-            <h1 className="sr-only">Messages - CountryRoof</h1>
+            <h1 className="sr-only">Messages - Land2Land</h1>
             <MessageSquare size={48} className="mx-auto text-muted-foreground mb-4 opacity-20" />
             <p className="text-muted-foreground mb-4">Please log in to view messages</p>
             <Link href="/auth/login">

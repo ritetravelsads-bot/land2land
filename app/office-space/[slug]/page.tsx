@@ -6,7 +6,7 @@ import { OfficeSpaceDetailClient } from "@/components/property/office-space-deta
 import { formatPriceToIndian } from "@/lib/utils"
 
 const mongoUrl = process.env.MONGODB_URI || ""
-const baseUrl = "https://countryroof.in"
+const baseUrl = "https://land2land.in"
 
 interface Property {
   _id: string
@@ -46,7 +46,7 @@ async function getOfficeSpace(slug: string): Promise<Property | null> {
   const client = new MongoClient(mongoUrl)
   try {
     await client.connect()
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const collection = db.collection("properties")
     
     // Office space property types
@@ -95,7 +95,7 @@ async function getDeveloper(developerId: string) {
   const client = new MongoClient(mongoUrl)
   try {
     await client.connect()
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const collection = db.collection("developers")
     
     let developer = null
@@ -127,13 +127,13 @@ export async function generateMetadata({
   
   if (!property) {
     return { 
-      title: "Office Space Not Found | CountryRoof",
+      title: "Office Space Not Found | Land2Land",
       robots: { index: false, follow: false }
     }
   }
 
   const spaceType = property.office_space?.space_type?.replace(/_/g, ' ') || 'Office Space'
-  const title = property.meta_title || `${property.property_name} - ${spaceType} in ${property.city} | CountryRoof`
+  const title = property.meta_title || `${property.property_name} - ${spaceType} in ${property.city} | Land2Land`
   const description = property.meta_description || 
     property.short_description || 
     `${property.property_name} - Premium ${spaceType} in ${property.city}, ${property.state}. ${property.office_space?.available_seats ? `${property.office_space.available_seats} seats available.` : ""} ${property.office_space?.price_per_seat_monthly ? `Starting ₹${property.office_space.price_per_seat_monthly}/seat/month.` : ""}`
@@ -169,7 +169,7 @@ export async function generateMetadata({
       description: property.og_description || description,
       url: canonicalUrl,
       type: "website",
-      siteName: "CountryRoof",
+      siteName: "Land2Land",
       locale: "en_IN",
       images: ogImage ? [
         {

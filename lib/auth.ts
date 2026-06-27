@@ -28,7 +28,7 @@ export async function getCurrentUser(): Promise<User | null> {
     const client = new MongoClient(mongoUrl)
     try {
       await client.connect()
-      const db = client.db("countryroof")
+      const db = client.db("land2land")
       const collection = db.collection("users")
 
       const user = await collection.findOne({

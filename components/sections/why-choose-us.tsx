@@ -3,44 +3,44 @@ import { Shield, Award, Users, TrendingUp, Clock, HeadphonesIcon } from "lucide-
 const features = [
   {
     icon: Shield,
-    title: "100% RERA Verified Properties",
-    description: "Every listing is legally approved and thoroughly vetted.",
+    title: "100% Verified Land Titles",
+    description: "Every property has verified ownership documents and legal clearance.",
   },
   {
     icon: Award,
-    title: "Dedicated Property Advisory",
-    description: "Personalized consultation for HNIs, NRIs, and corporate buyers.",
+    title: "Expert Land Advisory",
+    description: "Personalized guidance from agricultural land specialists and market experts.",
   },
   {
     icon: Users,
-    title: "Local Market Intelligence",
-    description: "Data-driven insights on pricing trends and sector-wise appreciation.",
+    title: "Direct Farmer & Investor Network",
+    description: "Connect directly with verified sellers, investors, and agricultural partners.",
   },
   {
     icon: TrendingUp,
-    title: "Priority Access to New Launches",
-    description: "Early entry into premium and limited-inventory projects.",
+    title: "Investment ROI Tracking",
+    description: "Real-time analytics and historical ROI data for informed investment decisions.",
   },
   {
     icon: Clock,
-    title: "Seamless Property Transactions",
-    description: "End-to-end support including documentation, negotiations, and closing.",
+    title: "Fast Land Transactions",
+    description: "Streamlined process with legal verification and documentation support.",
   },
   {
     icon: HeadphonesIcon,
-    title: "24/7 Client Assistance",
-    description: "Professional support before, during, and after purchase.",
+    title: "24/7 Farmer Support",
+    description: "Round-the-clock assistance for buying, selling, and farming queries.",
   },
 ]
 
 export default function WhyChooseUs() {
   return (
-    <section className="w-full py-16 md:py-24 px-4 md:px-6 lg:px-8 bg-primary/5">
+    <section className="w-full py-16 md:py-24 px-4 md:px-6 lg:px-8 bg-green-50/50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-primary mb-4">Why Choose CountryRoof</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Gurugram’s Trusted Real Estate Advisory Platform
+          <h2 className="text-green-700 mb-4 text-3xl md:text-4xl font-bold">Why Choose Land2Land</h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            India's Most Trusted Agricultural Land Marketplace
           </p>
         </div>
 
@@ -50,13 +50,13 @@ export default function WhyChooseUs() {
             return (
               <div
                 key={feature.title}
-                className="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-300"
+                className="bg-white rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 border border-green-100"
               >
-                <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4 hover:bg-primary hover:scale-110 transition-all">
-                  <Icon className="text-primary hover:text-white transition-colors" size={28} />
+                <div className="w-14 h-14 rounded-lg bg-green-100 flex items-center justify-center mb-4 hover:bg-green-600 hover:scale-110 transition-all">
+                  <Icon className="text-green-700 hover:text-white transition-colors" size={28} />
                 </div>
-                <h3 className="text-xl font-bold text-foreground mb-2">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{feature.title}</h3>
+                <p className="text-gray-600">{feature.description}</p>
               </div>
             )
           })}

@@ -7,23 +7,23 @@ import Link from "next/link"
 import { Briefcase, MapPin, Clock, Users, TrendingUp, Heart, Send } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Careers | CountryRoof - Join Our Team",
-  description: "Join CountryRoof and build your career in real estate. Explore exciting opportunities in sales, marketing, and property consulting in Gurugram.",
+  title: "Careers | Land2Land - Join Our Team",
+  description: "Join Land2Land and build your career in the agricultural land marketplace. Explore opportunities in land advisory, field operations, and agri-tech across India.",
   openGraph: {
-    title: "Careers at CountryRoof",
-    description: "Build your career with Gurugram's leading real estate advisory firm.",
-    url: "https://countryroof.in/career",
+    title: "Careers at Land2Land",
+    description: "Build your career with India's leading agricultural land marketplace.",
+    url: "https://land2land.in/career",
   },
 }
 
 const openPositions = [
   {
-    title: "Real Estate Sales Consultant",
+    title: "Land Acquisition Consultant",
     department: "Sales",
-    location: "Gurugram, Haryana",
+    location: "Pan-India / Field",
     type: "Full-time",
     experience: "2-5 years",
-    description: "Drive property sales and build client relationships in the luxury real estate segment.",
+    description: "Source, verify, and onboard agricultural land parcels and build relationships with landowners.",
   },
   {
     title: "Digital Marketing Executive",
@@ -31,23 +31,23 @@ const openPositions = [
     location: "Gurugram, Haryana",
     type: "Full-time",
     experience: "1-3 years",
-    description: "Manage digital campaigns, SEO, and social media presence for property marketing.",
+    description: "Manage digital campaigns, SEO, and social media presence for land and farm marketing.",
   },
   {
-    title: "Property Research Analyst",
+    title: "Land Research & Valuation Analyst",
     department: "Research",
     location: "Gurugram, Haryana",
     type: "Full-time",
     experience: "1-2 years",
-    description: "Analyze market trends, property valuations, and investment opportunities.",
+    description: "Analyze regional land trends, parcel valuations, soil data, and investment opportunities.",
   },
   {
-    title: "Client Relationship Manager",
-    department: "Customer Success",
-    location: "Gurugram, Haryana",
+    title: "Field Verification Officer",
+    department: "Operations",
+    location: "Pan-India / Field",
     type: "Full-time",
-    experience: "3-5 years",
-    description: "Manage high-net-worth client relationships and ensure customer satisfaction.",
+    experience: "1-4 years",
+    description: "Conduct on-ground land inspections, verify title documents, and coordinate site visits.",
   },
 ]
 
@@ -80,14 +80,14 @@ export default function CareerPage() {
       <Header />
       <main className="min-h-screen bg-background">
         {/* Hero */}
-        <section className="w-full py-16 md:py-24 px-4 bg-gradient-to-br from-[#002366] to-[#003d99] text-white">
+        <section className="w-full py-16 md:py-24 px-4 bg-gradient-to-br from-[#2d5016] to-[#4a7c2e] text-white">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold">Join Our Team</h1>
-            <p className="text-lg text-blue-100 max-w-2xl mx-auto">
-              Build your career with Gurugram's leading real estate advisory firm.
-              We're looking for passionate individuals who want to make a difference in the property industry.
+            <p className="text-lg text-green-50 max-w-2xl mx-auto">
+              Build your career with India's leading agricultural land marketplace.
+              We're looking for passionate individuals who want to make a difference in rural and land development.
             </p>
-            <Button asChild size="lg" className="bg-white text-[#002366] hover:bg-blue-50">
+            <Button asChild size="lg" className="bg-white text-[#2d5016] hover:bg-green-50">
               <a href="#openings">View Open Positions</a>
             </Button>
           </div>
@@ -97,7 +97,7 @@ export default function CareerPage() {
         <section className="w-full py-16 px-4">
           <div className="max-w-5xl mx-auto space-y-12">
             <div className="text-center space-y-3">
-              <h2 className="text-3xl font-bold">Why Join CountryRoof?</h2>
+              <h2 className="text-3xl font-bold">Why Join Land2Land?</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 We believe in nurturing talent and providing the best environment for professional growth.
               </p>

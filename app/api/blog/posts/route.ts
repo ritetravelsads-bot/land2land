@@ -71,7 +71,7 @@ export async function GET(
 
     try {
       await client.connect()
-      const db = client.db("countryroof")
+      const db = client.db("land2land")
       const collection = db.collection("blog_posts")
 
       let post
@@ -167,7 +167,7 @@ export async function PUT(
 
     try {
       await client.connect()
-      const db = client.db("countryroof")
+      const db = client.db("land2land")
       const collection = db.collection("blog_posts")
 
       // Find the existing post
@@ -299,7 +299,7 @@ export async function DELETE(
 
     try {
       await client.connect()
-      const db = client.db("countryroof")
+      const db = client.db("land2land")
       const collection = db.collection("blog_posts")
 
       let result

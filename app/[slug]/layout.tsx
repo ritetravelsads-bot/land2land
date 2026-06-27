@@ -28,7 +28,7 @@ const LOCATION_DISPLAY_NAMES: Record<string, string> = {
 }
 
 const TYPE_DESCRIPTIONS: Record<string, string> = {
-  'ready-to-move': 'Browse ready to move properties in Gurgaon. Move into your dream home immediately with CountryRoof.',
+  'ready-to-move': 'Browse ready to move properties in Gurgaon. Move into your dream home immediately with Land2Land.',
   'new-launch': 'Discover newly launched properties from top developers in Gurgaon. Be among the first to own.',
   'upcoming': 'Explore upcoming projects launching soon. Book early at pre-launch prices.',
   'luxury-apartments': 'Premium luxury apartments with world-class amenities in Gurgaon.',
@@ -71,7 +71,7 @@ export async function generateMetadata({
     const displayName = isLocation
       ? LOCATION_DISPLAY_NAMES[slug] || slug
       : TYPE_DISPLAY_NAMES[slug] || slug
-    title = `${displayName} in Gurgaon | Properties for Sale | CountryRoof`
+    title = `${displayName} in Gurgaon | Properties for Sale | Land2Land`
     description = isLocation
       ? LOCATION_DESCRIPTIONS[slug] || `Find properties in ${displayName}, Gurgaon`
       : TYPE_DESCRIPTIONS[slug] || `Browse ${displayName} in Gurgaon`
@@ -81,13 +81,13 @@ export async function generateMetadata({
     title,
     description,
     alternates: {
-      canonical: `https://countryroof.in/${slug}`,
+      canonical: `https://land2land.in/${slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://countryroof.in/${slug}`,
-      siteName: 'CountryRoof',
+      url: `https://land2land.in/${slug}`,
+      siteName: 'Land2Land',
       locale: 'en_IN',
       type: 'website',
     },
@@ -134,8 +134,8 @@ function generateRealEstateSchema(slug: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'RealEstateAgent',
-    name: 'CountryRoof',
-    url: `https://countryroof.in/${slug}`,
+    name: 'Land2Land',
+    url: `https://land2land.in/${slug}`,
     description: richContent.metaDescription,
     areaServed: {
       '@type': 'Place',
@@ -163,19 +163,19 @@ function generateBreadcrumbSchema(slug: string) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://countryroof.in',
+        item: 'https://land2land.in',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Locations',
-        item: 'https://countryroof.in/locations',
+        item: 'https://land2land.in/locations',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: displayName,
-        item: `https://countryroof.in/${slug}`,
+        item: `https://land2land.in/${slug}`,
       },
     ],
   }

@@ -175,7 +175,7 @@ export default function NewLocationPage() {
                     <Input
                       value={formData.meta_title}
                       onChange={(e) => setFormData({ ...formData, meta_title: e.target.value })}
-                      placeholder="Properties in [Location] | Country Roof"
+                      placeholder="Properties in [Location] | Land2Land"
                       className="h-9 text-sm"
                     />
                   </div>

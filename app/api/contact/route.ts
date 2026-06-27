@@ -6,7 +6,7 @@ import {
   contactUserTemplate,
 } from "@/lib/email"
 
-const COMPANY_EMAIL = process.env.SMTP_USER || "countryroof.infobirth@gmail.com"
+const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.infobirth@gmail.com"
 
 export async function POST(request: Request) {
   try {
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
     // Send confirmation email to user
     await sendEmail({
       to: email,
-      subject: `Thank you for contacting Country Roof`,
+      subject: `Thank you for contacting Land2Land`,
       html: contactUserTemplate({ name, subject }),
     })
 

@@ -4,7 +4,7 @@ import { requireAdmin } from "@/lib/auth"
 import QuotesList from "@/components/admin/quotes-list"
 
 export const metadata: Metadata = {
-  title: "Manage Quotes | CountryRoof Admin",
+  title: "Manage Quotes | Land2Land Admin",
 }
 
 export default async function QuotesPage() {

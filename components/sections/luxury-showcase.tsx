@@ -45,7 +45,7 @@ export default function LuxuryShowcase() {
             <h2 className="text-3xl md:text-4xl font-bold text-balance">Exclusive Luxury Collection</h2>
             <p className="text-muted-foreground text-lg">Handpicked properties that redefine luxury living</p>
           </div>
-          <Button asChild variant="link" className="text-[#002366] hidden md:flex">
+          <Button asChild variant="link" className="text-[#2d5016] hidden md:flex">
             <Link href="/properties?segment=luxury">
               View All Luxury
               <ArrowRight size={18} className="ml-2" />
@@ -89,7 +89,7 @@ export default function LuxuryShowcase() {
                 </div>
                 <div className="flex items-center justify-between pt-4 border-t border-white/20">
                   <p className="text-2xl font-bold">{luxuryProperties[0].price}</p>
-                  <Button className="bg-white text-[#002366] hover:bg-white/90">View Details</Button>
+                  <Button className="bg-white text-[#2d5016] hover:bg-white/90">View Details</Button>
                 </div>
               </div>
             </div>
@@ -131,7 +131,7 @@ export default function LuxuryShowcase() {
                   </div>
                   <div className="flex items-center justify-between pt-2 border-t border-white/20">
                     <p className="text-xl font-bold">{property.price}</p>
-                    <Button size="sm" className="bg-white text-[#002366] hover:bg-white/90 text-xs">
+                    <Button size="sm" className="bg-white text-[#2d5016] hover:bg-white/90 text-xs">
                       Details
                     </Button>
                   </div>
@@ -142,7 +142,7 @@ export default function LuxuryShowcase() {
         </div>
 
         <div className="flex justify-center mt-8 md:hidden">
-          <Button asChild variant="outline" className="text-[#002366] border-2 bg-transparent">
+          <Button asChild variant="outline" className="text-[#2d5016] border-2 bg-transparent">
             <Link href="/properties?segment=luxury">
               View All Luxury Properties
               <ArrowRight size={18} className="ml-2" />

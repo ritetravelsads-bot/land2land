@@ -19,13 +19,13 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Builder Partnerships | Exclusive Project Deals | CountryRoof",
+  title: "Builder Partnerships | Exclusive Project Deals | Land2Land",
   description:
     "Direct partnerships with top developers for exclusive project launches, early bird offers, and channel partner benefits. Get direct builder pricing on premium properties.",
   openGraph: {
-    title: "Builder Partnerships | CountryRoof",
+    title: "Builder Partnerships | Land2Land",
     description: "Access exclusive deals through our direct builder partnerships.",
-    url: "https://countryroof.in/services/builder-partnerships",
+    url: "https://land2land.in/services/builder-partnerships",
   },
 }
 

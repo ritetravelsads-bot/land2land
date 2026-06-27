@@ -4,7 +4,7 @@ import { requireAdmin } from "@/lib/auth"
 import BlogPostsList from "@/components/admin/blog-posts-list"
 
 export const metadata: Metadata = {
-  title: "Manage Blog | CountryRoof Admin",
+  title: "Manage Blog | Land2Land Admin",
 }
 
 export default async function AdminBlogPage() {

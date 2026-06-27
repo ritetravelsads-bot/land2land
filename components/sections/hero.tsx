@@ -6,7 +6,7 @@ export default function Hero() {
     <section className="relative w-full h-screen flex items-center overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <img src="/home-banner-1.png" alt="Premium Properties" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#002366]/95 via-[#002366]/85 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#2d5016]/95 via-[#2d5016]/85 to-transparent" />
       </div>
 
       <div className="relative w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
@@ -34,13 +34,13 @@ export default function Hero() {
                 <input
                   type="text"
                   placeholder="Enter location (e.g., Gurgaon, Delhi)"
-                  className="w-full pl-14 pr-5 py-4 border-2 border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002366] focus:border-transparent text-base"
+                  className="w-full pl-14 pr-5 py-4 border-2 border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-base"
                 />
               </div>
 
               <div className="flex-1 relative">
                 <Home className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
-                <select className="w-full pl-14 pr-5 py-4 border-2 border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#002366] focus:border-transparent text-base appearance-none bg-white">
+                <select className="w-full pl-14 pr-5 py-4 border-2 border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-base appearance-none bg-white">
                   <option>All Property Types</option>
                   <option>Residential</option>
                   <option>Commercial</option>
@@ -51,7 +51,7 @@ export default function Hero() {
 
               <Button
                 size="lg"
-                className="md:w-auto w-full bg-[#002366] hover:bg-[#003388] h-14 text-base font-semibold rounded-xl"
+                className="md:w-auto w-full bg-[#2d5016] hover:bg-[#003388] h-14 text-base font-semibold rounded-xl"
               >
                 <Search size={20} className="mr-2" />
                 Search Properties

@@ -19,13 +19,13 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Commercial Real Estate Services | Office & Retail Space | CountryRoof",
+  title: "Commercial Real Estate Services | Office & Retail Space | Land2Land",
   description:
     "Expert commercial real estate services for office spaces, retail shops, warehouses, and co-working spaces in Gurugram. Find the perfect commercial property for your business.",
   openGraph: {
-    title: "Commercial Real Estate Services | CountryRoof",
+    title: "Commercial Real Estate Services | Land2Land",
     description: "Complete commercial property solutions for businesses in Gurugram.",
-    url: "https://countryroof.in/services/commercial",
+    url: "https://land2land.in/services/commercial",
   },
 }
 

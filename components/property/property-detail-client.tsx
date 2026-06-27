@@ -150,9 +150,9 @@ export function PropertyDetailClient({
 
   // Manager info
   const manager = property.assigned_manager || property.manager || {
-    name: property.agent_name || "CountryRoof Expert",
+    name: property.agent_name || "Land2Land Expert",
     phone: property.agent_phone || "+91 98737 02365",
-    email: property.agent_email || "contact@countryroof.in",
+    email: property.agent_email || "contact@land2land.in",
     photo: property.agent_photo
   }
 

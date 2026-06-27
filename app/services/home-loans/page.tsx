@@ -17,13 +17,13 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Home Loan Assistance | Best Home Loan Rates | CountryRoof",
+  title: "Home Loan Assistance | Best Home Loan Rates | Land2Land",
   description:
     "Get the best home loan rates with our loan assistance services. Loan eligibility assessment, documentation support, and quick approval from multiple bank partners.",
   openGraph: {
-    title: "Home Loan Assistance | CountryRoof",
+    title: "Home Loan Assistance | Land2Land",
     description: "Simplified home loan processing with best interest rates.",
-    url: "https://countryroof.in/services/home-loans",
+    url: "https://land2land.in/services/home-loans",
   },
 }
 

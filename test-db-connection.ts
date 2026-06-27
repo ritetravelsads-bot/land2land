@@ -18,7 +18,7 @@ async function testConnection() {
     await client.connect();
     console.log("Connected successfully to MongoDB.");
 
-    const db = client.db("countryroof");
+    const db = client.db("land2land");
     const collections = await db.listCollections().toArray();
     console.log("Collections in the database:", collections.map(c => c.name));
 

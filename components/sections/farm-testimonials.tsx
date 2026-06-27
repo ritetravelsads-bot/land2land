@@ -1,0 +1,97 @@
+"use client"
+
+import { Star } from "lucide-react"
+
+const testimonials = [
+  {
+    name: "Rajesh Kumar",
+    title: "Farmer, Punjab",
+    image: "👨‍🌾",
+    quote: "Land2Land helped me find the perfect land for dairy farming. The verification process was transparent and the team was very helpful.",
+    rating: 5,
+  },
+  {
+    name: "Priya Sharma",
+    title: "Agricultural Investor",
+    image: "👩‍💼",
+    quote: "I was skeptical about online land investing, but Land2Land's transparency and ROI tracking tools gave me confidence. Best decision!",
+    rating: 5,
+  },
+  {
+    name: "Vikram Singh",
+    title: "Farmer, Haryana",
+    image: "👨‍🌾",
+    quote: "The area converter tool saved me hours of calculation. Found 50 bigha of irrigation land within my budget easily.",
+    rating: 5,
+  },
+  {
+    name: "Anita Patel",
+    title: "Agri-Entrepreneur, Gujarat",
+    image: "👩‍💼",
+    quote: "Connected with verified agents through Land2Land. They understood my orcharding needs perfectly. Highly recommended!",
+    rating: 5,
+  },
+]
+
+export default function FarmTestimonials() {
+  return (
+    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-white border-t border-border/50">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-10 md:mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Trusted by Farmers & Investors</h2>
+          <p className="text-gray-600 text-sm md:text-base">Join thousands who&apos;ve found their perfect land on Land2Land</p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={index}
+              className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200 hover:shadow-lg transition-shadow"
+            >
+              {/* Rating */}
+              <div className="flex gap-1 mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={16}
+                    className="fill-yellow-400 text-yellow-400"
+                  />
+                ))}
+              </div>
+
+              {/* Quote */}
+              <p className="text-gray-700 text-sm leading-relaxed mb-6 italic">
+                &quot;{testimonial.quote}&quot;
+              </p>
+
+              {/* Author */}
+              <div className="flex items-center gap-3 pt-4 border-t border-green-200">
+                <div className="text-3xl">{testimonial.image}</div>
+                <div>
+                  <p className="font-semibold text-gray-900 text-sm">{testimonial.name}</p>
+                  <p className="text-xs text-gray-600">{testimonial.title}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-gray-200">
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-bold text-green-700 mb-1">15,000+</p>
+            <p className="text-gray-600 text-sm">Successful Transactions</p>
+          </div>
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-bold text-green-700 mb-1">₹2,500+ Cr</p>
+            <p className="text-gray-600 text-sm">Land Traded</p>
+          </div>
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-bold text-green-700 mb-1">98%</p>
+            <p className="text-gray-600 text-sm">Customer Satisfaction</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

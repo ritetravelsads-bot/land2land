@@ -2,7 +2,7 @@ import { getDatabase } from "@/lib/mongodb"
 import { NextResponse } from "next/server"
 import { sendEmail } from "@/lib/email"
 
-const COMPANY_EMAIL = process.env.SMTP_USER || "countryroof.infobirth@gmail.com"
+const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.infobirth@gmail.com"
 
 // Email template for admin notification
 function callbackAdminTemplate({ name, phone, message }: { name: string; phone: string; message: string }) {
@@ -20,7 +20,7 @@ function callbackAdminTemplate({ name, phone, message }: { name: string; phone: 
             <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
               <!-- Header -->
               <tr>
-                <td style="background: linear-gradient(135deg, #002366 0%, #003d99 100%); padding: 30px; text-align: center;">
+                <td style="background: linear-gradient(135deg, #2d5016 0%, #4a7c2e 100%); padding: 30px; text-align: center;">
                   <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 700;">
                     📞 New Callback Request
                   </h1>
@@ -74,7 +74,7 @@ function callbackAdminTemplate({ name, phone, message }: { name: string; phone: 
               <tr>
                 <td style="background-color: #f8fafc; padding: 20px 30px; text-align: center; border-top: 1px solid #e2e8f0;">
                   <p style="margin: 0; color: #64748b; font-size: 12px;">
-                    This callback request was submitted via the Country Roof website footer form.
+                    This callback request was submitted via the Land2Land website footer form.
                   </p>
                 </td>
               </tr>

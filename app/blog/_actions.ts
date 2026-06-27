@@ -12,7 +12,7 @@ export async function getBlogPostBySlug(slug: string, includeUnpublished: boolea
 
   try {
     await client.connect()
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const collection = db.collection("blog_posts")
 
     const query: Record<string, unknown> = { slug }
@@ -51,7 +51,7 @@ export async function getBlogPostById(id: string) {
 
   try {
     await client.connect()
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const collection = db.collection("blog_posts")
     const { ObjectId } = await import("mongodb")
 

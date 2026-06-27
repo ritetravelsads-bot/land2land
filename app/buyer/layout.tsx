@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic"
 export const revalidate = 0
 
 export const metadata: Metadata = {
-  title: "Buyer Dashboard | CountryRoof",
+  title: "Buyer Dashboard | Land2Land",
   description: "Manage your properties and inquiries",
 }
 

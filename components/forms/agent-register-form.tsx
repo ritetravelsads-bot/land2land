@@ -59,7 +59,7 @@ export default function AgentRegisterForm() {
         throw new Error(data.error || "Registration failed")
       }
 
-      toast.success("Welcome to Country Roof!", {
+      toast.success("Welcome to Land2Land!", {
         description: "Your agent account has been created successfully. Check your email for a welcome message.",
       })
       router.push("/agent/login?success=registered")

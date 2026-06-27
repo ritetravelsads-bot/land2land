@@ -4,7 +4,7 @@ import { requireAdmin } from "@/lib/auth"
 import WordPressBlogEditor from "@/components/admin/wordpress-blog-editor"
 
 export const metadata: Metadata = {
-  title: "Create Blog Post | CountryRoof Admin",
+  title: "Create Blog Post | Land2Land Admin",
 }
 
 export default async function NewBlogPostPage() {

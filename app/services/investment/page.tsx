@@ -18,13 +18,13 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Investment Consulting | Real Estate Investment Advisory | CountryRoof",
+  title: "Investment Consulting | Real Estate Investment Advisory | Land2Land",
   description:
     "Strategic real estate investment consulting services. Get expert ROI analysis, portfolio diversification strategies, and pre-launch project opportunities.",
   openGraph: {
-    title: "Investment Consulting | CountryRoof",
+    title: "Investment Consulting | Land2Land",
     description: "Maximize your real estate investment returns with expert guidance.",
-    url: "https://countryroof.in/services/investment",
+    url: "https://land2land.in/services/investment",
   },
 }
 

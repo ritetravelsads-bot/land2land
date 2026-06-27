@@ -7,7 +7,7 @@ import {
   newUserAdminTemplate,
 } from "@/lib/email"
 
-const COMPANY_EMAIL = process.env.SMTP_USER || "countryroof.infobirth@gmail.com"
+const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.infobirth@gmail.com"
 
 export async function POST(request: Request) {
   try {
@@ -75,7 +75,7 @@ export async function POST(request: Request) {
     // Send welcome email to user
     await sendEmail({
       to: email,
-      subject: `Welcome to Country Roof!`,
+      subject: `Welcome to Land2Land!`,
       html: welcomeUserTemplate({
         name: username,
         email,

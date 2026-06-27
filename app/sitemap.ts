@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next"
 import { MongoClient } from "mongodb"
 
-const baseUrl = "https://countryroof.in"
+const baseUrl = "https://land2land.in"
 
 // Ensure slug is valid for URLs - the slugs in DB should already be clean
 // but we encode any special characters just in case
@@ -56,7 +56,7 @@ async function getProperties() {
   if (!client) return []
 
   try {
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const properties = await db
       .collection("properties")
       .find({ status: "active" })
@@ -76,7 +76,7 @@ async function getBlogs() {
   if (!client) return []
 
   try {
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const blogs = await db
       .collection("blog_posts")
       .find({ is_published: true })
@@ -96,7 +96,7 @@ async function getDevelopers() {
   if (!client) return []
 
   try {
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const developers = await db
       .collection("developers")
       .find({})
@@ -116,7 +116,7 @@ async function getLocations() {
   if (!client) return []
 
   try {
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const locations = await db
       .collection("locations")
       .find({})
@@ -136,7 +136,7 @@ async function getNews() {
   if (!client) return []
 
   try {
-    const db = client.db("countryroof")
+    const db = client.db("land2land")
     const news = await db
       .collection("news")
       .find({ is_published: true })

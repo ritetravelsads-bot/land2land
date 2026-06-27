@@ -20,7 +20,7 @@ import { PropertyFaq } from "@/components/property/property-faq"
 // Company contact info for lead generation
 const COMPANY_PHONE = "+91 98737 02365"
 const COMPANY_WHATSAPP = "919873702365"
-const COMPANY_EMAIL = "contact@countryroof.in"
+const COMPANY_EMAIL = "contact@land2land.in"
 
 // Space type labels
 const SPACE_TYPE_LABELS: Record<string, string> = {
