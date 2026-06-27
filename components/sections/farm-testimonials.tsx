@@ -6,29 +6,29 @@ const testimonials = [
   {
     name: "Rajesh Kumar",
     title: "Farmer, Punjab",
-    image: "👨‍🌾",
-    quote: "Land2Land helped me find the perfect land for dairy farming. The verification process was transparent and the team was very helpful.",
+    initials: "RK",
+    quote: "Land2Land helped me find the perfect agricultural land. The verification process was transparent and the team was very helpful.",
     rating: 5,
   },
   {
     name: "Priya Sharma",
-    title: "Agricultural Investor",
-    image: "👩‍💼",
-    quote: "I was skeptical about online land investing, but Land2Land's transparency and ROI tracking tools gave me confidence. Best decision!",
+    title: "Plot Buyer, Bengaluru",
+    initials: "PS",
+    quote: "I bought a residential plot in an approved layout through Land2Land. Their title checks and ROI tools gave me complete confidence.",
     rating: 5,
   },
   {
     name: "Vikram Singh",
-    title: "Farmer, Haryana",
-    image: "👨‍🌾",
-    quote: "The area converter tool saved me hours of calculation. Found 50 bigha of irrigation land within my budget easily.",
+    title: "Investor, Haryana",
+    initials: "VS",
+    quote: "The area converter saved me hours of calculation. I picked up a commercial plot on the main road well within my budget.",
     rating: 5,
   },
   {
     name: "Anita Patel",
-    title: "Agri-Entrepreneur, Gujarat",
-    image: "👩‍💼",
-    quote: "Connected with verified agents through Land2Land. They understood my orcharding needs perfectly. Highly recommended!",
+    title: "Business Owner, Gujarat",
+    initials: "AP",
+    quote: "Connected with verified agents through Land2Land for industrial land. They understood my requirements perfectly. Highly recommended!",
     rating: 5,
   },
 ]
@@ -38,7 +38,7 @@ export default function FarmTestimonials() {
     <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-white border-t border-border/50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10 md:mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Trusted by Farmers & Investors</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Trusted by Buyers, Sellers & Investors</h2>
           <p className="text-gray-600 text-sm md:text-base">Join thousands who&apos;ve found their perfect land on Land2Land</p>
         </div>
 

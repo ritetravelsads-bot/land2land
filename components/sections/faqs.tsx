@@ -21,13 +21,13 @@ const faqs = [
     id: 3,
     question: "Can I invest in land remotely without visiting in person?",
     answer:
-      "Yes, absolutely. We provide high-resolution property photos, 360° tours, soil reports, ROI projections, and verified agent consultations. Our land specialists can guide your investment decisions remotely, and we handle all documentation and transfer processes with legal support.",
+      "Yes, absolutely. We provide high-resolution photos, 360° tours, location maps, ROI projections, and verified agent consultations. Our land specialists can guide your decisions remotely, and we handle all documentation and transfer processes with legal support.",
   },
   {
     id: 4,
-    question: "What is the average ROI on agricultural land investments?",
+    question: "What is the average ROI on land investments?",
     answer:
-      "Based on verified transactions on Land2Land, agricultural land typically delivers 15-25% annual returns through a combination of price appreciation and farming yield. We provide historical ROI data and connect you with established farming partners who can help maximize returns.",
+      "Based on verified transactions on Land2Land, land typically delivers 12-25% annual returns depending on type and location — agricultural land through appreciation and yield, and residential, commercial or industrial plots through appreciation and rental potential. We provide historical ROI data and connect you with experts who can help maximize returns.",
   },
   {
     id: 5,
@@ -39,7 +39,7 @@ const faqs = [
     id: 6,
     question: "Are there subscription plans for serious investors?",
     answer:
-      "Yes. Our Premium subscription gives you exclusive access to investment opportunities before public listing, priority expert consultations, ROI tracking dashboards, and market reports. We also offer custom farm advisory and partnership programs for bulk land purchases.",
+      "Yes. Our Premium subscription gives you exclusive access to investment opportunities before public listing, priority expert consultations, ROI tracking dashboards, and market reports. We also offer custom land advisory and partnership programs for bulk land purchases.",
   },
 ]
 
@@ -63,7 +63,7 @@ export default function FAQs() {
             Frequently Asked Questions
           </h2>
           <p className="text-gray-600 text-lg max-w-xl mx-auto">
-            Everything you need to know before investing in agricultural land.
+            Everything you need to know before buying or selling land.
           </p>
         </div>
 
