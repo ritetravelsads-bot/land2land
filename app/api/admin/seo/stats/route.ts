@@ -12,15 +12,15 @@ export async function GET() {
     const totalPosts = await db.collection("blog_posts").countDocuments()
 
     // Get properties stats
-    const activeProperties = await db.collection("properties").countDocuments({ status: "active" })
-    const totalProperties = await db.collection("properties").countDocuments()
+    const activeProperties = await db.collection("listings").countDocuments({ status: "active" })
+    const totalProperties = await db.collection("listings").countDocuments()
 
     // Calculate schema issues (posts without proper SEO metadata)
     const postsWithoutMeta = await db.collection("blog_posts").countDocuments({
       $or: [{ meta_description: { $exists: false } }, { meta_keywords: { $exists: false } }],
     })
 
-    const propertiesWithoutSchema = await db.collection("properties").countDocuments({
+    const propertiesWithoutSchema = await db.collection("listings").countDocuments({
       $or: [{ schema_markup: { $exists: false } }],
     })
 

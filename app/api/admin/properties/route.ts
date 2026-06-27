@@ -49,15 +49,10 @@ export async function GET(req: NextRequest) {
       query.listing_type = listingType
     }
     
-    // Bedrooms filter
-    const bedrooms = searchParams.get("bedrooms")
-    if (bedrooms) {
-      const bedroomNum = parseInt(bedrooms)
-      if (bedrooms === "5") {
-        query.bedrooms = { $gte: 5 }
-      } else {
-        query.bedrooms = bedroomNum
-      }
+    // Ownership type filter
+    const ownershipType = searchParams.get("ownership_type")
+    if (ownershipType) {
+      query.ownership_type = ownershipType
     }
     
     // City filter
@@ -85,7 +80,7 @@ export async function GET(req: NextRequest) {
     const limit = parseInt(searchParams.get("limit") || "100")
     
     const properties = await db
-      .collection("properties")
+      .collection("listings")
       .find(query)
       .sort({ created_at: -1 })
       .limit(limit)
@@ -137,7 +132,7 @@ export async function POST(req: NextRequest) {
       // Ensure unique slug
       let counter = 1
       let uniqueSlug = slug
-      while (await db.collection("properties").findOne({ slug: uniqueSlug })) {
+      while (await db.collection("listings").findOne({ slug: uniqueSlug })) {
         uniqueSlug = `${slug}-${counter}`
         counter++
       }
@@ -158,7 +153,7 @@ export async function POST(req: NextRequest) {
       updated_at: new Date(),
     }
 
-    const result = await db.collection("properties").insertOne(property)
+    const result = await db.collection("listings").insertOne(property)
     return NextResponse.json({ _id: result.insertedId, ...property }, { status: 201 })
   } catch (error) {
     console.error("[v0] Error creating property:", error)

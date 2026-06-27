@@ -6,12 +6,12 @@ export async function GET() {
     const db = await getDatabase()
     
     // Get all developers with their property counts
-    const developers = await db.collection("developers").find({}).sort({ name: 1 }).toArray()
+    const developers = await db.collection("sellers").find({}).sort({ name: 1 }).toArray()
     
     // Get property counts for each developer
     const developersWithCounts = await Promise.all(
       developers.map(async (dev) => {
-        const propertyCount = await db.collection("properties").countDocuments({ 
+        const propertyCount = await db.collection("listings").countDocuments({ 
           developer_name: dev.name 
         })
         return {

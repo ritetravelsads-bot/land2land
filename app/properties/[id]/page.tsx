@@ -49,7 +49,7 @@ async function getProperty(id: string): Promise<Property | null> {
   try {
     await client.connect()
     const db = client.db("land2land")
-    const collection = db.collection("properties")
+    const collection = db.collection("listings")
     
     // Try to find by slug first, then fall back to _id
     let property = await collection.findOne({ slug: id })
@@ -80,7 +80,7 @@ async function getDeveloper(developerId: string) {
   try {
     await client.connect()
     const db = client.db("land2land")
-    const collection = db.collection("developers")
+    const collection = db.collection("sellers")
     
     let developer = null
     try {

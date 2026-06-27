@@ -47,7 +47,7 @@ async function getOfficeSpace(slug: string): Promise<Property | null> {
   try {
     await client.connect()
     const db = client.db("land2land")
-    const collection = db.collection("properties")
+    const collection = db.collection("listings")
     
     // Office space property types
     const officeTypes = ['office', 'office_space', 'coworking', 'managed_office', 'private_office', 'sco']
@@ -96,7 +96,7 @@ async function getDeveloper(developerId: string) {
   try {
     await client.connect()
     const db = client.db("land2land")
-    const collection = db.collection("developers")
+    const collection = db.collection("sellers")
     
     let developer = null
     try {

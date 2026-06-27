@@ -15,7 +15,7 @@ export async function GET(
     }
 
     const db = await getDatabase()
-    const property = await db.collection("properties").findOne({ _id: new ObjectId(id) })
+    const property = await db.collection("listings").findOne({ _id: new ObjectId(id) })
 
     if (!property) {
       return NextResponse.json({ error: "Property not found" }, { status: 404 })
@@ -58,14 +58,14 @@ export async function PUT(
       // Ensure unique slug (excluding current property)
       let counter = 1
       let uniqueSlug = slug
-      while (await db.collection("properties").findOne({ slug: uniqueSlug, _id: { $ne: new ObjectId(id) } })) {
+      while (await db.collection("listings").findOne({ slug: uniqueSlug, _id: { $ne: new ObjectId(id) } })) {
         uniqueSlug = `${slug}-${counter}`
         counter++
       }
       slug = uniqueSlug
     }
 
-    const result = await db.collection("properties").updateOne(
+    const result = await db.collection("listings").updateOne(
       { _id: new ObjectId(id), agent: user._id },
       {
         $set: {
@@ -80,7 +80,7 @@ export async function PUT(
       return NextResponse.json({ error: "Property not found or unauthorized" }, { status: 404 })
     }
 
-    const updatedProperty = await db.collection("properties").findOne({ _id: new ObjectId(id) })
+    const updatedProperty = await db.collection("listings").findOne({ _id: new ObjectId(id) })
     return NextResponse.json({ success: true, property: updatedProperty })
   } catch (error) {
     console.error("[v0] Error updating property:", error)
@@ -100,7 +100,7 @@ export async function DELETE(
     }
 
     const db = await getDatabase()
-    const result = await db.collection("properties").deleteOne({ _id: new ObjectId(id), agent: user._id })
+    const result = await db.collection("listings").deleteOne({ _id: new ObjectId(id), agent: user._id })
 
     if (result.deletedCount === 0) {
       return NextResponse.json({ error: "Property not found or unauthorized" }, { status: 404 })

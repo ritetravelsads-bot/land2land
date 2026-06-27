@@ -189,7 +189,7 @@ export async function POST(req: NextRequest) {
               // Ensure unique slug
               let counter = 1
               let uniqueSlug = slug
-              while (await db.collection("properties").findOne({ slug: uniqueSlug })) {
+              while (await db.collection("listings").findOne({ slug: uniqueSlug })) {
                 uniqueSlug = `${slug}-${counter}`
                 counter++
               }

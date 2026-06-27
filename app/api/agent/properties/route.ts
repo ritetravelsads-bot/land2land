@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
 
     const db = await getDatabase()
     const properties = await db
-      .collection("properties")
+      .collection("listings")
       .find({ agent: user._id || (user.user_type === "admin" ? {} : { $exists: false }) })
       .sort({ created_at: -1 })
       .toArray()
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
       // Ensure unique slug
       let counter = 1
       let uniqueSlug = slug
-      while (await db.collection("properties").findOne({ slug: uniqueSlug })) {
+      while (await db.collection("listings").findOne({ slug: uniqueSlug })) {
         uniqueSlug = `${slug}-${counter}`
         counter++
       }
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
       updated_at: new Date(),
     }
 
-    const result = await db.collection("properties").insertOne(property)
+    const result = await db.collection("listings").insertOne(property)
     return NextResponse.json({ _id: result.insertedId, ...property }, { status: 201 })
   } catch (error) {
     console.error("[v0] Error creating property:", error)

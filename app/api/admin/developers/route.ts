@@ -9,7 +9,7 @@ export const revalidate = 0
 export async function GET() {
   try {
     const db = await getDatabase()
-    const developers = await db.collection("developers").find({}).sort({ name: 1 }).toArray()
+    const developers = await db.collection("sellers").find({}).sort({ name: 1 }).toArray()
     return NextResponse.json(developers, {
       headers: {
         "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
       updated_at: new Date(),
     }
 
-    const result = await db.collection("developers").insertOne(developer)
+    const result = await db.collection("sellers").insertOne(developer)
     return NextResponse.json({ _id: result.insertedId, ...developer }, { status: 201 })
   } catch (error) {
     console.error("[v0] Error creating developer:", error)
