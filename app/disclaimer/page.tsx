@@ -4,7 +4,7 @@ import Footer from "@/components/layout/footer"
 
 export const metadata: Metadata = {
   title: "Disclaimer | Land2Land",
-  description: "Legal disclaimer for Land2Land real estate services. Important information about property listings and advisory services.",
+  description: "Legal disclaimer for Land2Land land services. Important information about land listings and advisory services.",
 }
 
 export default function DisclaimerPage() {
@@ -27,13 +27,13 @@ export default function DisclaimerPage() {
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-2xl font-semibold text-foreground">Property Information</h2>
+              <h2 className="text-2xl font-semibold text-foreground">land Information</h2>
               <p className="text-muted-foreground">
-                Land2Land acts as a real estate advisory firm and property consultant. The property details, prices, specifications, amenities, and other information displayed on this website are provided by respective developers and property owners. While we strive to ensure accuracy, we:
+                Land2Land acts as a land advisory firm and land consultant. The land details, prices, specifications, amenities, and other information displayed on this website are provided by respective developers and land owners. While we strive to ensure accuracy, we:
               </p>
               <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
-                <li>Do not guarantee the accuracy or completeness of property information</li>
-                <li>Are not responsible for any discrepancies between listed and actual property details</li>
+                <li>Do not guarantee the accuracy or completeness of land information</li>
+                <li>Are not responsible for any discrepancies between listed and actual land details</li>
                 <li>Recommend buyers to verify all information independently before making any decisions</li>
                 <li>Advise conducting proper due diligence and legal verification</li>
               </ul>
@@ -42,21 +42,21 @@ export default function DisclaimerPage() {
             <section className="space-y-3">
               <h2 className="text-2xl font-semibold text-foreground">Pricing and Availability</h2>
               <p className="text-muted-foreground">
-                Property prices displayed on this website are indicative and subject to change without prior notice. Availability of properties is not guaranteed and may change based on market conditions and developer policies. Final pricing will be as per the agreement with the respective developer or seller.
+                land prices displayed on this website are indicative and subject to change without prior notice. Availability of land parcels is not guaranteed and may change based on market conditions and developer policies. Final pricing will be as per the agreement with the respective developer or seller.
               </p>
             </section>
 
             <section className="space-y-3">
               <h2 className="text-2xl font-semibold text-foreground">Images and Renders</h2>
               <p className="text-muted-foreground">
-                Images, 3D renders, floor plans, and virtual tours shown on this website are for illustration purposes only. They may not represent the exact finished product. Actual properties may differ in design, dimensions, specifications, and furnishings. All images are either provided by developers, licensed from third parties, or are artistic representations.
+                Images, 3D renders, floor plans, and virtual tours shown on this website are for illustration purposes only. They may not represent the exact finished product. Actual land parcels may differ in design, dimensions, specifications, and furnishings. All images are either provided by developers, licensed from third parties, or are artistic representations.
               </p>
             </section>
 
             <section className="space-y-3">
               <h2 className="text-2xl font-semibold text-foreground">Investment Advice</h2>
               <p className="text-muted-foreground">
-                The information on this website does not constitute financial, legal, or investment advice. Real estate investments carry inherent risks, including but not limited to:
+                The information on this website does not constitute financial, legal, or investment advice. Land investments carry inherent risks, including but not limited to:
               </p>
               <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
                 <li>Market value fluctuations</li>
@@ -90,7 +90,7 @@ export default function DisclaimerPage() {
               </p>
               <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
                 <li>Your use or inability to use the website or services</li>
-                <li>Any property transaction facilitated through or as a result of using this website</li>
+                <li>Any land transaction facilitated through or as a result of using this website</li>
                 <li>Unauthorized access to or alteration of your transmissions or data</li>
                 <li>Statements or conduct of any third party on the website</li>
               </ul>

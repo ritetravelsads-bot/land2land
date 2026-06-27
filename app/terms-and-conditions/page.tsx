@@ -52,7 +52,7 @@ export default function TermsPage() {
             <section className="space-y-4">
               <h2 className="text-2xl font-bold text-foreground">4. Pricing & Availability Disclaimer</h2>
               <p className="text-muted-foreground leading-relaxed">
-                Property pricing, availability, offers, and payment plans are subject to developer revision without notice. Land2Land bears no liability for such changes.
+                land pricing, availability, offers, and payment plans are subject to developer revision without notice. Land2Land bears no liability for such changes.
               </p>
             </section>
 
@@ -220,7 +220,7 @@ export default function TermsPage() {
               <h2 className="text-2xl font-bold text-foreground">CONSENT CHECKBOX LANGUAGE</h2>
               <div className="p-4 bg-card border border-border rounded-lg">
                 <p className="text-muted-foreground leading-relaxed italic">
-                  "I voluntarily provide my personal information and consent to being contacted by Land2Land via phone, SMS, WhatsApp, and email regarding property consultation and offers. I agree to the Privacy Policy and Terms & Conditions."
+                  "I voluntarily provide my personal information and consent to being contacted by Land2Land via phone, SMS, WhatsApp, and email regarding land consultation and offers. I agree to the Privacy Policy and Terms & Conditions."
                 </p>
               </div>
             </section>

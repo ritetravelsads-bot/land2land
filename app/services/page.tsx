@@ -20,15 +20,15 @@ import {
 } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "Real Estate Services in Gurugram | Land2Land",
+  title: "Land Services in India | Land2Land",
   description:
-    "Comprehensive real estate services including property advisory, investment consulting, legal assistance, home loans, NRI services, and property management in Gurugram.",
+    "Comprehensive agricultural land services including land advisory, investment consulting, title verification, ROI analysis, field operations, and property management across India.",
   alternates: {
     canonical: "https://land2land.in/services",
   },
   openGraph: {
-    title: "Real Estate Services | Land2Land",
-    description: "Expert real estate advisory and consulting services in Gurugram.",
+    title: "Land Services | Land2Land",
+    description: "Expert land advisory and agricultural marketplace services across India.",
     url: "https://land2land.in/services",
   },
 }
@@ -36,121 +36,121 @@ export const metadata: Metadata = {
 const services = [
   {
     id: "advisory",
-    title: "Property Advisory",
-    description: "Expert guidance for buying, selling, and investing in real estate with personalized recommendations.",
+    title: "Land Advisory",
+    description: "Expert guidance for buying, selling, and investing in agricultural land with personalized recommendations.",
     icon: Search,
     href: "/services/advisory",
     features: [
-      "Personalized property recommendations",
-      "Market analysis and insights",
+      "Personalized land recommendations",
+      "Regional market analysis",
       "Price negotiation support",
       "End-to-end transaction assistance",
     ],
-    color: "bg-blue-500",
+    color: "bg-green-600",
   },
   {
     id: "investment",
     title: "Investment Consulting",
-    description: "Strategic advice for maximizing returns on property investments with data-driven insights.",
+    description: "Strategic advice for maximizing returns on land investments with data-driven insights.",
     icon: TrendingUp,
     href: "/services/investment",
     features: [
       "ROI analysis and projections",
       "Portfolio diversification strategies",
-      "Pre-launch opportunities",
-      "Commercial vs residential guidance",
+      "High-growth corridor identification",
+      "Farming vs investment guidance",
     ],
     color: "bg-emerald-500",
   },
   {
-    id: "legal",
-    title: "Legal Assistance",
-    description: "Comprehensive legal support for property transactions ensuring complete peace of mind.",
+    id: "verification",
+    title: "Title & Ownership Verification",
+    description: "Comprehensive legal and title verification ensuring complete peace of mind for land transactions.",
     icon: FileCheck,
-    href: "/services/legal",
+    href: "/services/verification",
     features: [
-      "Document verification",
-      "Title clearance checks",
-      "Agreement drafting and review",
-      "RERA compliance verification",
+      "Title deed verification",
+      "Ownership document checks",
+      "Land record clearance",
+      "Survey and boundary verification",
     ],
-    color: "bg-amber-500",
+    color: "bg-amber-600",
   },
   {
-    id: "home-loans",
-    title: "Home Loan Assistance",
-    description: "Simplified home loan processing with multiple bank partners for best rates.",
+    id: "soil-water",
+    title: "Soil & Water Analysis",
+    description: "Professional assessment of soil quality, water rights, and irrigation availability.",
     icon: Home,
-    href: "/services/home-loans",
+    href: "/services/soil-water",
     features: [
-      "Loan eligibility assessment",
-      "Best interest rate comparison",
-      "Documentation support",
-      "Quick loan approval process",
+      "Soil quality testing",
+      "Water access assessment",
+      "Irrigation infrastructure check",
+      "Productivity potential analysis",
     ],
-    color: "bg-rose-500",
+    color: "bg-blue-600",
   },
   {
-    id: "nri",
-    title: "NRI Services",
-    description: "Dedicated support for Non-Resident Indians investing in Indian real estate.",
+    id: "field-operations",
+    title: "Field Verification & Operations",
+    description: "On-ground site visits and verification by our certified field team across India.",
     icon: Users,
-    href: "/services/nri",
+    href: "/services/field-operations",
     features: [
-      "Virtual property tours",
-      "Power of Attorney assistance",
-      "Regulatory compliance guidance",
-      "Property management services",
+      "Professional site inspections",
+      "Photo and video documentation",
+      "Boundary verification",
+      "Neighbor and local enquiries",
     ],
-    color: "bg-violet-500",
+    color: "bg-violet-600",
   },
   {
-    id: "commercial",
-    title: "Commercial Real Estate",
-    description: "Expert services for commercial property requirements across all segments.",
+    id: "lease-management",
+    title: "Lease & Management Services",
+    description: "Complete management of leased land and agricultural operations for passive income.",
     icon: Briefcase,
-    href: "/services/commercial",
+    href: "/services/lease-management",
     features: [
-      "Office space solutions",
-      "Retail space leasing",
-      "Warehouse and industrial",
-      "Co-working space options",
+      "Lease-back arrangements",
+      "Tenant management",
+      "Crop management support",
+      "Income maximization strategies",
     ],
-    color: "bg-cyan-500",
+    color: "bg-cyan-600",
   },
   {
-    id: "builder",
-    title: "Builder Partnerships",
-    description: "Direct partnerships with top developers for exclusive deals and early access.",
+    id: "area-conversion",
+    title: "Area Converter Tool",
+    description: "Free tool to convert between all land measurement units used across Indian states.",
     icon: Building2,
-    href: "/services/builder-partnerships",
+    href: "/area-converter",
     features: [
-      "Exclusive project launches",
-      "Direct builder pricing",
-      "Early bird offers access",
-      "Channel partner benefits",
+      "Bigha to Acre conversion",
+      "Sq Yard, Sq Ft, Hectare support",
+      "Regional unit compatibility",
+      "Real-time calculation",
     ],
-    color: "bg-orange-500",
+    color: "bg-orange-600",
   },
   {
-    id: "after-sales",
-    title: "After-Sales Support",
-    description: "Continued assistance even after property purchase for complete satisfaction.",
+    id: "documentation",
+    title: "Documentation Support",
+    description: "End-to-end assistance with all land transaction documentation and legal compliance.",
     icon: Shield,
-    href: "/services/after-sales",
+    href: "/services/documentation",
     features: [
-      "Registration and possession",
-      "Interior design referrals",
-      "Rental management",
-      "Resale assistance",
+      "Agreement drafting",
+      "Document registration support",
+      "Tax and compliance guidance",
+      "Post-transaction formalities",
     ],
-    color: "bg-teal-500",
+    color: "bg-teal-600",
   },
 ]
 
 const stats = [
-  { value: "10,000+", label: "Happy Clients" },
-  { value: "500+", label: "Projects Delivered" },
+  { value: "15,000+", label: "Land Listings" },
+  { value: "12+", label: "States Covered" },
   { value: "15+", label: "Years Experience" },
   { value: "50+", label: "Expert Advisors" },
 ]
@@ -159,25 +159,25 @@ const processSteps = [
   {
     step: "01",
     title: "Free Consultation",
-    desc: "Share your requirements and preferences with our expert team",
+    desc: "Share your land requirements and investment goals with our experts",
     icon: Phone
   },
   {
     step: "02",
-    title: "Personalized Search",
-    desc: "We curate properties matching your exact criteria",
+    title: "Verified Listings",
+    desc: "We curate verified land parcels matching your exact criteria",
     icon: Search
   },
   {
     step: "03",
-    title: "Site Visits",
-    desc: "Accompany you for property inspections and due diligence",
+    title: "Field Visit & Verification",
+    desc: "Professional site inspection and complete due diligence by our team",
     icon: Building2
   },
   {
     step: "04",
     title: "Transaction Support",
-    desc: "Assist with negotiation, paperwork, and closing",
+    desc: "Assist with negotiation, documentation, and title registration",
     icon: FileCheck
   },
 ]
@@ -199,13 +199,13 @@ export default function ServicesPage() {
             <div className="text-center space-y-6 max-w-3xl mx-auto">
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium">
                 <Award className="w-4 h-4" />
-                Trusted by 10,000+ Clients
+                Trusted with 15,000+ Land Transactions
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
-                Comprehensive Real Estate Services
+                Comprehensive Land & Agricultural Services
               </h1>
-              <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto text-pretty">
-                From property search to post-purchase support, we provide end-to-end solutions tailored to your unique real estate needs.
+              <p className="text-lg md:text-xl text-green-100 max-w-2xl mx-auto text-pretty">
+                From land search to post-purchase support, we provide end-to-end solutions tailored to your unique land and farm investment needs.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                 <Button asChild size="lg" className="bg-white text-[#2d5016] hover:bg-white/90 h-12 px-8 font-semibold">
@@ -238,7 +238,7 @@ export default function ServicesPage() {
             <div className="text-center space-y-4 mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">Our Services</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Choose from our comprehensive range of real estate services designed to make your property journey seamless.
+                Choose from our comprehensive range of land services designed to make your land transaction and investment journey seamless.
               </p>
             </div>
 
@@ -293,7 +293,7 @@ export default function ServicesPage() {
             <div className="text-center space-y-4">
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">How We Work</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Our streamlined 4-step process ensures a smooth and hassle-free property buying experience.
+                Our streamlined 4-step process ensures a smooth and hassle-free land transaction experience.
               </p>
             </div>
 
@@ -328,15 +328,15 @@ export default function ServicesPage() {
                   Why Choose Land2Land?
                 </h2>
                 <p className="text-muted-foreground text-lg">
-                  With over 15 years of experience in Gurugram&apos;s real estate market, we bring unmatched expertise and dedication to every client relationship.
+                  With over 15 years of experience in India&apos;s agricultural land market, we bring unmatched expertise and dedication to every client relationship.
                 </p>
 
                 <div className="space-y-4">
                   {[
-                    { icon: Award, title: "Expert Team", desc: "50+ experienced real estate professionals" },
+                    { icon: Award, title: "Expert Team", desc: "50+ experienced land and agriculture professionals" },
                     { icon: Clock, title: "24/7 Support", desc: "Round-the-clock assistance for all queries" },
-                    { icon: Shield, title: "Verified Properties", desc: "100% legally verified property listings" },
-                    { icon: TrendingUp, title: "Best Deals", desc: "Exclusive deals and competitive pricing" },
+                    { icon: Shield, title: "Verified Titles", desc: "100% legally verified land titles and ownership" },
+                    { icon: TrendingUp, title: "Best Deals", desc: "Exclusive deals and transparent pricing" },
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-start gap-4 p-4 bg-muted/50 rounded-xl">
                       <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
@@ -352,10 +352,10 @@ export default function ServicesPage() {
               </div>
 
               {/* CTA Card */}
-              <div className="bg-gradient-to-br from-[#2d5016] to-[#003080] rounded-2xl p-8 text-white space-y-6">
+              <div className="bg-gradient-to-br from-[#2d5016] to-[#4a7c2e] rounded-2xl p-8 text-white space-y-6">
                 <h3 className="text-2xl font-bold">Ready to Get Started?</h3>
-                <p className="text-blue-100">
-                  Connect with our expert team for a free consultation and personalized property recommendations.
+                <p className="text-green-100">
+                  Connect with our expert team for a free consultation and personalized land recommendations.
                 </p>
 
                 <div className="space-y-4">
@@ -364,8 +364,8 @@ export default function ServicesPage() {
                       <Phone className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-sm text-blue-200">Call Us</div>
-                      <a href="tel:+919876543210" className="font-semibold hover:underline">+91 98765 43210</a>
+                      <div className="text-sm text-green-200">Call Us</div>
+                      <a href="tel:+919873702365" className="font-semibold hover:underline">+91 98737-02365</a>
                     </div>
                   </div>
 
@@ -374,7 +374,7 @@ export default function ServicesPage() {
                       <Clock className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-sm text-blue-200">Working Hours</div>
+                      <div className="text-sm text-green-200">Working Hours</div>
                       <div className="font-semibold">Mon - Sat: 9:00 AM - 7:00 PM</div>
                     </div>
                   </div>
@@ -395,14 +395,14 @@ export default function ServicesPage() {
               Have Questions About Our Services?
             </h2>
             <p className="text-muted-foreground">
-              Our team is here to help you navigate your real estate journey. Get in touch for personalized assistance.
+              Our team is here to help you navigate your land investment journey. Get in touch for personalized assistance.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button asChild size="lg" className="h-12 px-8">
                 <Link href="/contact">Contact Us</Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="h-12 px-8">
-                <Link href="/properties">Browse Properties</Link>
+                <Link href="/buy">Browse Land Listings</Link>
               </Button>
             </div>
           </div>
