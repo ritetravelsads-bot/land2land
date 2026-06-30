@@ -11,34 +11,34 @@ const slides = [
   {
     id: 1,
     image: "/banners/land-banner-1.png",
-    tag: "All Land Types Across India",
-    title: "India's #1 Land Marketplace",
-    subtitle: "Agricultural, residential, commercial, industrial and farmland — browse verified listings with clear titles, live prices and ownership records.",
+    tag: "All Land Types — One Platform",
+    title: "Every Type of Land, One Marketplace",
+    subtitle: "Plots, farms, commercial sites, industrial parcels — 1 lakh+ verified listings across India with clear titles, live pricing and ownership records.",
     cta: { label: "Browse All Land", href: "/buy" },
   },
   {
     id: 2,
     image: "/banners/land-banner-2.png",
-    tag: "Residential & NA Plots",
-    title: "Ready-to-Build Plots Near You",
-    subtitle: "Planned residential layouts and NA plots in approved townships with boundary markings, utilities and legal clearance across 500+ cities.",
+    tag: "Residential Plots & NA Land",
+    title: "Ready-to-Build Plots in Approved Layouts",
+    subtitle: "Demarcated residential and NA plots with paved roads, utilities and legal clearances — across 500+ planned townships in every major state.",
     cta: { label: "Explore Plots", href: "/land/residential-plot" },
   },
   {
     id: 3,
     image: "/banners/land-banner-3.png",
-    tag: "Commercial & Highway Land",
-    title: "High-Visibility Commercial Land",
-    subtitle: "Premium highway-facing plots, market-facing commercial parcels and industrial zone land with verified zoning and government approvals.",
+    tag: "Commercial & Industrial Land",
+    title: "Prime Commercial Land on Key Corridors",
+    subtitle: "Highway-facing commercial plots, industrial zone parcels and logistics land — verified zoning, road frontage and government approvals confirmed.",
     cta: { label: "View Commercial Land", href: "/land/commercial-plot" },
   },
   {
     id: 4,
     image: "/banners/land-banner-4.png",
-    tag: "Sell Your Land",
-    title: "List Your Land in Minutes",
-    subtitle: "Reach 10 lakh+ verified buyers and investors across India. Post any land type — agricultural, plot, farm, commercial or industrial — for free.",
-    cta: { label: "List Land for Free", href: "/sell" },
+    tag: "Agricultural & Farmland",
+    title: "Invest in Productive Farmland",
+    subtitle: "Irrigated agricultural land, managed orchards and mixed-crop farms — with verified water rights, soil reports and clear title documents.",
+    cta: { label: "Browse Farmland", href: "/land/agricultural-land" },
   },
 ]
 
@@ -50,7 +50,7 @@ function FirstSlideStatic() {
       <div className="absolute inset-0">
         <Image
           src="/banners/land-banner-1.png"
-          alt="Land2Land - India's #1 Land Marketplace for Agricultural, Residential and Commercial Land"
+          alt="Land2Land — Buy, Sell and Invest in Every Type of Land Across India"
           fill
           priority
           fetchPriority="high"
