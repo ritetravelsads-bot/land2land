@@ -66,7 +66,9 @@ export default function FarmTestimonials() {
 
               {/* Author */}
               <div className="flex items-center gap-3 pt-4 border-t border-green-200">
-                <div className="text-3xl">{testimonial.image}</div>
+                <div className="w-10 h-10 rounded-full bg-[#2d5016] flex items-center justify-center text-white text-sm font-bold shrink-0">
+                  {testimonial.initials}
+                </div>
                 <div>
                   <p className="font-semibold text-gray-900 text-sm">{testimonial.name}</p>
                   <p className="text-xs text-gray-600">{testimonial.title}</p>

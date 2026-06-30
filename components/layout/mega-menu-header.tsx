@@ -124,20 +124,6 @@ export default function MegaMenuHeader() {
             </Link>
 
             <Link
-              href="/area-converter"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors"
-            >
-              Area Converter
-            </Link>
-
-            <Link
-              href="/subscription"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors"
-            >
-              Subscription
-            </Link>
-
-            <Link
               href="/find-agent"
               className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] transition-colors"
             >
@@ -269,20 +255,6 @@ export default function MegaMenuHeader() {
               className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] hover:bg-gray-50 rounded transition-colors"
             >
               Sell
-            </Link>
-
-            <Link
-              href="/area-converter"
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] hover:bg-gray-50 rounded transition-colors"
-            >
-              Area Converter
-            </Link>
-
-            <Link
-              href="/subscription"
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#2d5016] hover:bg-gray-50 rounded transition-colors"
-            >
-              Subscription
             </Link>
 
             <Link

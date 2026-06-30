@@ -57,17 +57,15 @@ const regions = [
 
 export default function PopularRegions() {
   return (
-    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-white border-t border-border/50">
+    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-[#f8faf5] border-t border-border/50">
       <div className="max-w-7xl mx-auto">
-        <div className="space-y-2 mb-8 md:mb-10">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-green-100 rounded-lg">
-              <MapPin size={20} className="text-green-700" />
-            </div>
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Browse by Region</h2>
-              <p className="text-sm text-gray-600 font-medium">Explore land opportunities of every type across India</p>
-            </div>
+        <div className="flex items-center gap-3 mb-8 md:mb-10">
+          <div className="p-2 bg-green-100 rounded-lg">
+            <MapPin size={20} className="text-green-700" />
+          </div>
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Lands For You</h2>
+            <p className="text-sm text-gray-600 font-medium">Browse land opportunities across India by region</p>
           </div>
         </div>
 
@@ -76,13 +74,13 @@ export default function PopularRegions() {
             <Link
               key={region.name}
               href={region.href}
-              className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 h-64"
+              className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 h-56"
             >
-              {/* Background image with overlay */}
+              {/* Gradient background */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${region.color} opacity-80 group-hover:opacity-90 transition-opacity`}
+                className={`absolute inset-0 bg-gradient-to-br ${region.color}`}
               />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all" />
+              <div className="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition-all" />
 
               {/* Content */}
               <div className="relative h-full flex flex-col justify-between p-5 text-white">
