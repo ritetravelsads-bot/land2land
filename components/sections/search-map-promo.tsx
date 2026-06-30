@@ -1,37 +1,41 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { MapPin, Search, TrendingUp, Shield } from "lucide-react"
+import { MapPin, Search, TrendingUp, Shield, Building2, Warehouse } from "lucide-react"
 
 export default function SearchMapPromo() {
   return (
-    <section className="w-full py-12 md:py-16 overflow-hidden bg-gradient-to-br from-[#eaf5e1] via-white to-[#eaf5e1]">
+    <section className="w-full py-12 md:py-16 overflow-hidden bg-gradient-to-br from-[#f2efe9] via-white to-[#eef2f7]">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
           {/* Left Content */}
           <div className="flex-1 space-y-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2d5016]/10 text-[#2d5016] text-xs font-semibold">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/8 text-slate-700 text-xs font-semibold border border-slate-200">
               <MapPin size={14} />
               Pan-India Land Search
             </div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 text-balance">
-              Search Land <span className="text-[#2d5016]">Anywhere</span> in India
+              Search Any Land Type <span className="text-[#2d5016]">Anywhere</span> in India
             </h2>
             <p className="text-gray-600 leading-relaxed max-w-md">
-              Explore current land prices, promising investment opportunities, verified ownership records, and valuable property insights to make confident real estate decisions.
+              Compare prices across agricultural, residential, commercial, industrial and farmland categories — with verified ownership records and live market data.
             </p>
 
             {/* Feature pills */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2.5">
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-700 shadow-sm">
                 <Shield size={12} className="text-[#2d5016]" />
                 Verified Titles
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-700 shadow-sm">
-                <TrendingUp size={12} className="text-[#2d5016]" />
+                <TrendingUp size={12} className="text-amber-600" />
                 Live Market Prices
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-700 shadow-sm">
-                <Search size={12} className="text-[#2d5016]" />
+                <Building2 size={12} className="text-blue-600" />
+                6 Land Categories
+              </div>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-700 shadow-sm">
+                <Search size={12} className="text-gray-500" />
                 1 Lakh+ Listings
               </div>
             </div>
@@ -82,13 +86,19 @@ export default function SearchMapPromo() {
                 </div>
               </div>
 
-              {/* Floating price card */}
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-xl p-3 border border-gray-100 w-44">
-                <p className="text-[10px] text-gray-500 mb-0.5">Agricultural Land, Punjab</p>
-                <p className="text-base font-bold text-[#2d5016]">₹12 Lakh / Bigha</p>
-                <div className="flex items-center gap-1 mt-1">
+              {/* Floating price cards - multiple land types */}
+              <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-xl p-3 border border-gray-100 w-48 space-y-1.5">
+                <div className="pb-1.5 border-b border-gray-100">
+                  <p className="text-[10px] text-gray-400 mb-0.5">Residential Plot, Pune</p>
+                  <p className="text-sm font-bold text-blue-700">₹28 Lakh / Gunta</p>
+                </div>
+                <div>
+                  <p className="text-[10px] text-gray-400 mb-0.5">Commercial Land, Mumbai</p>
+                  <p className="text-sm font-bold text-amber-700">₹1.2 Cr / Acre</p>
+                </div>
+                <div className="flex items-center gap-1 pt-1">
                   <div className="w-2 h-2 rounded-full bg-green-500" />
-                  <span className="text-[10px] text-green-600 font-medium">Verified Title</span>
+                  <span className="text-[10px] text-green-600 font-medium">Verified Titles</span>
                 </div>
               </div>
 
@@ -96,6 +106,7 @@ export default function SearchMapPromo() {
               <div className="absolute -top-4 -right-4 bg-white rounded-xl shadow-xl p-3 border border-gray-100">
                 <p className="text-[10px] text-gray-500">Active Listings</p>
                 <p className="text-xl font-bold text-gray-900">1,00,000+</p>
+                <p className="text-[10px] text-gray-400 mt-0.5">6 land categories</p>
               </div>
             </div>
           </div>

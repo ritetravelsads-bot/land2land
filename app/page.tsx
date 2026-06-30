@@ -30,9 +30,14 @@ const AdvancedSearch = dynamic(() => import("@/components/sections/advanced-sear
 export const revalidate = 0
 
 // Lazy load below-the-fold components for better LCP
+const LandTypesBrowse = dynamic(() => import("@/components/sections/land-types-browse"), {
+  ssr: true,
+  loading: () => <div className="h-64 bg-white animate-pulse" />,
+})
+
 const SearchMapPromo = dynamic(() => import("@/components/sections/search-map-promo"), {
   ssr: true,
-  loading: () => <div className="h-64 bg-[#eaf5e1] animate-pulse" />,
+  loading: () => <div className="h-64 bg-[#f2efe9] animate-pulse" />,
 })
 
 const TrendingLandProperties = dynamic(() => import("@/components/sections/trending-land-properties"), {

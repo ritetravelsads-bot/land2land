@@ -49,7 +49,7 @@ const opportunities = [
 
 export default function InvestmentOpportunities() {
   return (
-    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-gradient-to-br from-green-50 to-emerald-50">
+    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-[#f8f7f4]">
       <div className="max-w-7xl mx-auto">
         <div className="space-y-2 mb-8 md:mb-10">
           <div className="flex items-center gap-3">
