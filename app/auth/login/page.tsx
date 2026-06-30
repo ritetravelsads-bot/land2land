@@ -5,8 +5,8 @@ import LoginForm from "@/components/forms/login-form"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Login | CountyRoof Property Marketplace",
-  description: "Login to your CountyRoof account to manage properties, find your home, or connect with agents.",
+  title: "Login | Land2Land",
+  description: "Login to your Land2Land account to manage land properties, find investments, or connect with agents.",
 }
 
 export default function LoginPage() {
@@ -18,7 +18,7 @@ export default function LoginPage() {
           <div className="space-y-6">
             <div className="space-y-2 text-center">
               <h1 className="text-2xl font-bold text-foreground">Welcome Back</h1>
-              <p className="text-sm text-muted-foreground">Sign in to your CountyRoof account</p>
+              <p className="text-sm text-muted-foreground">Sign in to your Land2Land account</p>
             </div>
 
             <LoginForm />
