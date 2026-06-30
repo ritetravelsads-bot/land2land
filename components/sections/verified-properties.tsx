@@ -31,7 +31,7 @@ export default function VerifiedProperties() {
 
   if (loading) {
     return (
-      <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-white border-t border-border/50">
+      <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-[#f7f5f2] border-t border-border/50">
         <div className="max-w-7xl mx-auto">
           <div className="h-8 w-56 bg-muted animate-pulse rounded mb-4" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -47,15 +47,15 @@ export default function VerifiedProperties() {
   const visibleProperties = properties.slice(scrollIndex, scrollIndex + 3)
 
   return (
-    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-white border-t border-border/50">
+    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-[#f7f5f2] border-t border-border/50">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <Shield size={20} className="text-[#2d5016]" />
+              <Shield size={20} className="text-amber-600" />
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Verified Properties</h2>
             </div>
-            <p className="text-sm text-gray-500">Hand-checked listings with premium visibility — trusted land deals you can explore with confidence.</p>
+            <p className="text-sm text-gray-500">Hand-checked listings across all land types — trusted deals with clear titles and verified ownership.</p>
           </div>
           {properties.length > 3 && (
             <div className="hidden md:flex items-center gap-2">
@@ -93,25 +93,25 @@ export default function VerifiedProperties() {
                       onError={(e) => { e.currentTarget.src = "/placeholder.jpg" }}
                     />
                     {/* Verified badge */}
-                    <div className="absolute top-3 left-3 flex items-center gap-1 bg-[#2d5016] text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow">
+                    <div className="absolute top-3 left-3 flex items-center gap-1 bg-slate-900/80 backdrop-blur-sm text-white px-2.5 py-1 rounded-full text-xs font-semibold shadow">
                       <Shield size={11} />
                       Verified property
                     </div>
                   </div>
 
                   <div className="p-4 flex flex-col gap-3 flex-1">
-                    <h3 className="font-bold text-base text-gray-900 line-clamp-2 group-hover:text-[#2d5016] transition-colors">
+                    <h3 className="font-bold text-base text-gray-900 line-clamp-2 group-hover:text-slate-600 transition-colors">
                       {property.property_name}
                     </h3>
 
                     <div className="flex items-center gap-1 text-sm text-gray-500">
-                      <MapPin size={13} className="shrink-0 text-[#2d5016]" />
+                      <MapPin size={13} className="shrink-0 text-slate-400" />
                       <span className="line-clamp-1">{property.neighborhood || property.address}</span>
                     </div>
 
                     <div className="flex flex-wrap gap-2 py-2 border-t border-gray-100">
                       {(property.area_value || property.area_sqft) && (
-                        <span className="text-xs bg-green-50 text-green-700 px-2 py-0.5 rounded flex items-center gap-1">
+                        <span className="text-xs bg-stone-100 text-stone-700 px-2 py-0.5 rounded flex items-center gap-1">
                           <Maximize2 size={11} />
                           {property.area_value
                             ? `${property.area_value} ${property.area_unit || "acre"}`
@@ -126,7 +126,7 @@ export default function VerifiedProperties() {
                     </div>
 
                     <div className="mt-auto flex items-center justify-between">
-                      <p className="text-base font-bold text-[#2d5016]">
+                      <p className="text-base font-bold text-slate-800">
                         {property.price_range || formatPriceRange(property.lowest_price, property.max_price)}
                       </p>
                       <span className="text-xs text-gray-400 bg-gray-50 px-2 py-0.5 rounded border">View Details</span>
@@ -143,7 +143,7 @@ export default function VerifiedProperties() {
         </div>
 
         <div className="flex justify-center pt-8">
-          <Button asChild variant="outline" className="border-[#2d5016] text-[#2d5016] hover:bg-[#2d5016]/5">
+          <Button asChild variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-50">
             <Link href="/buy">View All Verified Properties</Link>
           </Button>
         </div>

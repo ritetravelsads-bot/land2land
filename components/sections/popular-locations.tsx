@@ -18,15 +18,15 @@ const locations = [
 
 export default function PopularLocations() {
   return (
-    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-[#f8faf5] border-t border-border/50">
+    <section className="w-full py-10 md:py-14 px-3 md:px-4 bg-white border-t border-border/50">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <MapPin size={20} className="text-[#2d5016]" />
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Popular Locations</h2>
+              <MapPin size={18} className="text-slate-500" />
+              <h2 className="text-xl md:text-2xl font-bold text-gray-900">Popular Locations</h2>
             </div>
-            <p className="text-sm text-gray-500">Explore new investments</p>
+            <p className="text-sm text-gray-400">Browse land listings by city or district</p>
           </div>
         </div>
 
@@ -35,15 +35,15 @@ export default function PopularLocations() {
             <Link
               key={loc.name}
               href={loc.href}
-              className="flex items-center gap-1.5 px-4 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-700 hover:border-[#2d5016] hover:text-[#2d5016] hover:bg-[#2d5016]/5 transition-all duration-200 shadow-sm hover:shadow group"
+              className="flex items-center gap-1.5 px-4 py-2 bg-white border border-gray-200 rounded-full text-sm text-gray-700 hover:border-slate-400 hover:text-slate-900 hover:bg-slate-50 transition-all duration-200 shadow-sm hover:shadow group"
             >
-              <MapPin size={13} className="text-gray-400 group-hover:text-[#2d5016] transition-colors" />
+              <MapPin size={13} className="text-gray-400 group-hover:text-slate-600 transition-colors" />
               {loc.name}
             </Link>
           ))}
           <Link
             href="/buy"
-            className="flex items-center gap-1.5 px-4 py-2 bg-[#2d5016] text-white rounded-full text-sm font-medium hover:bg-[#1d3610] transition-all duration-200 shadow-sm hover:shadow group"
+            className="flex items-center gap-1.5 px-4 py-2 bg-slate-800 text-white rounded-full text-sm font-medium hover:bg-slate-900 transition-all duration-200 shadow-sm hover:shadow group"
           >
             View All
             <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />

@@ -31,7 +31,7 @@ export default function NewProperties() {
 
   if (loading) {
     return (
-      <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-gray-50 border-t border-border/50">
+      <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-white border-t border-border/50">
         <div className="max-w-7xl mx-auto">
           <div className="h-8 w-48 bg-muted animate-pulse rounded mb-4" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -47,15 +47,15 @@ export default function NewProperties() {
   const visibleProperties = properties.slice(scrollIndex, scrollIndex + 3)
 
   return (
-    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-gray-50 border-t border-border/50">
+    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-white border-t border-border/50">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <Clock size={20} className="text-[#2d5016]" />
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">New Properties</h2>
+              <Clock size={20} className="text-blue-600" />
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Newly Listed</h2>
             </div>
-            <p className="text-sm text-gray-500">Latest listings on Land2Land</p>
+            <p className="text-sm text-gray-500">Fresh land listings added across all categories</p>
           </div>
           {properties.length > 3 && (
             <div className="hidden md:flex items-center gap-2">
@@ -99,18 +99,18 @@ export default function NewProperties() {
                   </div>
 
                   <div className="p-4 flex flex-col gap-2.5 flex-1">
-                    <h3 className="font-semibold text-sm text-gray-900 line-clamp-2 group-hover:text-[#2d5016] transition-colors">
+                    <h3 className="font-semibold text-sm text-gray-900 line-clamp-2 group-hover:text-slate-600 transition-colors">
                       {property.property_name}
                     </h3>
 
                     <div className="flex items-center gap-1 text-xs text-gray-500">
-                      <MapPin size={12} className="shrink-0 text-[#2d5016]" />
+                      <MapPin size={12} className="shrink-0 text-slate-400" />
                       <span className="line-clamp-1">{property.neighborhood || property.address}</span>
                     </div>
 
                     <div className="flex flex-wrap gap-1.5">
                       {(property.area_value || property.area_sqft) && (
-                        <span className="text-xs bg-green-50 text-green-700 px-2 py-0.5 rounded flex items-center gap-1">
+                        <span className="text-xs bg-stone-100 text-stone-600 px-2 py-0.5 rounded flex items-center gap-1">
                           <Maximize2 size={10} />
                           {property.area_value
                             ? `${property.area_value} ${property.area_unit || "acre"}`
@@ -125,7 +125,7 @@ export default function NewProperties() {
                     </div>
 
                     <div className="mt-auto pt-2 border-t border-gray-100">
-                      <p className="text-sm font-bold text-[#2d5016]">
+                      <p className="text-sm font-bold text-slate-800">
                         {property.price_range || formatPriceRange(property.lowest_price, property.max_price)}
                       </p>
                     </div>
@@ -141,7 +141,7 @@ export default function NewProperties() {
         </div>
 
         <div className="flex justify-center pt-8">
-          <Button asChild className="bg-[#2d5016] hover:bg-[#1d3610] text-white">
+          <Button asChild className="bg-slate-900 hover:bg-slate-800 text-white">
             <Link href="/buy">View All New Listings</Link>
           </Button>
         </div>

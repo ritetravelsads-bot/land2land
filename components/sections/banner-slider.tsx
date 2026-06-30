@@ -75,7 +75,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
         <div className="max-w-2xl space-y-4 md:space-y-6">
           <span
             className={cn(
-              "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6ba82b] text-white text-xs md:text-sm font-semibold transition-all duration-700",
+              "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-white text-xs md:text-sm font-semibold transition-all duration-700",
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
@@ -104,7 +104,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
-            <Button asChild size="lg" className="bg-[#2d5016] hover:bg-[#1d3610] text-white h-12 px-7 text-base">
+            <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold h-12 px-7 text-base">
               <Link href={slide.cta.href}>
                 {slide.cta.label}
                 <ArrowRight className="ml-2 h-5 w-5" />

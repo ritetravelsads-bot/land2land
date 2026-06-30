@@ -74,7 +74,7 @@ export default function TrendingLandProperties() {
                       }}
                     />
                     {property.is_featured && (
-                      <div className="absolute top-3 right-3 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                      <div className="absolute top-3 right-3 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
                         <TrendingUp size={14} />
                         Trending
                       </div>
@@ -91,7 +91,7 @@ export default function TrendingLandProperties() {
                     <div className="space-y-1">
                       <h3 className="font-bold text-base text-gray-900 line-clamp-2">{property.property_name}</h3>
                       <div className="flex items-center gap-1 text-sm text-gray-600">
-                        <MapPin size={14} className="shrink-0 text-green-600" />
+                        <MapPin size={14} className="shrink-0 text-slate-400" />
                         <span className="line-clamp-1">{property.neighborhood || property.address}</span>
                       </div>
                     </div>
@@ -99,7 +99,7 @@ export default function TrendingLandProperties() {
                     {/* Property details */}
                     <div className="flex items-center gap-3 flex-wrap py-2 border-t border-b border-gray-100">
                       {(property.area_value || property.area_sqft) && (
-                        <div className="flex items-center gap-1.5 bg-green-50 px-2 py-1 rounded text-xs font-medium text-green-700">
+                        <div className="flex items-center gap-1.5 bg-stone-100 px-2 py-1 rounded text-xs font-medium text-stone-600">
                           <Maximize2 size={12} />
                           {property.area_value
                             ? `${property.area_value} ${property.area_unit || "acre"}`
@@ -117,7 +117,7 @@ export default function TrendingLandProperties() {
                     {/* Price */}
                     <div className="mt-auto">
                       <div className="flex items-baseline justify-between">
-                        <p className="text-lg font-bold text-green-700">
+                        <p className="text-lg font-bold text-slate-800">
                           {property.price_range || formatPriceRange(property.lowest_price, property.max_price)}
                         </p>
                         {property.old_price && (
@@ -129,7 +129,7 @@ export default function TrendingLandProperties() {
                     </div>
 
                     {/* CTA Button */}
-                    <Button className="w-full mt-2 bg-green-600 hover:bg-green-700 text-white h-9 text-sm font-semibold">
+                    <Button className="w-full mt-2 bg-slate-900 hover:bg-slate-800 text-white h-9 text-sm font-semibold">
                       View Details
                     </Button>
                   </div>
@@ -144,7 +144,7 @@ export default function TrendingLandProperties() {
         </div>
 
         <div className="flex justify-center pt-8">
-          <Button asChild size="lg" className="bg-green-600 hover:bg-green-700 text-white">
+          <Button asChild size="lg" className="bg-slate-900 hover:bg-slate-800 text-white">
             <Link href="/buy">Browse All Land Listings</Link>
           </Button>
         </div>

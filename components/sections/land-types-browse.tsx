@@ -10,7 +10,7 @@ const landTypes = [
     image: "/land-types/agricultural.png",
     href: "/land/agricultural",
     badge: "Most Popular",
-    badgeColor: "bg-green-600",
+    badgeColor: "bg-amber-500",
   },
   {
     name: "Residential Plot",
@@ -66,7 +66,7 @@ export default function LandTypesBrowse() {
         {/* Header */}
         <div className="flex items-end justify-between mb-8 md:mb-10">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#2d5016] mb-2">Browse by Category</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Browse by Category</p>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-balance">
               Every Type of Land,<br className="hidden sm:block" /> One Marketplace
             </h2>
@@ -131,7 +131,7 @@ export default function LandTypesBrowse() {
         <div className="flex justify-center pt-6 md:hidden">
           <Link
             href="/buy"
-            className="flex items-center gap-1.5 text-sm font-medium text-[#2d5016] border border-[#2d5016]/30 px-5 py-2 rounded-full hover:bg-[#2d5016]/5 transition-colors"
+            className="flex items-center gap-1.5 text-sm font-medium text-slate-700 border border-slate-300 px-5 py-2 rounded-full hover:bg-slate-50 transition-colors"
           >
             View all land types <ArrowRight size={14} />
           </Link>

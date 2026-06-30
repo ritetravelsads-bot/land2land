@@ -29,7 +29,7 @@ const states = [
     label: "Localities in Haryana",
     count: "760+",
     href: "/buy?region=haryana",
-    bg: "from-green-500 to-teal-500",
+    bg: "from-slate-500 to-slate-700",
   },
   {
     name: "Madhya Pradesh",
@@ -47,12 +47,12 @@ export default function PopularStates() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <MapPin size={20} className="text-[#2d5016]" />
+              <MapPin size={20} className="text-slate-500" />
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Properties in Popular States</h2>
             </div>
-            <p className="text-sm text-gray-500">Explore new properties</p>
+            <p className="text-sm text-gray-400">Land available across agricultural, residential and commercial categories</p>
           </div>
-          <Button asChild variant="outline" className="hidden md:flex border-[#2d5016] text-[#2d5016] hover:bg-[#2d5016]/5">
+          <Button asChild variant="outline" className="hidden md:flex border-slate-300 text-slate-700 hover:bg-slate-50">
             <Link href="/buy">Explore More States</Link>
           </Button>
         </div>
@@ -83,7 +83,7 @@ export default function PopularStates() {
         </div>
 
         <div className="flex justify-center mt-6 md:hidden">
-          <Button asChild variant="outline" className="border-[#2d5016] text-[#2d5016] hover:bg-[#2d5016]/5">
+          <Button asChild variant="outline" className="border-slate-300 text-slate-700 hover:bg-slate-50">
             <Link href="/buy">Explore More States</Link>
           </Button>
         </div>

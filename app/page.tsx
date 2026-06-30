@@ -102,8 +102,13 @@ export default function Home() {
       <BannerSlider />
       <AdvancedSearch />
 
+      {/* Browse by Land Type — bento grid */}
+      <Suspense fallback={<div className="h-64 bg-white animate-pulse" />}>
+        <LandTypesBrowse />
+      </Suspense>
+
       {/* Search land anywhere promo band */}
-      <Suspense fallback={<div className="h-64 bg-[#eaf5e1] animate-pulse" />}>
+      <Suspense fallback={<div className="h-64 bg-[#f2efe9] animate-pulse" />}>
         <SearchMapPromo />
       </Suspense>
 

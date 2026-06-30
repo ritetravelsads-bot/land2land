@@ -55,11 +55,11 @@ export default function FAQs() {
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-100 text-green-700 text-xs font-bold tracking-widest uppercase mb-6 rounded-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-slate-100 text-slate-600 text-xs font-bold tracking-widest uppercase mb-6 rounded-sm">
             <HelpCircle className="w-3.5 h-3.5" />
             FAQs
           </div>
-          <h2 className="text-3xl md:text-4xl font-black text-green-700 tracking-tight text-balance mb-3">
+          <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight text-balance mb-3">
             Frequently Asked Questions
           </h2>
           <p className="text-gray-600 text-lg max-w-xl mx-auto">
@@ -68,7 +68,7 @@ export default function FAQs() {
         </div>
 
         {/* FAQ Accordion */}
-        <div className="flex flex-col divide-y divide-green-100 border border-green-100 rounded-2xl overflow-hidden shadow-sm">
+        <div className="flex flex-col divide-y divide-gray-100 border border-gray-150 rounded-2xl overflow-hidden shadow-sm">
           {faqs.map((faq, index) => {
             const isOpen = openId === faq.id
             return (
@@ -77,7 +77,7 @@ export default function FAQs() {
                   onClick={() => toggle(faq.id)}
                   className={cn(
                     "w-full flex items-start justify-between gap-4 px-6 py-5 text-left transition-colors duration-150",
-                    isOpen ? "bg-green-50/50" : "hover:bg-green-50/30"
+                    isOpen ? "bg-slate-50" : "hover:bg-slate-50/60"
                   )}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${faq.id}`}
@@ -87,8 +87,8 @@ export default function FAQs() {
                       className={cn(
                         "shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5",
                         isOpen
-                          ? "bg-green-600 text-white"
-                          : "bg-green-100 text-green-700"
+                          ? "bg-slate-800 text-white"
+                          : "bg-slate-100 text-slate-600"
                       )}
                     >
                       {index + 1}
@@ -96,7 +96,7 @@ export default function FAQs() {
                     <span
                       className={cn(
                         "font-semibold text-base leading-snug",
-                        isOpen ? "text-green-700" : "text-gray-900"
+                        isOpen ? "text-slate-800" : "text-gray-900"
                       )}
                     >
                       {faq.question}
@@ -105,7 +105,7 @@ export default function FAQs() {
                   <ChevronDown
                     size={18}
                     className={cn(
-                      "shrink-0 text-green-600 transition-transform duration-300 mt-0.5",
+                      "shrink-0 text-slate-400 transition-transform duration-300 mt-0.5",
                       isOpen && "rotate-180"
                     )}
                   />
@@ -133,7 +133,7 @@ export default function FAQs() {
           Still have questions?{" "}
           <a
             href="/find-agent"
-            className="text-green-700 font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
+            className="text-slate-800 font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
           >
             Talk to a land expert
           </a>
