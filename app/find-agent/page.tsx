@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Star, MapPin, Phone, Mail, Calendar } from "lucide-react"
+import { Star, MapPin, Phone, Calendar, ShieldCheck, MessageSquare, BarChart2 } from "lucide-react"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 
@@ -9,13 +9,13 @@ const agents = [
   {
     id: 1,
     name: "Rajesh Kumar",
+    initials: "RK",
     title: "Agricultural Land Specialist",
     location: "Uttar Pradesh",
     experience: "8+ years",
     specialization: "Agricultural Land",
     rating: 4.8,
     reviews: 145,
-    image: "👨‍💼",
     about: "Expert in high-yield agricultural land deals across North India",
     phone: "+91 98765-43210",
     responseTime: "< 2 hours",
@@ -25,13 +25,13 @@ const agents = [
   {
     id: 2,
     name: "Priya Singh",
+    initials: "PS",
     title: "Farm Investment Advisor",
     location: "Punjab",
     experience: "6+ years",
     specialization: "Farmland",
     rating: 4.7,
     reviews: 128,
-    image: "👩‍💼",
     about: "Specializes in organic farm investments and lease-back models",
     phone: "+91 98765-43211",
     responseTime: "< 3 hours",
@@ -41,13 +41,13 @@ const agents = [
   {
     id: 3,
     name: "Amit Patel",
+    initials: "AP",
     title: "Investment Land Consultant",
     location: "Gujarat",
     experience: "10+ years",
     specialization: "Investment Properties",
     rating: 4.9,
     reviews: 267,
-    image: "👨‍💼",
     about: "Focuses on high-ROI land corridors and infrastructure development zones",
     phone: "+91 98765-43212",
     responseTime: "< 1 hour",
@@ -57,13 +57,13 @@ const agents = [
   {
     id: 4,
     name: "Neha Desai",
+    initials: "ND",
     title: "Land Development Expert",
     location: "Maharashtra",
     experience: "7+ years",
     specialization: "Land Development",
     rating: 4.6,
     reviews: 92,
-    image: "👩‍💼",
     about: "Assists in land development projects and regulatory clearances",
     phone: "+91 98765-43213",
     responseTime: "< 4 hours",
@@ -73,13 +73,13 @@ const agents = [
   {
     id: 5,
     name: "Vikram Sharma",
+    initials: "VS",
     title: "Orchard & Plantation Specialist",
     location: "Himachal Pradesh",
     experience: "9+ years",
     specialization: "Farmland",
     rating: 4.8,
     reviews: 156,
-    image: "👨‍💼",
     about: "Expert in orchard land and plantation investments",
     phone: "+91 98765-43214",
     responseTime: "< 2 hours",
@@ -89,13 +89,13 @@ const agents = [
   {
     id: 6,
     name: "Divya Nair",
+    initials: "DN",
     title: "Irrigation & Water Rights Specialist",
     location: "Madhya Pradesh",
     experience: "8+ years",
     specialization: "Agricultural Land",
     rating: 4.7,
     reviews: 118,
-    image: "👩‍💼",
     about: "Specializes in canal-fed and irrigation-backed land deals",
     phone: "+91 98765-43215",
     responseTime: "< 3 hours",
@@ -217,9 +217,13 @@ export default function FindAgentPage() {
             <div key={agent.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden">
               <div className="bg-gradient-to-r from-[#2d5016] to-[#4a7c2e] p-6 text-white">
                 <div className="flex items-start justify-between mb-4">
-                  <div className="text-5xl">{agent.image}</div>
+                  <div className="w-16 h-16 rounded-full bg-white/20 border-2 border-white/40 flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
+                    {agent.initials}
+                  </div>
                   {agent.verified && (
-                    <div className="bg-white text-[#2d5016] px-2 py-1 rounded text-xs font-bold">✓ Verified</div>
+                    <div className="bg-white text-[#2d5016] px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+                      <span className="text-[#2d5016]">&#10003;</span> Verified
+                    </div>
                   )}
                 </div>
                 <h3 className="text-xl font-bold mb-1">{agent.name}</h3>
@@ -303,17 +307,23 @@ export default function FindAgentPage() {
           <h2 className="text-2xl font-bold mb-8">Why Choose Land2Land Agents?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="text-4xl mb-3">✓</div>
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <ShieldCheck className="w-6 h-6 text-white" />
+              </div>
               <h3 className="font-bold mb-2">Verified & Certified</h3>
               <p className="text-green-100 text-sm">All agents are verified professionals with proven track records</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl mb-3">💬</div>
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <MessageSquare className="w-6 h-6 text-white" />
+              </div>
               <h3 className="font-bold mb-2">Quick Response</h3>
               <p className="text-green-100 text-sm">Average response time under 3 hours for all inquiries</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl mb-3">📊</div>
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                <BarChart2 className="w-6 h-6 text-white" />
+              </div>
               <h3 className="font-bold mb-2">Market Expertise</h3>
               <p className="text-green-100 text-sm">Deep knowledge of regional markets and property values</p>
             </div>

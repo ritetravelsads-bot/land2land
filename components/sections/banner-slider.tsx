@@ -11,34 +11,34 @@ const slides = [
   {
     id: 1,
     image: "/banners/land-banner-1.png",
-    tag: "All Land Types",
-    title: "Buy & Sell Any Type of Land",
-    subtitle: "Explore verified agricultural, residential, commercial and industrial land with current prices and ownership records to invest with confidence across India.",
-    cta: { label: "Browse Land", href: "/buy" },
+    tag: "All Land Types — One Platform",
+    title: "Every Type of Land, One Marketplace",
+    subtitle: "Plots, farms, commercial sites, industrial parcels — 1 lakh+ verified listings across India with clear titles, live pricing and ownership records.",
+    cta: { label: "Browse All Land", href: "/buy" },
   },
   {
     id: 2,
     image: "/banners/land-banner-2.png",
-    tag: "Residential & Commercial Plots",
-    title: "Find the Perfect Plot",
-    subtitle: "Discover ready-to-build residential plots and high-visibility commercial land, vetted for clear titles and legal clearance.",
+    tag: "Residential Plots & NA Land",
+    title: "Ready-to-Build Plots in Approved Layouts",
+    subtitle: "Demarcated residential and NA plots with paved roads, utilities and legal clearances — across 500+ planned townships in every major state.",
     cta: { label: "Explore Plots", href: "/land/residential-plot" },
   },
   {
     id: 3,
     image: "/banners/land-banner-3.png",
-    tag: "Land Investment",
-    title: "Grow Your Wealth with Land",
-    subtitle: "High-ROI land opportunities across India's fastest-growing corridors with transparent pricing and verified records.",
-    cta: { label: "View Investments", href: "/investments" },
+    tag: "Commercial & Industrial Land",
+    title: "Prime Commercial Land on Key Corridors",
+    subtitle: "Highway-facing commercial plots, industrial zone parcels and logistics land — verified zoning, road frontage and government approvals confirmed.",
+    cta: { label: "View Commercial Land", href: "/land/commercial-plot" },
   },
   {
     id: 4,
     image: "/banners/land-banner-4.png",
-    tag: "Sell Your Land",
-    title: "List Your Land for Free",
-    subtitle: "Reach thousands of verified buyers and investors. Post your agricultural, residential, commercial or industrial land in minutes.",
-    cta: { label: "Sell Land", href: "/sell" },
+    tag: "Agricultural & Farmland",
+    title: "Invest in Productive Farmland",
+    subtitle: "Irrigated agricultural land, managed orchards and mixed-crop farms — with verified water rights, soil reports and clear title documents.",
+    cta: { label: "Browse Farmland", href: "/land/agricultural-land" },
   },
 ]
 
@@ -50,7 +50,7 @@ function FirstSlideStatic() {
       <div className="absolute inset-0">
         <Image
           src="/banners/land-banner-1.png"
-          alt="Land2Land - Buy and Sell All Types of Land in India"
+          alt="Land2Land — Buy, Sell and Invest in Every Type of Land Across India"
           fill
           priority
           fetchPriority="high"
@@ -75,7 +75,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
         <div className="max-w-2xl space-y-4 md:space-y-6">
           <span
             className={cn(
-              "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#6ba82b] text-white text-xs md:text-sm font-semibold transition-all duration-700",
+              "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-white text-xs md:text-sm font-semibold transition-all duration-700",
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
@@ -104,7 +104,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
-            <Button asChild size="lg" className="bg-[#2d5016] hover:bg-[#1d3610] text-white h-12 px-7 text-base">
+            <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold h-12 px-7 text-base">
               <Link href={slide.cta.href}>
                 {slide.cta.label}
                 <ArrowRight className="ml-2 h-5 w-5" />

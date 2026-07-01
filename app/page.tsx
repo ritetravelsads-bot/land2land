@@ -30,9 +30,24 @@ const AdvancedSearch = dynamic(() => import("@/components/sections/advanced-sear
 export const revalidate = 0
 
 // Lazy load below-the-fold components for better LCP
+const LandTypesBrowse = dynamic(() => import("@/components/sections/land-types-browse"), {
+  ssr: true,
+  loading: () => <div className="h-64 bg-white animate-pulse" />,
+})
+
+const SearchMapPromo = dynamic(() => import("@/components/sections/search-map-promo"), {
+  ssr: true,
+  loading: () => <div className="h-64 bg-[#f2efe9] animate-pulse" />,
+})
+
 const TrendingLandProperties = dynamic(() => import("@/components/sections/trending-land-properties"), {
   ssr: true,
   loading: () => <div className="h-96 bg-slate-50 animate-pulse" />,
+})
+
+const VerifiedProperties = dynamic(() => import("@/components/sections/verified-properties"), {
+  ssr: true,
+  loading: () => <div className="h-96 bg-white animate-pulse" />,
 })
 
 const PopularRegions = dynamic(() => import("@/components/sections/popular-regions"), {
@@ -40,14 +55,24 @@ const PopularRegions = dynamic(() => import("@/components/sections/popular-regio
   loading: () => <div className="h-64 bg-slate-50 animate-pulse" />,
 })
 
+const NewProperties = dynamic(() => import("@/components/sections/new-properties"), {
+  ssr: true,
+  loading: () => <div className="h-80 bg-gray-50 animate-pulse" />,
+})
+
+const PopularLocations = dynamic(() => import("@/components/sections/popular-locations"), {
+  ssr: true,
+  loading: () => <div className="h-40 bg-[#f8faf5] animate-pulse" />,
+})
+
+const PopularStates = dynamic(() => import("@/components/sections/popular-states"), {
+  ssr: true,
+  loading: () => <div className="h-64 bg-white animate-pulse" />,
+})
+
 const InvestmentOpportunities = dynamic(() => import("@/components/sections/investment-opportunities"), {
   ssr: true,
   loading: () => <div className="h-96 bg-slate-50 animate-pulse" />,
-})
-
-const FarmTestimonials = dynamic(() => import("@/components/sections/farm-testimonials"), {
-  ssr: true,
-  loading: () => <div className="h-80 bg-slate-50 animate-pulse" />,
 })
 
 const WhyChooseUs = dynamic(() => import("@/components/sections/why-choose-us"), {
@@ -55,14 +80,19 @@ const WhyChooseUs = dynamic(() => import("@/components/sections/why-choose-us"),
   loading: () => <div className="h-64 bg-slate-50 animate-pulse" />,
 })
 
-const CTA = dynamic(() => import("@/components/sections/cta"), {
+const FarmTestimonials = dynamic(() => import("@/components/sections/farm-testimonials"), {
   ssr: true,
-  loading: () => <div className="h-48 bg-slate-50 animate-pulse" />,
+  loading: () => <div className="h-80 bg-slate-50 animate-pulse" />,
 })
 
 const FAQs = dynamic(() => import("@/components/sections/faqs"), {
   ssr: true,
   loading: () => <div className="h-96 bg-white animate-pulse" />,
+})
+
+const CTA = dynamic(() => import("@/components/sections/cta"), {
+  ssr: true,
+  loading: () => <div className="h-48 bg-slate-50 animate-pulse" />,
 })
 
 export default function Home() {
@@ -71,26 +101,68 @@ export default function Home() {
       {/* Critical above-the-fold content - loads immediately */}
       <BannerSlider />
       <AdvancedSearch />
-      
-      {/* Below-the-fold content - lazy loaded */}
+
+      {/* Browse by Land Type — bento grid */}
+      <Suspense fallback={<div className="h-64 bg-white animate-pulse" />}>
+        <LandTypesBrowse />
+      </Suspense>
+
+      {/* Search land anywhere promo band */}
+      <Suspense fallback={<div className="h-64 bg-[#f2efe9] animate-pulse" />}>
+        <SearchMapPromo />
+      </Suspense>
+
+      {/* Trending Properties */}
       <Suspense fallback={<div className="h-96 bg-slate-50 animate-pulse" />}>
         <TrendingLandProperties />
       </Suspense>
+
+      {/* Verified Properties */}
+      <Suspense fallback={<div className="h-96 bg-white animate-pulse" />}>
+        <VerifiedProperties />
+      </Suspense>
+
+      {/* Lands For You / Browse by Region */}
       <Suspense fallback={<div className="h-64 bg-slate-50 animate-pulse" />}>
         <PopularRegions />
       </Suspense>
+
+      {/* New Properties */}
+      <Suspense fallback={<div className="h-80 bg-gray-50 animate-pulse" />}>
+        <NewProperties />
+      </Suspense>
+
+      {/* Popular Locations pill strip */}
+      <Suspense fallback={<div className="h-40 bg-[#f8faf5] animate-pulse" />}>
+        <PopularLocations />
+      </Suspense>
+
+      {/* Properties in Popular States */}
+      <Suspense fallback={<div className="h-64 bg-white animate-pulse" />}>
+        <PopularStates />
+      </Suspense>
+
+      {/* Investment Opportunities */}
       <Suspense fallback={<div className="h-96 bg-slate-50 animate-pulse" />}>
         <InvestmentOpportunities />
       </Suspense>
-      <Suspense fallback={<div className="h-80 bg-slate-50 animate-pulse" />}>
-        <FarmTestimonials />
-      </Suspense>
+
+      {/* Why Choose Us */}
       <Suspense fallback={<div className="h-64 bg-slate-50 animate-pulse" />}>
         <WhyChooseUs />
       </Suspense>
+
+      {/* Testimonials */}
+      <Suspense fallback={<div className="h-80 bg-slate-50 animate-pulse" />}>
+        <FarmTestimonials />
+      </Suspense>
+
+      {/* FAQs */}
       <Suspense fallback={<div className="h-96 bg-white animate-pulse" />}>
         <FAQs />
       </Suspense>
+
+      {/* CTA */}
       <Suspense fallback={<div className="h-48 bg-slate-50 animate-pulse" />}>
         <CTA />
       </Suspense>

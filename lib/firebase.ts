@@ -1,5 +1,5 @@
-import { initializeApp, getApps, getApp } from "firebase/app"
-import { getAuth, GoogleAuthProvider } from "firebase/auth"
+import { initializeApp, getApps, getApp, type FirebaseApp } from "firebase/app"
+import { getAuth, GoogleAuthProvider, type Auth } from "firebase/auth"
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -10,14 +10,25 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 }
 
-// Initialize Firebase only if not already initialized
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp()
+// Only initialize Firebase when all required env vars are present
+export const isFirebaseConfigured = !!(
+  firebaseConfig.apiKey &&
+  firebaseConfig.authDomain &&
+  firebaseConfig.projectId &&
+  firebaseConfig.appId
+)
 
-export const auth = getAuth(app)
-export const googleProvider = new GoogleAuthProvider()
+let app: FirebaseApp | null = null
+let auth: Auth | null = null
+let googleProvider: GoogleAuthProvider | null = null
 
-// Add additional scopes if needed
-googleProvider.addScope("email")
-googleProvider.addScope("profile")
+if (isFirebaseConfigured) {
+  app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp()
+  auth = getAuth(app)
+  googleProvider = new GoogleAuthProvider()
+  googleProvider.addScope("email")
+  googleProvider.addScope("profile")
+}
 
+export { auth, googleProvider }
 export default app

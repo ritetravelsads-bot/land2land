@@ -88,13 +88,13 @@ export default function Footer() {
     { name: "Farm Investments", href: "/investments" },
     { name: "Find Agent", href: "/find-agent" },
     { name: "Property Management", href: "/property-management" },
-    { name: "Area Converter", href: "/area-converter" },
+    { name: "Farms", href: "/farms" },
   ]
 
   const toolsServices = [
-    { name: "Area Converter", href: "/area-converter" },
     { name: "Land Calculator", href: "/tools/land-calculator" },
     { name: "Farm Advisory", href: "/farm-advisory" },
+    { name: "Blogs", href: "/blogs" },
     { name: "Privacy Policy", href: "/privacy-policy" },
     { name: "Terms & Conditions", href: "/terms-and-conditions" },
     { name: "Disclaimer", href: "/disclaimer" },

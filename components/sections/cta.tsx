@@ -7,7 +7,7 @@ export default function CTA() {
     <section className="relative w-full py-20 md:py-28 px-4 md:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <img src="/modern-city-skyline.png" alt="CTA Background" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-green-700/95 to-green-600/95" />
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/97 to-slate-800/95" />
       </div>
 
       <div className="max-w-4xl mx-auto text-center space-y-8">
@@ -20,7 +20,7 @@ export default function CTA() {
           <Button
             asChild
             size="lg"
-            className="bg-white text-green-700 hover:bg-white/90 h-14 px-8 text-base font-semibold"
+            className="bg-amber-400 text-slate-900 hover:bg-amber-300 h-14 px-8 text-base font-semibold"
           >
             <Link href="/buy">
               Browse Land Listings

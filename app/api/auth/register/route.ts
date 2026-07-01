@@ -11,6 +11,13 @@ const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.infobirth@gmail.com"
 
 export async function POST(request: Request) {
   try {
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { error: "Database is not configured. Please contact the administrator." },
+        { status: 503 }
+      )
+    }
+
     const body = await request.json()
     const { username, email, password, phone_number, user_type } = body
 

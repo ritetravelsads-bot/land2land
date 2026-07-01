@@ -5,8 +5,8 @@ import RegisterForm from "@/components/forms/register-form"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Create Account | CountyRoof",
-  description: "Join CountyRoof to buy, sell, or rent properties. Create your account to get started.",
+  title: "Create Account | Land2Land",
+  description: "Join Land2Land to buy, sell, or invest in land properties. Create your account to get started.",
 }
 
 export default function RegisterPage() {
@@ -18,7 +18,7 @@ export default function RegisterPage() {
           <div className="space-y-6">
             <div className="space-y-2 text-center">
               <h1 className="text-2xl font-bold text-foreground">Create Account</h1>
-              <p className="text-sm text-muted-foreground">Join CountyRoof marketplace</p>
+              <p className="text-sm text-muted-foreground">Join Land2Land marketplace</p>
             </div>
 
             <RegisterForm />

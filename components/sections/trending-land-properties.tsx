@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { MapPin, Maximize2, TrendingUp, Leaf } from "lucide-react"
+import { MapPin, Maximize2, TrendingUp, LayoutGrid } from "lucide-react"
 import { formatPriceRange, getPropertyUrl } from "@/lib/utils"
 
 export default function TrendingLandProperties() {
@@ -29,7 +29,7 @@ export default function TrendingLandProperties() {
 
   if (loading) {
     return (
-      <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-gradient-to-b from-white to-green-50/30 border-t border-border/50">
+      <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-white border-t border-border/50">
         <div className="max-w-7xl mx-auto">
           <div className="h-8 w-48 bg-muted animate-pulse rounded mb-4" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -43,16 +43,16 @@ export default function TrendingLandProperties() {
   }
 
   return (
-    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-gradient-to-b from-white to-green-50/30">
+    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="space-y-2 mb-8 md:mb-10">
+        <div className="flex items-center justify-between mb-8 md:mb-10">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-green-100 rounded-lg">
-              <Leaf size={20} className="text-green-700" />
+            <div className="p-2 bg-amber-50 rounded-lg border border-amber-100">
+              <TrendingUp size={20} className="text-amber-600" />
             </div>
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Trending Land Properties</h2>
-              <p className="text-sm text-gray-600 font-medium">Most viewed & high-demand land listings across India</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Trending Properties</h2>
+              <p className="text-sm text-gray-500 font-medium">Most viewed land listings across all categories</p>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function TrendingLandProperties() {
                       }}
                     />
                     {property.is_featured && (
-                      <div className="absolute top-3 right-3 bg-gradient-to-r from-green-600 to-green-700 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                      <div className="absolute top-3 right-3 bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
                         <TrendingUp size={14} />
                         Trending
                       </div>
@@ -91,7 +91,7 @@ export default function TrendingLandProperties() {
                     <div className="space-y-1">
                       <h3 className="font-bold text-base text-gray-900 line-clamp-2">{property.property_name}</h3>
                       <div className="flex items-center gap-1 text-sm text-gray-600">
-                        <MapPin size={14} className="shrink-0 text-green-600" />
+                        <MapPin size={14} className="shrink-0 text-slate-400" />
                         <span className="line-clamp-1">{property.neighborhood || property.address}</span>
                       </div>
                     </div>
@@ -99,7 +99,7 @@ export default function TrendingLandProperties() {
                     {/* Property details */}
                     <div className="flex items-center gap-3 flex-wrap py-2 border-t border-b border-gray-100">
                       {(property.area_value || property.area_sqft) && (
-                        <div className="flex items-center gap-1.5 bg-green-50 px-2 py-1 rounded text-xs font-medium text-green-700">
+                        <div className="flex items-center gap-1.5 bg-stone-100 px-2 py-1 rounded text-xs font-medium text-stone-600">
                           <Maximize2 size={12} />
                           {property.area_value
                             ? `${property.area_value} ${property.area_unit || "acre"}`
@@ -108,7 +108,7 @@ export default function TrendingLandProperties() {
                       )}
                       {property.property_type && (
                         <div className="flex items-center gap-1.5 bg-blue-50 px-2 py-1 rounded text-xs font-medium text-blue-700 capitalize">
-                          <Leaf size={12} />
+                          <LayoutGrid size={12} />
                           {property.property_type.replace(/_/g, " ")}
                         </div>
                       )}
@@ -117,7 +117,7 @@ export default function TrendingLandProperties() {
                     {/* Price */}
                     <div className="mt-auto">
                       <div className="flex items-baseline justify-between">
-                        <p className="text-lg font-bold text-green-700">
+                        <p className="text-lg font-bold text-slate-800">
                           {property.price_range || formatPriceRange(property.lowest_price, property.max_price)}
                         </p>
                         {property.old_price && (
@@ -129,7 +129,7 @@ export default function TrendingLandProperties() {
                     </div>
 
                     {/* CTA Button */}
-                    <Button className="w-full mt-2 bg-green-600 hover:bg-green-700 text-white h-9 text-sm font-semibold">
+                    <Button className="w-full mt-2 bg-slate-900 hover:bg-slate-800 text-white h-9 text-sm font-semibold">
                       View Details
                     </Button>
                   </div>
@@ -144,7 +144,7 @@ export default function TrendingLandProperties() {
         </div>
 
         <div className="flex justify-center pt-8">
-          <Button asChild size="lg" className="bg-green-600 hover:bg-green-700 text-white">
+          <Button asChild size="lg" className="bg-slate-900 hover:bg-slate-800 text-white">
             <Link href="/buy">Browse All Land Listings</Link>
           </Button>
         </div>

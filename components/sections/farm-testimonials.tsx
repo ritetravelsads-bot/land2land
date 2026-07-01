@@ -46,7 +46,7 @@ export default function FarmTestimonials() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200 hover:shadow-lg transition-shadow"
+              className="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow"
             >
               {/* Rating */}
               <div className="flex gap-1 mb-4">
@@ -65,8 +65,10 @@ export default function FarmTestimonials() {
               </p>
 
               {/* Author */}
-              <div className="flex items-center gap-3 pt-4 border-t border-green-200">
-                <div className="text-3xl">{testimonial.image}</div>
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-white text-sm font-bold shrink-0">
+                  {testimonial.initials}
+                </div>
                 <div>
                   <p className="font-semibold text-gray-900 text-sm">{testimonial.name}</p>
                   <p className="text-xs text-gray-600">{testimonial.title}</p>
@@ -79,15 +81,15 @@ export default function FarmTestimonials() {
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-gray-200">
           <div className="text-center">
-            <p className="text-3xl md:text-4xl font-bold text-green-700 mb-1">15,000+</p>
+            <p className="text-3xl md:text-4xl font-bold text-slate-800 mb-1">15,000+</p>
             <p className="text-gray-600 text-sm">Successful Transactions</p>
           </div>
           <div className="text-center">
-            <p className="text-3xl md:text-4xl font-bold text-green-700 mb-1">₹2,500+ Cr</p>
+            <p className="text-3xl md:text-4xl font-bold text-slate-800 mb-1">₹2,500+ Cr</p>
             <p className="text-gray-600 text-sm">Land Traded</p>
           </div>
           <div className="text-center">
-            <p className="text-3xl md:text-4xl font-bold text-green-700 mb-1">98%</p>
+            <p className="text-3xl md:text-4xl font-bold text-slate-800 mb-1">98%</p>
             <p className="text-gray-600 text-sm">Customer Satisfaction</p>
           </div>
         </div>
