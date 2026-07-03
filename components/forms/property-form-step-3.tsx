@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { ComboSelect, MultiComboSelect } from "@/components/ui/combo-select"
-import { Plus, Trash2, MapPin, Navigation } from "lucide-react"
+import { ComboSelect } from "@/components/ui/combo-select"
+import { MapPin } from "lucide-react"
 
 interface Option {
   _id: string
@@ -10,51 +10,11 @@ interface Option {
   [key: string]: any
 }
 
-const CONNECTIVITY_TYPES = [
-  { value: "metro", label: "Metro Station" },
-  { value: "airport", label: "Airport" },
-  { value: "highway", label: "Highway" },
-  { value: "hospital", label: "Hospital" },
-  { value: "school", label: "School" },
-  { value: "mall", label: "Mall" },
-  { value: "railway", label: "Railway Station" },
-  { value: "bus_stand", label: "Bus Stand" },
-]
-
 export default function PropertyFormStep3({ formData, onChange }: any) {
-  // Location connectivity management
-  const connectivity = formData.location_connectivity || []
-
-  const addConnectivity = () => {
-    const newItem = {
-      type: "metro",
-      name: "",
-      distance: ""
-    }
-    onChange("location_connectivity", [...connectivity, newItem])
-  }
-
-  const updateConnectivity = (index: number, field: string, value: string) => {
-    const updated = [...connectivity]
-    updated[index] = { ...updated[index], [field]: value }
-    onChange("location_connectivity", updated)
-  }
-
-  const removeConnectivity = (index: number) => {
-    const updated = connectivity.filter((_: any, i: number) => i !== index)
-    onChange("location_connectivity", updated)
-  }
   const [states, setStates] = useState<Option[]>([])
   const [locations, setLocations] = useState<Option[]>([])
-  const [amenities, setAmenities] = useState<Option[]>([])
-  const [facilities, setFacilities] = useState<Option[]>([])
-  const [connectivityTypes, setConnectivityTypes] = useState<Option[]>(
-    CONNECTIVITY_TYPES.map((t, idx) => ({ _id: `default-${idx}`, name: t.label, value: t.value }))
-  )
   const [loadingStates, setLoadingStates] = useState(false)
   const [loadingLocations, setLoadingLocations] = useState(false)
-  const [loadingAmenities, setLoadingAmenities] = useState(false)
-  const [loadingFacilities, setLoadingFacilities] = useState(false)
 
   useEffect(() => {
     const loadStates = async () => {
@@ -83,36 +43,8 @@ export default function PropertyFormStep3({ formData, onChange }: any) {
       }
     }
 
-    const loadAmenities = async () => {
-      setLoadingAmenities(true)
-      try {
-        const res = await fetch("/api/admin/amenities")
-        const data = await res.json()
-        setAmenities(data)
-      } catch (error) {
-        console.error("Error loading amenities:", error)
-      } finally {
-        setLoadingAmenities(false)
-      }
-    }
-
-    const loadFacilities = async () => {
-      setLoadingFacilities(true)
-      try {
-        const res = await fetch("/api/admin/facilities")
-        const data = await res.json()
-        setFacilities(data)
-      } catch (error) {
-        console.error("Error loading facilities:", error)
-      } finally {
-        setLoadingFacilities(false)
-      }
-    }
-
     loadStates()
     loadLocations()
-    loadAmenities()
-    loadFacilities()
   }, [])
 
   const handleAddState = async (name: string): Promise<Option | null> => {
@@ -138,10 +70,10 @@ export default function PropertyFormStep3({ formData, onChange }: any) {
       const res = await fetch("/api/admin/locations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          name, 
+        body: JSON.stringify({
+          name,
           type: "city",
-          state: formData.state || ""
+          state: formData.state || "",
         }),
       })
       if (res.ok) {
@@ -151,42 +83,6 @@ export default function PropertyFormStep3({ formData, onChange }: any) {
       }
     } catch (error) {
       console.error("Error adding location:", error)
-    }
-    return null
-  }
-
-  const handleAddAmenity = async (name: string): Promise<Option | null> => {
-    try {
-      const res = await fetch("/api/admin/amenities", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, icon_class: "check" }),
-      })
-      if (res.ok) {
-        const newAmenity = await res.json()
-        setAmenities((prev) => [...prev, newAmenity].sort((a, b) => a.name.localeCompare(b.name)))
-        return newAmenity
-      }
-    } catch (error) {
-      console.error("Error adding amenity:", error)
-    }
-    return null
-  }
-
-  const handleAddFacility = async (name: string): Promise<Option | null> => {
-    try {
-      const res = await fetch("/api/admin/facilities", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, icon_class: "building" }),
-      })
-      if (res.ok) {
-        const newFacility = await res.json()
-        setFacilities((prev) => [...prev, newFacility].sort((a, b) => a.name.localeCompare(b.name)))
-        return newFacility
-      }
-    } catch (error) {
-      console.error("Error adding facility:", error)
     }
     return null
   }
@@ -201,81 +97,32 @@ export default function PropertyFormStep3({ formData, onChange }: any) {
     onChange("city", selectedName || "")
   }
 
-  const handleAmenitiesChange = (value: string[]) => {
-    onChange("amenities", value)
-  }
-
-  const handleFacilitiesChange = (value: string[]) => {
-    onChange("facilities", value)
-  }
-
-  const handleAddConnectivityType = async (name: string): Promise<Option | null> => {
-    // Create a new custom connectivity type (stored locally, not in DB)
-    const newType: Option = {
-      _id: `custom-${Date.now()}`,
-      name: name,
-      value: name.toLowerCase().replace(/\s+/g, "_")
-    }
-    setConnectivityTypes((prev) => [...prev, newType].sort((a, b) => a.name.localeCompare(b.name)))
-    return newType
-  }
-
-  const handleConnectivityTypeChange = (index: number, value: string | string[]) => {
-    const selectedName = Array.isArray(value) ? value[0] : value
-    // Find the type value from the name
-    const typeOption = connectivityTypes.find(t => t.name === selectedName)
-    const typeValue = typeOption?.value || selectedName.toLowerCase().replace(/\s+/g, "_")
-    updateConnectivity(index, "type", typeValue)
-    // Also store the display name
-    updateConnectivity(index, "type_label", selectedName)
-  }
-
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       <div>
-        <h3 className="text-lg font-semibold mb-4">Location & Details</h3>
+        <h3 className="text-lg font-semibold mb-1">Location</h3>
+        <p className="text-sm text-muted-foreground">Where is the land located?</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Country</label>
-          <input
-            type="text"
-            value={formData.country || "India"}
-            onChange={(e) => onChange("country", e.target.value)}
-            placeholder="Country"
-            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-          />
-        </div>
-        <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Google Map Link</label>
-          <input
-            type="url"
-            value={formData.google_map_link || ""}
-            onChange={(e) => onChange("google_map_link", e.target.value)}
-            placeholder="https://maps.google.com/..."
-            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-          />
-        </div>
-      </div>
-
+      {/* Address */}
       <div>
-        <label className="text-xs font-medium text-muted-foreground block mb-1.5">Address</label>
+        <label className="text-xs font-medium text-muted-foreground block mb-1.5">Full Address / Village Name</label>
         <input
           type="text"
           value={formData.address}
           onChange={(e) => onChange("address", e.target.value)}
-          placeholder="Street address"
+          placeholder="e.g., Village Dehlawas, Tehsil Umren"
           className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
         />
       </div>
 
+      {/* City, State, Pin */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
           <label className="text-xs font-medium text-muted-foreground block mb-1.5">
             <span className="flex items-center gap-1.5">
-              <MapPin size={14} className="text-primary" />
-              Location / City
+              <MapPin size={13} className="text-primary" />
+              Nearest City / Town
             </span>
           </label>
           <ComboSelect
@@ -283,7 +130,7 @@ export default function PropertyFormStep3({ formData, onChange }: any) {
             onChange={handleLocationChange}
             options={locations}
             onAddNew={handleAddLocation}
-            placeholder="Select or add location..."
+            placeholder="Select or add city..."
             loading={loadingLocations}
           />
         </div>
@@ -293,205 +140,69 @@ export default function PropertyFormStep3({ formData, onChange }: any) {
           onChange={handleStateChange}
           options={states}
           onAddNew={handleAddState}
-          placeholder="Select or add a state..."
+          placeholder="Select or add state..."
           loading={loadingStates}
         />
         <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Postal Code</label>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">PIN Code</label>
           <input
             type="text"
             value={formData.postal_code}
             onChange={(e) => onChange("postal_code", e.target.value)}
-            placeholder="Postal code"
+            placeholder="e.g., 301001"
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </div>
       </div>
 
+      {/* Locality + Landmark */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Locality</label>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Locality / Tehsil</label>
           <input
             type="text"
             value={formData.neighborhood}
             onChange={(e) => onChange("neighborhood", e.target.value)}
-            placeholder="Locality or neighborhood"
+            placeholder="e.g., Umren, Kishangarh"
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Landmark</label>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Nearby Landmark</label>
           <input
             type="text"
             value={formData.landmark || ""}
             onChange={(e) => onChange("landmark", e.target.value)}
-            placeholder="Nearby landmark"
+            placeholder="e.g., Near Panchayat Office, Water Tank"
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           />
         </div>
       </div>
 
-      {/* Amenities with MultiComboSelect */}
-      <div className="pt-2">
-        <MultiComboSelect
-          label="Amenities"
-          value={formData.amenities || []}
-          onChange={handleAmenitiesChange}
-          options={amenities}
-          onAddNew={handleAddAmenity}
-          placeholder="Select or add amenities..."
-          loading={loadingAmenities}
-        />
-        <p className="text-xs text-muted-foreground mt-1.5">
-          Select from existing amenities or type to add new ones
-        </p>
-      </div>
-
-      {/* Facilities with MultiComboSelect */}
-      <div className="pt-2">
-        <MultiComboSelect
-          label="Facilities"
-          value={formData.facilities || []}
-          onChange={handleFacilitiesChange}
-          options={facilities}
-          onAddNew={handleAddFacility}
-          placeholder="Select or add facilities..."
-          loading={loadingFacilities}
-        />
-        <p className="text-xs text-muted-foreground mt-1.5">
-          Select from existing facilities or type to add new ones
-        </p>
-      </div>
-
+      {/* Country */}
       <div>
-        <label className="text-xs font-medium text-muted-foreground block mb-1.5">Luxury Amenities</label>
-        <textarea
-          placeholder="Premium amenities (e.g., Private Elevator, Home Theater, Jacuzzi)"
-          value={formData.luxury_amenities.join(", ")}
-          onChange={(e) =>
-            onChange(
-              "luxury_amenities",
-              e.target.value.split(",").map((a) => a.trim()),
-            )
-          }
-          className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring resize-none h-20"
+        <label className="text-xs font-medium text-muted-foreground block mb-1.5">Country</label>
+        <input
+          type="text"
+          value={formData.country || "India"}
+          onChange={(e) => onChange("country", e.target.value)}
+          className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
         />
       </div>
 
-      {(formData.listing_type === "resale" || formData.listing_type === "rental") && (
-        <div className="border-t border-border pt-4 mt-4">
-          <h4 className="font-semibold mb-3">Unit Features</h4>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {[
-              { key: "modular_kitchen", label: "Modular Kitchen" },
-              { key: "wardrobes", label: "Wardrobes" },
-              { key: "acs", label: "Air Conditioners" },
-              { key: "home_automation", label: "Home Automation" },
-              { key: "servant_room", label: "Servant Room" },
-              { key: "study_room", label: "Study Room" },
-            ].map((feature) => (
-              <label key={feature.key} className="flex items-center gap-2 text-sm cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={formData.unit_features?.[feature.key] || false}
-                  onChange={(e) =>
-                    onChange("unit_features", {
-                      ...formData.unit_features,
-                      [feature.key]: e.target.checked,
-                    })
-                  }
-                  className="rounded border-border"
-                />
-                <span>{feature.label}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Location & Connectivity Section */}
-      <div className="border-t border-border pt-4 mt-4">
-        <div className="flex items-center justify-between mb-3">
-          <h4 className="font-semibold">Location & Connectivity</h4>
-          <button
-            type="button"
-            onClick={addConnectivity}
-            className="flex items-center gap-1 text-xs text-primary hover:text-primary/80 transition-colors"
-          >
-            <Plus className="h-4 w-4" />
-            Add Location
-          </button>
-        </div>
-        <p className="text-xs text-muted-foreground mb-3">
-          Add nearby landmarks, transport hubs, and key locations with distances
+      {/* Google Map link */}
+      <div>
+        <label className="text-xs font-medium text-muted-foreground block mb-1.5">Google Maps Link (optional)</label>
+        <input
+          type="url"
+          value={formData.google_map_link || ""}
+          onChange={(e) => onChange("google_map_link", e.target.value)}
+          placeholder="https://maps.google.com/..."
+          className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
+        />
+        <p className="text-xs text-muted-foreground mt-1">
+          Paste the Google Maps share link to show a map on the listing
         </p>
-
-        {connectivity.length === 0 ? (
-          <div className="border-2 border-dashed border-border rounded-lg p-6 text-center">
-            <p className="text-sm text-muted-foreground mb-2">No connectivity points added yet</p>
-            <button
-              type="button"
-              onClick={addConnectivity}
-              className="text-sm text-primary hover:underline"
-            >
-              Add your first connectivity point
-            </button>
-          </div>
-        ) : (
-          <div className="space-y-3">
-            {connectivity.map((item: any, index: number) => (
-              <div key={index} className="border border-border rounded-lg p-3 bg-muted/30">
-                <div className="flex items-start justify-between mb-2">
-                  <span className="text-xs font-medium text-muted-foreground">Location {index + 1}</span>
-                  <button
-                    type="button"
-                    onClick={() => removeConnectivity(index)}
-                    className="text-destructive hover:text-destructive/80 transition-colors"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                  <div>
-                    <label className="text-xs text-muted-foreground block mb-1">
-                      <span className="flex items-center gap-1.5">
-                        <Navigation size={12} className="text-primary" />
-                        Location Type
-                      </span>
-                    </label>
-                    <ComboSelect
-                      value={item.type_label || connectivityTypes.find(t => t.value === item.type)?.name || ""}
-                      onChange={(value) => handleConnectivityTypeChange(index, value)}
-                      options={connectivityTypes}
-                      onAddNew={handleAddConnectivityType}
-                      placeholder="Select or add type..."
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs text-muted-foreground block mb-1">Name *</label>
-                    <input
-                      type="text"
-                      value={item.name}
-                      onChange={(e) => updateConnectivity(index, "name", e.target.value)}
-                      placeholder="e.g., Huda City Centre Metro"
-                      className="w-full px-2 py-1.5 text-sm border border-border rounded bg-background focus:outline-none focus:ring-1 focus:ring-ring"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-xs text-muted-foreground block mb-1">Distance *</label>
-                    <input
-                      type="text"
-                      value={item.distance}
-                      onChange={(e) => updateConnectivity(index, "distance", e.target.value)}
-                      placeholder="e.g., 2.5 km"
-                      className="w-full px-2 py-1.5 text-sm border border-border rounded bg-background focus:outline-none focus:ring-1 focus:ring-ring"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   )
