@@ -105,7 +105,7 @@ html {
   --background: oklch(0.99 0 0);
   --foreground: oklch(0.15 0 0);
 
-  /* Primary: Earthy Green (#2d5016) */
+  /* Primary: Earthy Green (#125007) */
   --primary: oklch(0.38 0.11 140);
   --primary-foreground: oklch(1 0 0);
 
@@ -147,7 +147,7 @@ html {
   --sidebar-foreground: oklch(0.15 0 0);
 
   /* Land2Land Brand Colors */
-  --land-primary: #2d5016;
+  --land-primary: #125007;
   --land-accent: #6ba82b;
   --land-earth: #8b7355;
   --land-cream: #faf8f3;

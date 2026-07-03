@@ -111,7 +111,7 @@ export default function Footer() {
       <div className="border-b border-gray-200 md:border-b-0">
         <button
           onClick={() => toggleSection(sectionKey)}
-          className="w-full md:w-auto flex items-center justify-between md:justify-start gap-2 py-3 md:py-0 text-sm font-semibold text-[#2d5016] hover:text-[#6ba82b] transition-colors"
+          className="w-full md:w-auto flex items-center justify-between md:justify-start gap-2 py-3 md:py-0 text-sm font-semibold text-[#125007] hover:text-[#6ba82b] transition-colors"
         >
           {title}
           <ChevronDown size={16} className={`md:hidden transition-transform ${isExpanded ? "rotate-180" : ""}`} />
@@ -122,7 +122,7 @@ export default function Footer() {
         >
           {items.map((item, idx) => (
             <li key={idx} className="pt-2 md:pt-0">
-              <Link href={item.href} className="text-xs text-gray-600 hover:text-[#2d5016] transition-colors">
+              <Link href={item.href} className="text-xs text-gray-600 hover:text-[#125007] transition-colors">
                 {item.name}
               </Link>
             </li>
@@ -149,7 +149,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#2d5016] mb-4">About Land2Land</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-[#125007] mb-4">About Land2Land</h2>
               <p className="text-sm text-gray-600 leading-relaxed max-w-sm">
                 India&apos;s trusted agricultural land and farm property marketplace. We connect landowners, farmers, and investors with verified land opportunities across India. Our platform provides transparent pricing, expert advisory, and secure transactions for agricultural land, farmland, and land investments. Empowering rural India through digital real estate.
               </p>
@@ -157,20 +157,20 @@ export default function Footer() {
 
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#2d5016] rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-[#125007] rounded-lg flex items-center justify-center flex-shrink-0">
                   <Phone size={18} className="text-white" />
                 </div>
-                <a href="tel:+919873702365" className="text-sm text-gray-700 hover:text-[#2d5016] transition-colors">
+                <a href="tel:+919873702365" className="text-sm text-gray-700 hover:text-[#125007] transition-colors">
                   +91 98737-02365
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-[#2d5016] rounded-lg flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 bg-[#125007] rounded-lg flex items-center justify-center flex-shrink-0">
                   <Mail size={18} className="text-white" />
                 </div>
                 <a
                   href="mailto:info@land2land.in"
-                  className="text-sm text-gray-700 hover:text-[#2d5016] transition-colors"
+                  className="text-sm text-gray-700 hover:text-[#125007] transition-colors"
                 >
                   info@land2land.in
                 </a>
@@ -179,7 +179,7 @@ export default function Footer() {
           </div>
 
           {/* Unique Enquiry Form */}
-          <div className="bg-gradient-to-br from-[#2d5016] to-[#4a7c2e] rounded-2xl p-8 text-white shadow-lg">
+          <div className="bg-gradient-to-br from-[#125007] to-[#4a7c2e] rounded-2xl p-8 text-white shadow-lg">
             <h3 className="text-xl font-bold mb-2">Get Instant Callback</h3>
             <p className="text-sm text-green-100 mb-6">
               Get expert advice on your land investment. Our team will contact you within 30 minutes.
@@ -218,7 +218,7 @@ export default function Footer() {
                 <button
                   type="submit"
                   disabled={formLoading}
-                  className="w-full bg-white hover:bg-gray-100 disabled:opacity-70 disabled:cursor-not-allowed text-[#2d5016] font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 flex items-center justify-center gap-2"
+                  className="w-full bg-white hover:bg-gray-100 disabled:opacity-70 disabled:cursor-not-allowed text-[#125007] font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 flex items-center justify-center gap-2"
                 >
                   <span>{formLoading ? "Submitting..." : "Get Callback"}</span>
                   {!formLoading && <Send size={16} aria-hidden="true" />}
@@ -262,13 +262,13 @@ export default function Footer() {
               © {currentYear} land2land.in All rights reserved.
             </p>
             <div className="flex items-center gap-6">
-              <Link href="/privacy-policy" className="text-xs text-gray-600 hover:text-[#2d5016] transition-colors">
+              <Link href="/privacy-policy" className="text-xs text-gray-600 hover:text-[#125007] transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/terms-and-conditions" className="text-xs text-gray-600 hover:text-[#2d5016] transition-colors">
+              <Link href="/terms-and-conditions" className="text-xs text-gray-600 hover:text-[#125007] transition-colors">
                 Terms & Conditions
               </Link>
-              <Link href="/site-map" className="text-xs text-gray-600 hover:text-[#2d5016] transition-colors">
+              <Link href="/site-map" className="text-xs text-gray-600 hover:text-[#125007] transition-colors">
                 Sitemap
               </Link>
             </div>

@@ -65,11 +65,11 @@ export default function Testimonials() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#2d5016] text-white text-xs font-bold tracking-widest uppercase mb-6 rounded-sm">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#125007] text-white text-xs font-bold tracking-widest uppercase mb-6 rounded-sm">
             <Star className="w-3.5 h-3.5 text-amber-400" fill="currentColor" />
             Client Stories
           </div>
-          <h2 className="text-3xl md:text-4xl font-black text-[#2d5016] tracking-tight text-balance mb-3">
+          <h2 className="text-3xl md:text-4xl font-black text-[#125007] tracking-tight text-balance mb-3">
             Trusted by Real Buyers
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
@@ -80,7 +80,7 @@ export default function Testimonials() {
         {/* Main Card */}
         <div className="relative bg-white rounded-2xl shadow-lg border border-slate-100 p-8 md:p-12 max-w-4xl mx-auto">
           {/* Large quote mark */}
-          <Quote className="absolute top-6 left-6 text-[#2d5016]/8" size={72} strokeWidth={1} />
+          <Quote className="absolute top-6 left-6 text-[#125007]/8" size={72} strokeWidth={1} />
 
           <div className="relative space-y-7">
             {/* Stars */}
@@ -98,13 +98,13 @@ export default function Testimonials() {
             {/* Reviewer info */}
             <div className="flex items-start justify-between gap-4 pt-2 border-t border-slate-100">
               <div className="space-y-1.5">
-                <p className="font-bold text-[#2d5016] text-lg">{current.name}</p>
+                <p className="font-bold text-[#125007] text-lg">{current.name}</p>
                 <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                  <Home size={13} className="text-[#2d5016]/60 shrink-0" />
+                  <Home size={13} className="text-[#125007]/60 shrink-0" />
                   <span>{current.property_bought}</span>
                 </div>
                 <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                  <MapPin size={13} className="text-[#2d5016]/60 shrink-0" />
+                  <MapPin size={13} className="text-[#125007]/60 shrink-0" />
                   <span>{current.location}</span>
                 </div>
               </div>
@@ -116,7 +116,7 @@ export default function Testimonials() {
                     variant="outline"
                     size="icon"
                     onClick={prevTestimonial}
-                    className="rounded-full w-9 h-9 border-2 hover:bg-[#2d5016] hover:text-white hover:border-[#2d5016] bg-transparent transition-colors"
+                    className="rounded-full w-9 h-9 border-2 hover:bg-[#125007] hover:text-white hover:border-[#125007] bg-transparent transition-colors"
                     aria-label="Previous testimonial"
                   >
                     <ChevronLeft size={16} />
@@ -125,7 +125,7 @@ export default function Testimonials() {
                     variant="outline"
                     size="icon"
                     onClick={nextTestimonial}
-                    className="rounded-full w-9 h-9 border-2 hover:bg-[#2d5016] hover:text-white hover:border-[#2d5016] bg-transparent transition-colors"
+                    className="rounded-full w-9 h-9 border-2 hover:bg-[#125007] hover:text-white hover:border-[#125007] bg-transparent transition-colors"
                     aria-label="Next testimonial"
                   >
                     <ChevronRight size={16} />
@@ -137,7 +137,7 @@ export default function Testimonials() {
                       key={index}
                       onClick={() => setCurrentIndex(index)}
                       className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex
-                          ? "w-7 bg-[#2d5016]"
+                          ? "w-7 bg-[#125007]"
                           : "w-2 bg-slate-300 hover:bg-slate-400"
                         }`}
                       aria-label={`Go to testimonial ${index + 1}`}
@@ -156,8 +156,8 @@ export default function Testimonials() {
               key={t.id}
               onClick={() => setCurrentIndex(index)}
               className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 ${index === currentIndex
-                  ? "bg-[#2d5016] text-white border-[#2d5016]"
-                  : "bg-white text-slate-600 border-slate-200 hover:border-[#2d5016] hover:text-[#2d5016]"
+                  ? "bg-[#125007] text-white border-[#125007]"
+                  : "bg-white text-slate-600 border-slate-200 hover:border-[#125007] hover:text-[#125007]"
                 }`}
             >
               {t.name}

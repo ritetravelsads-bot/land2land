@@ -49,7 +49,7 @@ export default async function LandTypePage({ params }: PageProps) {
       <Header />
 
       {/* Hero */}
-      <section className="relative bg-[#2d5016]">
+      <section className="relative bg-[#125007]">
         <div className="absolute inset-0">
           <img
             src={content.heroImage || "/placeholder.svg"}
@@ -70,7 +70,7 @@ export default async function LandTypePage({ params }: PageProps) {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href={`/properties?property_type=${content.type}`}
-              className="inline-flex items-center gap-2 bg-white text-[#2d5016] px-5 py-3 rounded-lg font-semibold hover:bg-white/90 transition"
+              className="inline-flex items-center gap-2 bg-white text-[#125007] px-5 py-3 rounded-lg font-semibold hover:bg-white/90 transition"
             >
               Browse all {content.shortLabel}
               <ArrowRight className="h-4 w-4" />
@@ -97,7 +97,7 @@ export default async function LandTypePage({ params }: PageProps) {
             <ul className="space-y-3">
               {content.highlights.map((h) => (
                 <li key={h} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <CheckCircle2 className="h-4 w-4 text-[#2d5016] mt-0.5 shrink-0" />
+                  <CheckCircle2 className="h-4 w-4 text-[#125007] mt-0.5 shrink-0" />
                   <span>{h}</span>
                 </li>
               ))}
@@ -112,7 +112,7 @@ export default async function LandTypePage({ params }: PageProps) {
           <h2 className="text-2xl font-bold text-foreground">Featured {content.label}</h2>
           <Link
             href={`/properties?property_type=${content.type}`}
-            className="text-sm font-semibold text-[#2d5016] hover:underline inline-flex items-center gap-1"
+            className="text-sm font-semibold text-[#125007] hover:underline inline-flex items-center gap-1"
           >
             View all <ArrowRight className="h-4 w-4" />
           </Link>
@@ -143,9 +143,9 @@ export default async function LandTypePage({ params }: PageProps) {
             <Link
               key={t.slug}
               href={`/land/${t.slug}`}
-              className="group border border-border rounded-xl p-5 hover:border-[#2d5016] hover:shadow-md transition text-center"
+              className="group border border-border rounded-xl p-5 hover:border-[#125007] hover:shadow-md transition text-center"
             >
-              <span className="block font-semibold text-foreground group-hover:text-[#2d5016] transition-colors text-sm">
+              <span className="block font-semibold text-foreground group-hover:text-[#125007] transition-colors text-sm">
                 {t.label}
               </span>
               <span className="block text-xs text-muted-foreground mt-1 line-clamp-2">{t.tagline}</span>

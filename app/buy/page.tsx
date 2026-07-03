@@ -45,7 +45,7 @@ export default function BuyPage() {
         {/* Hero Section */}
         <section className="max-w-7xl mx-auto px-4 py-20">
           <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-bold text-[#2d5016] mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold text-[#125007] mb-6">
               Find Your Perfect Land
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -62,7 +62,7 @@ export default function BuyPage() {
                 <select
                   value={searchState.location}
                   onChange={(e) => setSearchState({ ...searchState, location: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                 >
                   <option value="">Select State</option>
                   {states.map((state) => (
@@ -77,7 +77,7 @@ export default function BuyPage() {
                 <select
                   value={searchState.landType}
                   onChange={(e) => setSearchState({ ...searchState, landType: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                 >
                   <option value="">All Types</option>
                   <option value="agricultural_land">Agricultural Land</option>
@@ -96,7 +96,7 @@ export default function BuyPage() {
                   placeholder="₹100000"
                   value={searchState.minPrice}
                   onChange={(e) => setSearchState({ ...searchState, minPrice: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                 />
               </div>
 
@@ -108,14 +108,14 @@ export default function BuyPage() {
                   placeholder="₹5000000"
                   value={searchState.maxPrice}
                   onChange={(e) => setSearchState({ ...searchState, maxPrice: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                 />
               </div>
             </div>
 
             <Button
               onClick={handleSearch}
-              className="w-full bg-[#2d5016] hover:bg-[#1d3610] text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2"
+              className="w-full bg-[#125007] hover:bg-[#1d3610] text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2"
             >
               <Search className="h-5 w-5" />
               Search Land
@@ -131,7 +131,7 @@ export default function BuyPage() {
                 className="group bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-6 text-center"
               >
                 <div className="text-5xl mb-3">{cat.icon}</div>
-                <h3 className="text-lg font-bold text-[#2d5016] mb-2 group-hover:text-[#4a7c2e] transition-colors">{cat.name}</h3>
+                <h3 className="text-lg font-bold text-[#125007] mb-2 group-hover:text-[#4a7c2e] transition-colors">{cat.name}</h3>
                 <p className="text-sm text-gray-600">{cat.description}</p>
               </Link>
             ))}
@@ -145,7 +145,7 @@ export default function BuyPage() {
                 className="group bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-6 text-center"
               >
                 <div className="text-5xl mb-3">{cat.icon}</div>
-                <h3 className="text-lg font-bold text-[#2d5016] mb-2 group-hover:text-[#4a7c2e] transition-colors">{cat.name}</h3>
+                <h3 className="text-lg font-bold text-[#125007] mb-2 group-hover:text-[#4a7c2e] transition-colors">{cat.name}</h3>
                 <p className="text-sm text-gray-600">{cat.description}</p>
               </Link>
             ))}
@@ -155,27 +155,27 @@ export default function BuyPage() {
         {/* Features Section */}
         <section className="bg-white border-t border-gray-200 py-16">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-[#2d5016] text-center mb-12">Why Buy on Land2Land</h2>
+            <h2 className="text-3xl font-bold text-[#125007] text-center mb-12">Why Buy on Land2Land</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
                 <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
-                  <CheckCircle2 className="h-8 w-8 text-[#2d5016]" />
+                  <CheckCircle2 className="h-8 w-8 text-[#125007]" />
                 </div>
-                <h3 className="text-xl font-bold text-[#2d5016] mb-2">100% Verified Titles</h3>
+                <h3 className="text-xl font-bold text-[#125007] mb-2">100% Verified Titles</h3>
                 <p className="text-gray-600">Every land listing is thoroughly verified for ownership and legal clearance.</p>
               </div>
               <div className="text-center">
                 <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
-                  <Zap className="h-8 w-8 text-[#2d5016]" />
+                  <Zap className="h-8 w-8 text-[#125007]" />
                 </div>
-                <h3 className="text-xl font-bold text-[#2d5016] mb-2">Fast Transactions</h3>
+                <h3 className="text-xl font-bold text-[#125007] mb-2">Fast Transactions</h3>
                 <p className="text-gray-600">Streamlined process with dedicated support for quick land closure.</p>
               </div>
               <div className="text-center">
                 <div className="inline-flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
-                  <MapPin className="h-8 w-8 text-[#2d5016]" />
+                  <MapPin className="h-8 w-8 text-[#125007]" />
                 </div>
-                <h3 className="text-xl font-bold text-[#2d5016] mb-2">Pan-India Coverage</h3>
+                <h3 className="text-xl font-bold text-[#125007] mb-2">Pan-India Coverage</h3>
                 <p className="text-gray-600">Access to verified land across 12+ states with regional expertise.</p>
               </div>
             </div>

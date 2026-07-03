@@ -80,7 +80,7 @@ export default function SiteMapPage() {
         <div className="max-w-6xl mx-auto px-4">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-            <Link href="/" className="hover:text-[#2d5016] transition-colors">
+            <Link href="/" className="hover:text-[#125007] transition-colors">
               Home
             </Link>
             <ChevronRight className="h-4 w-4" />
@@ -105,8 +105,8 @@ export default function SiteMapPage() {
                 className="bg-white rounded-xl border border-gray-100 p-6 hover:shadow-lg transition-shadow"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-[#2d5016]/10 rounded-lg">
-                    <section.icon className="h-5 w-5 text-[#2d5016]" />
+                  <div className="p-2 bg-[#125007]/10 rounded-lg">
+                    <section.icon className="h-5 w-5 text-[#125007]" />
                   </div>
                   <h2 className="text-lg font-semibold text-gray-900">
                     {section.title}
@@ -117,7 +117,7 @@ export default function SiteMapPage() {
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="flex items-center gap-2 text-gray-600 hover:text-[#2d5016] transition-colors py-1"
+                        className="flex items-center gap-2 text-gray-600 hover:text-[#125007] transition-colors py-1"
                       >
                         <ChevronRight className="h-4 w-4 text-gray-400" />
                         {link.name}

@@ -117,7 +117,7 @@ export default async function BlogsPage({
               <Link
                 href="/blogs"
                 className={`flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-medium transition-all ${!params.category
-                    ? "bg-[#2d5016] text-white shadow-lg shadow-blue-500/25"
+                    ? "bg-[#125007] text-white shadow-lg shadow-blue-500/25"
                     : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
               >
@@ -127,7 +127,7 @@ export default async function BlogsPage({
                 <span
                   key={category}
                   className={`flex-shrink-0 px-5 py-2.5 rounded-full text-sm font-medium capitalize ${params.category?.toLowerCase() === category.toLowerCase()
-                      ? "bg-[#2d5016] text-white shadow-lg shadow-blue-500/25"
+                      ? "bg-[#125007] text-white shadow-lg shadow-blue-500/25"
                       : "bg-gray-100 text-gray-600"
                     }`}
                 >
@@ -152,7 +152,7 @@ export default async function BlogsPage({
               </p>
               <Link
                 href="/blogs"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#2d5016] text-white rounded-lg hover:bg-[#1d3610] transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#125007] text-white rounded-lg hover:bg-[#1d3610] transition-colors"
               >
                 View All Posts
                 <ArrowRight className="h-4 w-4" />
@@ -187,7 +187,7 @@ export default async function BlogsPage({
                             priority
                           />
                         ) : (
-                          <div className="absolute inset-0 bg-gradient-to-br from-[#2d5016] to-[#4a7c2e] flex items-center justify-center">
+                          <div className="absolute inset-0 bg-gradient-to-br from-[#125007] to-[#4a7c2e] flex items-center justify-center">
                             <span className="text-6xl text-white/20 font-bold">CR</span>
                           </div>
                         )}
@@ -201,7 +201,7 @@ export default async function BlogsPage({
                       {/* Content */}
                       <div className="flex flex-col justify-center p-6 md:p-10">
                         <div className="flex items-center gap-3 mb-4">
-                          <span className="px-3 py-1 bg-[#2d5016]/10 text-[#2d5016] text-xs font-semibold rounded-full capitalize">
+                          <span className="px-3 py-1 bg-[#125007]/10 text-[#125007] text-xs font-semibold rounded-full capitalize">
                             {featuredPost.category || "Uncategorized"}
                           </span>
                           <span className="flex items-center gap-1 text-xs text-gray-500">
@@ -210,7 +210,7 @@ export default async function BlogsPage({
                           </span>
                         </div>
 
-                        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 group-hover:text-[#2d5016] transition-colors leading-tight">
+                        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 group-hover:text-[#125007] transition-colors leading-tight">
                           {featuredPost.title}
                         </h3>
 
@@ -220,7 +220,7 @@ export default async function BlogsPage({
 
                         <div className="flex items-center justify-between mt-auto pt-6 border-t border-gray-100">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-[#2d5016] rounded-full flex items-center justify-center">
+                            <div className="w-10 h-10 bg-[#125007] rounded-full flex items-center justify-center">
                               <User className="h-5 w-5 text-white" />
                             </div>
                             <div>
@@ -236,7 +236,7 @@ export default async function BlogsPage({
                             </div>
                           </div>
 
-                          <span className="flex items-center gap-2 text-[#2d5016] font-semibold group-hover:gap-3 transition-all">
+                          <span className="flex items-center gap-2 text-[#125007] font-semibold group-hover:gap-3 transition-all">
                             Read More
                             <ArrowRight className="h-4 w-4" />
                           </span>
@@ -269,12 +269,12 @@ export default async function BlogsPage({
                                 sizes="(max-width: 768px) 100vw, 33vw"
                               />
                             ) : (
-                              <div className="absolute inset-0 bg-gradient-to-br from-[#2d5016] to-[#4a7c2e] flex items-center justify-center">
+                              <div className="absolute inset-0 bg-gradient-to-br from-[#125007] to-[#4a7c2e] flex items-center justify-center">
                                 <span className="text-4xl text-white/20 font-bold">CR</span>
                               </div>
                             )}
                             <div className="absolute top-3 left-3">
-                              <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#2d5016] text-xs font-semibold rounded-full capitalize">
+                              <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#125007] text-xs font-semibold rounded-full capitalize">
                                 {post.category || "Uncategorized"}
                               </span>
                             </div>
@@ -282,7 +282,7 @@ export default async function BlogsPage({
 
                           {/* Content */}
                           <div className="p-5">
-                            <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#2d5016] transition-colors">
+                            <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#125007] transition-colors">
                               {post.title}
                             </h3>
                             <p className="text-sm text-gray-600 line-clamp-2 mb-4">{post.excerpt}</p>
@@ -332,10 +332,10 @@ export default async function BlogsPage({
                             )}
                           </div>
                           <div className="p-4">
-                            <span className="text-xs text-[#2d5016] font-medium capitalize">
+                            <span className="text-xs text-[#125007] font-medium capitalize">
                               {post.category || "Uncategorized"}
                             </span>
-                            <h3 className="font-semibold text-sm text-gray-900 mt-1 line-clamp-2 group-hover:text-[#2d5016] transition-colors">
+                            <h3 className="font-semibold text-sm text-gray-900 mt-1 line-clamp-2 group-hover:text-[#125007] transition-colors">
                               {post.title}
                             </h3>
                             <div className="flex items-center gap-2 text-xs text-gray-500 mt-3">
@@ -354,7 +354,7 @@ export default async function BlogsPage({
         )}
 
         {/* Newsletter CTA */}
-        <section className="w-full py-16 md:py-24 px-4 bg-[#2d5016]">
+        <section className="w-full py-16 md:py-24 px-4 bg-[#125007]">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Stay Updated with Real Estate Insights

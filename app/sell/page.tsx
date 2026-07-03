@@ -84,7 +84,7 @@ export default function SellPage() {
         {/* Hero */}
         <section className="max-w-4xl mx-auto px-4 py-16">
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-[#2d5016] mb-4">
+            <h1 className="text-5xl font-bold text-[#125007] mb-4">
               Sell Your Land on Land2Land
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -97,11 +97,11 @@ export default function SellPage() {
             {["Property Details", "Location & Price", "Facilities & Description", "Owner Info"].map((step, idx) => (
               <div key={idx} className="flex items-center flex-1">
                 <div className={`flex items-center justify-center w-10 h-10 rounded-full font-bold ${
-                  idx <= formStep ? "bg-[#2d5016] text-white" : "bg-gray-200 text-gray-600"
+                  idx <= formStep ? "bg-[#125007] text-white" : "bg-gray-200 text-gray-600"
                 }`}>
                   {idx + 1}
                 </div>
-                {idx < 3 && <div className={`flex-1 h-1 mx-2 ${idx < formStep ? "bg-[#2d5016]" : "bg-gray-200"}`} />}
+                {idx < 3 && <div className={`flex-1 h-1 mx-2 ${idx < formStep ? "bg-[#125007]" : "bg-gray-200"}`} />}
               </div>
             ))}
           </div>
@@ -111,7 +111,7 @@ export default function SellPage() {
             {/* Step 1: Property Details */}
             {formStep === 0 && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-[#2d5016]">Property Details</h2>
+                <h2 className="text-2xl font-bold text-[#125007]">Property Details</h2>
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">What type of property?</label>
@@ -122,7 +122,7 @@ export default function SellPage() {
                         onClick={() => setFormData({ ...formData, propertyType: type.value })}
                         className={`p-3 border-2 rounded-lg text-sm font-medium transition-all ${
                           formData.propertyType === type.value
-                            ? "border-[#2d5016] bg-green-50 text-[#2d5016]"
+                            ? "border-[#125007] bg-green-50 text-[#125007]"
                             : "border-gray-300 text-gray-700 hover:border-gray-400"
                         }`}
                       >
@@ -140,7 +140,7 @@ export default function SellPage() {
                       placeholder="Enter size"
                       value={formData.size}
                       onChange={(e) => setFormData({ ...formData, size: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                     />
                   </div>
                   <div>
@@ -148,7 +148,7 @@ export default function SellPage() {
                     <select
                       value={formData.sizeUnit}
                       onChange={(e) => setFormData({ ...formData, sizeUnit: e.target.value })}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                     >
                       <option value="acres">Acres</option>
                       <option value="bigha">Bigha</option>
@@ -163,14 +163,14 @@ export default function SellPage() {
             {/* Step 2: Location & Price */}
             {formStep === 1 && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-[#2d5016]">Location & Price</h2>
+                <h2 className="text-2xl font-bold text-[#125007]">Location & Price</h2>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">State</label>
                   <select
                     value={formData.state}
                     onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                   >
                     <option value="">Select State</option>
                     {states.map((state) => (
@@ -186,7 +186,7 @@ export default function SellPage() {
                     placeholder="Enter village or area name"
                     value={formData.location}
                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                   />
                 </div>
 
@@ -197,7 +197,7 @@ export default function SellPage() {
                     placeholder="Enter price"
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                   />
                 </div>
               </div>
@@ -206,7 +206,7 @@ export default function SellPage() {
             {/* Step 3: Facilities & Description */}
             {formStep === 2 && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-[#2d5016]">Facilities & Description</h2>
+                <h2 className="text-2xl font-bold text-[#125007]">Facilities & Description</h2>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-3">Available Facilities</label>
@@ -217,7 +217,7 @@ export default function SellPage() {
                           type="checkbox"
                           checked={formData.facilities.includes(facility)}
                           onChange={() => handleFacilityToggle(facility)}
-                          className="w-4 h-4 rounded accent-[#2d5016]"
+                          className="w-4 h-4 rounded accent-[#125007]"
                         />
                         <span className="text-sm text-gray-700">{facility}</span>
                       </label>
@@ -232,7 +232,7 @@ export default function SellPage() {
                     placeholder="Describe your property, including soil type, water access, crops grown, etc."
                     value={formData.description}
                     onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                   />
                 </div>
               </div>
@@ -241,7 +241,7 @@ export default function SellPage() {
             {/* Step 4: Owner Info */}
             {formStep === 3 && (
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-[#2d5016]">Your Information</h2>
+                <h2 className="text-2xl font-bold text-[#125007]">Your Information</h2>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
@@ -250,7 +250,7 @@ export default function SellPage() {
                     placeholder="Enter your name"
                     value={formData.ownerName}
                     onChange={(e) => setFormData({ ...formData, ownerName: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                   />
                 </div>
 
@@ -261,7 +261,7 @@ export default function SellPage() {
                     placeholder="Enter phone number"
                     value={formData.ownerPhone}
                     onChange={(e) => setFormData({ ...formData, ownerPhone: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                   />
                 </div>
 
@@ -272,7 +272,7 @@ export default function SellPage() {
                     placeholder="Enter email"
                     value={formData.ownerEmail}
                     onChange={(e) => setFormData({ ...formData, ownerEmail: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                   />
                 </div>
               </div>
@@ -292,14 +292,14 @@ export default function SellPage() {
               {formStep < 3 ? (
                 <Button
                   onClick={handleNext}
-                  className="flex-1 bg-[#2d5016] hover:bg-[#1d3610]"
+                  className="flex-1 bg-[#125007] hover:bg-[#1d3610]"
                 >
                   Next <ChevronRight className="h-4 w-4 ml-2" />
                 </Button>
               ) : (
                 <Button
                   onClick={handleSubmit}
-                  className="flex-1 bg-[#2d5016] hover:bg-[#1d3610]"
+                  className="flex-1 bg-[#125007] hover:bg-[#1d3610]"
                 >
                   Submit Listing
                 </Button>
@@ -311,30 +311,30 @@ export default function SellPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="text-center">
               <div className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-green-100 mb-3">
-                <Zap className="h-6 w-6 text-[#2d5016]" />
+                <Zap className="h-6 w-6 text-[#125007]" />
               </div>
-              <h3 className="font-bold text-[#2d5016] mb-2">Free to List</h3>
+              <h3 className="font-bold text-[#125007] mb-2">Free to List</h3>
               <p className="text-sm text-gray-600">No listing charges, no hidden fees</p>
             </div>
             <div className="text-center">
               <div className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-green-100 mb-3">
-                <Users className="h-6 w-6 text-[#2d5016]" />
+                <Users className="h-6 w-6 text-[#125007]" />
               </div>
-              <h3 className="font-bold text-[#2d5016] mb-2">Reach Buyers</h3>
+              <h3 className="font-bold text-[#125007] mb-2">Reach Buyers</h3>
               <p className="text-sm text-gray-600">Connect with thousands of serious buyers</p>
             </div>
             <div className="text-center">
               <div className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-green-100 mb-3">
-                <FileCheck className="h-6 w-6 text-[#2d5016]" />
+                <FileCheck className="h-6 w-6 text-[#125007]" />
               </div>
-              <h3 className="font-bold text-[#2d5016] mb-2">Expert Guidance</h3>
+              <h3 className="font-bold text-[#125007] mb-2">Expert Guidance</h3>
               <p className="text-sm text-gray-600">Get help from land experts throughout</p>
             </div>
             <div className="text-center">
               <div className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-green-100 mb-3">
-                <Home className="h-6 w-6 text-[#2d5016]" />
+                <Home className="h-6 w-6 text-[#125007]" />
               </div>
-              <h3 className="font-bold text-[#2d5016] mb-2">Safe Transaction</h3>
+              <h3 className="font-bold text-[#125007] mb-2">Safe Transaction</h3>
               <p className="text-sm text-gray-600">Secure transaction process with verification</p>
             </div>
           </div>

@@ -103,7 +103,7 @@ export default function SubscriptionPage() {
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#2d5016] mb-4">Simple, Transparent Pricing</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-[#125007] mb-4">Simple, Transparent Pricing</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Choose the perfect plan for your land investment and agricultural needs. No hidden fees, cancel anytime.
           </p>
@@ -116,30 +116,30 @@ export default function SubscriptionPage() {
               key={plan.name}
               className={`rounded-xl overflow-hidden transition-all transform hover:scale-105 ${
                 plan.popular
-                  ? "ring-2 ring-[#2d5016] md:scale-105 bg-white shadow-xl"
+                  ? "ring-2 ring-[#125007] md:scale-105 bg-white shadow-xl"
                   : "bg-white shadow-lg"
               }`}
             >
               {plan.popular && (
-                <div className="bg-gradient-to-r from-[#2d5016] to-[#4a7c2e] text-white text-center py-3 text-sm font-bold">
+                <div className="bg-gradient-to-r from-[#125007] to-[#4a7c2e] text-white text-center py-3 text-sm font-bold">
                   MOST POPULAR
                 </div>
               )}
 
               <div className="p-8">
-                <h3 className="text-2xl font-bold text-[#2d5016] mb-2">{plan.name}</h3>
+                <h3 className="text-2xl font-bold text-[#125007] mb-2">{plan.name}</h3>
                 <p className="text-sm text-gray-600 mb-6">{plan.description}</p>
 
                 <div className="mb-6">
-                  <span className="text-5xl font-bold text-[#2d5016]">{plan.price}</span>
+                  <span className="text-5xl font-bold text-[#125007]">{plan.price}</span>
                   <span className="text-gray-600 ml-2 text-lg">{plan.period}</span>
                 </div>
 
                 <button
                   className={`w-full px-6 py-3 rounded-lg font-semibold transition-all mb-8 ${
                     plan.popular
-                      ? "bg-gradient-to-r from-[#2d5016] to-[#4a7c2e] hover:shadow-lg text-white"
-                      : "border-2 border-[#2d5016] text-[#2d5016] hover:bg-green-50"
+                      ? "bg-gradient-to-r from-[#125007] to-[#4a7c2e] hover:shadow-lg text-white"
+                      : "border-2 border-[#125007] text-[#125007] hover:bg-green-50"
                   }`}
                 >
                   {plan.cta}
@@ -164,7 +164,7 @@ export default function SubscriptionPage() {
 
         {/* Feature Comparison Table */}
         <div className="bg-white rounded-lg shadow-lg p-8 mb-16 overflow-x-auto">
-          <h2 className="text-2xl font-bold text-[#2d5016] mb-6">Detailed Feature Comparison</h2>
+          <h2 className="text-2xl font-bold text-[#125007] mb-6">Detailed Feature Comparison</h2>
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b-2 border-gray-200">
@@ -229,7 +229,7 @@ export default function SubscriptionPage() {
 
         {/* Testimonials */}
         <div className="mb-16">
-          <h2 className="text-2xl font-bold text-[#2d5016] mb-8 text-center">What Our Users Say</h2>
+          <h2 className="text-2xl font-bold text-[#125007] mb-8 text-center">What Our Users Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial) => (
               <div key={testimonial.name} className="bg-white rounded-lg shadow-md p-6">
@@ -240,7 +240,7 @@ export default function SubscriptionPage() {
                 </div>
                 <p className="text-gray-700 mb-4 italic">"{testimonial.content}"</p>
                 <div className="border-t border-gray-200 pt-4">
-                  <p className="font-bold text-[#2d5016]">{testimonial.name}</p>
+                  <p className="font-bold text-[#125007]">{testimonial.name}</p>
                   <p className="text-sm text-gray-600">{testimonial.role}</p>
                 </div>
               </div>
@@ -250,42 +250,42 @@ export default function SubscriptionPage() {
 
         {/* FAQs */}
         <div className="bg-white rounded-lg shadow-lg p-8 mb-16">
-          <h2 className="text-2xl font-bold text-[#2d5016] mb-8">Frequently Asked Questions</h2>
+          <h2 className="text-2xl font-bold text-[#125007] mb-8">Frequently Asked Questions</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-              <h3 className="font-bold text-[#2d5016] mb-2">Can I cancel anytime?</h3>
+              <h3 className="font-bold text-[#125007] mb-2">Can I cancel anytime?</h3>
               <p className="text-gray-600">Yes, you can cancel your subscription anytime without any penalties or additional charges.</p>
             </div>
             <div>
-              <h3 className="font-bold text-[#2d5016] mb-2">Do you offer annual plans?</h3>
+              <h3 className="font-bold text-[#125007] mb-2">Do you offer annual plans?</h3>
               <p className="text-gray-600">Yes! Annual plans get 2 months free. Contact our sales team for enterprise pricing.</p>
             </div>
             <div>
-              <h3 className="font-bold text-[#2d5016] mb-2">Is there a trial period?</h3>
+              <h3 className="font-bold text-[#125007] mb-2">Is there a trial period?</h3>
               <p className="text-gray-600">Yes, start with our free Starter plan and upgrade anytime. Premium plans include a 7-day free trial.</p>
             </div>
             <div>
-              <h3 className="font-bold text-[#2d5016] mb-2">What payment methods do you accept?</h3>
+              <h3 className="font-bold text-[#125007] mb-2">What payment methods do you accept?</h3>
               <p className="text-gray-600">We accept all major credit/debit cards, UPI, and net banking. Invoicing available for annual plans.</p>
             </div>
             <div>
-              <h3 className="font-bold text-[#2d5016] mb-2">Can I upgrade or downgrade?</h3>
+              <h3 className="font-bold text-[#125007] mb-2">Can I upgrade or downgrade?</h3>
               <p className="text-gray-600">Yes, upgrade or downgrade anytime. Changes take effect immediately with prorated billing.</p>
             </div>
             <div>
-              <h3 className="font-bold text-[#2d5016] mb-2">Is my data secure?</h3>
+              <h3 className="font-bold text-[#125007] mb-2">Is my data secure?</h3>
               <p className="text-gray-600">Yes, we use industry-standard encryption and comply with all data protection regulations.</p>
             </div>
           </div>
         </div>
 
         {/* CTA */}
-        <div className="bg-gradient-to-r from-[#2d5016] to-[#4a7c2e] rounded-lg p-12 text-white text-center">
+        <div className="bg-gradient-to-r from-[#125007] to-[#4a7c2e] rounded-lg p-12 text-white text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Start Your Land Investment Journey?</h2>
           <p className="text-green-100 mb-8 max-w-2xl mx-auto">
             Join thousands of farmers, investors, and landowners using Land2Land to buy, sell, and invest in agricultural land.
           </p>
-          <button className="bg-white text-[#2d5016] px-8 py-3 rounded-lg font-bold hover:bg-green-50 transition-colors">
+          <button className="bg-white text-[#125007] px-8 py-3 rounded-lg font-bold hover:bg-green-50 transition-colors">
             Get Started Free Today
           </button>
         </div>

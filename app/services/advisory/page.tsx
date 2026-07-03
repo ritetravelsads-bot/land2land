@@ -99,7 +99,7 @@ export default function PropertyAdvisoryPage() {
       <Header />
       <main className="min-h-screen">
         {/* Hero Section */}
-        <section className="relative w-full py-16 md:py-24 px-4 bg-gradient-to-br from-[#2d5016] via-[#003080] to-[#1d3610] text-white overflow-hidden">
+        <section className="relative w-full py-16 md:py-24 px-4 bg-gradient-to-br from-[#125007] via-[#003080] to-[#1d3610] text-white overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 right-0 w-96 h-96 bg-white/20 rounded-full blur-3xl" />
           </div>
