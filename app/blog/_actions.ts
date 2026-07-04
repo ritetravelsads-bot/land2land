@@ -1,6 +1,6 @@
 import { MongoClient } from "mongodb"
 
-const mongoUrl = process.env.MONGODB_URI || ""
+const mongoUrl = process.env.MONGODB_URI || process.env.MONGODB_CONNECTION_STRING || ""
 
 export async function getBlogPostBySlug(slug: string, includeUnpublished: boolean = false) {
   if (!mongoUrl) {

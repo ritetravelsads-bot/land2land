@@ -1,8 +1,9 @@
 import { cookies } from "next/headers"
 import { MongoClient, ObjectId } from "mongodb"
 import bcrypt from "bcryptjs"
+import { getMongoUri } from "@/lib/db"
 
-const mongoUrl = process.env.MONGODB_URI || ""
+const mongoUrl = getMongoUri()
 
 export interface User {
   _id: ObjectId

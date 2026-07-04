@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb"
 import { requireAdmin } from "@/lib/auth"
 
-const mongoUrl = process.env.MONGODB_URI || ""
+const mongoUrl = process.env.MONGODB_URI || process.env.MONGODB_CONNECTION_STRING || ""
 
 export async function GET(request: Request) {
   try {

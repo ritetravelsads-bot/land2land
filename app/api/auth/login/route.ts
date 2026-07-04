@@ -1,8 +1,9 @@
 import { MongoClient } from "mongodb"
 import bcrypt from "bcryptjs"
 import { cookies } from "next/headers"
+import { getMongoUri } from "@/lib/db"
 
-const mongoUrl = process.env.MONGODB_URI || ""
+const mongoUrl = getMongoUri()
 
 async function loginUser(email: string, password: string) {
   if (!mongoUrl) {

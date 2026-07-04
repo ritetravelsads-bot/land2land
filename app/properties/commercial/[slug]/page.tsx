@@ -6,7 +6,7 @@ import { PropertyDetailClient } from "@/components/property/property-detail-clie
 import { formatPriceToIndian } from "@/lib/utils"
 import Script from "next/script"
 
-const mongoUrl = process.env.MONGODB_URI || ""
+const mongoUrl = process.env.MONGODB_URI || process.env.MONGODB_CONNECTION_STRING || ""
 const baseUrl = "https://land2land.in"
 
 // Property type slug mapping

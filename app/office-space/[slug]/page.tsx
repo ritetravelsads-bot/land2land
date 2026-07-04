@@ -5,7 +5,7 @@ import Script from "next/script"
 import { OfficeSpaceDetailClient } from "@/components/property/office-space-detail-client"
 import { formatPriceToIndian } from "@/lib/utils"
 
-const mongoUrl = process.env.MONGODB_URI || ""
+const mongoUrl = process.env.MONGODB_URI || process.env.MONGODB_CONNECTION_STRING || ""
 const baseUrl = "https://land2land.in"
 
 interface Property {

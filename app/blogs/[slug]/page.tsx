@@ -14,7 +14,7 @@ import {
   BackToTop
 } from "./_blog-detail-components"
 
-const mongoUrl = process.env.MONGODB_URI || ""
+const mongoUrl = process.env.MONGODB_URI || process.env.MONGODB_CONNECTION_STRING || ""
 
 interface FAQItem {
   id: string

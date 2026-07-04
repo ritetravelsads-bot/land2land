@@ -3,14 +3,19 @@ import { MongoClient, type Db } from "mongodb"
 let cachedClient: MongoClient | null = null
 let cachedDb: Db | null = null
 
-// Only validate and throw errors when actually attempting to connect
+/** Resolves the MongoDB connection string from either env var name. */
+export function getMongoUri(): string {
+  return process.env.MONGODB_URI || process.env.MONGODB_CONNECTION_STRING || ""
+}
 
 export async function connectToDatabase() {
-  if (!process.env.MONGODB_URI) {
+  const uri = getMongoUri()
+
+  if (!uri) {
     throw new Error("MONGODB_URI is not defined in environment variables")
   }
 
-  if (!process.env.MONGODB_URI.startsWith("mongodb://") && !process.env.MONGODB_URI.startsWith("mongodb+srv://")) {
+  if (!uri.startsWith("mongodb://") && !uri.startsWith("mongodb+srv://")) {
     throw new Error("MONGODB_URI must start with 'mongodb://' or 'mongodb+srv://'")
   }
 
@@ -18,7 +23,7 @@ export async function connectToDatabase() {
     return { client: cachedClient, db: cachedDb }
   }
 
-  const client = new MongoClient(process.env.MONGODB_URI)
+  const client = new MongoClient(uri)
   await client.connect()
   const db = client.db(process.env.MONGODB_DB || "land2land")
 

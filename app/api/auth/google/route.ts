@@ -1,7 +1,8 @@
 import { MongoClient } from "mongodb"
 import { cookies } from "next/headers"
+import { getMongoUri } from "@/lib/db"
 
-const mongoUrl = process.env.MONGODB_URI || ""
+const mongoUrl = getMongoUri()
 
 interface GoogleAuthPayload {
   idToken: string

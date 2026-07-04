@@ -6,12 +6,13 @@ import {
   welcomeUserTemplate,
   newUserAdminTemplate,
 } from "@/lib/email"
+import { getMongoUri } from "@/lib/db"
 
 const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.infobirth@gmail.com"
 
 export async function POST(request: Request) {
   try {
-    if (!process.env.MONGODB_URI) {
+    if (!getMongoUri()) {
       return NextResponse.json(
         { error: "Database is not configured. Please contact the administrator." },
         { status: 503 }

@@ -17,13 +17,14 @@ function sanitizeSlug(slug: string): string {
 }
 
 async function getDbConnection() {
-  if (!process.env.MONGODB_URI) {
+  const mongoUri = process.env.MONGODB_URI || process.env.MONGODB_CONNECTION_STRING || ""
+  if (!mongoUri) {
     console.log("[sitemap] MONGODB_URI not set")
     return null
   }
 
   try {
-    const client = new MongoClient(process.env.MONGODB_URI)
+    const client = new MongoClient(mongoUri)
     await client.connect()
     return client
   } catch (error) {
