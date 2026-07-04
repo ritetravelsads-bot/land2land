@@ -69,7 +69,7 @@ Successfully transformed Land2Land from a generic real estate platform to a focu
 - All pages properly typed with TypeScript
 
 ### Design Consistency
-- Maintained Land2Land green color scheme (#2d5016, #4a7c2e)
+- Maintained Land2Land green color scheme (#125007, #4a7c2e)
 - Responsive layouts (mobile-first design)
 - Consistent UI components and typography
 - Proper header/footer integration on all pages

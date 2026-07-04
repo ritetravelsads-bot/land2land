@@ -93,7 +93,7 @@ export default function AreaConverterPage() {
         <section className="max-w-5xl mx-auto px-4 py-16">
           {/* Hero */}
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-[#2d5016] mb-4">Land Area Converter</h1>
+            <h1 className="text-5xl font-bold text-[#125007] mb-4">Land Area Converter</h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Convert between all land area units used in India. Support for Bigha, Acre, Hectare, Katha, and more.
             </p>
@@ -111,7 +111,7 @@ export default function AreaConverterPage() {
                     setFromUnit(e.target.value)
                     setResult(null)
                   }}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                 >
                   {UNITS.map((unit) => (
                     <option key={unit.value} value={unit.value}>{unit.label}</option>
@@ -131,7 +131,7 @@ export default function AreaConverterPage() {
                     setResult(null)
                   }}
                   onBlur={handleConvert}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                 />
               </div>
 
@@ -139,7 +139,7 @@ export default function AreaConverterPage() {
               <div className="flex justify-center">
                 <button
                   onClick={handleSwap}
-                  className="p-2 rounded-full bg-gray-100 hover:bg-[#2d5016] hover:text-white transition-colors"
+                  className="p-2 rounded-full bg-gray-100 hover:bg-[#125007] hover:text-white transition-colors"
                   title="Swap units"
                 >
                   <RefreshCw className="h-5 w-5" />
@@ -155,7 +155,7 @@ export default function AreaConverterPage() {
                     setToUnit(e.target.value)
                     setResult(null)
                   }}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
                 >
                   {UNITS.map((unit) => (
                     <option key={unit.value} value={unit.value}>{unit.label}</option>
@@ -166,7 +166,7 @@ export default function AreaConverterPage() {
               {/* Result */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Result</label>
-                <div className="w-full px-4 py-2 border-2 border-[#2d5016] rounded-lg bg-green-50 font-bold text-[#2d5016] text-center">
+                <div className="w-full px-4 py-2 border-2 border-[#125007] rounded-lg bg-green-50 font-bold text-[#125007] text-center">
                   {result !== null ? result.toLocaleString("en-IN", { maximumFractionDigits: 6 }) : "—"}
                 </div>
               </div>
@@ -176,7 +176,7 @@ export default function AreaConverterPage() {
             <div className="flex gap-3 mt-6 pt-6 border-t border-gray-200">
               <button
                 onClick={handleConvert}
-                className="flex-1 bg-[#2d5016] hover:bg-[#1d3610] text-white px-6 py-2 rounded-lg font-semibold transition-colors"
+                className="flex-1 bg-[#125007] hover:bg-[#1d3610] text-white px-6 py-2 rounded-lg font-semibold transition-colors"
               >
                 Convert
               </button>
@@ -191,7 +191,7 @@ export default function AreaConverterPage() {
 
           {/* Conversion Table */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-[#2d5016] mb-6">Quick Conversion Reference</h2>
+            <h2 className="text-2xl font-bold text-[#125007] mb-6">Quick Conversion Reference</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {CONVERSION_TABLE.map((row, idx) => (
                 <div
@@ -199,7 +199,7 @@ export default function AreaConverterPage() {
                   className="bg-white rounded-lg shadow p-4 border border-gray-200 hover:shadow-lg transition-shadow"
                 >
                   <div className="flex justify-between items-start mb-3">
-                    <div className="font-bold text-[#2d5016]">{row.from}</div>
+                    <div className="font-bold text-[#125007]">{row.from}</div>
                     <button
                       onClick={() => handleCopy(idx)}
                       className="p-1.5 rounded hover:bg-gray-100 transition-colors"
@@ -227,7 +227,7 @@ export default function AreaConverterPage() {
           {/* Info Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-bold text-[#2d5016] mb-3">Common Units</h3>
+              <h3 className="text-lg font-bold text-[#125007] mb-3">Common Units</h3>
               <ul className="text-sm text-gray-600 space-y-2">
                 <li><strong>Acre:</strong> International unit, ~4047 sq m</li>
                 <li><strong>Hectare:</strong> Metric unit, ~10000 sq m</li>
@@ -237,7 +237,7 @@ export default function AreaConverterPage() {
             </div>
 
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-bold text-[#2d5016] mb-3">Regional Units</h3>
+              <h3 className="text-lg font-bold text-[#125007] mb-3">Regional Units</h3>
               <ul className="text-sm text-gray-600 space-y-2">
                 <li><strong>Cent:</strong> South India, ~40 sq m</li>
                 <li><strong>Ground:</strong> South India, ~1200 sq m</li>
@@ -247,7 +247,7 @@ export default function AreaConverterPage() {
             </div>
 
             <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-lg font-bold text-[#2d5016] mb-3">Tips</h3>
+              <h3 className="text-lg font-bold text-[#125007] mb-3">Tips</h3>
               <ul className="text-sm text-gray-600 space-y-2">
                 <li>✓ Accurate conversions for land measurement</li>
                 <li>✓ Support for 12+ regional units</li>

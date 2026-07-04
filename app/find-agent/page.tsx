@@ -131,7 +131,7 @@ export default function FindAgentPage() {
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#2d5016] mb-4">Find Expert Land Agents</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-[#125007] mb-4">Find Expert Land Agents</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Connect with verified land agents and consultants across India. Get expert guidance for your land investment.
           </p>
@@ -147,7 +147,7 @@ export default function FindAgentPage() {
                 placeholder="Search by name or specialty"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
               />
             </div>
 
@@ -156,7 +156,7 @@ export default function FindAgentPage() {
               <select
                 value={selectedLocation}
                 onChange={(e) => setSelectedLocation(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
               >
                 {locations.map((loc) => (
                   <option key={loc} value={loc}>{loc}</option>
@@ -169,7 +169,7 @@ export default function FindAgentPage() {
               <select
                 value={selectedSpecialization}
                 onChange={(e) => setSelectedSpecialization(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
               >
                 {specializations.map((spec) => (
                   <option key={spec} value={spec}>{spec}</option>
@@ -182,7 +182,7 @@ export default function FindAgentPage() {
               <select
                 value={selectedExperience}
                 onChange={(e) => setSelectedExperience(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
               >
                 {experiences.map((exp) => (
                   <option key={exp} value={exp}>{exp}</option>
@@ -215,14 +215,14 @@ export default function FindAgentPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {filteredAgents.map((agent) => (
             <div key={agent.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-              <div className="bg-gradient-to-r from-[#2d5016] to-[#4a7c2e] p-6 text-white">
+              <div className="bg-gradient-to-r from-[#125007] to-[#4a7c2e] p-6 text-white">
                 <div className="flex items-start justify-between mb-4">
                   <div className="w-16 h-16 rounded-full bg-white/20 border-2 border-white/40 flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
                     {agent.initials}
                   </div>
                   {agent.verified && (
-                    <div className="bg-white text-[#2d5016] px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
-                      <span className="text-[#2d5016]">&#10003;</span> Verified
+                    <div className="bg-white text-[#125007] px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+                      <span className="text-[#125007]">&#10003;</span> Verified
                     </div>
                   )}
                 </div>
@@ -254,24 +254,24 @@ export default function FindAgentPage() {
 
                 <div className="grid grid-cols-3 gap-3 mb-6 pb-6 border-b border-gray-200">
                   <div className="text-center">
-                    <div className="text-sm font-bold text-[#2d5016]">{agent.deals}</div>
+                    <div className="text-sm font-bold text-[#125007]">{agent.deals}</div>
                     <div className="text-xs text-gray-600">Deals</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-sm font-bold text-[#2d5016]">{agent.responseTime}</div>
+                    <div className="text-sm font-bold text-[#125007]">{agent.responseTime}</div>
                     <div className="text-xs text-gray-600">Response</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-sm font-bold text-[#2d5016]">{agent.specialization}</div>
+                    <div className="text-sm font-bold text-[#125007]">{agent.specialization}</div>
                     <div className="text-xs text-gray-600">Specialty</div>
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <button className="w-full bg-[#2d5016] hover:bg-[#1d3610] text-white px-4 py-2.5 rounded-lg font-semibold transition-colors">
+                  <button className="w-full bg-[#125007] hover:bg-[#1d3610] text-white px-4 py-2.5 rounded-lg font-semibold transition-colors">
                     Connect Now
                   </button>
-                  <button className="w-full border-2 border-[#2d5016] text-[#2d5016] hover:bg-green-50 px-4 py-2.5 rounded-lg font-semibold transition-colors">
+                  <button className="w-full border-2 border-[#125007] text-[#125007] hover:bg-green-50 px-4 py-2.5 rounded-lg font-semibold transition-colors">
                     View Profile
                   </button>
                 </div>
@@ -295,7 +295,7 @@ export default function FindAgentPage() {
                 setSelectedSpecialization("All Specializations")
                 setSelectedExperience("Any experience")
               }}
-              className="text-[#2d5016] font-semibold hover:underline"
+              className="text-[#125007] font-semibold hover:underline"
             >
               Clear filters and try again
             </button>
@@ -303,7 +303,7 @@ export default function FindAgentPage() {
         )}
 
         {/* Benefits Section */}
-        <div className="bg-gradient-to-r from-[#2d5016] to-[#4a7c2e] rounded-lg p-8 text-white mb-12">
+        <div className="bg-gradient-to-r from-[#125007] to-[#4a7c2e] rounded-lg p-8 text-white mb-12">
           <h2 className="text-2xl font-bold mb-8">Why Choose Land2Land Agents?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">

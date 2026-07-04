@@ -65,12 +65,38 @@ export async function PUT(
       slug = uniqueSlug
     }
 
+    // When an agent edits their listing, it goes back into the review queue
+    // (read-your-writes: a rejected listing can be fixed and resubmitted).
+    // Admins editing keep the listing approved.
+    const isAdmin = user.user_type === "admin"
+
+    // Never let the client override moderation fields directly.
+    const {
+      review_status: _rs,
+      review_notes: _rn,
+      reviewed_at: _ra,
+      reviewed_by: _rb,
+      submitted_at: _sa,
+      ...safeBody
+    } = body as Record<string, any>
+
+    const moderationUpdate = isAdmin
+      ? {}
+      : {
+          review_status: "pending",
+          review_notes: "",
+          submitted_at: new Date(),
+          reviewed_at: null,
+          reviewed_by: null,
+        }
+
     const result = await db.collection("listings").updateOne(
       { _id: new ObjectId(id), agent: user._id },
       {
         $set: {
-          ...body,
+          ...safeBody,
           slug,
+          ...moderationUpdate,
           updated_at: new Date(),
         },
       },

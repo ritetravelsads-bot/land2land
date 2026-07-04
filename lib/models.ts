@@ -62,6 +62,36 @@ export type AreaUnit = (typeof AREA_UNITS)[number]
 export type OwnershipType = "freehold" | "leasehold" | "cooperative" | "power_of_attorney"
 export type Facing = "north" | "south" | "east" | "west" | "north_east" | "north_west" | "south_east" | "south_west"
 
+// --- Land document verification ---
+// Indian land records that a land owner uploads for admin verification.
+export type LandDocumentKey = "khasra" | "fard" | "intkal" | "girdawari"
+
+export const LAND_DOCUMENT_TYPES: Array<{
+  key: LandDocumentKey
+  label: string
+  hint: string
+}> = [
+  { key: "khasra", label: "Khasra", hint: "खसरा — plot / field record number" },
+  { key: "fard", label: "Fard", hint: "फर्द — record of rights (ownership proof)" },
+  { key: "intkal", label: "Intkal", hint: "इंतकाल — mutation / transfer record" },
+  { key: "girdawari", label: "Girdawari", hint: "गिरदावरी — crop inspection record" },
+]
+
+// A single uploaded document file.
+export interface LandDocumentFile {
+  url: string
+  name: string
+  type: string // MIME type, e.g. "application/pdf" or "image/jpeg"
+  size?: number
+  uploaded_at: string | Date
+}
+
+// The moderation workflow state for a listing.
+// pending  -> submitted, waiting for admin review
+// approved -> admin approved, listing is public
+// rejected -> admin rejected, owner must fix & resubmit
+export type ReviewStatus = "pending" | "approved" | "rejected"
+
 // A land Listing. (Formerly "Property" — building-specific fields are retained
 // as optional/legacy only and are no longer surfaced in the UI.)
 export interface Listing {
@@ -90,6 +120,14 @@ export interface Listing {
   electricity_available?: boolean
   survey_number?: string     // survey / khasra / khata number
   is_negotiable?: boolean
+
+  // --- Land document verification & moderation ---
+  documents?: Partial<Record<LandDocumentKey, LandDocumentFile>>
+  review_status?: ReviewStatus
+  review_notes?: string      // admin feedback / rejection reason
+  submitted_at?: Date | string
+  reviewed_at?: Date | string
+  reviewed_by?: string       // admin user id
 
   area_sqft: number          // canonical area in sqft (kept for compatibility/search)
   address: string

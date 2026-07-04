@@ -88,7 +88,7 @@ export default function InvestmentsPage() {
       <Header />
       <div className="flex-1 bg-gradient-to-b from-green-50 to-white">
         {/* Hero */}
-        <section className="bg-gradient-to-r from-[#2d5016] to-[#4a7c2e] text-white py-16">
+        <section className="bg-gradient-to-r from-[#125007] to-[#4a7c2e] text-white py-16">
           <div className="max-w-7xl mx-auto px-4 text-center">
             <h1 className="text-5xl font-bold mb-4">Land Investment Opportunities</h1>
             <p className="text-xl text-green-100 max-w-2xl mx-auto">
@@ -99,7 +99,7 @@ export default function InvestmentsPage() {
 
         <section className="max-w-7xl mx-auto px-4 py-16">
           {/* Investment Options Grid */}
-          <h2 className="text-3xl font-bold text-[#2d5016] mb-8">Investment Types & Expected Returns</h2>
+          <h2 className="text-3xl font-bold text-[#125007] mb-8">Investment Types & Expected Returns</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {INVESTMENT_OPTIONS.map((option, idx) => (
               <div
@@ -110,21 +110,21 @@ export default function InvestmentsPage() {
                 }}
                 className={`p-6 rounded-lg border-2 cursor-pointer transition-all ${
                   selectedOption === idx
-                    ? "border-[#2d5016] bg-green-50 shadow-lg"
-                    : "border-gray-200 bg-white hover:border-[#2d5016]"
+                    ? "border-[#125007] bg-green-50 shadow-lg"
+                    : "border-gray-200 bg-white hover:border-[#125007]"
                 }`}
               >
                 <div className="text-4xl mb-3">{option.icon}</div>
-                <h3 className="text-lg font-bold text-[#2d5016] mb-2">{option.title}</h3>
+                <h3 className="text-lg font-bold text-[#125007] mb-2">{option.title}</h3>
                 <p className="text-sm text-gray-600 mb-4">{option.description}</p>
                 <div className="mb-4 p-3 bg-gray-50 rounded">
                   <p className="text-xs font-semibold text-gray-700 mb-1">Expected Yield</p>
-                  <p className="text-2xl font-bold text-[#2d5016]">{option.minYield}-{option.maxYield}%</p>
+                  <p className="text-2xl font-bold text-[#125007]">{option.minYield}-{option.maxYield}%</p>
                 </div>
                 <div className="space-y-1">
                   {option.highlights.map((highlight) => (
                     <p key={highlight} className="text-xs text-gray-600 flex items-center gap-1">
-                      <span className="text-[#2d5016]">•</span> {highlight}
+                      <span className="text-[#125007]">•</span> {highlight}
                     </p>
                   ))}
                 </div>
@@ -134,7 +134,7 @@ export default function InvestmentsPage() {
 
           {/* ROI Calculator */}
           <div className="bg-white rounded-xl shadow-lg p-8 mb-16">
-            <h2 className="text-2xl font-bold text-[#2d5016] mb-8">ROI Calculator</h2>
+            <h2 className="text-2xl font-bold text-[#125007] mb-8">ROI Calculator</h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Calculator Input */}
               <div className="lg:col-span-1 space-y-6">
@@ -147,10 +147,10 @@ export default function InvestmentsPage() {
                     step="100000"
                     value={investment}
                     onChange={(e) => setInvestment(Number(e.target.value))}
-                    className="w-full accent-[#2d5016]"
+                    className="w-full accent-[#125007]"
                   />
                   <div className="text-center mt-2">
-                    <span className="text-2xl font-bold text-[#2d5016]">
+                    <span className="text-2xl font-bold text-[#125007]">
                       ₹{(investment / 100000).toFixed(1)}L
                     </span>
                   </div>
@@ -165,10 +165,10 @@ export default function InvestmentsPage() {
                     step="0.5"
                     value={selectedYield}
                     onChange={(e) => setSelectedYield(Number(e.target.value))}
-                    className="w-full accent-[#2d5016]"
+                    className="w-full accent-[#125007]"
                   />
                   <div className="text-center mt-2">
-                    <span className="text-2xl font-bold text-[#2d5016]">{selectedYield.toFixed(1)}%</span>
+                    <span className="text-2xl font-bold text-[#125007]">{selectedYield.toFixed(1)}%</span>
                   </div>
                 </div>
 
@@ -181,7 +181,7 @@ export default function InvestmentsPage() {
                         onClick={() => setYears(y)}
                         className={`py-2 rounded font-semibold transition-all ${
                           years === y
-                            ? "bg-[#2d5016] text-white"
+                            ? "bg-[#125007] text-white"
                             : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                         }`}
                       >
@@ -262,7 +262,7 @@ export default function InvestmentsPage() {
 
           {/* Why Invest */}
           <div className="bg-white rounded-lg shadow p-8 mb-12">
-            <h2 className="text-2xl font-bold text-[#2d5016] mb-8">Why Invest in Agricultural Land?</h2>
+            <h2 className="text-2xl font-bold text-[#125007] mb-8">Why Invest in Agricultural Land?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 {
@@ -292,12 +292,12 @@ export default function InvestmentsPage() {
               ].map((item, idx) => (
                 <div key={idx} className="flex gap-4">
                   <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-[#2d5016] text-white font-bold">
+                    <div className="flex items-center justify-center h-10 w-10 rounded-full bg-[#125007] text-white font-bold">
                       ✓
                     </div>
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#2d5016] mb-1">{item.title}</h3>
+                    <h3 className="font-bold text-[#125007] mb-1">{item.title}</h3>
                     <p className="text-gray-600 text-sm">{item.desc}</p>
                   </div>
                 </div>
@@ -309,7 +309,7 @@ export default function InvestmentsPage() {
           <div className="text-center">
             <Link
               href="/buy"
-              className="inline-flex items-center gap-2 bg-[#2d5016] hover:bg-[#1d3610] text-white px-8 py-4 rounded-lg font-semibold transition-colors"
+              className="inline-flex items-center gap-2 bg-[#125007] hover:bg-[#1d3610] text-white px-8 py-4 rounded-lg font-semibold transition-colors"
             >
               Browse Investment Opportunities
             </Link>

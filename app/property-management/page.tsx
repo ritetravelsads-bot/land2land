@@ -70,7 +70,7 @@ const plans = [
       "Priority support",
       "Quarterly reports",
     ],
-    color: "from-[#2d5016] to-[#4a7c2e]",
+    color: "from-[#125007] to-[#4a7c2e]",
     popular: true,
   },
   {
@@ -135,7 +135,7 @@ export default function PropertyManagementPage() {
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#2d5016] mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#125007] mb-4">
             Professional Farm & Land Management
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -154,10 +154,10 @@ export default function PropertyManagementPage() {
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className="p-3 bg-green-100 rounded-lg">
-                    <Icon className="w-6 h-6 text-[#2d5016]" />
+                    <Icon className="w-6 h-6 text-[#125007]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-[#2d5016]">{service.title}</h3>
+                    <h3 className="text-lg font-bold text-[#125007]">{service.title}</h3>
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 mb-3">{service.description}</p>
@@ -171,7 +171,7 @@ export default function PropertyManagementPage() {
         <div className="bg-white rounded-lg shadow-lg p-12 mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-3xl font-bold text-[#2d5016] mb-8">Why Choose Land2Land Management?</h2>
+              <h2 className="text-3xl font-bold text-[#125007] mb-8">Why Choose Land2Land Management?</h2>
               <div className="space-y-6">
                 <div className="flex gap-4">
                   <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0" />
@@ -213,10 +213,10 @@ export default function PropertyManagementPage() {
 
             <div className="space-y-4">
               {plans.map((plan) => (
-                <div key={plan.name} className={`bg-gradient-to-br ${plan.color} rounded-lg p-6 text-white ${plan.popular ? "ring-2 ring-offset-2 ring-[#2d5016]" : ""}`}>
+                <div key={plan.name} className={`bg-gradient-to-br ${plan.color} rounded-lg p-6 text-white ${plan.popular ? "ring-2 ring-offset-2 ring-[#125007]" : ""}`}>
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-bold">{plan.name}</h3>
-                    {plan.popular && <span className="bg-white text-[#2d5016] px-3 py-1 rounded text-xs font-bold">Popular</span>}
+                    {plan.popular && <span className="bg-white text-[#125007] px-3 py-1 rounded text-xs font-bold">Popular</span>}
                   </div>
                   <div className="mb-4">
                     <span className="text-3xl font-bold">{plan.price}</span>
@@ -238,20 +238,20 @@ export default function PropertyManagementPage() {
 
         {/* Case Studies */}
         <div className="mb-16">
-          <h2 className="text-3xl font-bold text-[#2d5016] mb-8 text-center">Success Stories</h2>
+          <h2 className="text-3xl font-bold text-[#125007] mb-8 text-center">Success Stories</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {caseStudies.map((study) => (
-              <div key={study.title} className="bg-white rounded-lg shadow-md p-6 border-l-4 border-[#2d5016]">
-                <h3 className="font-bold text-[#2d5016] mb-2 text-lg">{study.title}</h3>
+              <div key={study.title} className="bg-white rounded-lg shadow-md p-6 border-l-4 border-[#125007]">
+                <h3 className="font-bold text-[#125007] mb-2 text-lg">{study.title}</h3>
                 <p className="text-gray-600 text-sm mb-4">{study.description}</p>
-                <p className="text-xs bg-green-100 text-[#2d5016] px-3 py-1 rounded inline-block font-semibold">{study.metrics}</p>
+                <p className="text-xs bg-green-100 text-[#125007] px-3 py-1 rounded inline-block font-semibold">{study.metrics}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Process Steps */}
-        <div className="bg-gradient-to-r from-[#2d5016] to-[#4a7c2e] rounded-lg p-12 text-white mb-16">
+        <div className="bg-gradient-to-r from-[#125007] to-[#4a7c2e] rounded-lg p-12 text-white mb-16">
           <h2 className="text-3xl font-bold mb-12 text-center">Our Management Process</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[
@@ -261,7 +261,7 @@ export default function PropertyManagementPage() {
               { num: 4, title: "Reporting", desc: "Monthly updates and performance analysis" },
             ].map((step) => (
               <div key={step.num} className="text-center">
-                <div className="bg-white text-[#2d5016] w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-3">
+                <div className="bg-white text-[#125007] w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-3">
                   {step.num}
                 </div>
                 <h4 className="font-bold mb-2">{step.title}</h4>
@@ -273,7 +273,7 @@ export default function PropertyManagementPage() {
 
         {/* Consultation Form */}
         <div className="bg-white rounded-lg shadow-lg p-12 mb-12">
-          <h2 className="text-3xl font-bold text-[#2d5016] mb-8 text-center">Request a Free Consultation</h2>
+          <h2 className="text-3xl font-bold text-[#125007] mb-8 text-center">Request a Free Consultation</h2>
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
@@ -284,7 +284,7 @@ export default function PropertyManagementPage() {
                 onChange={handleInputChange}
                 placeholder="Your name"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
               />
             </div>
             <div>
@@ -296,7 +296,7 @@ export default function PropertyManagementPage() {
                 onChange={handleInputChange}
                 placeholder="your@email.com"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
               />
             </div>
             <div>
@@ -308,7 +308,7 @@ export default function PropertyManagementPage() {
                 onChange={handleInputChange}
                 placeholder="State, District"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
               />
             </div>
             <div>
@@ -320,7 +320,7 @@ export default function PropertyManagementPage() {
                 onChange={handleInputChange}
                 placeholder="Enter size"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
               />
             </div>
             <div className="md:col-span-2">
@@ -331,12 +331,12 @@ export default function PropertyManagementPage() {
                 onChange={handleInputChange}
                 placeholder="Tell us about your property and management needs..."
                 rows={4}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2d5016]"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
               />
             </div>
             <button
               type="submit"
-              className="md:col-span-2 bg-gradient-to-r from-[#2d5016] to-[#4a7c2e] hover:shadow-lg text-white px-8 py-3 rounded-lg font-bold transition-all"
+              className="md:col-span-2 bg-gradient-to-r from-[#125007] to-[#4a7c2e] hover:shadow-lg text-white px-8 py-3 rounded-lg font-bold transition-all"
             >
               Schedule Free Consultation
             </button>

@@ -8,6 +8,7 @@ import PropertyFormStep1 from "./property-form-step-1"
 import PropertyFormStep2 from "./property-form-step-2"
 import PropertyFormStep3 from "./property-form-step-3"
 import PropertyFormStep4 from "./property-form-step-4"
+import PropertyFormStep5 from "./property-form-step-5"
 
 export default function PropertyFormMultiStep({
   apiEndpoint = "/api/agent/properties",
@@ -35,9 +36,7 @@ export default function PropertyFormMultiStep({
     area_sqft: "",
     // Land-specific fields
     area_value: "",
-    area_unit: "acre",
-    plot_length: "",
-    plot_width: "",
+    area_unit: "bigha",
     road_width: "",
     road_access: false,
     water_available: false,
@@ -45,8 +44,16 @@ export default function PropertyFormMultiStep({
     boundary_wall: false,
     corner_plot: false,
     is_negotiable: false,
+    // New land fields
+    soil_type: "",
     zoning: "",
     survey_number: "",
+    price_per_unit: "",
+    water_level: "",
+    highway_connectivity: "",
+    nearest_town: "",
+    title_clear: false,
+    loan_available: false,
     ownership_type: "freehold",
     facing: "",
     address: "",
@@ -55,35 +62,28 @@ export default function PropertyFormMultiStep({
     postal_code: "",
     country: "India",
     status: "active",
-    possession: "",
-    possession_type: "ready",
-    possession_date: "",
     neighborhood: "",
+    about_project: "",
+    project_highlights: [] as string[],
+    special_sections: [] as Array<{ id: string; title: string; subtitle: string; content: string; position: string }>,
+    location_connectivity: [] as Array<{ type: string; name: string; distance: string }>,
+    faqs: [] as Array<{ question: string; answer: string }>,
     amenities: [] as string[],
     facilities: [] as string[],
     luxury_amenities: [] as string[],
-    // New fields for enhanced property detail page
-    about_project: "",
-    about_subheading: "",
-    special_sections: [] as Array<{ id: string; title: string; subtitle: string; content: string; position: string }>,
-    project_highlights: [] as string[],
     units: [] as Array<{ type: string; size_range?: string; price_range?: string; available?: boolean; floor_plan_image?: string }>,
-    location_connectivity: [] as Array<{ type: string; name: string; distance: string }>,
-    faqs: [] as Array<{ question: string; answer: string }>,
-    payment_plan_details: "",
-    // Office Space fields
-    office_space: null as any,
-    commercial_lease: null as any,
     meta_title: "",
     meta_keywords: "",
     meta_description: "",
-    main_banner: "",
     main_thumbnail: "",
     multiple_images: [] as string[],
-    floor_plans: [] as string[],
-    master_plan: "",
     rera_registered: false,
-    balconies_count: "",
+    rera_id: "",
+    rera_website_link: "",
+    google_map_link: "",
+    landmark: "",
+    // Land documents for verification
+    documents: {} as Record<string, any>,
   }
   
   // Helper function to ensure array fields are properly formatted
@@ -126,23 +126,11 @@ export default function PropertyFormMultiStep({
         meta_title: initialData.meta_title || initialData.seo_title || "",
         meta_description: initialData.meta_description || "",
         meta_keywords: initialData.meta_keywords || "",
+        // Preserve uploaded documents as an object
+        documents: initialData.documents && typeof initialData.documents === "object" ? initialData.documents : {},
       }
       
-      // Debug: Log normalized data
-      console.log("[v0] Form initialized with normalized data - image fields:", {
-        main_thumbnail: normalizedData.main_thumbnail,
-        main_banner: normalizedData.main_banner,
-        multiple_images: normalizedData.multiple_images,
-        floor_plans: normalizedData.floor_plans,
-        master_plan: normalizedData.master_plan,
-      })
-      
-      // Debug: Log SEO fields
-      console.log("[v0] Form initialized with normalized data - SEO fields:", {
-        meta_title: normalizedData.meta_title,
-        meta_description: normalizedData.meta_description,
-        meta_keywords: normalizedData.meta_keywords,
-      })
+
       
       return normalizedData
     }
@@ -154,7 +142,7 @@ export default function PropertyFormMultiStep({
   }
 
   const handleNext = () => {
-    if (currentStep < 4) {
+    if (currentStep < 5) {
       setCurrentStep(currentStep + 1)
     }
   }
@@ -170,14 +158,7 @@ export default function PropertyFormMultiStep({
     try {
       const method = isEdit ? "PUT" : "POST"
       
-      // Debug: Log image fields before processing
-      console.log("[v0] Form data before submit - image fields:", {
-        main_thumbnail: formData.main_thumbnail,
-        main_banner: formData.main_banner,
-        multiple_images: formData.multiple_images,
-        floor_plans: formData.floor_plans,
-        master_plan: formData.master_plan,
-      })
+
       
       // Clean up the form data - remove _id for updates (it's in the URL)
       // and convert numeric strings to numbers
@@ -190,7 +171,7 @@ export default function PropertyFormMultiStep({
         // Convert numeric string fields to numbers
         const numericFields = [
           "lowest_price", "max_price", "area_sqft",
-          "area_value", "plot_length", "plot_width", "road_width",
+          "area_value", "road_width", "price_per_unit",
           "latitude", "longitude"
         ]
         
@@ -202,21 +183,7 @@ export default function PropertyFormMultiStep({
         }
       }
       
-      // Debug: Log cleaned data being sent
-      console.log("[v0] Cleaned data being sent - image fields:", {
-        main_thumbnail: cleanedData.main_thumbnail,
-        main_banner: cleanedData.main_banner,
-        multiple_images: cleanedData.multiple_images,
-        floor_plans: cleanedData.floor_plans,
-        master_plan: cleanedData.master_plan,
-      })
-      
-      // Debug: Log SEO fields being sent
-      console.log("[v0] Cleaned data being sent - SEO fields:", {
-        meta_title: cleanedData.meta_title,
-        meta_description: cleanedData.meta_description,
-        meta_keywords: cleanedData.meta_keywords,
-      })
+
       
       const res = await fetch(apiEndpoint, {
         method,
@@ -229,9 +196,14 @@ export default function PropertyFormMultiStep({
       if (res.ok) {
         const slug = data.property?.slug || data.slug || cleanedData.slug
         const id = data.property?._id || data._id
-        
-        // Redirect to property view page
-        router.push(`/properties/${slug || id}`)
+
+        // Agents/owners return to their dashboard so they can track review status.
+        // Admins go straight to the published listing.
+        if (apiEndpoint.includes("/agent/")) {
+          router.push("/agent/properties?submitted=1")
+        } else {
+          router.push(`/properties/${slug || id}`)
+        }
       } else {
         alert(`Error saving property: ${data.error || data.message || "Unknown error"}`)
       }
@@ -244,10 +216,11 @@ export default function PropertyFormMultiStep({
   }
 
   const steps = [
-    { number: 1, title: "Basic Info" },
-    { number: 2, title: "Pricing & Land Details" },
+    { number: 1, title: "Land Details" },
+    { number: 2, title: "Size & Price" },
     { number: 3, title: "Location" },
-    { number: 4, title: "Media & SEO" },
+    { number: 4, title: "Photos & SEO" },
+    { number: 5, title: "Documents" },
   ]
 
   return (
@@ -268,13 +241,16 @@ export default function PropertyFormMultiStep({
               >
                 {step.number < currentStep ? <Check size={18} /> : step.number}
               </div>
-              <div className="ml-3 text-sm font-medium">{step.title}</div>
+              <div className="ml-2 hidden text-sm font-medium sm:block md:ml-3">{step.title}</div>
               {idx < steps.length - 1 && (
-                <div className={`flex-1 h-0.5 mx-3 ${step.number < currentStep ? "bg-primary" : "bg-muted"}`} />
+                <div className={`flex-1 h-0.5 mx-2 md:mx-3 ${step.number < currentStep ? "bg-primary" : "bg-muted"}`} />
               )}
             </div>
           ))}
         </div>
+        <p className="text-sm font-medium text-foreground sm:hidden">
+          Step {currentStep} of {steps.length}: {steps[currentStep - 1]?.title}
+        </p>
       </div>
 
       {/* Form Steps */}
@@ -283,6 +259,7 @@ export default function PropertyFormMultiStep({
         {currentStep === 2 && <PropertyFormStep2 formData={formData} onChange={handleStepChange} />}
         {currentStep === 3 && <PropertyFormStep3 formData={formData} onChange={handleStepChange} />}
         {currentStep === 4 && <PropertyFormStep4 formData={formData} onChange={handleStepChange} />}
+        {currentStep === 5 && <PropertyFormStep5 formData={formData} onChange={handleStepChange} />}
       </div>
 
       {/* Navigation Buttons */}
@@ -292,9 +269,9 @@ export default function PropertyFormMultiStep({
           Previous
         </Button>
 
-        {currentStep === 4 ? (
+        {currentStep === 5 ? (
           <Button onClick={handleSubmit} disabled={loading} className="px-8">
-            {loading ? "Submitting..." : "Publish Listing"}
+            {loading ? "Submitting..." : isEdit ? "Save & Resubmit for Review" : "Submit for Review"}
           </Button>
         ) : (
           <Button onClick={handleNext} className="px-6">

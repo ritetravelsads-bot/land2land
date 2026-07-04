@@ -51,10 +51,18 @@ export async function POST(req: NextRequest) {
       slug = uniqueSlug
     }
 
+    // Moderation workflow: agent submissions must be reviewed by an admin
+    // before they go public. Admin-created listings are auto-approved.
+    const isAdmin = user.user_type === "admin"
+
     const property = {
       ...body,
       slug,
       agent: user._id,
+      review_status: isAdmin ? "approved" : "pending",
+      review_notes: "",
+      submitted_at: new Date(),
+      ...(isAdmin ? { reviewed_at: new Date(), reviewed_by: user._id } : {}),
       created_at: new Date(),
       updated_at: new Date(),
     }

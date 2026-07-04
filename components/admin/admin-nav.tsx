@@ -21,6 +21,7 @@ import {
   Search,
   Upload,
   UserPlus,
+  ClipboardCheck,
 } from "lucide-react"
 
 export default function AdminNav() {
@@ -43,6 +44,7 @@ export default function AdminNav() {
       title: "Management",
       items: [
         { href: "/admin/properties", label: "Listings", icon: Package },
+        { href: "/admin/properties/review", label: "Review Queue", icon: ClipboardCheck },
         { href: "/admin/leads", label: "Leads", icon: UserPlus },
         { href: "/admin/users", label: "Users", icon: Users },
         { href: "/admin/reviews", label: "Reviews", icon: Star },

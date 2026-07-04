@@ -20,7 +20,7 @@ function callbackAdminTemplate({ name, phone, message }: { name: string; phone: 
             <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
               <!-- Header -->
               <tr>
-                <td style="background: linear-gradient(135deg, #2d5016 0%, #4a7c2e 100%); padding: 30px; text-align: center;">
+                <td style="background: linear-gradient(135deg, #125007 0%, #4a7c2e 100%); padding: 30px; text-align: center;">
                   <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 700;">
                     📞 New Callback Request
                   </h1>

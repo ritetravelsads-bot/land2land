@@ -80,14 +80,14 @@ export default function CareerPage() {
       <Header />
       <main className="min-h-screen bg-background">
         {/* Hero */}
-        <section className="w-full py-16 md:py-24 px-4 bg-gradient-to-br from-[#2d5016] to-[#4a7c2e] text-white">
+        <section className="w-full py-16 md:py-24 px-4 bg-gradient-to-br from-[#125007] to-[#4a7c2e] text-white">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold">Join Our Team</h1>
             <p className="text-lg text-green-50 max-w-2xl mx-auto">
               Build your career with India's leading agricultural land marketplace.
               We're looking for passionate individuals who want to make a difference in rural and land development.
             </p>
-            <Button asChild size="lg" className="bg-white text-[#2d5016] hover:bg-green-50">
+            <Button asChild size="lg" className="bg-white text-[#125007] hover:bg-green-50">
               <a href="#openings">View Open Positions</a>
             </Button>
           </div>
