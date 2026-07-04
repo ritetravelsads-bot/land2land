@@ -128,6 +128,16 @@ export default function PropertyReviewCard({
             </Link>
           </div>
 
+          {/* Khasra number */}
+          {property.khasra_number && (
+            <div className="mt-3">
+              <p className="mb-1.5 text-xs font-semibold text-muted-foreground">Khasra Number</p>
+              <span className="inline-flex items-center rounded-md border border-border bg-background px-2 py-1 text-xs font-medium text-foreground">
+                {property.khasra_number}
+              </span>
+            </div>
+          )}
+
           {/* Documents */}
           <div className="mt-3">
             <p className="mb-1.5 text-xs font-semibold text-muted-foreground">

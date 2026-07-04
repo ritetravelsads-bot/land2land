@@ -64,14 +64,14 @@ export type Facing = "north" | "south" | "east" | "west" | "north_east" | "north
 
 // --- Land document verification ---
 // Indian land records that a land owner uploads for admin verification.
-export type LandDocumentKey = "khasra" | "fard" | "intkal" | "girdawari"
+// Note: Khasra is now captured as a text number field (`khasra_number`), not a file upload.
+export type LandDocumentKey = "fard" | "intkal" | "girdawari"
 
 export const LAND_DOCUMENT_TYPES: Array<{
   key: LandDocumentKey
   label: string
   hint: string
 }> = [
-  { key: "khasra", label: "Khasra", hint: "खसरा — plot / field record number" },
   { key: "fard", label: "Fard", hint: "फर्द — record of rights (ownership proof)" },
   { key: "intkal", label: "Intkal", hint: "इंतकाल — mutation / transfer record" },
   { key: "girdawari", label: "Girdawari", hint: "गिरदावरी — crop inspection record" },
@@ -119,6 +119,7 @@ export interface Listing {
   water_available?: boolean
   electricity_available?: boolean
   survey_number?: string     // survey / khasra / khata number
+  khasra_number?: string     // Khasra (खसरा) plot / field record number, entered as text
   is_negotiable?: boolean
 
   // --- Land document verification & moderation ---

@@ -2,7 +2,9 @@
 
 import { useState, useEffect, useCallback } from "react"
 import { ComboSelect } from "@/components/ui/combo-select"
-import { Link2 } from "lucide-react"
+import { Link2, ShieldCheck } from "lucide-react"
+import DocumentUploadField from "./document-upload-field"
+import { LAND_DOCUMENT_TYPES, type LandDocumentFile, type LandDocumentKey } from "@/lib/models"
 
 // Generate slug from text
 const generateSlug = (text: string): string => {
@@ -89,6 +91,19 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
     developers.find((d) => d._id === formData.developer_id)?.name ||
     formData.developer_name ||
     ""
+
+  // Land documents (Fard / Intkal / Girdawari) uploaded for verification
+  const documents: Partial<Record<LandDocumentKey, LandDocumentFile>> = formData.documents || {}
+
+  const setDocument = (key: LandDocumentKey, doc: LandDocumentFile | undefined) => {
+    const next = { ...documents }
+    if (doc) {
+      next[key] = doc
+    } else {
+      delete next[key]
+    }
+    onChange("documents", next)
+  }
 
   return (
     <div className="space-y-5">
@@ -332,6 +347,55 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
           className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring resize-none h-28"
         />
         <p className="text-xs text-muted-foreground mt-1">Each line becomes a bullet point on the listing page</p>
+      </div>
+
+      {/* Land Documents */}
+      <div className="border-t border-border pt-5 space-y-4">
+        <div>
+          <h3 className="text-base font-semibold">Land Documents</h3>
+          <p className="text-sm text-muted-foreground">
+            Enter your Khasra number and upload photos or PDF scans of your land papers. Our team checks these before
+            your land goes live.
+          </p>
+        </div>
+
+        {/* Khasra number — text input */}
+        <div>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Khasra Number</label>
+          <input
+            type="text"
+            value={formData.khasra_number || ""}
+            onChange={(e) => onChange("khasra_number", e.target.value)}
+            placeholder="e.g., 123/4"
+            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
+          />
+          <p className="text-xs text-muted-foreground mt-1">खसरा — plot / field record number</p>
+        </div>
+
+        {/* Reassurance / help note */}
+        <div className="flex gap-3 rounded-lg border border-primary/20 bg-primary/5 p-4">
+          <ShieldCheck className="h-5 w-5 flex-shrink-0 text-primary" />
+          <div className="text-sm text-foreground">
+            <p className="font-medium">Your documents are safe.</p>
+            <p className="text-muted-foreground mt-0.5">
+              They are used only to verify ownership. You can add whatever papers you have now and upload the rest
+              later. Adding more documents means faster approval.
+            </p>
+          </div>
+        </div>
+
+        {/* Document uploads: Fard / Intkal / Girdawari */}
+        <div className="grid gap-4 sm:grid-cols-2">
+          {LAND_DOCUMENT_TYPES.map((doc) => (
+            <DocumentUploadField
+              key={doc.key}
+              label={doc.label}
+              hint={doc.hint}
+              value={documents[doc.key]}
+              onChange={(file) => setDocument(doc.key, file)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
