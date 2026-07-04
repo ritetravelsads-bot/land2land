@@ -8,7 +8,6 @@ import PropertyFormStep1 from "./property-form-step-1"
 import PropertyFormStep2 from "./property-form-step-2"
 import PropertyFormStep3 from "./property-form-step-3"
 import PropertyFormStep4 from "./property-form-step-4"
-import PropertyFormStep5 from "./property-form-step-5"
 
 export default function PropertyFormMultiStep({
   apiEndpoint = "/api/agent/properties",
@@ -48,6 +47,7 @@ export default function PropertyFormMultiStep({
     soil_type: "",
     zoning: "",
     survey_number: "",
+    khasra_number: "",
     price_per_unit: "",
     water_level: "",
     highway_connectivity: "",
@@ -142,7 +142,7 @@ export default function PropertyFormMultiStep({
   }
 
   const handleNext = () => {
-    if (currentStep < 5) {
+    if (currentStep < 4) {
       setCurrentStep(currentStep + 1)
     }
   }
@@ -220,7 +220,6 @@ export default function PropertyFormMultiStep({
     { number: 2, title: "Size & Price" },
     { number: 3, title: "Location" },
     { number: 4, title: "Photos & SEO" },
-    { number: 5, title: "Documents" },
   ]
 
   return (
@@ -259,7 +258,6 @@ export default function PropertyFormMultiStep({
         {currentStep === 2 && <PropertyFormStep2 formData={formData} onChange={handleStepChange} />}
         {currentStep === 3 && <PropertyFormStep3 formData={formData} onChange={handleStepChange} />}
         {currentStep === 4 && <PropertyFormStep4 formData={formData} onChange={handleStepChange} />}
-        {currentStep === 5 && <PropertyFormStep5 formData={formData} onChange={handleStepChange} />}
       </div>
 
       {/* Navigation Buttons */}
@@ -269,7 +267,7 @@ export default function PropertyFormMultiStep({
           Previous
         </Button>
 
-        {currentStep === 5 ? (
+        {currentStep === 4 ? (
           <Button onClick={handleSubmit} disabled={loading} className="px-8">
             {loading ? "Submitting..." : isEdit ? "Save & Resubmit for Review" : "Submit for Review"}
           </Button>

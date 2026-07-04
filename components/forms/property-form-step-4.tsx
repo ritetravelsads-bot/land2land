@@ -427,6 +427,31 @@ export default function PropertyFormStep4({ formData, onChange }: any) {
           </p>
         </div>
       </div>
+
+      {/* What happens next */}
+      <div className="rounded-lg border border-border bg-card p-4">
+        <h3 className="text-sm font-semibold text-foreground">What happens after you submit?</h3>
+        <ol className="mt-3 space-y-2 text-sm text-muted-foreground">
+          <li className="flex gap-2">
+            <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+              1
+            </span>
+            Your land is sent to our team for review — it is not public yet.
+          </li>
+          <li className="flex gap-2">
+            <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+              2
+            </span>
+            We check your details and documents.
+          </li>
+          <li className="flex gap-2">
+            <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
+              3
+            </span>
+            If approved, your land goes live. If something is missing, we tell you what to fix so you can resubmit.
+          </li>
+        </ol>
+      </div>
     </div>
   )
 }
