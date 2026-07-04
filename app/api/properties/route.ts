@@ -24,6 +24,12 @@ export async function GET(req: NextRequest) {
       $or: [{ status: "active" }, { status: "available" }, { status: { $exists: false } }]
     })
 
+    // Moderation filter - only approved listings are public.
+    // Legacy listings without a review_status are treated as approved.
+    andConditions.push({
+      $or: [{ review_status: "approved" }, { review_status: { $exists: false } }, { review_status: null }]
+    })
+
     // Search query - property name, address, neighborhood, city, developer
     const search = searchParams.get("search")
     if (search) {

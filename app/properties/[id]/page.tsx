@@ -4,6 +4,8 @@ import { MongoClient, ObjectId } from "mongodb"
 import Script from "next/script"
 import { generatePropertySchema, generatePropertyBreadcrumbSchema } from "@/lib/schema-markup-generator"
 import { PropertyDetailClient } from "@/components/property/property-detail-client"
+import ListingUnderReview from "@/components/property/listing-under-review"
+import { getCurrentUser } from "@/lib/auth"
 import { formatPriceToIndian } from "@/lib/utils"
 
 const mongoUrl = process.env.MONGODB_URI || ""
@@ -181,6 +183,18 @@ export default async function PropertyDetailPage({
 
   if (!property) {
     notFound()
+  }
+
+  // Moderation gate: pending/rejected listings are only visible to their owner or an admin.
+  // Legacy listings without a review_status are treated as approved/public.
+  const reviewStatus = property.review_status
+  if (reviewStatus && reviewStatus !== "approved") {
+    const user = await getCurrentUser()
+    const isAdmin = user?.user_type === "admin"
+    const isOwner = user && property.agent?.toString() === user._id?.toString()
+    if (!isAdmin && !isOwner) {
+      return <ListingUnderReview />
+    }
   }
 
   const developer = property.developer_id ? await getDeveloper(property.developer_id) : null

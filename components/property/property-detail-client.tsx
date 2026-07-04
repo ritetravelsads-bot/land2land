@@ -210,8 +210,26 @@ export function PropertyDetailClient({
     { key: "is_negotiable", label: "Price Negotiable" },
   ].filter((f) => !!property[f.key])
 
+  const reviewStatus = property.review_status
+  const showPreviewBanner = reviewStatus && reviewStatus !== "approved"
+
   return (
     <main className="min-h-screen bg-background">
+      {/* Preview banner shown to the owner/admin when a listing is not yet public */}
+      {showPreviewBanner && (
+        <div
+          className={`px-4 py-2.5 text-center text-sm font-medium ${
+            reviewStatus === "rejected"
+              ? "bg-red-600 text-white"
+              : "bg-yellow-500 text-yellow-950"
+          }`}
+        >
+          {reviewStatus === "rejected"
+            ? "Preview only — this listing was rejected and is not public. Edit and resubmit it for review."
+            : "Preview only — this listing is under review and is not public yet."}
+        </div>
+      )}
+
       {/* Breadcrumb */}
       <div className="bg-muted/30 border-b border-border">
         <div className="max-w-6xl mx-auto px-4 py-3">

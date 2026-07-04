@@ -8,6 +8,7 @@ import PropertyFormStep1 from "./property-form-step-1"
 import PropertyFormStep2 from "./property-form-step-2"
 import PropertyFormStep3 from "./property-form-step-3"
 import PropertyFormStep4 from "./property-form-step-4"
+import PropertyFormStep5 from "./property-form-step-5"
 
 export default function PropertyFormMultiStep({
   apiEndpoint = "/api/agent/properties",
@@ -81,6 +82,8 @@ export default function PropertyFormMultiStep({
     rera_website_link: "",
     google_map_link: "",
     landmark: "",
+    // Land documents for verification
+    documents: {} as Record<string, any>,
   }
   
   // Helper function to ensure array fields are properly formatted
@@ -123,6 +126,8 @@ export default function PropertyFormMultiStep({
         meta_title: initialData.meta_title || initialData.seo_title || "",
         meta_description: initialData.meta_description || "",
         meta_keywords: initialData.meta_keywords || "",
+        // Preserve uploaded documents as an object
+        documents: initialData.documents && typeof initialData.documents === "object" ? initialData.documents : {},
       }
       
 
@@ -137,7 +142,7 @@ export default function PropertyFormMultiStep({
   }
 
   const handleNext = () => {
-    if (currentStep < 4) {
+    if (currentStep < 5) {
       setCurrentStep(currentStep + 1)
     }
   }
@@ -191,9 +196,14 @@ export default function PropertyFormMultiStep({
       if (res.ok) {
         const slug = data.property?.slug || data.slug || cleanedData.slug
         const id = data.property?._id || data._id
-        
-        // Redirect to property view page
-        router.push(`/properties/${slug || id}`)
+
+        // Agents/owners return to their dashboard so they can track review status.
+        // Admins go straight to the published listing.
+        if (apiEndpoint.includes("/agent/")) {
+          router.push("/agent/properties?submitted=1")
+        } else {
+          router.push(`/properties/${slug || id}`)
+        }
       } else {
         alert(`Error saving property: ${data.error || data.message || "Unknown error"}`)
       }
@@ -210,6 +220,7 @@ export default function PropertyFormMultiStep({
     { number: 2, title: "Size & Price" },
     { number: 3, title: "Location" },
     { number: 4, title: "Photos & SEO" },
+    { number: 5, title: "Documents" },
   ]
 
   return (
@@ -230,13 +241,16 @@ export default function PropertyFormMultiStep({
               >
                 {step.number < currentStep ? <Check size={18} /> : step.number}
               </div>
-              <div className="ml-3 text-sm font-medium">{step.title}</div>
+              <div className="ml-2 hidden text-sm font-medium sm:block md:ml-3">{step.title}</div>
               {idx < steps.length - 1 && (
-                <div className={`flex-1 h-0.5 mx-3 ${step.number < currentStep ? "bg-primary" : "bg-muted"}`} />
+                <div className={`flex-1 h-0.5 mx-2 md:mx-3 ${step.number < currentStep ? "bg-primary" : "bg-muted"}`} />
               )}
             </div>
           ))}
         </div>
+        <p className="text-sm font-medium text-foreground sm:hidden">
+          Step {currentStep} of {steps.length}: {steps[currentStep - 1]?.title}
+        </p>
       </div>
 
       {/* Form Steps */}
@@ -245,6 +259,7 @@ export default function PropertyFormMultiStep({
         {currentStep === 2 && <PropertyFormStep2 formData={formData} onChange={handleStepChange} />}
         {currentStep === 3 && <PropertyFormStep3 formData={formData} onChange={handleStepChange} />}
         {currentStep === 4 && <PropertyFormStep4 formData={formData} onChange={handleStepChange} />}
+        {currentStep === 5 && <PropertyFormStep5 formData={formData} onChange={handleStepChange} />}
       </div>
 
       {/* Navigation Buttons */}
@@ -254,9 +269,9 @@ export default function PropertyFormMultiStep({
           Previous
         </Button>
 
-        {currentStep === 4 ? (
+        {currentStep === 5 ? (
           <Button onClick={handleSubmit} disabled={loading} className="px-8">
-            {loading ? "Submitting..." : "Publish Listing"}
+            {loading ? "Submitting..." : isEdit ? "Save & Resubmit for Review" : "Submit for Review"}
           </Button>
         ) : (
           <Button onClick={handleNext} className="px-6">
