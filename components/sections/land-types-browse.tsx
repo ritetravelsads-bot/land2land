@@ -85,9 +85,7 @@ export default function LandTypesBrowse() {
             <Link
               key={type.name}
               href={type.href}
-              className={`group relative overflow-hidden rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 ${
-                index === 0 ? "col-span-2 md:col-span-1 row-span-1 h-52 md:h-52" : "h-444"
-              }`}
+              className={`group relative overflow-hidden rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300  col-span-2 md:col-span-1 row-span-1 h-52 md:h-52`}
             >
               {/* Photo */}
               <Image
