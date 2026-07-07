@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   description:
     "Land2Land connects farmers, landowners, and investors with verified agricultural land and farmland across India. 100% verified titles, transparent pricing, and expert land advisory.",
   alternates: {
-    canonical: "https://land2land.in/about",
+    canonical: "https://land2land.com/about",
   },
   openGraph: {
     title: "About Land2Land | Trusted Agricultural Land Marketplace in India",
     description: "Land2Land connects farmers, landowners, and investors with verified agricultural land and farmland across India. 100% verified titles, transparent pricing, and expert land advisory.",
-    url: "https://land2land.in/about",
+    url: "https://land2land.com/about",
   },
 }
 
@@ -70,7 +70,7 @@ export default function AboutPage() {
   const pageSchemas = generateWebPageSchema({
     title: "About Land2Land | Agricultural Land Marketplace",
     description: "Land2Land - Connecting Land. Empowering Growth. Building the Future. An India-wide agricultural land marketplace committed to verified listings, transparency, and long-term value.",
-    url: "https://land2land.in/about",
+    url: "https://land2land.com/about",
     breadcrumbs: [
       { name: "Home", url: "/" },
       { name: "About", url: "/about" }

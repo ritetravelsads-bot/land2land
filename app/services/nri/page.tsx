@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "NRI Services | Land2Land",
     description: "Hassle-free property investment in India for NRIs.",
-    url: "https://land2land.in/services/nri",
+    url: "https://land2land.com/services/nri",
   },
 }
 

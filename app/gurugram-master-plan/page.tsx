@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Gurugram Master Plan 2031 | Land2Land",
     description: "Complete guide to Gurugram's development plan and real estate investment zones.",
-    url: "https://land2land.in/gurugram-master-plan",
+    url: "https://land2land.com/gurugram-master-plan",
   },
 }
 

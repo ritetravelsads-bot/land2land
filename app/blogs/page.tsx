@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   description:
     "Explore expert insights on real estate investments, property buying guides, market trends, and luxury living tips from Land2Land professionals.",
   alternates: {
-    canonical: "https://land2land.in/blogs",
+    canonical: "https://land2land.com/blogs",
   },
   openGraph: {
     title: "Blogs | Land2Land - Real Estate Insights",
     description: "Expert real estate insights and property investment tips from Land2Land professionals.",
-    url: "https://land2land.in/blogs",
+    url: "https://land2land.com/blogs",
   },
 }
 

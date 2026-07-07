@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next"
 import { MongoClient } from "mongodb"
 
-const baseUrl = "https://land2land.in"
+const baseUrl = "https://land2land.com"
 
 // Ensure slug is valid for URLs - the slugs in DB should already be clean
 // but we encode any special characters just in case

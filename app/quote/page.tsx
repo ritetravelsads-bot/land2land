@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: "Get a Free Quote | Land2Land",
   description: "Request a free property quote from Land2Land. Fast, accurate estimates with no obligation.",
   alternates: {
-    canonical: "https://land2land.in/quote",
+    canonical: "https://land2land.com/quote",
   },
   openGraph: {
     title: "Get a Free Quote | Land2Land",
     description: "Get a free property quote from our expert team.",
-    url: "https://land2land.in/quote",
+    url: "https://land2land.com/quote",
   },
 }
 

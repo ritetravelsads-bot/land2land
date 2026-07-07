@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Terms & Conditions | Land2Land",
   description: "Land2Land Terms & Conditions - Please read before using our platform. Marketing and advisory services in Gurugram and Delhi NCR.",
   alternates: {
-    canonical: "https://land2land.in/terms-and-conditions",
+    canonical: "https://land2land.com/terms-and-conditions",
   },
 }
 
@@ -229,8 +229,8 @@ export default function TermsPage() {
           <div className="mt-12 pt-6 border-t border-border">
             <p className="text-muted-foreground text-sm">
               If you have any questions about these Terms & Conditions, please contact us at{" "}
-              <a href="mailto:info@land2land.in" className="text-primary hover:underline">
-                info@land2land.in
+              <a href="mailto:info@land2land.com" className="text-primary hover:underline">
+                info@land2land.com
               </a>
             </p>
           </div>

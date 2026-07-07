@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "After-Sales Support | Land2Land",
     description: "Complete post-purchase property support and management services.",
-    url: "https://land2land.in/services/after-sales",
+    url: "https://land2land.com/services/after-sales",
   },
 }
 

@@ -81,12 +81,12 @@ export async function generateMetadata({
     title,
     description,
     alternates: {
-      canonical: `https://land2land.in/${slug}`,
+      canonical: `https://land2land.com/${slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://land2land.in/${slug}`,
+      url: `https://land2land.com/${slug}`,
       siteName: 'Land2Land',
       locale: 'en_IN',
       type: 'website',
@@ -135,7 +135,7 @@ function generateRealEstateSchema(slug: string) {
     '@context': 'https://schema.org',
     '@type': 'RealEstateAgent',
     name: 'Land2Land',
-    url: `https://land2land.in/${slug}`,
+    url: `https://land2land.com/${slug}`,
     description: richContent.metaDescription,
     areaServed: {
       '@type': 'Place',
@@ -163,19 +163,19 @@ function generateBreadcrumbSchema(slug: string) {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://land2land.in',
+        item: 'https://land2land.com',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Locations',
-        item: 'https://land2land.in/locations',
+        item: 'https://land2land.com/locations',
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: displayName,
-        item: `https://land2land.in/${slug}`,
+        item: `https://land2land.com/${slug}`,
       },
     ],
   }

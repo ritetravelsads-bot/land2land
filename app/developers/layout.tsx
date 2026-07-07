@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   description:
     "Explore trusted real estate developers in Gurugram and Delhi NCR. Find verified builders with premium residential and commercial projects.",
   alternates: {
-    canonical: "https://land2land.in/developers",
+    canonical: "https://land2land.com/developers",
   },
   openGraph: {
     title: "Real Estate Developers | Land2Land",
     description: "Browse top real estate developers and builders in Gurugram.",
-    url: "https://land2land.in/developers",
+    url: "https://land2land.com/developers",
   },
 }
 

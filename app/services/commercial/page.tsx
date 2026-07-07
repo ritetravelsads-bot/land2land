@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Commercial Real Estate Services | Land2Land",
     description: "Complete commercial property solutions for businesses in Gurugram.",
-    url: "https://land2land.in/services/commercial",
+    url: "https://land2land.com/services/commercial",
   },
 }
 

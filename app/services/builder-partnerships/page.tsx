@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Builder Partnerships | Land2Land",
     description: "Access exclusive deals through our direct builder partnerships.",
-    url: "https://land2land.in/services/builder-partnerships",
+    url: "https://land2land.com/services/builder-partnerships",
   },
 }
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Portfolio | Land2Land",
     description: "Completed roofing projects that showcase our expertise and quality work.",
-    url: "https://land2land.in/portfolio",
+    url: "https://land2land.com/portfolio",
   },
 }
 

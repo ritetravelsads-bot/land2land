@@ -8,7 +8,7 @@ import {
 } from "@/lib/email"
 import type { LeadSource } from "@/lib/models"
 
-const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.infobirth@gmail.com"
+const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.comfobirth@gmail.com"
 
 export async function POST(req: NextRequest) {
   try {

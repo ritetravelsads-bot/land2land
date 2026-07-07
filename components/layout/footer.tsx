@@ -169,10 +169,10 @@ export default function Footer() {
                   <Mail size={18} className="text-white" />
                 </div>
                 <a
-                  href="mailto:info@land2land.in"
+                  href="mailto:info@land2land.com"
                   className="text-sm text-gray-700 hover:text-[#125007] transition-colors"
                 >
-                  info@land2land.in
+                  info@land2land.com
                 </a>
               </div>
             </div>
@@ -259,7 +259,7 @@ export default function Footer() {
         <div className="border-t border-gray-200 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-gray-600 text-center md:text-left">
-              © {currentYear} land2land.in All rights reserved.
+              © {currentYear} land2land.com All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <Link href="/privacy-policy" className="text-xs text-gray-600 hover:text-[#125007] transition-colors">

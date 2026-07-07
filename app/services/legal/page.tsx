@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Legal Assistance | Land2Land",
     description: "Complete legal support for hassle-free property transactions.",
-    url: "https://land2land.in/services/legal",
+    url: "https://land2land.com/services/legal",
   },
 }
 

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Careers at Land2Land",
     description: "Build your career with India's leading agricultural land marketplace.",
-    url: "https://land2land.in/career",
+    url: "https://land2land.com/career",
   },
 }
 

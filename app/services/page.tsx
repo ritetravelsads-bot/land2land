@@ -24,12 +24,12 @@ export const metadata: Metadata = {
   description:
     "Comprehensive agricultural land services including land advisory, investment consulting, title verification, ROI analysis, field operations, and property management across India.",
   alternates: {
-    canonical: "https://land2land.in/services",
+    canonical: "https://land2land.com/services",
   },
   openGraph: {
     title: "Land Services | Land2Land",
     description: "Expert land advisory and agricultural marketplace services across India.",
-    url: "https://land2land.in/services",
+    url: "https://land2land.com/services",
   },
 }
 

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Home Loan Assistance | Land2Land",
     description: "Simplified home loan processing with best interest rates.",
-    url: "https://land2land.in/services/home-loans",
+    url: "https://land2land.com/services/home-loans",
   },
 }
 

@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: "Contact Land2Land | Land & Farm Advisory | Call +91 98737-02365",
   description: "Talk to Land2Land's land experts. Call +91 98737-02365 for help buying, selling, or investing in agricultural land and farmland. Free advisory — Mon to Sat, 9AM–6PM.",
   alternates: {
-    canonical: "https://land2land.in/contact",
+    canonical: "https://land2land.com/contact",
   },
   openGraph: {
     title: "Contact Land2Land | Land & Farm Advisory | Call +91 98737-02365",
     description: "Talk to Land2Land's land experts. Call +91 98737-02365 for help buying, selling, or investing in agricultural land and farmland. Free advisory — Mon to Sat, 9AM–6PM.",
-    url: "https://land2land.in/contact",
+    url: "https://land2land.com/contact",
   },
 }
 
@@ -57,8 +57,8 @@ export default function ContactPage() {
                     <Mail size={14} className="text-primary" />
                     <p className="text-xs font-semibold text-foreground">Email</p>
                   </div>
-                  <a href="mailto:info@land2land.in" className="text-xs text-primary hover:underline block">
-                    info@land2land.in
+                  <a href="mailto:info@land2land.com" className="text-xs text-primary hover:underline block">
+                    info@land2land.com
                   </a>
                 </div>
 

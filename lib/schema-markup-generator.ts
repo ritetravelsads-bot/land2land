@@ -7,7 +7,7 @@ interface FAQItem {
   answer: string
 }
 
-const BASE_URL = "https://land2land.in"
+const BASE_URL = "https://land2land.com"
 
 // Organization reference for linking schemas
 const ORGANIZATION_REFERENCE = {

@@ -6,7 +6,7 @@ import { OfficeSpaceDetailClient } from "@/components/property/office-space-deta
 import { formatPriceToIndian } from "@/lib/utils"
 
 const mongoUrl = process.env.MONGODB_URI || ""
-const baseUrl = "https://land2land.in"
+const baseUrl = "https://land2land.com"
 
 interface Property {
   _id: string

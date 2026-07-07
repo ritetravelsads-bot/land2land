@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Property Advisory Services | Land2Land",
     description: "Expert guidance for all your real estate decisions in Gurugram.",
-    url: "https://land2land.in/services/advisory",
+    url: "https://land2land.com/services/advisory",
   },
 }
 

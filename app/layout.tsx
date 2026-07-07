@@ -25,9 +25,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://land2land.in'),
+  metadataBase: new URL('https://land2land.com'),
   alternates: {
-    canonical: 'https://land2land.in',
+    canonical: 'https://land2land.com',
   },
   title: "Land2Land | Buy & Sell All Types of Land",
   description: "Buy, sell, and invest in all types of land — agricultural, residential plots, commercial, industrial and farmland across India. Connect with verified sellers and agents on Land2Land.",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://land2land.in",
+    url: "https://land2land.com",
     siteName: "Land2Land",
     title: "Land2Land | Buy & Sell All Types of Land",
     description: "Buy, sell, and invest in agricultural, residential, commercial, industrial and farmland across India.",
@@ -124,18 +124,18 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "RealEstateAgent",
-              "@id": "https://land2land.in/#organization",
+              "@id": "https://land2land.com/#organization",
               name: "Land2Land",
               alternateName: "Land2Land Real Estate",
               description: "Premium property marketplace connecting buyers, sellers, and agents in Gurgaon and Delhi NCR",
-              url: "https://land2land.in",
+              url: "https://land2land.com",
               logo: {
                 "@type": "ImageObject",
-                url: "https://land2land.in/logo.png",
+                url: "https://land2land.com/logo.png",
                 width: 512,
                 height: 512,
               },
-              image: "https://land2land.in/og-image.png",
+              image: "https://land2land.com/og-image.png",
               telephone: "+91-1244765940",
               priceRange: "$$-$$$$",
               address: {
@@ -192,18 +192,18 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "@id": "https://land2land.in/#website",
-              url: "https://land2land.in",
+              "@id": "https://land2land.com/#website",
+              url: "https://land2land.com",
               name: "Land2Land",
               description: "Find the best property in Gurgaon including flats, plots, villas and commercial spaces",
               publisher: {
-                "@id": "https://land2land.in/#organization"
+                "@id": "https://land2land.com/#organization"
               },
               potentialAction: {
                 "@type": "SearchAction",
                 target: {
                   "@type": "EntryPoint",
-                  urlTemplate: "https://land2land.in/properties?search={search_term_string}"
+                  urlTemplate: "https://land2land.com/properties?search={search_term_string}"
                 },
                 "query-input": "required name=search_term_string"
               },

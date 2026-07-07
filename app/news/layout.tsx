@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   description:
     "Stay updated with the latest real estate news, market trends, and property updates from Gurugram and Delhi NCR.",
   alternates: {
-    canonical: "https://land2land.in/news",
+    canonical: "https://land2land.com/news",
   },
   openGraph: {
     title: "Real Estate News | Land2Land",
     description: "Latest real estate news and property market updates from Gurugram.",
-    url: "https://land2land.in/news",
+    url: "https://land2land.com/news",
   },
 }
 

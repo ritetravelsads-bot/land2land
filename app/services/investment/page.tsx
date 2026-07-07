@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Investment Consulting | Land2Land",
     description: "Maximize your real estate investment returns with expert guidance.",
-    url: "https://land2land.in/services/investment",
+    url: "https://land2land.com/services/investment",
   },
 }
 

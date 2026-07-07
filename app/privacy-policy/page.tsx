@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy | Land2Land",
   description: "Land2Land privacy policy and legal framework - how we collect, use, and protect your personal information in accordance with Indian regulations.",
   alternates: {
-    canonical: "https://land2land.in/privacy-policy",
+    canonical: "https://land2land.com/privacy-policy",
   },
 }
 
@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-2xl font-semibold text-foreground">Legal & Policy Framework</h2>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
               <p><strong>Effective Date:</strong> To be inserted</p>
-              <p><strong>Website:</strong> https://land2land.in</p>
+              <p><strong>Website:</strong> https://land2land.com</p>
               <p><strong>Jurisdiction:</strong> Gurugram, Haryana, India</p>
             </div>
           </div>
@@ -163,7 +163,7 @@ export default function PrivacyPolicyPage() {
                 <li>Deletion (subject to legal retention obligations)</li>
               </ul>
               <p className="text-muted-foreground mt-3">
-                <strong>Email:</strong> info@land2land.in
+                <strong>Email:</strong> info@land2land.com
               </p>
             </section>
 
@@ -172,7 +172,7 @@ export default function PrivacyPolicyPage() {
               <div className="p-4 bg-card border border-border rounded-lg">
                 <p className="text-muted-foreground"><strong>Grievance Officer</strong></p>
                 <p className="text-muted-foreground">Land2Land</p>
-                <p className="text-muted-foreground"><strong>Email:</strong> info@land2land.in</p>
+                <p className="text-muted-foreground"><strong>Email:</strong> info@land2land.com</p>
                 <p className="text-muted-foreground"><strong>Phone:</strong> +91-98737-02365</p>
                 <p className="text-muted-foreground mt-3">Response within 30 days.</p>
               </div>
@@ -188,7 +188,7 @@ export default function PrivacyPolicyPage() {
               </p>
               <ul className="space-y-2 text-muted-foreground">
                 <li>
-                  <strong>By email:</strong> info@land2land.in
+                  <strong>By email:</strong> info@land2land.com
                 </li>
                 <li>
                   <strong>By phone:</strong> +91-98737-02365

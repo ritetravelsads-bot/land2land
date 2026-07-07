@@ -6,7 +6,7 @@ import {
   quoteUserTemplate,
 } from "@/lib/email"
 
-const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.infobirth@gmail.com"
+const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.comfobirth@gmail.com"
 
 export async function POST(request: Request) {
   try {

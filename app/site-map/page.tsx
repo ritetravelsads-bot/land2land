@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Site Map | Land2Land - Navigate Our Website",
   description: "Complete site map of Land2Land website. Find all pages, property listings, locations, and resources easily.",
   alternates: {
-    canonical: "https://land2land.in/site-map",
+    canonical: "https://land2land.com/site-map",
   },
 }
 

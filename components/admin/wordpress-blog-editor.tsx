@@ -165,7 +165,7 @@ function GooglePreview({
   title,
   slug,
   description,
-  siteUrl = "land2land.in"
+  siteUrl = "land2land.com"
 }: {
   title: string
   slug: string
@@ -225,7 +225,7 @@ function generateBlogSchema({
   faqs,
   datePublished,
   dateModified,
-  siteUrl = "https://land2land.in"
+  siteUrl = "https://land2land.com"
 }: {
   title: string
   content: string

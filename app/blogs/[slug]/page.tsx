@@ -122,7 +122,7 @@ export async function generateMetadata({
   const { slug } = await params
   const post = await getBlogPost(slug)
   if (!post) return { title: "Post not found" }
-  const canonicalUrl = `https://land2land.in/blogs/${slug}`
+  const canonicalUrl = `https://land2land.com/blogs/${slug}`
   const authorName = post.author || "Land2Land"
   return {
     title: post.meta_title || `${post.title} | Land2Land Blog`,
@@ -171,7 +171,7 @@ export default async function BlogPostPage({
   })
 
   const schemaMarkup = generateBlogSchema(post, post.author || "Land2Land")
-  const canonicalUrl = `https://land2land.in/blogs/${slug}`
+  const canonicalUrl = `https://land2land.com/blogs/${slug}`
   const heroImage = post.banner_image || post.cover_image || post.og_image
 
   return (

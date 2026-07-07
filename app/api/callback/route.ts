@@ -2,7 +2,7 @@ import { getDatabase } from "@/lib/mongodb"
 import { NextResponse } from "next/server"
 import { sendEmail } from "@/lib/email"
 
-const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.infobirth@gmail.com"
+const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.comfobirth@gmail.com"
 
 // Email template for admin notification
 function callbackAdminTemplate({ name, phone, message }: { name: string; phone: string; message: string }) {

@@ -7,7 +7,7 @@ import { formatPriceToIndian } from "@/lib/utils"
 import Script from "next/script"
 
 const mongoUrl = process.env.MONGODB_URI || ""
-const baseUrl = "https://land2land.in"
+const baseUrl = "https://land2land.com"
 
 // Property type slug mapping
 const PROPERTY_TYPE_MAP: Record<string, string[]> = {
