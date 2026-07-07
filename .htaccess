@@ -2,26 +2,26 @@
 DirectoryIndex disabled
 RewriteEngine On
 
-RewriteCond %{HTTP_HOST} ^www\.countryroof\.in$ [NC]
-RewriteRule ^ https://countryroof.in%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTP_HOST} ^www\.land2land\comn$ [NC]
+RewriteRule ^ https://land2land.com%{REQUEST_URI} [R=301,L]
 
-RewriteCond %{HTTP_HOST} ^roof\.countryroof\.in$ [NC]
-RewriteRule ^ https://countryroof.in%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTP_HOST} ^roof\.land2land\comn$ [NC]
+RewriteRule ^ https://land2land.com%{REQUEST_URI} [R=301,L]
 
 
 RewriteCond %{QUERY_STRING} ^detail/ [NC]
-RewriteRule ^(.*)$ https://countryroof.in/? [R=301,L]
+RewriteRule ^(.*)$ https://land2land.com/? [R=301,L]
 
 
 RewriteCond %{QUERY_STRING} ^shop/ [NC]
-RewriteRule ^(.*)$ https://countryroof.in/? [R=301,L]
+RewriteRule ^(.*)$ https://land2land.com/? [R=301,L]
 
 # Tell Next.js the connection is secure
 RequestHeader set X-Forwarded-Proto "https"
 RequestHeader set X-Forwarded-Port "443"
 
 # Pass the exact requested URL directly to the PM2 app
-RewriteRule ^(.*)$ http://127.0.0.1:3006%{REQUEST_URI} [P,L]
+RewriteRule ^(.*)$ http://127.0.0.1:3008%{REQUEST_URI} [P,L]
 
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php82” package as the default “PHP” programming language.
