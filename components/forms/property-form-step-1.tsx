@@ -138,12 +138,12 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           >
             <option value="agricultural">Agricultural Land</option>
-            <option value="residential_plot">Residential Plot</option>
-            <option value="commercial_plot">Commercial Plot</option>
-            <option value="industrial">Abadi Land</option>
+            <option value="residential_plot">Residential Land</option>
+            <option value="commercial_plot">Commercial Land</option>
             <option value="industrial">Industrial Land</option>
             <option value="farmland">Farmland</option>
             <option value="vacant">Vacant / Other Land</option>
+            <option value="abadi_land">Abadi Land</option>
           </select>
         </div>
       </div>

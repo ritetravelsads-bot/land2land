@@ -27,7 +27,7 @@ export default function BuyPage() {
   const landCategories = [
     { name: "Agricultural Land", description: "Verified agricultural land with clear titles", href: "/properties?category=agricultural_land", icon: "🌾" },
     { name: "Farmland", description: "Active farms with irrigation and infrastructure", href: "/properties?category=farmland", icon: "🚜" },
-    { name: "Plots & Land", description: "Vacant plots and land parcels for development", href: "/properties?category=plot", icon: "🏞️" },
+    { name: "Land Parcels", description: "Vacant land and land parcels for development", href: "/properties?category=plot", icon: "🏞️" },
     { name: "Orchard Land", description: "Fruit and vegetable farming land", href: "/properties?category=orchard", icon: "🍊" },
     { name: "Irrigation Land", description: "Land with water access and irrigation rights", href: "/properties?category=irrigation_land", icon: "💧" },
     { name: "Investment Land", description: "High-ROI land in growth corridors", href: "/properties?category=investment_land", icon: "📈" },
@@ -82,7 +82,10 @@ export default function BuyPage() {
                   <option value="">All Types</option>
                   <option value="agricultural_land">Agricultural Land</option>
                   <option value="farmland">Farmland</option>
-                  <option value="plot">Plots</option>
+                  <option value="residential_plot">Residential Land</option>
+                  <option value="commercial_plot">Commercial Land</option>
+                  <option value="industrial">Industrial Land</option>
+                  <option value="abadi_land">Abadi Land</option>
                   <option value="orchard">Orchard</option>
                   <option value="irrigation_land">Irrigation Land</option>
                 </select>

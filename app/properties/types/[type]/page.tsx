@@ -44,7 +44,7 @@ const TYPE_SLUG_MAP: Record<string, {
   },
   'plots-land': {
     field: 'property_type',
-    value: ['plot', 'land', 'agricultural', 'industrial_land', 'farmland', 'residential_plot', 'commercial_plot']
+    value: ['plot', 'land', 'agricultural', 'industrial_land', 'farmland', 'residential_plot', 'commercial_plot', 'abadi_land']
   },
   'commercial-spaces': {
     field: 'property_type',

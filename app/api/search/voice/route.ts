@@ -64,6 +64,7 @@ const PROPERTY_TYPE_KEYWORDS: Record<string, string[]> = {
   "apartment": ["flat", "flats", "apartments", "apt", "apts"],
   "villa": ["villas", "bungalow", "bungalows", "independent house", "kothi"],
   "plot": ["plots", "land", "lands", "plotting"],
+  "abadi_land": ["abadi land", "abadi", "village settlement land", "lal dora"],
   "penthouse": ["penthouses", "duplex penthouse"],
   "commercial": ["commercial property", "shop", "shops", "retail", "showroom"],
   "office": ["office space", "offices", "workspace", "coworking"],

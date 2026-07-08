@@ -9,7 +9,7 @@ const faqs = [
     id: 1,
     question: "What types of land does Land2Land specialise in?",
     answer:
-      "Land2Land covers every kind of land — agricultural and farmland, residential plots, commercial and industrial land, and investment-grade parcels across India. We feature verified listings from Punjab, Haryana, Uttar Pradesh, Rajasthan, Madhya Pradesh, Maharashtra, Karnataka, and many other states. Every listing is thoroughly verified for ownership and legal clearance.",
+      "Land2Land covers every kind of land — agricultural and farmland, residential land, commercial and industrial land, abadi land, and investment-grade parcels across India. We feature verified listings from Punjab, Haryana, Uttar Pradesh, Rajasthan, Madhya Pradesh, Maharashtra, Karnataka, and many other states. Every listing is thoroughly verified for ownership and legal clearance.",
   },
   {
     id: 2,

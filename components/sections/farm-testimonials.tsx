@@ -12,16 +12,16 @@ const testimonials = [
   },
   {
     name: "Priya Sharma",
-    title: "Plot Buyer, Bengaluru",
+    title: "Land Buyer, Bengaluru",
     initials: "PS",
-    quote: "I bought a residential plot in an approved layout through Land2Land. Their title checks and ROI tools gave me complete confidence.",
+    quote: "I bought a residential land in an approved layout through Land2Land. Their title checks and ROI tools gave me complete confidence.",
     rating: 5,
   },
   {
     name: "Vikram Singh",
     title: "Investor, Haryana",
     initials: "VS",
-    quote: "The area converter saved me hours of calculation. I picked up a commercial plot on the main road well within my budget.",
+    quote: "The area converter saved me hours of calculation. I picked up a commercial land on the main road well within my budget.",
     rating: 5,
   },
   {

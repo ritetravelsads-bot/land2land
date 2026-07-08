@@ -33,11 +33,12 @@ export interface PropertyFiltersProps {
 
 const PROPERTY_TYPES = [
   { value: "agricultural", label: "Agricultural Land" },
-  { value: "residential_plot", label: "Residential Plot" },
-  { value: "commercial_plot", label: "Commercial Plot" },
+  { value: "residential_plot", label: "Residential Land" },
+  { value: "commercial_plot", label: "Commercial Land" },
   { value: "industrial", label: "Industrial Land" },
   { value: "farmland", label: "Farmland" },
   { value: "vacant", label: "Vacant / Other Land" },
+  { value: "abadi_land", label: "Abadi Land" },
 ]
 
 const STATUS_OPTIONS = [

@@ -17,7 +17,7 @@ export default function SearchMapPromo() {
               Search Any Land Type <span className="text-slate-700">Anywhere</span> in India
             </h2>
             <p className="text-gray-600 leading-relaxed max-w-md">
-              Compare prices across agricultural, residential, commercial, industrial and farmland categories — with verified ownership records and live market data.
+              Compare prices across agricultural, residential, commercial, industrial, abadi land and farmland categories — with verified ownership records and live market data.
             </p>
 
             {/* Feature pills */}
@@ -32,7 +32,7 @@ export default function SearchMapPromo() {
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-700 shadow-sm">
                 <Building2 size={12} className="text-blue-600" />
-                6 Land Categories
+                7 Land Categories
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-700 shadow-sm">
                 <Search size={12} className="text-gray-500" />
@@ -83,7 +83,7 @@ export default function SearchMapPromo() {
                     <div className="w-7 h-7 bg-amber-500 rounded-full flex items-center justify-center shadow-lg ring-2 ring-white">
                       <MapPin size={13} className="text-white" />
                     </div>
-                    <div className="text-[8px] font-bold text-amber-800 bg-white px-1 rounded shadow mt-0.5 whitespace-nowrap">Plot</div>
+                    <div className="text-[8px] font-bold text-amber-800 bg-white px-1 rounded shadow mt-0.5 whitespace-nowrap">Land</div>
                   </div>
                   <div className="absolute top-[30%] left-[56%] flex flex-col items-center">
                     <div className="w-7 h-7 bg-blue-600 rounded-full flex items-center justify-center shadow-lg ring-2 ring-white">
@@ -103,7 +103,7 @@ export default function SearchMapPromo() {
               {/* Floating price cards - multiple land types */}
               <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-xl p-3 border border-gray-100 w-48 space-y-1.5">
                 <div className="pb-1.5 border-b border-gray-100">
-                  <p className="text-[10px] text-gray-400 mb-0.5">Residential Plot, Pune</p>
+                  <p className="text-[10px] text-gray-400 mb-0.5">Residential Land, Pune</p>
                   <p className="text-sm font-bold text-blue-700">₹28 Lakh / Gunta</p>
                 </div>
                 <div>
