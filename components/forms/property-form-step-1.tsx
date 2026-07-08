@@ -140,6 +140,7 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
             <option value="agricultural">Agricultural Land</option>
             <option value="residential_plot">Residential Plot</option>
             <option value="commercial_plot">Commercial Plot</option>
+            <option value="industrial">Abadi Land</option>
             <option value="industrial">Industrial Land</option>
             <option value="farmland">Farmland</option>
             <option value="vacant">Vacant / Other Land</option>
