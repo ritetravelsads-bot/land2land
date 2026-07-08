@@ -13,8 +13,8 @@ const landTypes = [
     badgeColor: "bg-amber-500",
   },
   {
-    name: "Residential Plot",
-    description: "Approved layouts, NA plots & township schemes",
+    name: "Residential Land",
+    description: "Approved layouts, NA land & township schemes",
     listings: "32,000+",
     image: "/land-types/residential.png",
     href: "/land/residential-plot",
@@ -22,8 +22,8 @@ const landTypes = [
     badgeColor: "bg-blue-600",
   },
   {
-    name: "Commercial Plot",
-    description: "Highway-facing land, market plots & retail parcels",
+    name: "Commercial Land",
+    description: "Highway-facing land, market & retail parcels",
     listings: "8,500+",
     image: "/land-types/commercial.png",
     href: "/land/commercial-plot",
@@ -49,11 +49,20 @@ const landTypes = [
     badgeColor: "",
   },
   {
-    name: "NA / Vacant Plot",
-    description: "Non-agricultural converted plots ready for construction",
+    name: "Vacant Land",
+    description: "Non-agricultural converted land ready for construction",
     listings: "18,400+",
     image: "/land-types/na-plot.png",
-    href: "/land/na-plot",
+    href: "/land/vacant",
+    badge: null,
+    badgeColor: "",
+  },
+  {
+    name: "Abadi Land",
+    description: "Inhabited village settlement land with residential rights",
+    listings: "6,200+",
+    image: "/land-types/abadi.png",
+    href: "/land/abadi-land",
     badge: "New",
     badgeColor: "bg-amber-500",
   },
@@ -85,9 +94,7 @@ export default function LandTypesBrowse() {
             <Link
               key={type.name}
               href={type.href}
-              className={`group relative overflow-hidden rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 ${
-                index === 0 ? "col-span-2 md:col-span-1 row-span-1 h-52 md:h-52" : "h-444"
-              }`}
+              className={`group relative overflow-hidden rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300  col-span-2 md:col-span-1 row-span-1 h-52 md:h-52`}
             >
               {/* Photo */}
               <Image

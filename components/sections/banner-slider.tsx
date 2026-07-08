@@ -19,17 +19,17 @@ const slides = [
   {
     id: 2,
     image: "/banners/land-banner-2.png",
-    tag: "Residential Plots & NA Land",
-    title: "Ready-to-Build Plots in Approved Layouts",
-    subtitle: "Demarcated residential and NA plots with paved roads, utilities and legal clearances — across 500+ planned townships in every major state.",
-    cta: { label: "Explore Plots", href: "/land/residential-plot" },
+    tag: "Residential Land & NA Land",
+    title: "Ready-to-Build Land in Approved Layouts",
+    subtitle: "Demarcated residential and NA land with paved roads, utilities and legal clearances — across 500+ planned townships in every major state.",
+    cta: { label: "Explore Residential Land", href: "/land/residential-plot" },
   },
   {
     id: 3,
     image: "/banners/land-banner-3.png",
     tag: "Commercial & Industrial Land",
     title: "Prime Commercial Land on Key Corridors",
-    subtitle: "Highway-facing commercial plots, industrial zone parcels and logistics land — verified zoning, road frontage and government approvals confirmed.",
+    subtitle: "Highway-facing commercial land, industrial zone parcels and logistics land — verified zoning, road frontage and government approvals confirmed.",
     cta: { label: "View Commercial Land", href: "/land/commercial-plot" },
   },
   {

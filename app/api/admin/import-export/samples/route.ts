@@ -113,7 +113,7 @@ const SAMPLE_DATA = {
   categories: [
     { name: "Residential", slug: "residential", icon_class: "Home" },
     { name: "Commercial", slug: "commercial", icon_class: "Building2" },
-    { name: "Land/Plot", slug: "land-plot", icon_class: "Landmark" },
+    { name: "Land", slug: "land", icon_class: "Landmark" },
   ],
   states: [
     { name: "Maharashtra", slug: "maharashtra" },

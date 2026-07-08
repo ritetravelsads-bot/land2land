@@ -10,7 +10,7 @@ const TYPE_DISPLAY_NAMES: Record<string, string> = {
   'new-launch': 'New Launch Properties',
   'upcoming': 'Upcoming Projects',
   'luxury-apartments': 'Luxury Apartments',
-  'plots-and-lands': 'Plots and Lands',
+  'plots-and-lands': 'Land and Plots',
   'office-spaces': 'Office Spaces',
   'commercial-properties': 'Commercial Properties',
   'furnished-flats': 'Furnished Flats',
@@ -32,7 +32,7 @@ const TYPE_DESCRIPTIONS: Record<string, string> = {
   'new-launch': 'Discover newly launched properties from top developers in Gurgaon. Be among the first to own.',
   'upcoming': 'Explore upcoming projects launching soon. Book early at pre-launch prices.',
   'luxury-apartments': 'Premium luxury apartments with world-class amenities in Gurgaon.',
-  'plots-and-lands': 'Prime plots and land parcels for your dream home or investment in Gurgaon.',
+  'plots-and-lands': 'Prime land parcels for your dream home or investment in Gurgaon.',
   'commercial-properties': 'Premium commercial spaces for offices, shops, and businesses in Gurgaon.',
   'furnished-flats': 'Fully furnished apartments ready to move in with complete furnishing in Gurgaon.',
 }

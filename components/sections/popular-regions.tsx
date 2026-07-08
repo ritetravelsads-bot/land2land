@@ -8,7 +8,7 @@ import { MapPin, ArrowRight } from "lucide-react"
 const regions = [
   {
     name: "Punjab",
-    description: "Farmland, residential plots & commercial corridors",
+    description: "Farmland, residential land & commercial corridors",
     count: "1,240+",
     image: "/regions/punjab.png",
     href: "/buy?region=punjab",
@@ -16,7 +16,7 @@ const regions = [
   },
   {
     name: "Haryana",
-    description: "Industrial zones, NCR-adjacent plots & highway land",
+    description: "Industrial zones, NCR-adjacent land & highway land",
     count: "980+",
     image: "/regions/haryana.png",
     href: "/buy?region=haryana",

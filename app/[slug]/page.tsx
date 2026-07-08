@@ -72,7 +72,7 @@ const TYPE_SLUG_MAP: Record<string, {
   },
   'plots-and-lands': { 
     field: 'property_type', 
-    value: ['plot', 'land', 'agricultural', 'industrial_land', 'farmland', 'residential_plot', 'commercial_plot']
+    value: ['plot', 'land', 'agricultural', 'industrial_land', 'farmland', 'residential_plot', 'commercial_plot', 'abadi_land']
   },
   'commercial-properties': { 
     field: 'property_type', 
@@ -95,7 +95,7 @@ const TYPE_DISPLAY_NAMES: Record<string, string> = {
   'new-launch': 'New Launch',
   'upcoming': 'Upcoming Projects',
   'luxury-apartments': 'Luxury Apartments',
-  'plots-and-lands': 'Plots and Lands',
+  'plots-and-lands': 'Land and Plots',
   'commercial-properties': 'Commercial Properties',
   'furnished-flats': 'Furnished Flats',
   'office-space': 'Office Spaces',
@@ -106,7 +106,7 @@ const TYPE_DESCRIPTIONS: Record<string, string> = {
   'new-launch': 'Recently launched projects from top developers. Be among the first to own.',
   'upcoming': 'Upcoming projects launching soon. Book and invest early at pre-launch prices.',
   'luxury-apartments': 'Premium luxury apartments with world-class amenities and fine living.',
-  'plots-and-lands': 'Prime plots and land parcels for your dream home or investment.',
+  'plots-and-lands': 'Prime land parcels for your dream home or investment.',
   'commercial-properties': 'Premium commercial spaces for offices, shops, and businesses.',
   'furnished-flats': 'Fully furnished apartments ready to move in with complete furnishing.',
   'office-space': 'Premium office spaces including coworking, managed offices, and private offices for businesses of all sizes.',

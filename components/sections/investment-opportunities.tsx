@@ -20,8 +20,8 @@ const opportunities = [
     iconBg: "bg-emerald-100",
   },
   {
-    title: "Commercial Plot on Highway",
-    description: "High-visibility commercial plot on a fast-growing arterial road with strong rental demand",
+    title: "Commercial Land on Highway",
+    description: "High-visibility commercial land on a fast-growing arterial road with strong rental demand",
     location: "Maharashtra",
     type: "Commercial",
     investment: "₹28 Lakhs",
@@ -48,8 +48,8 @@ const opportunities = [
     iconBg: "bg-blue-100",
   },
   {
-    title: "Residential Plot in Gated Layout",
-    description: "Ready-to-build residential plots in an approved gated layout near a growth corridor",
+    title: "Residential Land in Gated Layout",
+    description: "Ready-to-build residential land in an approved gated layout near a growth corridor",
     location: "Rajasthan",
     type: "Residential",
     investment: "₹22 Lakhs",

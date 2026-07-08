@@ -11,26 +11,27 @@ import { useGeolocation, type GeoLocation } from "@/hooks/use-geolocation"
 
 const PLACEHOLDER_SUGGESTIONS = [
   "Agricultural land in Punjab",
-  "Residential plot near me",
+  "Residential land near me",
   "1 Acre land in Haryana",
-  "Commercial plot on main road",
+  "Commercial land on main road",
   "Industrial land in Gujarat",
   "Land investment in Rajasthan",
-  "Plot near highway",
+  "Land near highway",
   "Farmland with irrigation",
   "Land under 30 lakh",
-  "Corner plot listings",
+  "Corner land listings",
   "Land with water & electricity",
   "Freehold land for sale",
 ]
 
 const CATEGORIES = [
   { name: "Agricultural Land", icon: MapPin, href: "/land/agricultural", color: "bg-green-500/10 text-green-700" },
-  { name: "Residential Plot", icon: Home, href: "/land/residential-plot", color: "bg-emerald-500/10 text-emerald-700" },
-  { name: "Commercial Plot", icon: Building2, href: "/land/commercial-plot", color: "bg-amber-600/10 text-amber-700" },
+  { name: "Residential Land", icon: Home, href: "/land/residential-plot", color: "bg-emerald-500/10 text-emerald-700" },
+  { name: "Commercial Land", icon: Building2, href: "/land/commercial-plot", color: "bg-amber-600/10 text-amber-700" },
   { name: "Industrial Land", icon: Building2, href: "/land/industrial", color: "bg-blue-500/10 text-blue-700" },
   { name: "Farmland", icon: MapPin, href: "/land/farmland", color: "bg-yellow-500/10 text-yellow-700" },
   { name: "Vacant Land", icon: Home, href: "/land/vacant", color: "bg-cyan-500/10 text-cyan-700" },
+  { name: "Abadi Land", icon: Home, href: "/land/abadi-land", color: "bg-orange-500/10 text-orange-700" },
 ]
 
 // Budget categories for quick selection
@@ -52,11 +53,12 @@ const locations = [
 
 const projectTypes = [
   "Agricultural Land",
-  "Residential Plot",
-  "Commercial Plot",
+  "Residential Land",
+  "Commercial Land",
   "Industrial Land",
   "Farmland",
   "Vacant Land",
+  "Abadi Land",
 ]
 
 const projectStatus = ["Available Now", "Clear Title", "Corner Plot", "High ROI Potential"]

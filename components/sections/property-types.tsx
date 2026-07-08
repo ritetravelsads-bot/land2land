@@ -27,8 +27,8 @@ const propertyTypes = [
     link: "/properties?category=luxury",
   },
   {
-    title: "Plots & Land",
-    description: "Residential & Commercial Plots",
+    title: "Land Parcels",
+    description: "Residential & Commercial Land",
     icon: MapPin,
     count: "450+",
     image: "/land-plot-aerial-view.jpg",

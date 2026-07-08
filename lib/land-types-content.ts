@@ -49,12 +49,12 @@ export const LAND_TYPE_CONTENT: Record<LandType, LandTypeContent> = {
   residential_plot: {
     type: "residential_plot",
     slug: "residential-plot",
-    label: "Residential Plot",
-    shortLabel: "Residential Plots",
+    label: "Residential Land",
+    shortLabel: "Residential Land",
     icon: "Home",
-    tagline: "Build your dream home on a ready-to-construct plot",
+    tagline: "Build your dream home on a ready-to-construct land",
     description:
-      "Find residential plots in approved layouts and gated communities. Ready-to-construct parcels with clear titles, road access and utility connections in fast-growing neighbourhoods.",
+      "Find residential land in approved layouts and gated communities. Ready-to-construct parcels with clear titles, road access and utility connections in fast-growing neighbourhoods.",
     heroImage: "/images/land/residential-hero.png",
     highlights: [
       "Approved residential layouts",
@@ -64,26 +64,26 @@ export const LAND_TYPE_CONTENT: Record<LandType, LandTypeContent> = {
     ],
     faqs: [
       {
-        question: "What approvals should a residential plot have?",
+        question: "What approvals should a residential land have?",
         answer:
           "Look for layout approval from the local development authority, a clear title, and that the land is zoned for residential use. RERA registration is a plus for plotted developments.",
       },
       {
-        question: "Can I get a loan to buy a residential plot?",
+        question: "Can I get a loan to buy a residential land?",
         answer:
-          "Yes, most banks offer plot or land loans for approved residential plots, though terms differ from home loans. Approval depends on the plot's documentation and location.",
+          "Yes, most banks offer land loans for approved residential land, though terms differ from home loans. Approval depends on the land's documentation and location.",
       },
     ],
   },
   commercial_plot: {
     type: "commercial_plot",
     slug: "commercial-plot",
-    label: "Commercial Plot",
-    shortLabel: "Commercial Plots",
+    label: "Commercial Land",
+    shortLabel: "Commercial Land",
     icon: "Store",
     tagline: "Prime land for shops, offices and commercial projects",
     description:
-      "Discover commercial plots on main roads, highways and high-footfall locations — ideal for retail, offices, showrooms and mixed-use development with strong rental and appreciation potential.",
+      "Discover commercial land on main roads, highways and high-footfall locations — ideal for retail, offices, showrooms and mixed-use development with strong rental and appreciation potential.",
     heroImage: "/images/land/commercial-hero.png",
     highlights: [
       "High-visibility road frontage",
@@ -93,7 +93,7 @@ export const LAND_TYPE_CONTENT: Record<LandType, LandTypeContent> = {
     ],
     faqs: [
       {
-        question: "What makes a good commercial plot?",
+        question: "What makes a good commercial land?",
         answer:
           "Road frontage, visibility, footfall, commercial zoning, and proximity to business hubs or transport. Confirm the permitted floor-area-ratio (FAR) and land use before buying.",
       },
@@ -188,6 +188,35 @@ export const LAND_TYPE_CONTENT: Record<LandType, LandTypeContent> = {
         question: "How do I verify boundaries of vacant land?",
         answer:
           "Use the survey number to obtain an official survey map, and consider a licensed surveyor to physically demarcate boundaries before purchase.",
+      },
+    ],
+  },
+  abadi_land: {
+    type: "abadi_land",
+    slug: "abadi-land",
+    label: "Abadi Land",
+    shortLabel: "Abadi Land",
+    icon: "Building",
+    tagline: "Inhabited village land with established residential use",
+    description:
+      "Abadi land refers to inhabited or settlement land found in rural and semi-urban areas, typically within village boundaries. These parcels carry historical residential use rights and are increasingly in demand for development near expanding towns.",
+    heroImage: "/images/land/abadi-hero.png",
+    highlights: [
+      "Established village settlement land",
+      "Historical residential use rights",
+      "Proximity to village infrastructure",
+      "Strong demand near expanding towns",
+    ],
+    faqs: [
+      {
+        question: "What is Abadi land?",
+        answer:
+          "Abadi land is the inhabited portion of a village where dwellings and structures exist. It is distinct from agricultural land (khet) and typically falls within the lal dora or extended lal dora boundary of a village.",
+      },
+      {
+        question: "Can Abadi land be bought and sold?",
+        answer:
+          "Yes, Abadi land can be transferred, but the process depends on state-specific rules. Always verify ownership through the revenue records and confirm there are no encumbrances before purchasing.",
       },
     ],
   },

@@ -5,7 +5,7 @@ import { connectDB } from "@/lib/mongodb"
 const PROPERTY_TYPE_MAP: Record<string, string[]> = {
   residential: ["apartment", "villa", "house", "flat", "penthouse", "duplex", "studio", "independent", "row house", "bungalow", "farmhouse"],
   commercial: ["office", "shop", "commercial", "showroom", "warehouse", "retail", "sco", "scf", "multiplex"],
-  plots: ["plot", "land", "agricultural", "industrial land"],
+  plots: ["plot", "land", "agricultural", "industrial land", "abadi_land", "abadi land"],
 }
 
 function getPropertyTypeSlug(propertyType: string): string {

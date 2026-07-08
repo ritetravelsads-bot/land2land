@@ -12,8 +12,8 @@ import { getPropertyUrl } from '@/lib/utils'
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json())
 
-// Plot property types
-const PLOT_TYPES = ['plot', 'land', 'agricultural', 'industrial_land', 'farmland', 'residential_plot', 'commercial_plot']
+// Land property types
+const PLOT_TYPES = ['plot', 'land', 'agricultural', 'industrial_land', 'farmland', 'residential_plot', 'commercial_plot', 'abadi_land']
 
 const SORT_OPTIONS = [
   { value: 'featured', label: 'Featured First' },
@@ -82,7 +82,7 @@ export default function PlotsPropertiesPage() {
                 <span className="text-sm font-medium">All Properties</span>
               </Link>
               <span className="text-muted-foreground">/</span>
-              <span className="text-sm text-muted-foreground">Plots & Land</span>
+              <span className="text-sm text-muted-foreground">Land & Plots</span>
             </div>
 
             {/* Title & Description */}
@@ -91,9 +91,9 @@ export default function PlotsPropertiesPage() {
                 <div className="h-1 w-16 bg-gradient-to-r from-primary to-primary/50 rounded-full" />
                 <span className="text-primary text-sm font-semibold uppercase tracking-wider">Investment Opportunities</span>
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Plots & Land</h1>
+              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Land & Plots</h1>
               <p className="text-muted-foreground max-w-2xl">
-                Premium residential and commercial plots in prime locations. Build your dream home or make a smart 
+                Premium residential and commercial land in prime locations. Build your dream home or make a smart 
                 investment with our curated selection of land parcels.
               </p>
             </div>
@@ -102,15 +102,16 @@ export default function PlotsPropertiesPage() {
             <div className="flex flex-wrap gap-2 mb-6">
               <span className="px-3 py-1.5 text-xs font-medium bg-primary/10 text-primary rounded-full flex items-center gap-1">
                 <LandPlot className="h-3 w-3" />
-                Residential Plots
+                Residential Land
               </span>
-              <span className="px-3 py-1.5 text-xs font-medium bg-primary/10 text-primary rounded-full">Commercial Plots</span>
+              <span className="px-3 py-1.5 text-xs font-medium bg-primary/10 text-primary rounded-full">Commercial Land</span>
               <span className="px-3 py-1.5 text-xs font-medium bg-primary/10 text-primary rounded-full flex items-center gap-1">
                 <TreePine className="h-3 w-3" />
                 Farmland
               </span>
               <span className="px-3 py-1.5 text-xs font-medium bg-primary/10 text-primary rounded-full">Agricultural Land</span>
               <span className="px-3 py-1.5 text-xs font-medium bg-primary/10 text-primary rounded-full">Industrial Land</span>
+              <span className="px-3 py-1.5 text-xs font-medium bg-primary/10 text-primary rounded-full">Abadi Land</span>
             </div>
 
             {/* Stats Bar */}

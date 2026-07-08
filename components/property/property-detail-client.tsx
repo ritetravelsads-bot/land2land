@@ -30,11 +30,12 @@ import { SpecialSectionsRenderer } from "@/components/property/special-section"
 
 const CATEGORY_LABELS: Record<string, string> = {
   agricultural: "Agricultural Land",
-  residential_plot: "Residential Plot",
-  commercial_plot: "Commercial Plot",
+  residential_plot: "Residential Land",
+  commercial_plot: "Commercial Land",
   industrial: "Industrial Land",
   farmland: "Farmland",
   vacant: "Vacant Land",
+  abadi_land: "Abadi Land",
 }
 
 const OWNERSHIP_LABELS: Record<string, string> = {
