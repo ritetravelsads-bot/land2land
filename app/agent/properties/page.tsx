@@ -45,7 +45,7 @@ export default function AgentPropertiesPage() {
   useEffect(() => {
     const loadProperties = async () => {
       try {
-        const res = await fetch("/api/agent/properties")
+        const res = await fetch("/api/agent/properties", { cache: "no-store", credentials: "include" })
         const data = await res.json()
         setProperties(Array.isArray(data) ? data : [])
       } catch (error) {
@@ -173,6 +173,12 @@ export default function AgentPropertiesPage() {
                         <MetaIcon className="h-3 w-3" />
                         {meta.label}
                       </span>
+                      {Number(property.submission_count) > 1 && (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-700">
+                          <RefreshCw className="h-3 w-3" />
+                          {`Attempt #${property.submission_count}`}
+                        </span>
+                      )}
                       <span className="px-2 py-0.5 bg-muted rounded text-xs">
                         {formatPriceToIndian(property.lowest_price)}
                       </span>

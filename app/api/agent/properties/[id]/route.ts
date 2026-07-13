@@ -77,6 +77,7 @@ export async function PUT(
       reviewed_at: _ra,
       reviewed_by: _rb,
       submitted_at: _sa,
+      submission_count: _sc,
       ...safeBody
     } = body as Record<string, any>
 
@@ -95,6 +96,9 @@ export async function PUT(
       ? { _id: new ObjectId(id) }
       : { _id: new ObjectId(id), agent: user._id }
 
+    // Each agent resubmission counts as a new review attempt.
+    const incUpdate = isAdmin ? {} : { $inc: { submission_count: 1 } }
+
     const result = await db.collection("listings").updateOne(ownershipFilter, {
       $set: {
         ...safeBody,
@@ -102,6 +106,7 @@ export async function PUT(
         ...moderationUpdate,
         updated_at: new Date(),
       },
+      ...incUpdate,
     })
 
     if (result.matchedCount === 0) {

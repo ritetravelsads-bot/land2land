@@ -129,6 +129,7 @@ export interface Listing {
   documents?: Partial<Record<LandDocumentKey, LandDocumentFile>>
   review_status?: ReviewStatus
   review_notes?: string      // admin feedback / rejection reason
+  submission_count?: number  // how many times the owner has submitted for review (1 = first)
   submitted_at?: Date | string
   reviewed_at?: Date | string
   reviewed_by?: string       // admin user id

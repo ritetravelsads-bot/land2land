@@ -63,6 +63,7 @@ export async function POST(req: NextRequest) {
       agent: user._id,
       review_status: isAdmin ? "approved" : "pending",
       review_notes: "",
+      submission_count: 1,
       submitted_at: new Date(),
       ...(isAdmin ? { reviewed_at: new Date(), reviewed_by: user._id } : {}),
       created_at: new Date(),
