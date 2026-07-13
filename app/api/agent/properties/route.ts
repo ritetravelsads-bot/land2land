@@ -11,7 +11,12 @@ export async function GET(req: NextRequest) {
 
     const db = await getDatabase()
     // Agents only see their own listings; admins see everything.
-    const query = user.user_type === "admin" ? {} : { agent: user._id }
+    // Match both ObjectId and string forms of `agent` so listings whose owner
+    // field may have been stored as a string still show up.
+    const query =
+      user.user_type === "admin"
+        ? {}
+        : { agent: { $in: [user._id, user._id?.toString()] } }
     const properties = await db
       .collection("listings")
       .find(query)

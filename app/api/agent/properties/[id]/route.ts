@@ -70,14 +70,20 @@ export async function PUT(
     // Admins editing keep the listing approved.
     const isAdmin = user.user_type === "admin"
 
-    // Never let the client override moderation fields directly.
+    // Never let the client override moderation or ownership fields directly.
+    // `agent` in particular is stored as an ObjectId; if the client echoes it
+    // back as a string, it breaks owner-scoped queries and the listing would
+    // disappear from the agent's dashboard after a resubmit.
     const {
+      _id: _id,
+      agent: _agent,
       review_status: _rs,
       review_notes: _rn,
       reviewed_at: _ra,
       reviewed_by: _rb,
       submitted_at: _sa,
       submission_count: _sc,
+      created_at: _ca,
       ...safeBody
     } = body as Record<string, any>
 
@@ -94,7 +100,7 @@ export async function PUT(
     // Agents can only update their own listings; admins can update any.
     const ownershipFilter = isAdmin
       ? { _id: new ObjectId(id) }
-      : { _id: new ObjectId(id), agent: user._id }
+      : { _id: new ObjectId(id), agent: { $in: [user._id, user._id?.toString()] } }
 
     // Each agent resubmission counts as a new review attempt.
     const incUpdate = isAdmin ? {} : { $inc: { submission_count: 1 } }
@@ -137,7 +143,7 @@ export async function DELETE(
     const deleteFilter =
       user.user_type === "admin"
         ? { _id: new ObjectId(id) }
-        : { _id: new ObjectId(id), agent: user._id }
+        : { _id: new ObjectId(id), agent: { $in: [user._id, user._id?.toString()] } }
     const result = await db.collection("listings").deleteOne(deleteFilter)
 
     if (result.deletedCount === 0) {
