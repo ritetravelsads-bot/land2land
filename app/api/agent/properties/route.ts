@@ -10,9 +10,11 @@ export async function GET(req: NextRequest) {
     }
 
     const db = await getDatabase()
+    // Agents only see their own listings; admins see everything.
+    const query = user.user_type === "admin" ? {} : { agent: user._id }
     const properties = await db
       .collection("listings")
-      .find({ agent: user._id || (user.user_type === "admin" ? {} : { $exists: false }) })
+      .find(query)
       .sort({ created_at: -1 })
       .toArray()
 
