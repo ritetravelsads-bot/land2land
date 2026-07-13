@@ -90,17 +90,19 @@ export async function PUT(
           reviewed_by: null,
         }
 
-    const result = await db.collection("listings").updateOne(
-      { _id: new ObjectId(id), agent: user._id },
-      {
-        $set: {
-          ...safeBody,
-          slug,
-          ...moderationUpdate,
-          updated_at: new Date(),
-        },
+    // Agents can only update their own listings; admins can update any.
+    const ownershipFilter = isAdmin
+      ? { _id: new ObjectId(id) }
+      : { _id: new ObjectId(id), agent: user._id }
+
+    const result = await db.collection("listings").updateOne(ownershipFilter, {
+      $set: {
+        ...safeBody,
+        slug,
+        ...moderationUpdate,
+        updated_at: new Date(),
       },
-    )
+    })
 
     if (result.matchedCount === 0) {
       return NextResponse.json({ error: "Property not found or unauthorized" }, { status: 404 })
@@ -126,7 +128,12 @@ export async function DELETE(
     }
 
     const db = await getDatabase()
-    const result = await db.collection("listings").deleteOne({ _id: new ObjectId(id), agent: user._id })
+    // Agents can only delete their own listings; admins can delete any.
+    const deleteFilter =
+      user.user_type === "admin"
+        ? { _id: new ObjectId(id) }
+        : { _id: new ObjectId(id), agent: user._id }
+    const result = await db.collection("listings").deleteOne(deleteFilter)
 
     if (result.deletedCount === 0) {
       return NextResponse.json({ error: "Property not found or unauthorized" }, { status: 404 })

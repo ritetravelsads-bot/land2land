@@ -34,6 +34,7 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
   Code2,
+  ClipboardCheck,
 } from "lucide-react"
 
 type UserRole = "admin" | "agent" | "builder" | "buyer" | "customer"
@@ -66,6 +67,7 @@ const getNavConfig = (role: UserRole): NavSection[] => {
           title: "Management",
           items: [
             { href: "/admin/properties", label: "Properties", icon: Package },
+            { href: "/admin/properties/review", label: "Review Queue", icon: ClipboardCheck },
             { href: "/admin/users", label: "Users", icon: Users },
             { href: "/admin/reviews", label: "Reviews", icon: Star },
             { href: "/admin/tickets", label: "Support Tickets", icon: MessageSquare },
