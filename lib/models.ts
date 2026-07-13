@@ -17,6 +17,7 @@ export const COLLECTIONS = {
   NEWS: "news",
   LEADS: "leads",
   TESTIMONIALS: "testimonials",
+  RERA_REQUESTS: "rera_requests",
 }
 
 // User types
@@ -337,4 +338,107 @@ export interface Testimonial {
   text: string
   is_approved: boolean
   created_at: Date
+}
+
+// --- RERA Registration Requests ---
+// An agent asks the platform for help registering their land with RERA.
+// The request flows through several admin-controlled stages:
+//   submitted           -> agent created the request, waiting for admin
+//   under_review        -> admin is reviewing the request
+//   documents_requested -> admin asked the agent for specific documents (agent action needed)
+//   documents_submitted -> agent uploaded the requested documents (back to admin)
+//   processing          -> admin is processing the RERA registration
+//   approved            -> RERA obtained (rera_number is set)
+//   rejected            -> admin rejected the request (rejection_reason is set)
+export type ReraRequestStatus =
+  | "submitted"
+  | "under_review"
+  | "documents_requested"
+  | "documents_submitted"
+  | "processing"
+  | "approved"
+  | "rejected"
+
+export const RERA_REQUEST_STATUSES: ReraRequestStatus[] = [
+  "submitted",
+  "under_review",
+  "documents_requested",
+  "documents_submitted",
+  "processing",
+  "approved",
+  "rejected",
+]
+
+export const RERA_STATUS_LABELS: Record<ReraRequestStatus, string> = {
+  submitted: "Submitted",
+  under_review: "Under Review",
+  documents_requested: "Documents Requested",
+  documents_submitted: "Documents Submitted",
+  processing: "Processing",
+  approved: "Approved",
+  rejected: "Rejected",
+}
+
+export type ReraApplicantType = "individual" | "company" | "partnership" | "huf" | "society"
+
+export const RERA_APPLICANT_TYPE_LABELS: Record<ReraApplicantType, string> = {
+  individual: "Individual",
+  company: "Company",
+  partnership: "Partnership Firm",
+  huf: "HUF (Hindu Undivided Family)",
+  society: "Society / Trust",
+}
+
+// A document the admin requests from the agent for a RERA registration.
+export interface ReraRequestedDocument {
+  key: string                 // unique id for this requested item
+  label: string               // what the admin is asking for, e.g. "Title Deed"
+  note?: string               // extra instructions from the admin
+  required: boolean
+  requested_at: string | Date
+  file?: LandDocumentFile     // the file the agent uploads in response
+  uploaded_at?: string | Date
+}
+
+// A single entry in the request's stage/activity timeline.
+export interface ReraStageEvent {
+  status: ReraRequestStatus
+  note?: string
+  by: string                  // user id who made the change
+  by_role: "agent" | "admin"
+  at: string | Date
+}
+
+export interface ReraRequest {
+  _id?: string
+
+  // Who + which land
+  agent: string               // agent user id
+  agent_name?: string
+  agent_email?: string
+  listing: string             // listing / property id
+  listing_name?: string       // denormalized for quick display
+  listing_slug?: string
+
+  // Applicant details supplied by the agent
+  applicant_name: string
+  applicant_type: ReraApplicantType
+  contact_phone: string
+  contact_email: string
+  project_location?: string
+  land_area?: string          // free text, e.g. "5 acres"
+  estimated_value?: number
+  aadhaar_or_pan?: string     // applicant identity reference
+  agent_notes?: string        // any message from the agent
+
+  // Admin-managed workflow
+  status: ReraRequestStatus
+  requested_documents: ReraRequestedDocument[]
+  stage_history: ReraStageEvent[]
+  admin_notes?: string        // internal / feedback note shown to the agent
+  rera_number?: string        // set when approved
+  rejection_reason?: string   // set when rejected
+
+  created_at: Date | string
+  updated_at: Date | string
 }

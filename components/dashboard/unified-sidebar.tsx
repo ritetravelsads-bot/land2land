@@ -35,6 +35,7 @@ import {
   PanelLeftOpen,
   Code2,
   ClipboardCheck,
+  ShieldCheck,
 } from "lucide-react"
 
 type UserRole = "admin" | "agent" | "builder" | "buyer" | "customer"
@@ -68,6 +69,7 @@ const getNavConfig = (role: UserRole): NavSection[] => {
           items: [
             { href: "/admin/properties", label: "Properties", icon: Package },
             { href: "/admin/properties/review", label: "Review Queue", icon: ClipboardCheck },
+            { href: "/admin/rera-requests", label: "RERA Requests", icon: ShieldCheck },
             { href: "/admin/users", label: "Users", icon: Users },
             { href: "/admin/reviews", label: "Reviews", icon: Star },
             { href: "/admin/tickets", label: "Support Tickets", icon: MessageSquare },
@@ -109,6 +111,7 @@ const getNavConfig = (role: UserRole): NavSection[] => {
           items: [
             { href: "/agent/dashboard", label: "Dashboard", icon: Home },
             { href: "/agent/properties", label: "Properties", icon: Package },
+            { href: "/agent/rera", label: "RERA Requests", icon: ShieldCheck },
             { href: "/agent/reviews", label: "Reviews", icon: Star },
             { href: "/agent/tickets", label: "Support Tickets", icon: MessageSquare },
             { href: "/agent/profile", label: "Profile", icon: User },
