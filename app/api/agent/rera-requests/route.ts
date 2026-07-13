@@ -71,10 +71,12 @@ export async function POST(req: NextRequest) {
     const db = await getDatabase()
 
     // Verify the listing exists and (for agents) belongs to them.
+    // Listings store `agent` as the user's ObjectId, so match on that.
+    // Also accept the string form to stay robust to either storage type.
     const listingQuery: Record<string, unknown> =
       user.user_type === "admin"
         ? { _id: listingObjectId }
-        : { _id: listingObjectId, agent: user._id.toString() }
+        : { _id: listingObjectId, agent: { $in: [user._id, user._id.toString()] } }
     const listing = await db.collection(COLLECTIONS.LISTINGS).findOne(listingQuery)
     if (!listing) {
       return NextResponse.json({ error: "Property not found or not yours." }, { status: 404 })
