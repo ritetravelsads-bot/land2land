@@ -379,31 +379,28 @@ export default function AdvancedSearch() {
   }
 
   return (
-    <div className="relative -mt-10 z-10 max-w-5xl mx-auto px-4">
+    <div className="relative -mt-6 z-10 max-w-5xl mx-auto px-4">
       {/* Fixed min-height to prevent CLS */}
       <div
-        className="bg-[var(--card)] rounded-3xl shadow-2xl overflow-hidden min-h-[220px] md:min-h-[200px] border border-[var(--land-border)]/50"
+        className="bg-[var(--card)] rounded-2xl shadow-lg overflow-hidden min-h-[160px] md:min-h-[140px] border border-[var(--land-border)]/50"
         ref={searchRef}
       >
         {/* Main Search Area */}
-        <div className="p-6 md:p-8 bg-gradient-to-br from-[var(--card)] to-[var(--muted)]">
-          <div className="flex items-center gap-3 mb-5">
-            <div className="p-2.5 rounded-xl bg-[var(--land-primary)]/10">
-              <Sparkles className="h-5 w-5 text-[var(--land-primary)]" />
+        <div className="p-4 md:p-5 bg-gradient-to-br from-[var(--card)] to-[var(--muted)]">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="p-1.5 rounded-lg bg-[var(--land-primary)]/10">
+              <Sparkles className="h-4 w-4 text-[var(--land-primary)]" />
             </div>
-            <div>
-              <h2 className="text-lg md:text-xl font-bold text-[var(--land-earth)]">Find Verified Land Across India</h2>
-              <p className="text-xs text-[var(--land-earth)]/60">Explore agricultural, residential, commercial & industrial land with verified ownership records and transparent pricing.</p>
-            </div>
+            <h2 className="text-sm md:text-base font-bold text-[var(--land-earth)]">Find Verified Land Across India</h2>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-2">
             <div className="flex-1 relative group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--land-sage)] group-focus-within:text-[var(--land-primary)] transition-colors" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--land-sage)] group-focus-within:text-[var(--land-primary)] transition-colors" />
               <input
                 ref={inputRef}
                 type="text"
-                placeholder={searchTerm ? "" : `Search "${displayedPlaceholder}|"`}
+                placeholder={searchTerm ? "" : `Search "${displayedPlaceholder}"`}
                 value={searchTerm}
                 onChange={(e) => {
                   setSearchTerm(e.target.value)
@@ -417,7 +414,7 @@ export default function AdvancedSearch() {
                   }
                 }}
                 className={cn(
-                  "w-full h-14 pl-12 pr-12 text-base rounded-2xl",
+                  "w-full h-11 pl-10 pr-10 text-sm rounded-xl",
                   "border-2 border-[var(--land-border)] bg-white",
                   "focus:outline-none focus:border-[var(--land-primary)] focus:ring-2 focus:ring-[var(--land-primary)]/20",
                   "transition-all duration-300",
@@ -431,7 +428,7 @@ export default function AdvancedSearch() {
                   type="button"
                   onClick={isListening ? stopListening : startListening}
                   className={cn(
-                    "absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-lg transition-all duration-300",
+                    "absolute right-2.5 top-1/2 -translate-y-1/2 p-1.5 rounded-lg transition-all duration-300",
                     isListening
                       ? "bg-red-100/60 text-red-600 voice-pulse"
                       : "text-[var(--land-sage)] hover:text-[var(--land-primary)] hover:bg-[var(--land-primary)]/10"

@@ -71,11 +71,11 @@ function FirstSlideStatic() {
 function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: boolean }) {
   return (
     <div className="absolute inset-0 flex items-center">
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-10">
-        <div className="max-w-2xl space-y-4 md:space-y-6">
+      <div className="w-full max-w-7xl mx-auto px-5 md:px-8">
+        <div className="max-w-xl space-y-2 md:space-y-3">
           <span
             className={cn(
-              "inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs md:text-sm font-semibold transition-all duration-700",
+              "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs font-semibold transition-all duration-700",
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
@@ -90,24 +90,16 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
           >
             {slide.title}
           </h2>
-          <p
-            className={cn(
-              "text-base md:text-xl text-white/90 max-w-xl text-pretty transition-all duration-700 delay-200",
-              active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
-            )}
-          >
-            {slide.subtitle}
-          </p>
           <div
             className={cn(
-              "transition-all duration-700 delay-300",
+              "transition-all duration-700 delay-200",
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
-            <Button asChild size="lg" className="bg-[var(--land-ochre)] hover:bg-[var(--land-ochre)]/85 text-[var(--land-earth)] font-bold h-12 px-7 text-base shadow-lg">
+            <Button asChild size="sm" className="bg-[var(--land-ochre)] hover:bg-[var(--land-ochre)]/85 text-[var(--land-earth)] font-bold h-10 px-5 text-sm shadow-lg">
               <Link href={slide.cta.href}>
                 {slide.cta.label}
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-1.5 h-4 w-4" />
               </Link>
             </Button>
           </div>
