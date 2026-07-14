@@ -100,62 +100,59 @@ html {
 }
 
 :root {
-  /* Land2Land - Village Green Theme */
-  /* Warm parchment base, muted sage greens, ochre accents */
+  /* Land2Land - Earthy Green Theme */
+  /* Professional Earthy Green & Natural Earth Tones */
+  --background: oklch(0.99 0 0);
+  --foreground: oklch(0.15 0 0);
 
-  /* Base: warm parchment/cream — evokes old maps and open fields */
-  --background: oklch(0.975 0.008 88);
-  --foreground: oklch(0.18 0.02 90);
+  /* Primary: Earthy Green (#125007) */
+  --primary: oklch(0.38 0.11 140);
+  --primary-foreground: oklch(1 0 0);
 
-  /* Primary: deep forest/village green */
-  --primary: oklch(0.35 0.10 145);
-  --primary-foreground: oklch(0.98 0.005 90);
+  /* Secondary: Deep Earth Brown for contrast */
+  --secondary: oklch(0.25 0.08 40);
+  --secondary-foreground: oklch(1 0 0);
 
-  /* Secondary: warm dark earth/soil brown */
-  --secondary: oklch(0.28 0.045 65);
-  --secondary-foreground: oklch(0.97 0.005 90);
+  /* Accent: Lighter sage green for CTAs and highlights */
+  --accent: oklch(0.58 0.12 140);
+  --accent-foreground: oklch(1 0 0);
 
-  /* Accent: warm ochre/wheat — sunlit field */
-  --accent: oklch(0.72 0.09 78);
-  --accent-foreground: oklch(0.18 0.02 90);
+  /* Neutrals - Natural whites and warm grays */
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.48 0.01 140);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0 0);
 
-  /* Muted: sage-tinted cream for section alternation */
-  --muted: oklch(0.945 0.012 120);
-  --muted-foreground: oklch(0.44 0.025 120);
-
-  /* Card: clean off-white with a hint of warmth */
-  --card: oklch(0.99 0.004 90);
-  --card-foreground: oklch(0.18 0.02 90);
-  --popover: oklch(0.99 0.004 90);
-  --popover-foreground: oklch(0.18 0.02 90);
-
-  /* UI elements */
-  --border: oklch(0.885 0.015 100);
-  --input: oklch(0.97 0.006 90);
-  --ring: oklch(0.35 0.10 145);
+  /* UI Elements */
+  --border: oklch(0.92 0 0);
+  --input: oklch(0.98 0 0);
+  --ring: oklch(0.38 0.11 140);
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(1 0 0);
 
-  /* Charts — green/ochre palette */
-  --chart-1: oklch(0.35 0.10 145);
-  --chart-2: oklch(0.52 0.09 145);
-  --chart-3: oklch(0.72 0.09 78);
-  --chart-4: oklch(0.62 0.07 120);
-  --chart-5: oklch(0.28 0.045 65);
+  /* Chart colors - earthy green variations */
+  --chart-1: oklch(0.38 0.11 140);
+  --chart-2: oklch(0.58 0.12 140);
+  --chart-3: oklch(0.7 0.08 140);
+  --chart-4: oklch(0.48 0.12 140);
+  --chart-5: oklch(0.43 0.08 140);
 
-  --radius: 0.625rem;
+  /* Radius - modern, soft curves */
+  --radius: 0.75rem;
 
   /* Sidebar */
-  --sidebar: oklch(0.965 0.010 100);
-  --sidebar-foreground: oklch(0.18 0.02 90);
+  --sidebar: oklch(0.98 0 0);
+  --sidebar-foreground: oklch(0.15 0 0);
 
-  /* Land2Land Brand — village palette */
-  --land-primary: #2d6a1f;
-  --land-sage: #7a9e5c;
-  --land-ochre: #c5902a;
-  --land-cream: #f7f4ec;
-  --land-earth: #5c4a2a;
-  --land-border: #ddd9ce;
+  /* Land2Land Brand Colors */
+  --land-primary: #125007;
+  --land-accent: #6ba82b;
+  --land-earth: #8b7355;
+  --land-cream: #faf8f3;
+  --land-dark: #1a1a1a;
+  --land-border: #e8e6e1;
 }
 
 .dark {

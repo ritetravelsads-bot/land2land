@@ -35,64 +35,63 @@ const testimonials = [
 
 export default function FarmTestimonials() {
   return (
-    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-[var(--muted)] border-t border-[var(--land-border)]">
+    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-white border-t border-border/50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10 md:mb-12">
-          <span className="inline-block px-3 py-1 rounded-full bg-[var(--land-primary)]/10 text-[var(--land-primary)] text-xs font-semibold uppercase tracking-widest mb-3">
-            Real Stories
-          </span>
-          <h2 className="text-2xl md:text-3xl font-bold text-[var(--land-earth)] mb-2">
-            Trusted by Buyers, Sellers &amp; Investors
-          </h2>
-          <p className="text-[var(--land-earth)]/60 text-sm md:text-base">
-            Join thousands who&apos;ve found their perfect land on Land2Land
-          </p>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Trusted by Buyers, Sellers & Investors</h2>
+          <p className="text-gray-600 text-sm md:text-base">Join thousands who&apos;ve found their perfect land on Land2Land</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-[var(--card)] rounded-2xl p-6 border border-[var(--land-border)] hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+              className="bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-shadow"
             >
               {/* Rating */}
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} size={15} className="fill-[var(--land-ochre)] text-[var(--land-ochre)]" />
+                  <Star
+                    key={i}
+                    size={16}
+                    className="fill-yellow-400 text-yellow-400"
+                  />
                 ))}
               </div>
 
               {/* Quote */}
-              <p className="text-[var(--land-earth)]/75 text-sm leading-relaxed mb-6 italic">
+              <p className="text-gray-700 text-sm leading-relaxed mb-6 italic">
                 &quot;{testimonial.quote}&quot;
               </p>
 
               {/* Author */}
-              <div className="flex items-center gap-3 pt-4 border-t border-[var(--land-border)]">
-                <div className="w-10 h-10 rounded-full bg-[var(--land-primary)] flex items-center justify-center text-white text-sm font-bold shrink-0">
+              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+                <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-white text-sm font-bold shrink-0">
                   {testimonial.initials}
                 </div>
                 <div>
-                  <p className="font-semibold text-[var(--land-earth)] text-sm">{testimonial.name}</p>
-                  <p className="text-xs text-[var(--land-earth)]/55">{testimonial.title}</p>
+                  <p className="font-semibold text-gray-900 text-sm">{testimonial.name}</p>
+                  <p className="text-xs text-gray-600">{testimonial.title}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Stats row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-[var(--land-border)]">
-          {[
-            { value: "15,000+", label: "Successful Transactions" },
-            { value: "₹2,500+ Cr", label: "Land Traded" },
-            { value: "98%", label: "Customer Satisfaction" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-3xl md:text-4xl font-bold text-[var(--land-primary)] mb-1">{stat.value}</p>
-              <p className="text-[var(--land-earth)]/60 text-sm">{stat.label}</p>
-            </div>
-          ))}
+        {/* Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-gray-200">
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-bold text-slate-800 mb-1">15,000+</p>
+            <p className="text-gray-600 text-sm">Successful Transactions</p>
+          </div>
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-bold text-slate-800 mb-1">₹2,500+ Cr</p>
+            <p className="text-gray-600 text-sm">Land Traded</p>
+          </div>
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-bold text-slate-800 mb-1">98%</p>
+            <p className="text-gray-600 text-sm">Customer Satisfaction</p>
+          </div>
         </div>
       </div>
     </section>

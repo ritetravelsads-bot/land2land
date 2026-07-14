@@ -85,8 +85,8 @@ export default function MegaMenuHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-[var(--land-border)] bg-[var(--background)]">
-        <nav className="flex items-center justify-between px-3 py-1 md:px-5">
+      <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white shadow-sm">
+        <nav className="flex items-center justify-between px-4 py-3 md:px-6">
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image
               src="/images/logo.png"
@@ -101,31 +101,31 @@ export default function MegaMenuHeader() {
           </Link>
 
           {/* Desktop Mega Menu Navigation */}
-          <div className="hidden lg:flex items-center gap-0.5">
+          <div className="hidden lg:flex items-center gap-1">
             <Link
               href="/"
-              className="px-3 py-1.5 text-xs font-medium text-[var(--land-earth)] hover:text-[var(--land-primary)] transition-colors"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
             >
               Home
             </Link>
 
             <Link
               href="/buy"
-              className="px-3 py-1.5 text-xs font-medium text-[var(--land-earth)] hover:text-[var(--land-primary)] transition-colors"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
             >
               Buy
             </Link>
 
             <Link
               href="/sell"
-              className="px-3 py-1.5 text-xs font-medium text-[var(--land-earth)] hover:text-[var(--land-primary)] transition-colors"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
             >
               Sell
             </Link>
 
             <Link
               href="/find-agent"
-              className="px-3 py-1.5 text-xs font-medium text-[var(--land-earth)] hover:text-[var(--land-primary)] transition-colors"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
             >
               Find Agent
             </Link>
@@ -133,10 +133,10 @@ export default function MegaMenuHeader() {
             {/* Land Types Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="px-3 py-1.5 text-xs font-medium text-[var(--land-earth)] hover:text-[var(--land-primary)] transition-colors flex items-center gap-0.5">
-                  <Map className="h-3.5 w-3.5" />
-                  Types
-                  <ChevronDown className="h-3 w-3" />
+                <button className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors flex items-center gap-1">
+                  <Map className="h-4 w-4" />
+                  Land Types
+                  <ChevronDown className="h-4 w-4" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-56">
@@ -152,10 +152,10 @@ export default function MegaMenuHeader() {
 
             <Link
               href="/investments"
-              className="px-3 py-1.5 text-xs font-medium text-[var(--land-earth)] hover:text-[var(--land-primary)] transition-colors flex items-center gap-0.5"
+              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors flex items-center gap-1"
             >
-              <TrendingUp className="h-3.5 w-3.5" />
-              Invest
+              <TrendingUp className="h-4 w-4" />
+              Investments
             </Link>
           </div>
 
@@ -165,7 +165,7 @@ export default function MegaMenuHeader() {
           </div>
 
           {/* Desktop Auth */}
-          <div className="hidden lg:flex items-center gap-1.5">
+          <div className="hidden lg:flex items-center gap-2">
             {mounted ? (
               currentUser ? (
                 <DropdownMenu>
@@ -173,9 +173,9 @@ export default function MegaMenuHeader() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="text-xs h-8 px-2.5 border-[var(--land-primary)] text-[var(--land-primary)] bg-transparent hover:bg-[var(--muted)]"
+                      className="text-sm h-9 border-[#125007] text-[#125007] bg-transparent"
                     >
-                      <User size={14} className="mr-1" />
+                      <User size={16} className="mr-2" />
                       {currentUser.username}
                     </Button>
                   </DropdownMenuTrigger>
@@ -204,11 +204,11 @@ export default function MegaMenuHeader() {
                     asChild
                     variant="outline"
                     size="sm"
-                    className="text-xs h-8 px-2.5 border-[var(--land-primary)] text-[var(--land-primary)] bg-transparent hover:bg-[var(--muted)]"
+                    className="text-sm h-9 border-[#125007] text-[#125007] bg-transparent hover:bg-[#125007]/5"
                   >
-                    <Link href="/auth/login">List</Link>
+                    <Link href="/auth/login">List Land</Link>
                   </Button>
-                  <Button asChild size="sm" className="text-xs h-8 px-2.5 bg-[var(--land-primary)] hover:bg-[var(--land-primary)]/85">
+                  <Button asChild size="sm" className="text-sm h-9 bg-[#125007] hover:bg-[#1d3610]">
                     <Link href="/auth/register">Sign Up</Link>
                   </Button>
                 </>
@@ -229,7 +229,7 @@ export default function MegaMenuHeader() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-[var(--land-border)] bg-[var(--background)] fixed top-16 left-0 right-0 bottom-0 z-40 overflow-y-auto">
+        <div className="lg:hidden border-t border-gray-200 bg-white fixed top-16 left-0 right-0 bottom-0 z-40 overflow-y-auto">
           <div className="flex flex-col gap-1 px-4 py-3">
             {/* Mobile Search Bar */}
             <div className="mb-3">
@@ -238,39 +238,39 @@ export default function MegaMenuHeader() {
 
             <Link
               href="/"
-              className="px-3 py-2 text-sm font-medium text-[var(--land-earth)] hover:text-[var(--land-primary)] hover:bg-[var(--muted)] rounded transition-colors"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] hover:bg-gray-50 rounded transition-colors"
             >
               Home
             </Link>
 
             <Link
               href="/buy"
-              className="px-3 py-2 text-sm font-medium text-[var(--land-earth)] hover:text-[var(--land-primary)] hover:bg-[var(--muted)] rounded transition-colors"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] hover:bg-gray-50 rounded transition-colors"
             >
               Buy
             </Link>
 
             <Link
               href="/sell"
-              className="px-3 py-2 text-sm font-medium text-[var(--land-earth)] hover:text-[var(--land-primary)] hover:bg-[var(--muted)] rounded transition-colors"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] hover:bg-gray-50 rounded transition-colors"
             >
               Sell
             </Link>
 
             <Link
               href="/find-agent"
-              className="px-3 py-2 text-sm font-medium text-[var(--land-earth)] hover:text-[var(--land-primary)] hover:bg-[var(--muted)] rounded transition-colors"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] hover:bg-gray-50 rounded transition-colors"
             >
               Find Agent
             </Link>
 
-            <div className="border-t border-[var(--land-border)] my-2" />
-            <p className="px-3 py-1 text-xs font-semibold text-[var(--land-sage)] uppercase">Land Types</p>
+            <div className="border-t border-gray-100 my-2" />
+            <p className="px-3 py-1 text-xs font-semibold text-gray-500 uppercase">Land Types</p>
             {landTypes.map((type) => (
               <Link
                 key={type.name}
                 href={type.href}
-                className="px-3 py-2 text-sm text-[var(--land-earth)]/70 hover:text-[var(--land-primary)] hover:bg-[var(--muted)] rounded transition-colors"
+                className="px-3 py-2 text-sm text-gray-600 hover:text-[#125007] hover:bg-gray-50 rounded transition-colors"
               >
                 {type.name}
               </Link>
@@ -278,12 +278,12 @@ export default function MegaMenuHeader() {
 
             <Link
               href="/investments"
-              className="px-3 py-2 text-sm font-medium text-[var(--land-earth)] hover:text-[var(--land-primary)] hover:bg-[var(--muted)] rounded transition-colors"
+              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] hover:bg-gray-50 rounded transition-colors"
             >
               Investments
             </Link>
 
-            <div className="border-t border-[var(--land-border)] my-2" />
+            <div className="border-t border-gray-100 my-2" />
             {mounted && (
               <div className="flex gap-2 mt-3">
                 {currentUser ? (
@@ -292,14 +292,14 @@ export default function MegaMenuHeader() {
                       asChild
                       variant="outline"
                       size="sm"
-                      className="text-xs h-9 flex-1 border-[var(--land-primary)] text-[var(--land-primary)] bg-transparent hover:bg-[var(--muted)]"
+                      className="text-xs h-9 flex-1 border-[#125007] text-[#125007] bg-transparent"
                     >
                       <Link href={getDashboardLink()}>{getDashboardLabel()}</Link>
                     </Button>
                     <Button
                       onClick={handleLogout}
                       size="sm"
-                      className="text-xs h-9 flex-1 bg-[var(--land-primary)] hover:bg-[var(--land-primary)]/85"
+                      className="text-xs h-9 flex-1 bg-[#125007] hover:bg-[#1d3610]"
                     >
                       Logout
                     </Button>
@@ -310,11 +310,11 @@ export default function MegaMenuHeader() {
                       asChild
                       variant="outline"
                       size="sm"
-                      className="text-xs h-9 flex-1 border-[var(--land-primary)] text-[var(--land-primary)] bg-transparent hover:bg-[var(--muted)]"
+                      className="text-xs h-9 flex-1 border-[#125007] text-[#125007] bg-transparent"
                     >
                       <Link href="/auth/login">List Land</Link>
                     </Button>
-                    <Button asChild size="sm" className="text-xs h-9 flex-1 bg-[var(--land-primary)] hover:bg-[var(--land-primary)]/85">
+                    <Button asChild size="sm" className="text-xs h-9 flex-1 bg-[#125007] hover:bg-[#1d3610]">
                       <Link href="/auth/register">Sign Up</Link>
                     </Button>
                   </>

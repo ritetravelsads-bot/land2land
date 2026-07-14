@@ -35,49 +35,37 @@ const features = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="w-full py-16 md:py-24 px-4 md:px-6 lg:px-8 bg-[var(--land-primary)] relative overflow-hidden">
-      {/* Subtle field-texture overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.06]"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(0deg,transparent,transparent 38px,#fff 38px,#fff 40px), repeating-linear-gradient(90deg,transparent,transparent 38px,#fff 38px,#fff 40px)",
-        }}
-      />
-      <div className="relative max-w-7xl mx-auto">
+    <section className="w-full py-16 md:py-24 px-4 md:px-6 lg:px-8 bg-slate-900">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <span className="inline-block px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[var(--land-ochre)] text-xs font-semibold uppercase tracking-widest mb-3">
-            Why Land2Land
-          </span>
-          <h2 className="text-white mb-4 text-3xl md:text-4xl font-bold text-balance">
-            India&apos;s Most Trusted Land Marketplace
-          </h2>
-          <p className="text-white/65 text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs font-semibold uppercase tracking-widest text-amber-400 mb-3">Why Land2Land</p>
+          <h2 className="text-white mb-4 text-3xl md:text-4xl font-bold">India&apos;s Most Trusted Land Marketplace</h2>
+          <p className="text-slate-400 text-base max-w-2xl mx-auto">
             Buy, sell and invest in agricultural, residential, commercial and industrial land with confidence.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {features.map((feature, index) => {
             const Icon = feature.icon
-            const iconStyles = [
-              "bg-[#7a9e5c]/30 text-[#b8d98b]",
-              "bg-[var(--land-ochre)]/20 text-[var(--land-ochre)]",
-              "bg-sky-900/40 text-sky-300",
-              "bg-emerald-900/40 text-emerald-300",
-              "bg-amber-900/30 text-amber-300",
-              "bg-teal-900/40 text-teal-300",
+            const iconColors = [
+              "bg-green-900/60 text-green-400",
+              "bg-amber-900/60 text-amber-400",
+              "bg-blue-900/60 text-blue-400",
+              "bg-purple-900/60 text-purple-400",
+              "bg-orange-900/60 text-orange-400",
+              "bg-teal-900/60 text-teal-400",
             ]
             return (
               <div
                 key={feature.title}
-                className="bg-white/8 rounded-2xl p-6 hover:bg-white/12 transition-all duration-300 border border-white/10 group"
+                className="bg-slate-800/60 rounded-xl p-6 hover:bg-slate-800 transition-all duration-300 border border-slate-700/50"
               >
-                <div className={`w-11 h-11 rounded-xl ${iconStyles[index]} flex items-center justify-center mb-4`}>
-                  <Icon size={22} />
+                <div className={`w-12 h-12 rounded-lg ${iconColors[index]} flex items-center justify-center mb-4`}>
+                  <Icon size={24} />
                 </div>
                 <h3 className="text-base font-bold text-white mb-2">{feature.title}</h3>
-                <p className="text-white/55 text-sm leading-relaxed">{feature.description}</p>
+                <p className="text-slate-400 text-sm leading-relaxed">{feature.description}</p>
               </div>
             )
           })}
