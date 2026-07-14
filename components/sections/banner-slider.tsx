@@ -59,8 +59,8 @@ function FirstSlideStatic() {
           className="object-cover"
         />
       </div>
-      {/* Gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+      {/* Gradient overlay for text readability — village green tint */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--land-primary)]/85 via-[var(--land-primary)]/45 to-transparent" />
       <SlideContent slide={slide} active />
       {/* SEO H1 - Visually hidden but accessible to search engines */}
       <h1 className="sr-only">Land2Land — Buy, Sell & Invest in All Types of Land in India</h1>
@@ -75,7 +75,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
         <div className="max-w-2xl space-y-4 md:space-y-6">
           <span
             className={cn(
-              "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-white text-xs md:text-sm font-semibold transition-all duration-700",
+              "inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs md:text-sm font-semibold transition-all duration-700",
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
@@ -131,18 +131,18 @@ const SlideImage = memo(function SlideImage({
 
   return (
     <>
-      <Image
-        src={slide.image || "/placeholder.svg"}
-        alt={slide.title || "Banner"}
-        fill
-        loading="lazy"
-        sizes="100vw"
-        quality={78}
-        fetchPriority="low"
-        decoding="async"
-        className={cn("object-cover", !isActive && "opacity-0")}
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+            <Image
+              src={slide.image || "/placeholder.svg"}
+              alt={slide.title || "Banner"}
+              fill
+              loading="lazy"
+              sizes="100vw"
+              quality={78}
+              fetchPriority="low"
+              decoding="async"
+              className={cn("object-cover", !isActive && "opacity-0")}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[var(--land-primary)]/85 via-[var(--land-primary)]/45 to-transparent" />
     </>
   )
 })
@@ -203,15 +203,15 @@ function BannerSlider() {
         ))}
 
       {/* Slide indicators */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5">
         {slides.map((slide, index) => (
           <button
             key={slide.id}
             onClick={() => startTransition(() => setCurrentSlide(index))}
             aria-label={`Go to slide ${index + 1}`}
             className={cn(
-              "h-2 rounded-full transition-all duration-300",
-              index === currentSlide ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/80",
+              "h-2.5 rounded-full transition-all duration-300",
+              index === currentSlide ? "w-9 bg-white shadow-lg" : "w-2.5 bg-white/60 hover:bg-white/90",
             )}
           />
         ))}

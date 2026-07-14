@@ -382,24 +382,24 @@ export default function AdvancedSearch() {
     <div className="relative -mt-10 z-10 max-w-5xl mx-auto px-4">
       {/* Fixed min-height to prevent CLS */}
       <div
-        className="bg-white rounded-2xl shadow-2xl overflow-hidden min-h-[220px] md:min-h-[200px]"
+        className="bg-[var(--card)] rounded-3xl shadow-2xl overflow-hidden min-h-[220px] md:min-h-[200px] border border-[var(--land-border)]/50"
         ref={searchRef}
       >
         {/* Main Search Area */}
-        <div className="p-6 md:p-8">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="p-2 rounded-lg bg-primary/10">
-              <Sparkles className="h-5 w-5 text-primary" />
+        <div className="p-6 md:p-8 bg-gradient-to-br from-[var(--card)] to-[var(--muted)]">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="p-2.5 rounded-xl bg-[var(--land-primary)]/10">
+              <Sparkles className="h-5 w-5 text-[var(--land-primary)]" />
             </div>
             <div>
-              <h2 className="text-lg md:text-xl font-bold text-foreground">Find Verified Land Across India</h2>
-              <p className="text-xs text-muted-foreground">Explore agricultural, residential, commercial & industrial land with verified ownership records and transparent pricing. Buy and sell directly with confidence.</p>
+              <h2 className="text-lg md:text-xl font-bold text-[var(--land-earth)]">Find Verified Land Across India</h2>
+              <p className="text-xs text-[var(--land-earth)]/60">Explore agricultural, residential, commercial & industrial land with verified ownership records and transparent pricing.</p>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1 relative group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-[var(--land-sage)] group-focus-within:text-[var(--land-primary)] transition-colors" />
               <input
                 ref={inputRef}
                 type="text"
@@ -417,11 +417,11 @@ export default function AdvancedSearch() {
                   }
                 }}
                 className={cn(
-                  "w-full h-14 pl-12 pr-12 text-base rounded-xl",
-                  "border-2 border-border bg-muted/30",
-                  "focus:outline-none focus:border-primary focus:bg-background",
+                  "w-full h-14 pl-12 pr-12 text-base rounded-2xl",
+                  "border-2 border-[var(--land-border)] bg-white",
+                  "focus:outline-none focus:border-[var(--land-primary)] focus:ring-2 focus:ring-[var(--land-primary)]/20",
                   "transition-all duration-300",
-                  "placeholder:text-muted-foreground/60"
+                  "placeholder:text-[var(--land-earth)]/40 text-[var(--land-earth)]"
                 )}
               />
 
@@ -433,8 +433,8 @@ export default function AdvancedSearch() {
                   className={cn(
                     "absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-lg transition-all duration-300",
                     isListening
-                      ? "bg-destructive/10 text-destructive voice-pulse"
-                      : "text-muted-foreground hover:text-primary hover:bg-primary/10"
+                      ? "bg-red-100/60 text-red-600 voice-pulse"
+                      : "text-[var(--land-sage)] hover:text-[var(--land-primary)] hover:bg-[var(--land-primary)]/10"
                   )}
                   aria-label={isListening ? "Stop voice search" : "Start voice search"}
                   title={isListening ? 'Listening... Try "1 acre land near me"' : 'Search by voice - Try "1 acre land near me"'}
@@ -450,20 +450,20 @@ export default function AdvancedSearch() {
 
               {/* Suggestions Dropdown */}
               {showSuggestions && suggestions.length > 0 && !showVoiceResults && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-border rounded-xl shadow-xl max-h-72 overflow-y-auto z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-[var(--land-border)] rounded-2xl shadow-xl max-h-72 overflow-y-auto z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                   <div className="p-2">
-                    <p className="px-3 py-2 text-xs font-medium text-muted-foreground uppercase tracking-wider">Suggestions</p>
+                    <p className="px-3 py-2 text-xs font-medium text-[var(--land-sage)] uppercase tracking-wider">Suggestions</p>
                     {suggestions.map((suggestion, index) => (
                       <button
                         key={index}
                         onClick={() => handleSuggestionClick(suggestion)}
-                        className="w-full text-left px-3 py-2.5 rounded-lg hover:bg-muted transition-colors flex items-center gap-3 group"
+                        className="w-full text-left px-3 py-2.5 rounded-lg hover:bg-[var(--muted)] transition-colors flex items-center gap-3 group"
                       >
-                        <div className="p-1.5 rounded-lg bg-muted group-hover:bg-primary/10 transition-colors">
-                          <Search className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary" />
+                        <div className="p-1.5 rounded-lg bg-[var(--muted)] group-hover:bg-[var(--land-primary)]/10 transition-colors">
+                          <Search className="h-3.5 w-3.5 text-[var(--land-sage)] group-hover:text-[var(--land-primary)]" />
                         </div>
-                        <span className="text-sm text-foreground">{suggestion}</span>
-                        <ArrowRight className="h-4 w-4 text-muted-foreground ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <span className="text-sm text-[var(--land-earth)]">{suggestion}</span>
+                        <ArrowRight className="h-4 w-4 text-[var(--land-sage)] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
                       </button>
                     ))}
                   </div>
