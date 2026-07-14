@@ -4,19 +4,19 @@ import { MapPin, Search, TrendingUp, Shield, Building2 } from "lucide-react"
 
 export default function SearchMapPromo() {
   return (
-    <section className="w-full py-12 md:py-16 overflow-hidden bg-gradient-to-br from-[#f2efe9] via-white to-[#eef2f7]">
+    <section className="w-full py-12 md:py-16 overflow-hidden bg-[var(--land-cream)] border-t border-[var(--land-border)]">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
           {/* Left Content */}
           <div className="flex-1 space-y-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/8 text-slate-700 text-xs font-semibold border border-slate-200">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--land-primary)]/8 text-[var(--land-primary)] text-xs font-semibold border border-[var(--land-primary)]/20">
               <MapPin size={14} />
               Pan-India Land Search
             </div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 text-balance">
-              Search Any Land Type <span className="text-slate-700">Anywhere</span> in India
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--land-earth)] text-balance">
+              Search Any Land Type <span className="text-[var(--land-primary)]">Anywhere</span> in India
             </h2>
-            <p className="text-gray-600 leading-relaxed max-w-md">
+            <p className="text-[var(--land-earth)]/65 leading-relaxed max-w-md">
               Compare prices across agricultural, residential, commercial, industrial, abadi land and farmland categories — with verified ownership records and live market data.
             </p>
 
@@ -40,7 +40,7 @@ export default function SearchMapPromo() {
               </div>
             </div>
 
-            <Button asChild size="lg" className="bg-slate-900 hover:bg-slate-800 text-white h-12 px-6">
+            <Button asChild size="lg" className="bg-[var(--land-primary)] hover:bg-[var(--land-primary)]/85 text-white h-12 px-6">
               <Link href="/buy">
                 <Search size={18} className="mr-2" />
                 Explore Land Map
