@@ -19,7 +19,7 @@ const landTypes = [
     image: "/land-types/residential.png",
     href: "/land/residential-plot",
     badge: "High Demand",
-    badgeColor: "bg-blue-600",
+    badgeColor: "bg-primary",
   },
   {
     name: "Commercial Land",
@@ -70,7 +70,7 @@ const landTypes = [
 
 export default function LandTypesBrowse() {
   return (
-    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-[var(--background)] border-t border-[var(--land-border)]">
+    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-gradient-to-b from-[var(--background)] to-[#f4f9ef] border-t border-[var(--land-border)]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-end justify-between mb-8 md:mb-10">

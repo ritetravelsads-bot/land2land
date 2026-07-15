@@ -72,6 +72,8 @@ export default function PropertyFormStep2({ formData, onChange }: any) {
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           >
             <option value="bigha">Bigha</option>
+            <option value="biswa">Biswa</option>
+            <option value="killa">Killa</option>
             <option value="acre">Acre</option>
             <option value="hectare">Hectare</option>
             <option value="sqft">Sq Ft</option>
@@ -125,14 +127,25 @@ export default function PropertyFormStep2({ formData, onChange }: any) {
       {/* Road access width + Water level */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Approach Road Width (ft)</label>
-          <input
-            type="number"
-            value={formData.road_width || ""}
-            onChange={(e) => onChange("road_width", e.target.value)}
-            placeholder="e.g., 20"
-            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-          />
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Approach Road Width</label>
+          <div className="flex gap-2">
+            <input
+              type="number"
+              value={formData.road_width || ""}
+              onChange={(e) => onChange("road_width", e.target.value)}
+              placeholder="e.g., 20"
+              className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
+            />
+            <select
+              value={formData.road_width_unit || "ft"}
+              onChange={(e) => onChange("road_width_unit", e.target.value)}
+              className="w-28 px-2 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
+            >
+              <option value="ft">Feet (ft)</option>
+              <option value="karam">Karam</option>
+              <option value="meter">Meter</option>
+            </select>
+          </div>
         </div>
         <div>
           <label className="text-xs font-medium text-muted-foreground block mb-1.5">Water Level / Borewell Depth (ft)</label>
@@ -143,6 +156,23 @@ export default function PropertyFormStep2({ formData, onChange }: any) {
             placeholder="e.g., 80 ft or Seasonal"
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           />
+        </div>
+      </div>
+
+      {/* Water Type */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Water Type</label>
+          <select
+            value={formData.water_type || ""}
+            onChange={(e) => onChange("water_type", e.target.value)}
+            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
+          >
+            <option value="">Not specified</option>
+            <option value="meetha">Meetha (Sweet / Fresh)</option>
+            <option value="khara">Khara (Saline / Brackish)</option>
+          </select>
+          <p className="text-xs text-muted-foreground mt-1">मीठा / खारा — quality of groundwater</p>
         </div>
       </div>
 

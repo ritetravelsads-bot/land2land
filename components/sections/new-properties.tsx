@@ -31,7 +31,7 @@ export default function NewProperties() {
 
   if (loading) {
     return (
-      <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-white border-t border-border/50">
+      <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-[#f4f9ef] border-t border-border/50">
         <div className="max-w-7xl mx-auto">
           <div className="h-8 w-48 bg-muted animate-pulse rounded mb-4" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -47,15 +47,16 @@ export default function NewProperties() {
   const visibleProperties = properties.slice(scrollIndex, scrollIndex + 3)
 
   return (
-    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-white border-t border-border/50">
+    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-[#f4f9ef] border-t border-border/50">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <div className="flex items-center gap-2 mb-1">
-              <Clock size={20} className="text-blue-600" />
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Newly Listed</h2>
-            </div>
-            <p className="text-sm text-gray-500">Fresh land listings added across all categories</p>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-2">
+              <Clock size={12} />
+              Just Added
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-primary">Fresh Land Listings</h2>
+            <p className="text-sm text-gray-600">Newly added verified land across every category</p>
           </div>
           {properties.length > 3 && (
             <div className="hidden md:flex items-center gap-2">
@@ -83,7 +84,7 @@ export default function NewProperties() {
           {visibleProperties.length > 0 ? (
             visibleProperties.map((property) => (
               <Link key={property._id} href={getPropertyUrl(property)} className="group block">
-                <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-200 h-full flex flex-col">
+                <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-primary/15 hover:border-primary/40 h-full flex flex-col">
                   <div className="relative h-44 bg-gray-100 overflow-hidden">
                     <img
                       src={property.main_thumbnail || property.images?.[0] || "/placeholder.jpg"}
@@ -92,14 +93,14 @@ export default function NewProperties() {
                       loading="lazy"
                       onError={(e) => { e.currentTarget.src = "/placeholder.jpg" }}
                     />
-                    <div className="absolute top-3 left-3 bg-white/90 text-gray-700 px-2 py-0.5 rounded-full text-xs font-medium flex items-center gap-1 shadow">
+                    <div className="absolute top-3 left-3 bg-primary text-primary-foreground px-2 py-0.5 rounded-full text-xs font-medium flex items-center gap-1 shadow">
                       <Clock size={10} />
                       New
                     </div>
                   </div>
 
                   <div className="p-4 flex flex-col gap-2.5 flex-1">
-                    <h3 className="font-semibold text-sm text-gray-900 line-clamp-2 group-hover:text-slate-600 transition-colors">
+                    <h3 className="font-semibold text-sm text-gray-900 line-clamp-2 group-hover:text-primary transition-colors">
                       {property.property_name}
                     </h3>
 
@@ -110,7 +111,7 @@ export default function NewProperties() {
 
                     <div className="flex flex-wrap gap-1.5">
                       {(property.area_value || property.area_sqft) && (
-                        <span className="text-xs bg-stone-100 text-stone-600 px-2 py-0.5 rounded flex items-center gap-1">
+                        <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded flex items-center gap-1">
                           <Maximize2 size={10} />
                           {property.area_value
                             ? `${property.area_value} ${property.area_unit || "acre"}`
@@ -125,7 +126,7 @@ export default function NewProperties() {
                     </div>
 
                     <div className="mt-auto pt-2 border-t border-gray-100">
-                      <p className="text-sm font-bold text-slate-800">
+                      <p className="text-sm font-bold text-primary">
                         {property.price_range || formatPriceRange(property.lowest_price, property.max_price)}
                       </p>
                     </div>
@@ -141,7 +142,7 @@ export default function NewProperties() {
         </div>
 
         <div className="flex justify-center pt-8">
-          <Button asChild className="bg-slate-900 hover:bg-slate-800 text-white">
+          <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
             <Link href="/buy">View All New Listings</Link>
           </Button>
         </div>
