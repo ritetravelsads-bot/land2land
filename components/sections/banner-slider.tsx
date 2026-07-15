@@ -10,7 +10,7 @@ import { ArrowRight, MapPin } from "lucide-react"
 const slides = [
   {
     id: 1,
-    image: "/banners/land-banner-1.png",
+    image: "/banners/banner-all.png",
     tag: "All Land Types — One Platform",
     title: "Every Type of Land, One Marketplace",
     subtitle: "Plots, farms, commercial sites, industrial parcels — 1 lakh+ verified listings across India with clear titles, live pricing and ownership records.",
@@ -18,26 +18,42 @@ const slides = [
   },
   {
     id: 2,
-    image: "/banners/land-banner-2.png",
-    tag: "Residential Land & NA Land",
-    title: "Ready-to-Build Land in Approved Layouts",
-    subtitle: "Demarcated residential and NA land with paved roads, utilities and legal clearances — across 500+ planned townships in every major state.",
+    image: "/banners/banner-residential.png",
+    tag: "Residential Land & NA Plots",
+    title: "Ready-to-Build Residential Land",
+    subtitle: "Demarcated residential and NA land in approved layouts with paved roads, utilities and legal clearances — across 500+ planned townships.",
     cta: { label: "Explore Residential Land", href: "/land/residential-plot" },
   },
   {
     id: 3,
-    image: "/banners/land-banner-3.png",
-    tag: "Commercial & Industrial Land",
+    image: "/banners/banner-commercial.png",
+    tag: "Commercial Land",
     title: "Prime Commercial Land on Key Corridors",
-    subtitle: "Highway-facing commercial land, industrial zone parcels and logistics land — verified zoning, road frontage and government approvals confirmed.",
+    subtitle: "Highway-facing commercial land with verified zoning, road frontage and government approvals — ideal for retail, offices and mixed-use.",
     cta: { label: "View Commercial Land", href: "/land/commercial-plot" },
   },
   {
     id: 4,
-    image: "/banners/land-banner-4.png",
-    tag: "Agricultural & Farmland",
-    title: "Invest in Productive Farmland",
-    subtitle: "Irrigated agricultural land, managed orchards and mixed-crop farms — with verified water rights, soil reports and clear title documents.",
+    image: "/banners/banner-industrial.png",
+    tag: "Industrial Land",
+    title: "Industrial & Logistics Land Parcels",
+    subtitle: "Large industrial-zone plots with wide access roads, power availability and clear titles — in notified industrial belts near major highways.",
+    cta: { label: "View Industrial Land", href: "/land/industrial-plot" },
+  },
+  {
+    id: 5,
+    image: "/banners/banner-agricultural.png",
+    tag: "Agricultural Land",
+    title: "Fertile Agricultural Land",
+    subtitle: "Irrigated crop land with verified water rights, soil reports and clear title documents — productive plots ready for cultivation.",
+    cta: { label: "Browse Agricultural Land", href: "/land/agricultural-land" },
+  },
+  {
+    id: 6,
+    image: "/banners/banner-farmland.png",
+    tag: "Farmland & Orchards",
+    title: "Invest in Managed Farmland",
+    subtitle: "Managed orchards and mixed-crop farms with lush plantations — a green, appreciating asset with clear ownership and steady yields.",
     cta: { label: "Browse Farmland", href: "/land/agricultural-land" },
   },
 ]
@@ -49,7 +65,7 @@ function FirstSlideStatic() {
     <div className="absolute inset-0 z-10">
       <div className="absolute inset-0">
         <Image
-          src="/banners/land-banner-1.png"
+          src="/banners/banner-all.png"
           alt="Land2Land — Buy, Sell and Invest in Every Type of Land Across India"
           fill
           priority
@@ -59,8 +75,6 @@ function FirstSlideStatic() {
           className="object-cover"
         />
       </div>
-      {/* Gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
       <SlideContent slide={slide} active />
       {/* SEO H1 - Visually hidden but accessible to search engines */}
       <h1 className="sr-only">Land2Land — Buy, Sell & Invest in All Types of Land in India</h1>
@@ -72,10 +86,10 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
   return (
     <div className="absolute inset-0 flex items-center">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-10">
-        <div className="max-w-2xl space-y-4 md:space-y-6">
+        <div className="max-w-2xl space-y-4 md:space-y-6 rounded-2xl bg-emerald-950/35 backdrop-blur-md p-6 md:p-8 ring-1 ring-white/15">
           <span
             className={cn(
-              "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/25 text-white text-xs md:text-sm font-semibold transition-all duration-700",
+              "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/90 text-white text-xs md:text-sm font-semibold transition-all duration-700",
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
@@ -84,7 +98,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
           </span>
           <h2
             className={cn(
-              "text-3xl md:text-5xl lg:text-6xl font-bold text-white text-balance leading-tight transition-all duration-700 delay-100",
+              "text-3xl md:text-5xl lg:text-6xl font-bold text-white text-balance leading-tight transition-all duration-700 delay-100 [text-shadow:0_2px_12px_rgba(0,0,0,0.35)]",
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
@@ -92,7 +106,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
           </h2>
           <p
             className={cn(
-              "text-base md:text-xl text-white/90 max-w-xl text-pretty transition-all duration-700 delay-200",
+              "text-base md:text-xl text-white max-w-xl text-pretty transition-all duration-700 delay-200 [text-shadow:0_1px_8px_rgba(0,0,0,0.35)]",
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
@@ -142,7 +156,6 @@ const SlideImage = memo(function SlideImage({
         decoding="async"
         className={cn("object-cover", !isActive && "opacity-0")}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
     </>
   )
 })
