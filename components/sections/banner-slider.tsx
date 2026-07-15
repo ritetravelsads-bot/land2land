@@ -13,7 +13,7 @@ const slides = [
     image: "/banners/banner-all.png",
     tag: "All Land Types — One Platform",
     title: "Every Type of Land, One Marketplace",
-    subtitle: "Plots, farms, commercial sites, industrial parcels — 1 lakh+ verified listings across India with clear titles, live pricing and ownership records.",
+    subtitle: "1 lakh+ verified listings across India with clear titles and live pricing.",
     cta: { label: "Browse All Land", href: "/buy" },
   },
   {
@@ -21,7 +21,7 @@ const slides = [
     image: "/banners/banner-residential.png",
     tag: "Residential Land & NA Plots",
     title: "Ready-to-Build Residential Land",
-    subtitle: "Demarcated residential and NA land in approved layouts with paved roads, utilities and legal clearances — across 500+ planned townships.",
+    subtitle: "Demarcated plots in approved layouts with paved roads and legal clearances.",
     cta: { label: "Explore Residential Land", href: "/land/residential-plot" },
   },
   {
@@ -29,7 +29,7 @@ const slides = [
     image: "/banners/banner-commercial.png",
     tag: "Commercial Land",
     title: "Prime Commercial Land on Key Corridors",
-    subtitle: "Highway-facing commercial land with verified zoning, road frontage and government approvals — ideal for retail, offices and mixed-use.",
+    subtitle: "Highway-facing land with verified zoning and government approvals.",
     cta: { label: "View Commercial Land", href: "/land/commercial-plot" },
   },
   {
@@ -37,7 +37,7 @@ const slides = [
     image: "/banners/banner-industrial.png",
     tag: "Industrial Land",
     title: "Industrial & Logistics Land Parcels",
-    subtitle: "Large industrial-zone plots with wide access roads, power availability and clear titles — in notified industrial belts near major highways.",
+    subtitle: "Industrial-zone plots with wide access roads and power availability.",
     cta: { label: "View Industrial Land", href: "/land/industrial-plot" },
   },
   {
@@ -45,7 +45,7 @@ const slides = [
     image: "/banners/banner-agricultural.png",
     tag: "Agricultural Land",
     title: "Fertile Agricultural Land",
-    subtitle: "Irrigated crop land with verified water rights, soil reports and clear title documents — productive plots ready for cultivation.",
+    subtitle: "Irrigated crop land with verified water rights and clear titles.",
     cta: { label: "Browse Agricultural Land", href: "/land/agricultural-land" },
   },
   {
@@ -53,7 +53,7 @@ const slides = [
     image: "/banners/banner-farmland.png",
     tag: "Farmland & Orchards",
     title: "Invest in Managed Farmland",
-    subtitle: "Managed orchards and mixed-crop farms with lush plantations — a green, appreciating asset with clear ownership and steady yields.",
+    subtitle: "Managed orchards and mixed-crop farms — a green, appreciating asset.",
     cta: { label: "Browse Farmland", href: "/land/agricultural-land" },
   },
 ]
@@ -86,7 +86,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
   return (
     <div className="absolute inset-0 flex items-center">
       <div className="w-full max-w-7xl mx-auto px-6 md:px-10">
-        <div className="max-w-2xl space-y-4 md:space-y-6 rounded-2xl bg-emerald-950/35 backdrop-blur-md p-6 md:p-8 ring-1 ring-white/15">
+        <div className="max-w-2xl space-y-4 md:space-y-6">
           <span
             className={cn(
               "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/90 text-white text-xs md:text-sm font-semibold transition-all duration-700",
