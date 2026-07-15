@@ -120,7 +120,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
-            <Button asChild size="lg" className="bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold h-12 px-7 text-base">
+            <Button asChild size="lg" className="bg-[var(--land-ochre)] hover:bg-[var(--land-ochre)]/85 text-[var(--land-earth)] font-bold h-12 px-7 text-base shadow-lg">
               <Link href={slide.cta.href}>
                 {slide.cta.label}
                 <ArrowRight className="ml-2 h-5 w-5" />

@@ -70,19 +70,19 @@ const landTypes = [
 
 export default function LandTypesBrowse() {
   return (
-    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-gradient-to-b from-white to-[#f4f9ef] border-t border-border/50">
+    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-gradient-to-b from-[var(--background)] to-[#f4f9ef] border-t border-[var(--land-border)]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-end justify-between mb-8 md:mb-10">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary/70 mb-2">Browse by Category</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-balance">
+            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--land-sage)] mb-2">Browse by Category</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[var(--land-earth)] text-balance">
               Every Type of Land,<br className="hidden sm:block" /> One Marketplace
             </h2>
           </div>
           <Link
             href="/buy"
-            className="hidden md:flex items-center gap-1.5 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors shrink-0"
+            className="hidden md:flex items-center gap-1.5 text-sm font-medium text-[var(--land-sage)] hover:text-[var(--land-primary)] transition-colors shrink-0"
           >
             View all <ArrowRight size={14} />
           </Link>
@@ -138,7 +138,7 @@ export default function LandTypesBrowse() {
         <div className="flex justify-center pt-6 md:hidden">
           <Link
             href="/buy"
-            className="flex items-center gap-1.5 text-sm font-medium text-slate-700 border border-slate-300 px-5 py-2 rounded-full hover:bg-slate-50 transition-colors"
+            className="flex items-center gap-1.5 text-sm font-medium text-[var(--land-primary)] border border-[var(--land-primary)]/40 px-5 py-2 rounded-full hover:bg-[var(--muted)] transition-colors"
           >
             View all land types <ArrowRight size={14} />
           </Link>
