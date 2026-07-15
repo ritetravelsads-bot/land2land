@@ -231,7 +231,6 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
             className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
           >
             <option value="freehold">Freehold</option>
-            <option value="leasehold">Leasehold</option>
             <option value="cooperative">Co-operative Society</option>
             <option value="power_of_attorney">Power of Attorney</option>
           </select>
@@ -336,18 +335,23 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
       {/* Key Highlights */}
       <div>
         <label className="text-xs font-medium text-muted-foreground block mb-1.5">
-          Key Highlights (one per line)
+          Key Highlights (one per line or comma-separated)
         </label>
         <textarea
           value={(formData.project_highlights || []).join("\n")}
           onChange={(e) => {
-            const lines = e.target.value.split("\n").filter((line: string) => line.trim())
-            onChange("project_highlights", lines)
+            const items = e.target.value
+              .split(/[\n,]/)
+              .map((item: string) => item.trim())
+              .filter((item: string) => item)
+            onChange("project_highlights", items)
           }}
-          placeholder={"Fertile black soil land\nNearest highway 2 km\nYear-round water (borewell + canal)\nClear title, registry ready\nGood road access from main village"}
+          placeholder={"Fertile black soil land, Nearest highway 2 km\nYear-round water (borewell + canal)\nClear title, registry ready\nGood road access from main village"}
           className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring resize-none h-28"
         />
-        <p className="text-xs text-muted-foreground mt-1">Each line becomes a bullet point on the listing page</p>
+        <p className="text-xs text-muted-foreground mt-1">
+          Separate highlights with a new line or a comma — each becomes a bullet point on the listing page
+        </p>
       </div>
 
       {/* Land Documents */}
