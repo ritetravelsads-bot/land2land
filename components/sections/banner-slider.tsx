@@ -75,6 +75,8 @@ function FirstSlideStatic() {
           className="object-cover"
         />
       </div>
+      {/* Very light dark overlay to reduce brightness */}
+      <div className="absolute inset-0 bg-black/25" />
       <SlideContent slide={slide} active />
       {/* SEO H1 - Visually hidden but accessible to search engines */}
       <h1 className="sr-only">Land2Land — Buy, Sell & Invest in All Types of Land in India</h1>
@@ -156,6 +158,8 @@ const SlideImage = memo(function SlideImage({
         decoding="async"
         className={cn("object-cover", !isActive && "opacity-0")}
       />
+      {/* Very light dark overlay to reduce brightness */}
+      <div className={cn("absolute inset-0 bg-black/25", !isActive && "opacity-0")} />
     </>
   )
 })
