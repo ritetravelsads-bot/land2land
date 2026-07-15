@@ -19,7 +19,7 @@ const landTypes = [
     image: "/land-types/residential.png",
     href: "/land/residential-plot",
     badge: "High Demand",
-    badgeColor: "bg-blue-600",
+    badgeColor: "bg-primary",
   },
   {
     name: "Commercial Land",
@@ -70,12 +70,12 @@ const landTypes = [
 
 export default function LandTypesBrowse() {
   return (
-    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-white border-t border-border/50">
+    <section className="w-full py-12 md:py-16 px-3 md:px-4 bg-gradient-to-b from-white to-[#f4f9ef] border-t border-border/50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-end justify-between mb-8 md:mb-10">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-2">Browse by Category</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-primary/70 mb-2">Browse by Category</p>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-balance">
               Every Type of Land,<br className="hidden sm:block" /> One Marketplace
             </h2>

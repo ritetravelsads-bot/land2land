@@ -102,6 +102,11 @@ export default function Home() {
       <BannerSlider />
       <AdvancedSearch />
 
+      {/* Fresh Land Listings — shown first, right after search */}
+      <Suspense fallback={<div className="h-80 bg-[#f4f9ef] animate-pulse" />}>
+        <NewProperties />
+      </Suspense>
+
       {/* Browse by Land Type — bento grid */}
       <Suspense fallback={<div className="h-64 bg-white animate-pulse" />}>
         <LandTypesBrowse />
@@ -125,11 +130,6 @@ export default function Home() {
       {/* Lands For You / Browse by Region */}
       <Suspense fallback={<div className="h-64 bg-slate-50 animate-pulse" />}>
         <PopularRegions />
-      </Suspense>
-
-      {/* New Properties */}
-      <Suspense fallback={<div className="h-80 bg-gray-50 animate-pulse" />}>
-        <NewProperties />
       </Suspense>
 
       {/* Popular Locations pill strip */}
