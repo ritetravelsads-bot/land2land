@@ -26,6 +26,10 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
   const [developers, setDevelopers] = useState<Option[]>([])
   const [loadingDevelopers, setLoadingDevelopers] = useState(false)
   const [slugManuallyEdited, setSlugManuallyEdited] = useState(!!formData.slug)
+  // Raw text for the Key Highlights textarea so spaces aren't stripped while typing
+  const [highlightsText, setHighlightsText] = useState<string>(
+    Array.isArray(formData.project_highlights) ? formData.project_highlights.join("\n") : "",
+  )
 
   // Handle property name change - auto-generate slug if not manually edited
   const handlePropertyNameChange = useCallback(
@@ -338,9 +342,11 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
           Key Highlights (one per line or comma-separated)
         </label>
         <textarea
-          value={(formData.project_highlights || []).join("\n")}
+          value={highlightsText}
           onChange={(e) => {
-            const items = e.target.value
+            const raw = e.target.value
+            setHighlightsText(raw)
+            const items = raw
               .split(/[\n,]/)
               .map((item: string) => item.trim())
               .filter((item: string) => item)
