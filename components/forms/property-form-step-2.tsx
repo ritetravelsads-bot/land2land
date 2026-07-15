@@ -1,6 +1,32 @@
 "use client"
 
+import { useEffect } from "react"
 import { formatPriceToIndian } from "@/lib/utils"
+
+// Approximate conversion of each land unit to square feet (standard India values)
+const UNIT_TO_SQFT: Record<string, number> = {
+  sqft: 1,
+  sqyd: 9,
+  acre: 43560,
+  hectare: 107639,
+  bigha: 27000,
+  biswa: 1350,
+  killa: 43560,
+  marla: 272.25,
+  kanal: 5445,
+}
+
+const UNIT_LABELS: Record<string, string> = {
+  bigha: "Bigha",
+  biswa: "Biswa",
+  killa: "Killa",
+  acre: "Acre",
+  hectare: "Hectare",
+  sqft: "Sq Ft",
+  sqyd: "Sq Yard",
+  marla: "Marla",
+  kanal: "Kanal",
+}
 
 export default function PropertyFormStep2({ formData, onChange }: any) {
   // Helper to display formatted price preview
@@ -11,6 +37,38 @@ export default function PropertyFormStep2({ formData, onChange }: any) {
     return formatPriceToIndian(numValue)
   }
 
+  const areaValue = parseFloat(formData.area_value)
+  const areaUnit = formData.area_unit || "bigha"
+  const totalPrice = parseFloat(formData.lowest_price)
+  const unitLabel = UNIT_LABELS[areaUnit] || "Unit"
+
+  // Auto-calculate area in Sq Ft whenever land area or unit changes
+  useEffect(() => {
+    if (!isNaN(areaValue) && areaValue > 0) {
+      const factor = UNIT_TO_SQFT[areaUnit] ?? 1
+      const sqft = Math.round(areaValue * factor)
+      if (String(sqft) !== String(formData.area_sqft)) {
+        onChange("area_sqft", sqft)
+      }
+    } else if (formData.area_sqft) {
+      onChange("area_sqft", "")
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [areaValue, areaUnit])
+
+  // Auto-calculate price per unit whenever total price or land area changes
+  useEffect(() => {
+    if (!isNaN(areaValue) && areaValue > 0 && !isNaN(totalPrice) && totalPrice > 0) {
+      const perUnit = Math.round(totalPrice / areaValue)
+      if (String(perUnit) !== String(formData.price_per_unit)) {
+        onChange("price_per_unit", perUnit)
+      }
+    } else if (formData.price_per_unit) {
+      onChange("price_per_unit", "")
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [areaValue, totalPrice])
+
   return (
     <div className="space-y-5">
       <div>
@@ -19,37 +77,20 @@ export default function PropertyFormStep2({ formData, onChange }: any) {
       </div>
 
       {/* Price */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Total Price (₹) *</label>
-          <input
-            type="number"
-            value={formData.lowest_price}
-            onChange={(e) => onChange("lowest_price", e.target.value)}
-            placeholder="e.g., 5000000"
-            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-          />
-          {formData.lowest_price && (
-            <p className="text-xs text-primary mt-1 font-medium">
-              Display: ₹{getPricePreview(formData.lowest_price)}
-            </p>
-          )}
-        </div>
-        <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Maximum / Asking Price (₹)</label>
-          <input
-            type="number"
-            value={formData.max_price}
-            onChange={(e) => onChange("max_price", e.target.value)}
-            placeholder="If range, enter upper price"
-            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
-          />
-          {formData.max_price && (
-            <p className="text-xs text-primary mt-1 font-medium">
-              Display: ₹{getPricePreview(formData.max_price)}
-            </p>
-          )}
-        </div>
+      <div>
+        <label className="text-xs font-medium text-muted-foreground block mb-1.5">Total Price (₹) *</label>
+        <input
+          type="number"
+          value={formData.lowest_price}
+          onChange={(e) => onChange("lowest_price", e.target.value)}
+          placeholder="e.g., 5000000"
+          className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
+        />
+        {formData.lowest_price && (
+          <p className="text-xs text-primary mt-1 font-medium">
+            Display: ₹{getPricePreview(formData.lowest_price)}
+          </p>
+        )}
       </div>
 
       {/* Area */}
@@ -86,12 +127,12 @@ export default function PropertyFormStep2({ formData, onChange }: any) {
           <label className="text-xs font-medium text-muted-foreground block mb-1.5">Area in Sq Ft</label>
           <input
             type="number"
-            value={formData.area_sqft}
-            onChange={(e) => onChange("area_sqft", e.target.value)}
-            placeholder="Total sq ft (for search)"
-            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
+            value={formData.area_sqft || ""}
+            readOnly
+            placeholder="Auto-calculated"
+            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-muted/50 text-muted-foreground cursor-not-allowed focus:outline-none"
           />
-          <p className="text-xs text-muted-foreground mt-1">Used for search &amp; sorting</p>
+          <p className="text-xs text-muted-foreground mt-1">Auto-calculated from area &amp; unit (approx.)</p>
         </div>
       </div>
 
@@ -108,18 +149,20 @@ export default function PropertyFormStep2({ formData, onChange }: any) {
           />
         </div>
         <div>
-          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Price per Bigha / Acre (₹)</label>
+          <label className="text-xs font-medium text-muted-foreground block mb-1.5">Price per {unitLabel} (₹)</label>
           <input
             type="number"
             value={formData.price_per_unit || ""}
-            onChange={(e) => onChange("price_per_unit", e.target.value)}
-            placeholder="e.g., 200000"
-            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-input focus:outline-none focus:ring-1 focus:ring-ring"
+            readOnly
+            placeholder="Auto-calculated"
+            className="w-full px-3 py-2 text-sm border border-border rounded-md bg-muted/50 text-muted-foreground cursor-not-allowed focus:outline-none"
           />
-          {formData.price_per_unit && (
+          {formData.price_per_unit ? (
             <p className="text-xs text-primary mt-1 font-medium">
-              Display: ₹{getPricePreview(formData.price_per_unit)}
+              Display: ₹{getPricePreview(formData.price_per_unit)} / {unitLabel}
             </p>
+          ) : (
+            <p className="text-xs text-muted-foreground mt-1">Auto-calculated from total price ÷ area</p>
           )}
         </div>
       </div>
