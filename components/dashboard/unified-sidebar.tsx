@@ -20,7 +20,6 @@ import {
   MessageSquare,
   BookOpen,
   Search,
-  Upload,
   Heart,
   FileText,
   Settings,
@@ -96,10 +95,6 @@ const getNavConfig = (role: UserRole): NavSection[] => {
             { href: "/admin/seo", label: "SEO", icon: Search },
             { href: "/admin/head-tags", label: "Head Tags", icon: Code2 },
           ],
-        },
-        {
-          title: "Tools",
-          items: [{ href: "/admin/import-export", label: "Import/Export", icon: Upload }],
         },
       ]
     case "agent":

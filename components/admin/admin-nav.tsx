@@ -18,7 +18,6 @@ import {
   LogOut,
   MessageCircle,
   Search,
-  Upload,
   UserPlus,
   ClipboardCheck,
 } from "lucide-react"
@@ -67,10 +66,6 @@ export default function AdminNav() {
         { href: "/admin/blog", label: "Blog", icon: BookOpen },
         { href: "/admin/seo", label: "SEO", icon: Search },
       ],
-    },
-    {
-      title: "Tools",
-      items: [{ href: "/admin/import-export", label: "Import/Export", icon: Upload }],
     },
   ]
 
