@@ -16,7 +16,6 @@ import {
   MessageSquare,
   BookOpen,
   LogOut,
-  LayoutGrid,
   MessageCircle,
   Search,
   Upload,
@@ -66,7 +65,6 @@ export default function AdminNav() {
       title: "Content",
       items: [
         { href: "/admin/blog", label: "Blog", icon: BookOpen },
-        { href: "/admin/homepage-sections", label: "Homepage Sections", icon: LayoutGrid },
         { href: "/admin/seo", label: "SEO", icon: Search },
       ],
     },

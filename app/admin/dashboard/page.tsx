@@ -60,7 +60,6 @@ export default function AdminDashboardPage() {
     { label: "Manage Properties", href: "/admin/properties", icon: Package },
     { label: "Manage Leads", href: "/admin/leads", icon: UserPlus },
     { label: "Manage Users", href: "/admin/users", icon: Users },
-    { label: "Homepage Sections", href: "/admin/homepage-sections", icon: Building2 },
   ]
 
   const configurations = [
