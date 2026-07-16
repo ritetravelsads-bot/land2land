@@ -25,7 +25,12 @@ interface Option {
 export default function PropertyFormStep1({ formData, onChange }: any) {
   const [developers, setDevelopers] = useState<Option[]>([])
   const [loadingDevelopers, setLoadingDevelopers] = useState(false)
+  const [currentUser, setCurrentUser] = useState<{ username?: string; user_type?: string } | null>(null)
   const [slugManuallyEdited, setSlugManuallyEdited] = useState(!!formData.slug)
+  // Raw text for the Key Highlights textarea so spaces aren't stripped while typing
+  const [highlightsText, setHighlightsText] = useState<string>(
+    Array.isArray(formData.project_highlights) ? formData.project_highlights.join("\n") : "",
+  )
 
   // Handle property name change - auto-generate slug if not manually edited
   const handlePropertyNameChange = useCallback(
@@ -60,6 +65,27 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
       }
     }
     loadDevelopers()
+  }, [])
+
+  // Load the logged-in user so agents see their own name as the Seller / Agent
+  useEffect(() => {
+    const loadCurrentUser = async () => {
+      try {
+        const res = await fetch("/api/auth/me", { cache: "no-store", credentials: "include" })
+        const data = await res.json()
+        if (data?.user) {
+          setCurrentUser(data.user)
+          // For agents creating a new listing, default the seller/agent to themselves
+          if (data.user.user_type === "agent" && data.user.username && !formData.developer_name) {
+            onChange("developer_name", data.user.username)
+          }
+        }
+      } catch (error) {
+        console.error("Error loading current user:", error)
+      }
+    }
+    loadCurrentUser()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleAddDeveloper = async (name: string): Promise<Option | null> => {
@@ -214,15 +240,28 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
 
       {/* Seller / Agent + Ownership */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <ComboSelect
-          label="Seller / Agent"
-          value={selectedDeveloperName}
-          onChange={handleDeveloperChange}
-          options={developers}
-          onAddNew={handleAddDeveloper}
-          placeholder="Select or add seller / agent..."
-          loading={loadingDevelopers}
-        />
+        {currentUser?.user_type === "agent" ? (
+          <div>
+            <label className="text-xs font-medium text-muted-foreground block mb-1.5">Seller / Agent</label>
+            <input
+              type="text"
+              value={formData.developer_name || currentUser.username || ""}
+              readOnly
+              className="w-full px-3 py-2 text-sm border border-border rounded-md bg-muted/50 text-muted-foreground cursor-not-allowed focus:outline-none"
+            />
+            <p className="text-xs text-muted-foreground mt-1">Listed under your account</p>
+          </div>
+        ) : (
+          <ComboSelect
+            label="Seller / Agent"
+            value={selectedDeveloperName}
+            onChange={handleDeveloperChange}
+            options={developers}
+            onAddNew={handleAddDeveloper}
+            placeholder="Select or add seller / agent..."
+            loading={loadingDevelopers}
+          />
+        )}
         <div>
           <label className="text-xs font-medium text-muted-foreground block mb-1.5">Ownership Type</label>
           <select
@@ -338,9 +377,11 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
           Key Highlights (one per line or comma-separated)
         </label>
         <textarea
-          value={(formData.project_highlights || []).join("\n")}
+          value={highlightsText}
           onChange={(e) => {
-            const items = e.target.value
+            const raw = e.target.value
+            setHighlightsText(raw)
+            const items = raw
               .split(/[\n,]/)
               .map((item: string) => item.trim())
               .filter((item: string) => item)
