@@ -19,7 +19,6 @@ import {
   Star,
   MessageSquare,
   BookOpen,
-  LayoutGrid,
   Search,
   Upload,
   Heart,
@@ -94,7 +93,6 @@ const getNavConfig = (role: UserRole): NavSection[] => {
           collapsible: true,
           items: [
             { href: "/admin/blog", label: "Blog", icon: BookOpen },
-            { href: "/admin/homepage-sections", label: "Homepage Sections", icon: LayoutGrid },
             { href: "/admin/seo", label: "SEO", icon: Search },
             { href: "/admin/head-tags", label: "Head Tags", icon: Code2 },
           ],
