@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useState, useEffect } from "react"
 import { User, Mail, Phone, Save } from "lucide-react"
+import DeleteAccountSection from "@/components/account/delete-account-section"
 
 export default function AgentProfilePage() {
   const [user, setUser] = useState<any>(null)
@@ -136,6 +137,8 @@ export default function AgentProfilePage() {
           </div>
         </form>
       </div>
+
+      <DeleteAccountSection />
     </div>
   )
 }

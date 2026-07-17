@@ -20,7 +20,7 @@ export async function connectToDatabase() {
 
   const client = new MongoClient(process.env.MONGODB_URI)
   await client.connect()
-  const db = client.db(process.env.MONGODB_DB || "land2land")
+  const db = client.db(process.env.MONGODB_DB || "mongodb+srv://admin:zNGQLfpNe9ydRlWQ@land2land.fjxxu9h.mongodb.net/")
 
   cachedClient = client
   cachedDb = db

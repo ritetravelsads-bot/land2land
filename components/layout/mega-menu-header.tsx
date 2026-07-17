@@ -85,7 +85,10 @@ export default function MegaMenuHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white shadow-sm">
+      <header
+        className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white shadow-sm"
+        style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
+      >
         <nav className="flex items-center justify-between px-4 py-3 md:px-6">
           <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image
@@ -229,7 +232,10 @@ export default function MegaMenuHeader() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-gray-200 bg-white fixed top-16 left-0 right-0 bottom-0 z-40 overflow-y-auto">
+        <div
+          className="lg:hidden border-t border-gray-200 bg-white fixed left-0 right-0 bottom-0 z-40 overflow-y-auto"
+          style={{ top: "calc(4rem + env(safe-area-inset-top, 0px))" }}
+        >
           <div className="flex flex-col gap-1 px-4 py-3">
             {/* Mobile Search Bar */}
             <div className="mb-3">

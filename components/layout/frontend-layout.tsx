@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 import MegaMenuHeader from "./mega-menu-header"
 import NavigationProgress from "./navigation-progress"
 import RoutePrefetcher from "./route-prefetcher"
+import MedianBridge from "@/components/mobile/median-bridge"
 import { Toaster } from "@/components/ui/sonner"
 
 // Lazy load non-critical below-fold components
@@ -25,11 +26,17 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
   
   // Don't render the mega menu header and footer for dashboard pages
   if (isDashboardPage) {
-    return <>{children}</>
+    return (
+      <>
+        <MedianBridge />
+        {children}
+      </>
+    )
   }
   
   return (
     <>
+      <MedianBridge />
       <Suspense fallback={null}>
         <NavigationProgress />
       </Suspense>

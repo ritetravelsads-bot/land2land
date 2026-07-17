@@ -74,6 +74,7 @@
     "date-fns": "4.1.0",
     "dotenv": "^17.2.3",
     "embla-carousel-react": "8.5.1",
+    "firebase": "^11.9.0",
     "gcp-metadata": "latest",
     "graphql": "latest",
     "graphql-tag": "2.12.6",
@@ -108,8 +109,7 @@
     "vaul": "^1.1.2",
     "ws": "latest",
     "xlsx": "0.18.5",
-    "zod": "3.25.76",
-    "firebase": "^11.9.0"
+    "zod": "3.25.76"
   },
   "browserslist": [
     "Chrome >= 90",
@@ -134,6 +134,7 @@
     "@types/react-dom": "^19",
     "magic-string": "^0.30.14",
     "postcss": "^8.5",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4.1.9",
     "ts-morph": "25.0.0",
     "typescript": "^5"
