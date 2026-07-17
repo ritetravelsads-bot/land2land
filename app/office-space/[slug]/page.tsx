@@ -222,7 +222,7 @@ export default async function OfficeSpaceDetailPage({
     "priceRange": property.office_space?.price_per_seat_monthly 
       ? `₹${property.office_space.price_per_seat_monthly}/month` 
       : "Contact for pricing",
-    "telephone": "+91 98737 02365",
+    "telephone": "+91-9205190063",
     "url": `${baseUrl}/office-space/${property.slug}`,
     "openingHours": property.office_space?.access_hours === '24_7' ? "Mo-Su 00:00-24:00" : "Mo-Sa 09:00-18:00",
   }

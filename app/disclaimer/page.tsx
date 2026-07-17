@@ -110,7 +110,7 @@ export default function DisclaimerPage() {
               </p>
               <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
                 <li>By email: legal@land2land.com</li>
-                <li>By phone: +91 8500-900-100</li>
+                <li>By phone: +91-9205190063</li>
                 <li>By visiting our office: IRIS Tech Park, Unit No. 407, Gurugram, Haryana</li>
               </ul>
             </section>

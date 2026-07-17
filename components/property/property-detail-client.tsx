@@ -116,7 +116,7 @@ export function PropertyDetailClient({
   const manager = property.assigned_manager ||
     property.manager || {
       name: property.agent_name || "Land2Land Expert",
-      phone: property.agent_phone || "+91 98737 02365",
+      phone: property.agent_phone || "+91 9205190063",
       email: property.agent_email || "contact@land2land.com",
       photo: property.agent_photo,
     }

@@ -173,7 +173,7 @@ export default function PrivacyPolicyPage() {
                 <p className="text-muted-foreground"><strong>Grievance Officer</strong></p>
                 <p className="text-muted-foreground">Land2Land</p>
                 <p className="text-muted-foreground"><strong>Email:</strong> info@land2land.com</p>
-                <p className="text-muted-foreground"><strong>Phone:</strong> +91-98737-02365</p>
+                <p className="text-muted-foreground"><strong>Phone:</strong> +91-9205190063</p>
                 <p className="text-muted-foreground mt-3">Response within 30 days.</p>
               </div>
             </section>
@@ -191,7 +191,7 @@ export default function PrivacyPolicyPage() {
                   <strong>By email:</strong> info@land2land.com
                 </li>
                 <li>
-                  <strong>By phone:</strong> +91-98737-02365
+                  <strong>By phone:</strong> +91-9205190063
                 </li>
               </ul>
             </section>
