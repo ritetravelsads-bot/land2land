@@ -98,6 +98,7 @@ export default function Footer() {
     { name: "Privacy Policy", href: "/privacy-policy" },
     { name: "Terms & Conditions", href: "/terms-and-conditions" },
     { name: "Disclaimer", href: "/disclaimer" },
+    { name: "Delete Account", href: "/account/delete" },
   ]
 
   const FooterSection = ({

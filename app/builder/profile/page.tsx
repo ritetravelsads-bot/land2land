@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import DeleteAccountSection from "@/components/account/delete-account-section"
 
 export default function BuilderProfilePage() {
   const [user, setUser] = useState<any>(null)
@@ -52,6 +53,8 @@ export default function BuilderProfilePage() {
           <Button className="text-sm h-9">Edit Profile</Button>
         </div>
       </div>
+
+      <DeleteAccountSection />
     </div>
   )
 }
