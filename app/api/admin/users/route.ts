@@ -1,8 +1,11 @@
 import { getDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
+import bcrypt from "bcryptjs"
 import { NextResponse } from "next/server"
 import { ObjectId } from "mongodb"
 import type { NextRequest } from "next/server"
+
+const ALLOWED_USER_TYPES = ["admin", "agent", "customer", "buyer", "seller", "builder"]
 
 export async function GET() {
   try {
@@ -37,6 +40,89 @@ export async function GET() {
   } catch (error) {
     console.error("[v0] Error fetching users:", error)
     return NextResponse.json({ error: "Failed to fetch users" }, { status: 500 })
+  }
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const user = await getCurrentUser()
+    if (!user || user.user_type !== "admin") {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    const body = await request.json()
+    const { username, email, password, phone_number, user_type } = body
+
+    // Validate required fields
+    if (!username || !email || !password || !phone_number || !user_type) {
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+    }
+
+    // Validate email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return NextResponse.json({ error: "Invalid email address" }, { status: 400 })
+    }
+
+    // Validate password
+    if (password.length < 8) {
+      return NextResponse.json({ error: "Password must be at least 8 characters" }, { status: 400 })
+    }
+
+    // Validate user type
+    if (!ALLOWED_USER_TYPES.includes(user_type)) {
+      return NextResponse.json({ error: "Invalid user type" }, { status: 400 })
+    }
+
+    const db = await getDatabase()
+    const collection = db.collection("users")
+
+    // Check if user already exists
+    const existingUser = await collection.findOne({
+      $or: [{ email: email.toLowerCase() }, { username: username.toLowerCase() }],
+    })
+
+    if (existingUser) {
+      return NextResponse.json(
+        { error: "A user with this email or username already exists" },
+        { status: 409 }
+      )
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10)
+
+    const result = await collection.insertOne({
+      username: username.toLowerCase(),
+      email: email.toLowerCase(),
+      password: hashedPassword,
+      phone_number,
+      user_type,
+      date_joined: new Date(),
+      created_at: new Date(),
+      is_verified: true,
+      profile_picture: null,
+    })
+
+    return NextResponse.json(
+      {
+        success: true,
+        message: "User created successfully",
+        user: {
+          _id: result.insertedId.toString(),
+          username: username.toLowerCase(),
+          email: email.toLowerCase(),
+          phone_number,
+          user_type,
+          created_at: new Date().toISOString(),
+          is_verified: true,
+        },
+      },
+      { status: 201 }
+    )
+  } catch (error) {
+    console.error("[v0] Error creating user:", error)
+    return NextResponse.json({ error: "Failed to create user" }, { status: 500 })
   }
 }
 

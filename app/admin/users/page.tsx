@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState, useCallback } from "react"
-import { Trash2, RefreshCw, Phone, Mail, User, Calendar, Shield, Search, Filter, ChevronDown } from "lucide-react"
+import { Trash2, RefreshCw, Phone, Mail, User, Calendar, Shield, Search, Filter, ChevronDown, UserPlus, X, Eye, EyeOff, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 
@@ -22,6 +22,60 @@ export default function AdminUsersPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [filterType, setFilterType] = useState<string>("all")
   const [showFilters, setShowFilters] = useState(false)
+  const [showAddModal, setShowAddModal] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [form, setForm] = useState({
+    username: "",
+    email: "",
+    phone_number: "",
+    password: "",
+    user_type: "customer",
+  })
+
+  const USER_TYPE_OPTIONS = ["customer", "buyer", "seller", "agent", "builder", "admin"]
+
+  const resetForm = () => {
+    setForm({ username: "", email: "", phone_number: "", password: "", user_type: "customer" })
+    setShowPassword(false)
+  }
+
+  const handleAddUser = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!form.username || !form.email || !form.phone_number || !form.password) {
+      toast.error("Please fill in all fields")
+      return
+    }
+    if (form.password.length < 8) {
+      toast.error("Password must be at least 8 characters")
+      return
+    }
+
+    setSubmitting(true)
+    try {
+      const res = await fetch("/api/admin/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      })
+      const data = await res.json()
+
+      if (res.ok) {
+        setUsers((prev) => [data.user, ...prev])
+        toast.success(`User "${form.username}" created successfully`)
+        setShowAddModal(false)
+        resetForm()
+      } else {
+        toast.error(data.error || "Failed to create user")
+      }
+    } catch (error) {
+      console.error("[v0] Error creating user:", error)
+      toast.error("Failed to create user")
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   const loadUsers = useCallback(async (showRefreshIndicator = false) => {
     try {
@@ -122,16 +176,22 @@ export default function AdminUsersPage() {
               Manage all platform users ({filteredUsers.length} of {users.length} users)
             </p>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleRefresh}
-            disabled={refreshing}
-            className="gap-2 self-start sm:self-auto"
-          >
-            <RefreshCw className={`h-4 w-4 ${refreshing ? "animate-spin" : ""}`} />
-            Refresh List
-          </Button>
+          <div className="flex items-center gap-2 self-start sm:self-auto">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRefresh}
+              disabled={refreshing}
+              className="gap-2"
+            >
+              <RefreshCw className={`h-4 w-4 ${refreshing ? "animate-spin" : ""}`} />
+              Refresh List
+            </Button>
+            <Button size="sm" onClick={() => setShowAddModal(true)} className="gap-2">
+              <UserPlus className="h-4 w-4" />
+              Add User
+            </Button>
+          </div>
         </div>
 
         {/* Search and Filters */}
@@ -363,6 +423,152 @@ export default function AdminUsersPage() {
           </div>
         )}
       </div>
+
+      {/* Add User Modal */}
+      {showAddModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-foreground/40 backdrop-blur-sm"
+          onClick={() => !submitting && setShowAddModal(false)}
+        >
+          <div
+            className="w-full max-w-md bg-card border border-border rounded-xl shadow-lg overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-border">
+              <div className="flex items-center gap-2">
+                <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <UserPlus className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h2 className="text-base font-semibold text-foreground">Add New User</h2>
+                  <p className="text-xs text-muted-foreground">Create an account of any type</p>
+                </div>
+              </div>
+              <button
+                onClick={() => !submitting && setShowAddModal(false)}
+                className="h-8 w-8 flex items-center justify-center rounded-lg text-muted-foreground hover:bg-muted transition-colors"
+                aria-label="Close"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <form onSubmit={handleAddUser} className="p-5 space-y-4">
+              <div className="space-y-1.5">
+                <label htmlFor="username" className="text-xs font-medium text-foreground">
+                  Username
+                </label>
+                <input
+                  id="username"
+                  type="text"
+                  value={form.username}
+                  onChange={(e) => setForm({ ...form, username: e.target.value })}
+                  placeholder="johndoe"
+                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label htmlFor="email" className="text-xs font-medium text-foreground">
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  placeholder="john@example.com"
+                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label htmlFor="phone" className="text-xs font-medium text-foreground">
+                  Mobile Number
+                </label>
+                <input
+                  id="phone"
+                  type="tel"
+                  value={form.phone_number}
+                  onChange={(e) => setForm({ ...form, phone_number: e.target.value })}
+                  placeholder="9876543210"
+                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                />
+              </div>
+
+              <div className="space-y-1.5">
+                <label htmlFor="password" className="text-xs font-medium text-foreground">
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    value={form.password}
+                    onChange={(e) => setForm({ ...form, password: e.target.value })}
+                    placeholder="Minimum 8 characters"
+                    className="w-full pl-3 pr-10 py-2 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 h-7 w-7 flex items-center justify-center rounded text-muted-foreground hover:text-foreground transition-colors"
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                  >
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label htmlFor="user_type" className="text-xs font-medium text-foreground">
+                  User Type
+                </label>
+                <select
+                  id="user_type"
+                  value={form.user_type}
+                  onChange={(e) => setForm({ ...form, user_type: e.target.value })}
+                  className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background capitalize focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                >
+                  {USER_TYPE_OPTIONS.map((type) => (
+                    <option key={type} value={type} className="capitalize">
+                      {type}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Modal Footer */}
+              <div className="flex items-center justify-end gap-2 pt-2">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowAddModal(false)}
+                  disabled={submitting}
+                >
+                  Cancel
+                </Button>
+                <Button type="submit" size="sm" disabled={submitting} className="gap-2">
+                  {submitting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      Creating...
+                    </>
+                  ) : (
+                    <>
+                      <UserPlus className="h-4 w-4" />
+                      Create User
+                    </>
+                  )}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
