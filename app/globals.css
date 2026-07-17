@@ -551,6 +551,8 @@ html {
 @layer components {
   .bottom-nav-container {
     @apply fixed bottom-0 left-0 right-0 z-40 md:hidden bg-card border-t border-border;
+    /* Respect the iOS home-indicator / Android gesture bar inside the app wrapper */
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
   .bottom-nav {
@@ -613,6 +615,37 @@ html {
     width: 100vw;
     margin-left: calc(-50vw + 50%);
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Native app / Median wrapper + installed-PWA tweaks.
+   These only apply when MedianBridge tags <html> with .median-app / .pwa-standalone
+   so the regular website is unaffected.
+--------------------------------------------------------------------------- */
+.median-app,
+.pwa-standalone {
+  /* Prevent the rubber-band overscroll that reveals the wrapper background */
+  overscroll-behavior-y: none;
+}
+
+.median-app body,
+.pwa-standalone body {
+  /* Remove the grey tap flash for a native touch feel */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Disable the iOS long-press callout / selection everywhere except real inputs */
+.median-app *:not(input):not(textarea):not([contenteditable="true"]) {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.median-app input,
+.median-app textarea,
+.median-app [contenteditable="true"] {
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 /* WordPress Block Editor Styles */

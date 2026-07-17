@@ -43,6 +43,15 @@ export const metadata: Metadata = {
     "Area Converter",
   ],
   authors: [{ name: "Land2Land" }],
+  applicationName: "Land2Land",
+  appleWebApp: {
+    capable: true,
+    title: "Land2Land",
+    statusBarStyle: "default",
+  },
+  formatDetection: {
+    telephone: false,
+  },
   verification: {
     google: "HMLmt_V-xGPk7KOvW60EO-cNggppOdM6OHT47vFLdQM",
   },
@@ -51,6 +60,8 @@ export const metadata: Metadata = {
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon-64x64.png", sizes: "64x64", type: "image/png" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: "/apple-touch-icon.png",
   },
@@ -81,11 +92,13 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5,
-  userScalable: true,
+  maximumScale: 1,
+  userScalable: false,
+  // Extend content under the notch / home indicator so safe-area insets apply
+  viewportFit: "cover",
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#1a1a1a" },
+    { media: "(prefers-color-scheme: light)", color: "#125007" },
+    { media: "(prefers-color-scheme: dark)", color: "#125007" },
   ],
 }
 

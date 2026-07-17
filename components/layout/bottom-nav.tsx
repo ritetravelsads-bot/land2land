@@ -62,8 +62,11 @@ export default function BottomNav() {
 
   return (
     <>
-      {/* Spacer for fixed nav */}
-      <div className="h-20 md:hidden" />
+      {/* Spacer for fixed nav (includes iOS/Android safe-area inset) */}
+      <div
+        className="md:hidden"
+        style={{ height: "calc(5rem + env(safe-area-inset-bottom, 0px))" }}
+      />
 
       <nav className="bottom-nav-container">
         <div className="bottom-nav">
