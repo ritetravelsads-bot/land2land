@@ -97,7 +97,7 @@ export default function Footer() {
     { name: "Blogs", href: "/blogs" },
     { name: "Privacy Policy", href: "/privacy-policy" },
     { name: "Terms & Conditions", href: "/terms-and-conditions" },
-    { name: "Refund & Cancellation", href: "/refund-policy" },
+    { name: "Grievance Redressal", href: "/grievance-redressal" },
     { name: "Cookie Policy", href: "/cookie-policy" },
     { name: "Disclaimer", href: "/disclaimer" },
     { name: "Delete Account", href: "/account/delete" },
