@@ -4,7 +4,8 @@ import type React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useState, useEffect } from "react"
-import { User, Mail, Phone, Save } from "lucide-react"
+import { Mail, Phone, Save } from "lucide-react"
+import ProfileImageUpload from "@/components/account/profile-image-upload"
 import DeleteAccountSection from "@/components/account/delete-account-section"
 
 export default function AgentProfilePage() {
@@ -12,18 +13,23 @@ export default function AgentProfilePage() {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [formData, setFormData] = useState({ username: "", email: "", phone_number: "" })
+  const [profilePicture, setProfilePicture] = useState<string | null>(null)
 
   useEffect(() => {
     const loadUser = async () => {
       try {
         const res = await fetch("/api/auth/me", { cache: "no-store", credentials: "include" })
         const data = await res.json()
-        setUser(data)
-        setFormData({
-          username: data.username,
-          email: data.email,
-          phone_number: data.phone_number || "",
-        })
+        const u = data.user
+        if (u) {
+          setUser(u)
+          setFormData({
+            username: u.username || "",
+            email: u.email || "",
+            phone_number: u.phone_number || "",
+          })
+          setProfilePicture(u.profile_picture || null)
+        }
       } catch (error) {
         console.error("[v0] Error loading user:", error)
       } finally {
@@ -38,16 +44,22 @@ export default function AgentProfilePage() {
     e.preventDefault()
     setSaving(true)
     try {
-      const res = await fetch("/api/agent/profile", {
+      const res = await fetch("/api/user/profile", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          phone_number: formData.phone_number,
+          profile_picture: profilePicture,
+        }),
       })
       if (res.ok) {
         alert("Profile updated successfully")
+      } else {
+        alert("Failed to update profile")
       }
     } catch (error) {
       console.error("[v0] Error updating profile:", error)
+      alert("Failed to update profile")
     } finally {
       setSaving(false)
     }
@@ -73,9 +85,11 @@ export default function AgentProfilePage() {
       {/* Profile Card */}
       <div className="bg-card border border-border rounded-lg p-6">
         <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border">
-          <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
-            <User className="h-8 w-8 text-primary" />
-          </div>
+          <ProfileImageUpload
+            name={user?.username}
+            value={profilePicture}
+            onChange={setProfilePicture}
+          />
           <div>
             <h2 className="text-lg font-semibold text-foreground">{user?.username}</h2>
             <p className="text-sm text-muted-foreground">{user?.email}</p>
@@ -86,21 +100,6 @@ export default function AgentProfilePage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-foreground flex items-center gap-2">
-              <User className="h-4 w-4 text-muted-foreground" />
-              Username
-            </label>
-            <Input
-              type="text"
-              placeholder="Your username"
-              value={formData.username}
-              className="bg-muted/50"
-              disabled
-            />
-            <p className="text-xs text-muted-foreground">Username cannot be changed</p>
-          </div>
-
           <div className="space-y-2">
             <label className="text-sm font-medium text-foreground flex items-center gap-2">
               <Mail className="h-4 w-4 text-muted-foreground" />

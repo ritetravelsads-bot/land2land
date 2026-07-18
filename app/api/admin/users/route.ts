@@ -23,6 +23,7 @@ export async function GET() {
         email: 1,
         phone_number: 1,
         user_type: 1,
+        profile_picture: 1,
         created_at: 1,
         date_joined: 1,
         is_verified: 1
