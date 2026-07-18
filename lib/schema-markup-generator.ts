@@ -290,7 +290,7 @@ export function generateOrganizationSchema() {
     },
     image: `${BASE_URL}/og-image.png`,
     description: "Premium property marketplace connecting buyers, sellers, and agents in Gurgaon and Delhi NCR",
-    telephone: "+91-1244765940",
+    telephone: "+91-9205190063",
     priceRange: "$$-$$$$",
     address: {
       "@type": "PostalAddress",
@@ -322,7 +322,7 @@ export function generateOrganizationSchema() {
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+91-1244765940",
+      telephone: "+91-9205190063",
       contactType: "Customer Service",
       availableLanguage: ["en", "hi"],
       areaServed: "IN",
@@ -434,7 +434,7 @@ export function generateLocalBusinessSchema() {
     name: "Land2Land",
     image: `${BASE_URL}/og-image.png`,
     url: BASE_URL,
-    telephone: "+91-1244765940",
+    telephone: "+91-9205190063",
     priceRange: "$$-$$$$",
     address: {
       "@type": "PostalAddress",

@@ -18,8 +18,8 @@ import { LocationConnectivity } from "@/components/property/location-connectivit
 import { PropertyFaq } from "@/components/property/property-faq"
 
 // Company contact info for lead generation
-const COMPANY_PHONE = "+91 98737 02365"
-const COMPANY_WHATSAPP = "919873702365"
+const COMPANY_PHONE = "+91 9205190063"
+const COMPANY_WHATSAPP = "919205190063"
 const COMPANY_EMAIL = "contact@land2land.com"
 
 // Space type labels

@@ -146,9 +146,9 @@ export function EnquiryForm({ propertyId, propertyName, propertySlug }: EnquiryF
             {/* Direct contact */}
             <div className="hidden lg:block p-4 bg-primary/5 border border-primary/10 rounded-xl">
               <p className="text-xs text-muted-foreground mb-2">Prefer to call?</p>
-              <a href="tel:+919876543210" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
+              <a href="tel:+919205190063" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
                 <Phone className="h-4 w-4" />
-                +91 98765 43210
+                +91-9205190063
               </a>
             </div>
           </div>

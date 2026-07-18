@@ -4,14 +4,14 @@ import Header from "@/components/layout/header"
 import ContactForm from "@/components/forms/contact-form"
 
 export const metadata: Metadata = {
-  title: "Contact Land2Land | Land & Farm Advisory | Call +91 98737-02365",
-  description: "Talk to Land2Land's land experts. Call +91 98737-02365 for help buying, selling, or investing in agricultural land and farmland. Free advisory — Mon to Sat, 9AM–6PM.",
+  title: "Contact Land2Land | Land & Farm Advisory | Call +91-9205190063",
+  description: "Talk to Land2Land's land experts. Call +91-9205190063 for help buying, selling, or investing in agricultural land and farmland. Free advisory — Mon to Sat, 9AM–6PM.",
   alternates: {
     canonical: "https://land2land.com/contact",
   },
   openGraph: {
-    title: "Contact Land2Land | Land & Farm Advisory | Call +91 98737-02365",
-    description: "Talk to Land2Land's land experts. Call +91 98737-02365 for help buying, selling, or investing in agricultural land and farmland. Free advisory — Mon to Sat, 9AM–6PM.",
+    title: "Contact Land2Land | Land & Farm Advisory | Call +91-9205190063",
+    description: "Talk to Land2Land's land experts. Call +91-9205190063 for help buying, selling, or investing in agricultural land and farmland. Free advisory — Mon to Sat, 9AM–6PM.",
     url: "https://land2land.com/contact",
   },
 }
@@ -47,8 +47,8 @@ export default function ContactPage() {
                     <Phone size={14} className="text-primary" />
                     <p className="text-xs font-semibold text-foreground">Phone</p>
                   </div>
-                  <a href="tel:+919873702365" className="text-xs text-primary hover:underline block">
-                    +91 98737-02365
+                  <a href="tel:+919205190063" className="text-xs text-primary hover:underline block">
+                    +91-9205190063
                   </a>
                 </div>
 

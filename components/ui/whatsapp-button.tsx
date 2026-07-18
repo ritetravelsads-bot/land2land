@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { MessageCircle, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const WHATSAPP_NUMBER = "919873702365"
+const WHATSAPP_NUMBER = "919205190063"
 const DEFAULT_MESSAGE = "Hi, I'm interested in properties on Land2Land. Please share more details."
 
 export default function WhatsAppButton() {

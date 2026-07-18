@@ -97,6 +97,8 @@ export default function Footer() {
     { name: "Blogs", href: "/blogs" },
     { name: "Privacy Policy", href: "/privacy-policy" },
     { name: "Terms & Conditions", href: "/terms-and-conditions" },
+    { name: "Grievance Redressal", href: "/grievance-redressal" },
+    { name: "Cookie Policy", href: "/cookie-policy" },
     { name: "Disclaimer", href: "/disclaimer" },
     { name: "Delete Account", href: "/account/delete" },
   ]
@@ -161,8 +163,8 @@ export default function Footer() {
                 <div className="w-10 h-10 bg-[#125007] rounded-lg flex items-center justify-center flex-shrink-0">
                   <Phone size={18} className="text-white" />
                 </div>
-                <a href="tel:+919873702365" className="text-sm text-gray-700 hover:text-[#125007] transition-colors">
-                  +91 98737-02365
+                <a href="tel:+919205190063" className="text-sm text-gray-700 hover:text-[#125007] transition-colors">
+                  +91-9205190063
                 </a>
               </div>
               <div className="flex items-center gap-3">

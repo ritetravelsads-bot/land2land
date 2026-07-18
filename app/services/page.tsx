@@ -212,7 +212,7 @@ export default function ServicesPage() {
                   <Link href="/contact">Get Free Consultation</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="border-white/30 text-white hover:bg-white/10 h-12 px-8">
-                  <Link href="tel:+919876543210">
+                  <Link href="tel:+919205190063">
                     <Phone className="w-4 h-4 mr-2" />
                     Call Now
                   </Link>
@@ -365,7 +365,7 @@ export default function ServicesPage() {
                     </div>
                     <div>
                       <div className="text-sm text-green-200">Call Us</div>
-                      <a href="tel:+919873702365" className="font-semibold hover:underline">+91 98737-02365</a>
+                      <a href="tel:+919205190063" className="font-semibold hover:underline">+91-9205190063</a>
                     </div>
                   </div>
 
