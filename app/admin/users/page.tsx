@@ -159,7 +159,7 @@ export default function AdminUsersPage() {
   const getUserTypeBadge = (type: string) => {
     const badges: Record<string, string> = {
       admin: "bg-red-100 text-red-700 border-red-200",
-      agent: "bg-blue-100 text-blue-700 border-blue-200",
+      associate: "bg-blue-100 text-blue-700 border-blue-200",
       buyer: "bg-green-100 text-green-700 border-green-200",
       seller: "bg-amber-100 text-amber-700 border-amber-200",
       builder: "bg-purple-100 text-purple-700 border-purple-200",
@@ -416,7 +416,7 @@ export default function AdminUsersPage() {
               <p className="text-2xl font-bold text-foreground">
                 {users.filter(u => u.user_type === "associate").length}
               </p>
-              <p className="text-xs text-muted-foreground">Agents</p>
+              <p className="text-xs text-muted-foreground">Associates</p>
             </div>
             <div className="bg-card border border-border rounded-lg p-4">
               <p className="text-2xl font-bold text-foreground">

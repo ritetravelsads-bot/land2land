@@ -196,7 +196,7 @@ export default function AdminTicketDetailPage() {
         <div className="bg-card border border-border rounded-lg p-4">
           <div className="flex items-center gap-2 text-muted-foreground mb-2">
             <User className="h-4 w-4" />
-            <span className="text-xs">Agent</span>
+            <span className="text-xs">Associate</span>
           </div>
           <p className="text-sm font-medium text-foreground truncate">
             {ticket.customer_name || ticket.user?.email || "Unknown"}

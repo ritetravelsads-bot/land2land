@@ -106,7 +106,7 @@ export default function Footer() {
     { name: "Buy Land", href: "/buy" },
     { name: "Sell Land", href: "/sell" },
     { name: "Farm Investments", href: "/investments" },
-    { name: "Find Agent", href: "/find-agent" },
+    { name: "Find Associate", href: "/find-agent" },
     { name: "Property Management", href: "/property-management" },
     { name: "Farms", href: "/farms" },
   ]

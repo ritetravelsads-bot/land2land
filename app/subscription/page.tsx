@@ -206,7 +206,7 @@ export default function SubscriptionPage() {
                 <td className="text-center py-4 px-4 text-gray-600">24/7 Phone</td>
               </tr>
               <tr className="border-b border-gray-100 hover:bg-green-50">
-                <td className="py-4 px-4 text-gray-800 font-medium">Agent Network</td>
+                <td className="py-4 px-4 text-gray-800 font-medium">Associate Network</td>
                 <td className="text-center py-4 px-4"><X className="w-5 h-5 text-gray-300 mx-auto" /></td>
                 <td className="text-center py-4 px-4"><Check className="w-5 h-5 text-green-600 mx-auto" /></td>
                 <td className="text-center py-4 px-4"><Check className="w-5 h-5 text-green-600 mx-auto" /></td>

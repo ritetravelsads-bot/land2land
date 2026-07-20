@@ -130,7 +130,7 @@ export default function MegaMenuHeader() {
               href="/find-agent"
               className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
             >
-              Find Agent
+              Find Associate
             </Link>
 
             {/* Land Types Dropdown */}
@@ -267,7 +267,7 @@ export default function MegaMenuHeader() {
               href="/find-agent"
               className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] hover:bg-gray-50 rounded transition-colors"
             >
-              Find Agent
+              Find Associate
             </Link>
 
             <div className="border-t border-gray-100 my-2" />

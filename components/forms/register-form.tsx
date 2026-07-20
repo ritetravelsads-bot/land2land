@@ -140,7 +140,7 @@ export default function RegisterForm() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="customer">Buyer/Renter</SelectItem>
-            <SelectItem value="associate">Agent/Seller</SelectItem>
+            <SelectItem value="associate">Associate/Seller</SelectItem>
           </SelectContent>
         </Select>
       </div>

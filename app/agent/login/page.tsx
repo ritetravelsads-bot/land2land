@@ -20,7 +20,7 @@ export default function AgentLoginPage() {
               <div className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-blue-100 mb-3">
                 <span className="text-lg font-bold text-blue-700">👤</span>
               </div>
-              <h1 className="text-2xl font-bold text-foreground">Agent Portal</h1>
+              <h1 className="text-2xl font-bold text-foreground">Associate Portal</h1>
               <p className="text-sm text-muted-foreground">Sign in to manage your properties</p>
             </div>
 

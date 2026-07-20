@@ -51,7 +51,7 @@ export default function AgentDashboardPage() {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <div className="space-y-2">
-        <h1 className="text-2xl md:text-3xl font-bold text-foreground">Agent Dashboard</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-foreground">Associate Dashboard</h1>
         <p className="text-sm text-muted-foreground">Welcome back, {user?.username}!</p>
       </div>
 
