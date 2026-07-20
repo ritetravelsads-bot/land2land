@@ -35,7 +35,7 @@ export default function AdminUsersPage() {
     user_type: "customer",
   })
 
-  const USER_TYPE_OPTIONS = ["customer", "buyer", "seller", "agent", "builder", "admin"]
+  const USER_TYPE_OPTIONS = ["customer", "buyer", "seller", "associate", "builder", "admin"]
 
   const resetForm = () => {
     setForm({ username: "", email: "", phone_number: "", password: "", user_type: "customer" })
@@ -414,7 +414,7 @@ export default function AdminUsersPage() {
             </div>
             <div className="bg-card border border-border rounded-lg p-4">
               <p className="text-2xl font-bold text-foreground">
-                {users.filter(u => u.user_type === "agent").length}
+                {users.filter(u => u.user_type === "associate").length}
               </p>
               <p className="text-xs text-muted-foreground">Agents</p>
             </div>

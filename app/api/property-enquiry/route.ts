@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
 
     // Get property owner info if property_id is provided
     let propertyOwnerId: string | null = null
-    let propertyOwnerType: "admin" | "agent" = "admin"
+    let propertyOwnerType: "admin" | "associate" = "admin"
     
     if (property_id) {
       try {
@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
         })
         if (property && property.agent) {
           propertyOwnerId = property.agent
-          propertyOwnerType = "agent"
+          propertyOwnerType = "associate"
         }
       } catch {
         // Invalid property ID, continue without owner info

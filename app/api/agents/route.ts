@@ -10,7 +10,7 @@ export async function GET() {
     const db = await getDatabase()
     const agents = await db
       .collection("users")
-      .find({ user_type: "agent" })
+      .find({ user_type: "associate" })
       .project({
         _id: 1,
         username: 1,
@@ -25,7 +25,7 @@ export async function GET() {
 
     const serialized = agents.map((a) => ({
       id: a._id.toString(),
-      name: a.username || "Agent",
+      name: a.username || "Associate",
       phone: a.phone_number || null,
       profile_picture: a.profile_picture || null,
       verified: Boolean(a.is_verified),

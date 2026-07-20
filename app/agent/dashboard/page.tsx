@@ -39,7 +39,7 @@ export default function AgentDashboardPage() {
           newLeads: leadsData.stats?.new || 0,
         })
       } catch (error) {
-        console.error("[v0] Error loading agent data:", error)
+        console.error("[v0] Error loading associate data:", error)
       } finally {
         setLoading(false)
       }

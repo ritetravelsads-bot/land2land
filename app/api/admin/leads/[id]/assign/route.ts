@@ -33,17 +33,17 @@ export async function POST(
       return NextResponse.json({ error: "Invalid lead ID" }, { status: 400 })
     }
 
-    // Validate agent ID and check if user is an agent
+    // Validate associate ID and check if user is an agent
     let agentObjectId: ObjectId
     try {
       agentObjectId = new ObjectId(agent_id)
     } catch {
-      return NextResponse.json({ error: "Invalid agent ID" }, { status: 400 })
+      return NextResponse.json({ error: "Invalid associate ID" }, { status: 400 })
     }
 
-    const agent = await db.collection("users").findOne({ 
+    const associate = await db.collection("users").findOne({ 
       _id: agentObjectId,
-      user_type: "agent"
+      user_type: "associate"
     })
 
     if (!agent) {

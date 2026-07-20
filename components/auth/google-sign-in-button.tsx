@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 
 interface GoogleSignInButtonProps {
   mode?: "login" | "register"
-  userType?: "customer" | "agent"
+  userType?: "customer" | "associate"
   onSuccess?: () => void
   onError?: (error: string) => void
 }
@@ -81,7 +81,7 @@ export default function GoogleSignInButton({
       }
       
       // Redirect based on user type
-      if (data.user.user_type === "agent") {
+      if (data.user.user_type === "associate") {
         router.push("/agent/dashboard")
       } else if (data.user.user_type === "admin") {
         router.push("/admin/dashboard")

@@ -14,12 +14,12 @@ const APPLICANT_TYPES = ["individual", "company", "partnership", "huf", "society
 export async function GET() {
   try {
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
     const db = await getDatabase()
-    const query = user.user_type === "admin" ? {} : { agent: user._id.toString() }
+    const query = user.user_type === "admin" ? {} : { associate: user._id.toString() }
 
     const requests = await db
       .collection(COLLECTIONS.RERA_REQUESTS)
@@ -39,7 +39,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
     const listingQuery: Record<string, unknown> =
       user.user_type === "admin"
         ? { _id: listingObjectId }
-        : { _id: listingObjectId, agent: { $in: [user._id, user._id.toString()] } }
+        : { _id: listingObjectId, associate: { $in: [user._id, user._id.toString()] } }
     const listing = await db.collection(COLLECTIONS.LISTINGS).findOne(listingQuery)
     if (!listing) {
       return NextResponse.json({ error: "Property not found or not yours." }, { status: 404 })
@@ -99,12 +99,12 @@ export async function POST(req: NextRequest) {
       status: "submitted",
       note: "Request submitted by agent.",
       by: user._id.toString(),
-      by_role: user.user_type === "admin" ? "admin" : "agent",
+      by_role: user.user_type === "admin" ? "admin" : "associate",
       at: now,
     }
 
     const doc: Omit<ReraRequest, "_id"> = {
-      agent: user._id.toString(),
+      associate: user._id.toString(),
       agent_name: user.username,
       agent_email: user.email,
       listing: listingId,

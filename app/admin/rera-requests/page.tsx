@@ -54,7 +54,7 @@ export default function AdminReraQueuePage() {
         <div>
           <h1 className="text-2xl font-bold text-foreground">RERA Requests</h1>
           <p className="text-sm text-muted-foreground">
-            Manage agent RERA registration requests through each stage.
+            Manage associate RERA registration requests through each stage.
           </p>
         </div>
       </div>

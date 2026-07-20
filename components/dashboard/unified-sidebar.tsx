@@ -36,7 +36,7 @@ import {
   ShieldCheck,
 } from "lucide-react"
 
-type UserRole = "admin" | "agent" | "builder" | "buyer" | "customer"
+type UserRole = "admin" | "associate" | "builder" | "buyer" | "customer"
 
 interface NavItem {
   href: string
@@ -97,7 +97,7 @@ const getNavConfig = (role: UserRole): NavSection[] => {
           ],
         },
       ]
-    case "agent":
+    case "associate":
       return [
         {
           title: "Main",

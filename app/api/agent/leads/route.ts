@@ -8,7 +8,7 @@ import type { LeadStatus, LeadPriority } from "@/lib/models"
 export async function GET(request: NextRequest) {
   try {
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 

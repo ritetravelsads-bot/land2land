@@ -9,7 +9,7 @@ interface CurrentUser {
   id: string
   email: string
   username: string
-  user_type: "customer" | "agent" | "admin"
+  user_type: "customer" | "associate" | "admin"
 }
 
 export default function BottomNav() {
@@ -29,7 +29,7 @@ export default function BottomNav() {
           // API returns user: null for unauthenticated users
           if (data.user) {
             setCurrentUser(data.user)
-            setIsBuilder(data.user.user_type === "agent" || data.user.user_type === "admin")
+            setIsBuilder(data.user.user_type === "associate" || data.user.user_type === "admin")
           }
         }
       } catch {

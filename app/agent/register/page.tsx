@@ -6,7 +6,7 @@ import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Agent Registration | CountyRoof",
-  description: "Register as a real estate agent or property seller on CountyRoof.",
+  description: "Register as a real estate associate or property seller on CountyRoof.",
 }
 
 export default function AgentRegisterPage() {

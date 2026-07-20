@@ -76,7 +76,7 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
         if (data?.user) {
           setCurrentUser(data.user)
           // For agents creating a new listing, default the seller/agent to themselves
-          if (data.user.user_type === "agent" && data.user.username && !formData.developer_name) {
+          if (data.user.user_type === "associate" && data.user.username && !formData.developer_name) {
             onChange("developer_name", data.user.username)
           }
         }
@@ -240,7 +240,7 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
 
       {/* Seller / Agent + Ownership */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {currentUser?.user_type === "agent" ? (
+        {currentUser?.user_type === "associate" ? (
           <div>
             <label className="text-xs font-medium text-muted-foreground block mb-1.5">Seller / Agent</label>
             <input

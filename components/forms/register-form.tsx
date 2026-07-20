@@ -140,7 +140,7 @@ export default function RegisterForm() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="customer">Buyer/Renter</SelectItem>
-            <SelectItem value="agent">Agent/Seller</SelectItem>
+            <SelectItem value="associate">Agent/Seller</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -195,7 +195,7 @@ export default function RegisterForm() {
 
       <GoogleSignInButton 
         mode="register" 
-        userType={formData.user_type as "customer" | "agent"}
+        userType={formData.user_type as "customer" | "associate"}
         onError={(err) => {
           setGoogleError(err)
           setError("")

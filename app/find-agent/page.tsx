@@ -7,7 +7,7 @@ import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 import { UserAvatar } from "@/components/ui/user-avatar"
 
-interface Agent {
+interface Associate {
   id: string
   name: string
   phone: string | null
@@ -61,12 +61,12 @@ export default function FindAgentPage() {
         <div className="bg-white rounded-lg shadow-md p-6 md:p-8 mb-12">
           <div className="flex flex-col md:flex-row gap-4 md:items-end">
             <div className="flex-1">
-              <label className="block text-sm font-medium text-gray-700 mb-2">Search Agent Name</label>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Search Associate Name</label>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Search by agent name"
+                  placeholder="Search by associate name"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"

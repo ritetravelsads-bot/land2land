@@ -6,7 +6,7 @@ import { type NextRequest, NextResponse } from "next/server"
 export async function GET(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const user = await getCurrentUser()
-    if (!user || user.user_type !== "agent") {
+    if (!user || user.user_type !== "associate") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -31,7 +31,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const user = await getCurrentUser()
-    if (!user || user.user_type !== "agent") {
+    if (!user || user.user_type !== "associate") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -59,7 +59,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
     const reply = {
       id: new ObjectId().toString(),
       message,
-      sender_type: "agent",
+      sender_type: "associate",
       sender_name: user.username || user.email,
       created_at: new Date(),
     }

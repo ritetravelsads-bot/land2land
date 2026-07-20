@@ -130,7 +130,7 @@ export async function POST(request: NextRequest) {
       property_name: propertyData?.property_name || null,
       property_slug: propertyData?.slug || null,
       property_owner_id: propertyData?.agent || null,
-      property_owner_type: propertyData?.agent ? "agent" : "admin",
+      property_owner_type: propertyData?.agent ? "associate" : "admin",
       source: source || "other",
       status: "new" as LeadStatus,
       priority: priority || "medium" as LeadPriority,

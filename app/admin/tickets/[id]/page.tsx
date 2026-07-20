@@ -231,7 +231,7 @@ export default function AdminTicketDetailPage() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="font-medium text-sm text-foreground">
-                    {ticket.customer_name || "Agent"}
+                    {ticket.customer_name || "Associate"}
                   </span>
                   <span className="text-xs text-muted-foreground">
                     {new Date(ticket.created_at).toLocaleString()}
@@ -263,7 +263,7 @@ export default function AdminTicketDetailPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="font-medium text-sm text-foreground">
-                        {reply.from === "admin" ? "Admin" : ticket.customer_name || "Agent"}
+                        {reply.from === "admin" ? "Admin" : ticket.customer_name || "Associate"}
                       </span>
                       {reply.from === "admin" && (
                         <span className="px-1.5 py-0.5 bg-primary/10 text-primary text-xs rounded">

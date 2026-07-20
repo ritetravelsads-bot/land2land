@@ -7,7 +7,7 @@ export interface User {
   email: string
   password: string
   phone_number?: string
-  user_type: "customer" | "agent" | "admin"
+  user_type: "customer" | "associate" | "admin"
   profile_picture?: string
   date_joined: Date
   last_login?: Date
@@ -148,7 +148,7 @@ export interface Property {
   }
 
   // Ownership & Documents
-  owner_type?: "owner" | "agent" | "builder"
+  owner_type?: "owner" | "associate" | "builder"
   ownership_type?: "freehold" | "leasehold" | "gpa" | "coop"
   agreement_ready?: boolean
   loan_available?: boolean

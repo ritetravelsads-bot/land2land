@@ -27,7 +27,7 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
   try {
     const { id } = await params
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -45,13 +45,13 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
 }
 
 // PATCH /api/agent/rera-requests/[id]
-// Agent responds to a document request by uploading files.
+// Associate responds to a document request by uploading files.
 // body: { documents: [{ key, file }] }
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -96,7 +96,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
         ? "Agent uploaded the requested documents."
         : "Agent uploaded some documents.",
       by: user._id.toString(),
-      by_role: user.user_type === "admin" ? "admin" : "agent",
+      by_role: user.user_type === "admin" ? "admin" : "associate",
       at: now,
     }
 

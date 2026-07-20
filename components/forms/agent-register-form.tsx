@@ -50,7 +50,7 @@ export default function AgentRegisterForm() {
           email: formData.email,
           password: formData.password,
           phone_number: formData.phone_number,
-          user_type: "agent",
+          user_type: "associate",
         }),
       })
 

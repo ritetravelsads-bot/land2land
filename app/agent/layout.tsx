@@ -20,12 +20,12 @@ export default async function AgentLayout({ children }: { children: React.ReactN
     redirect("/auth/login")
   }
 
-  if (user.user_type !== "agent") {
+  if (user.user_type !== "associate") {
     redirect("/dashboard")
   }
 
   return (
-    <DashboardLayoutWrapper userRole="agent" userName={user.username}>
+    <DashboardLayoutWrapper userRole="associate" userName={user.username}>
       {children}
     </DashboardLayoutWrapper>
   )

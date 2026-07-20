@@ -39,7 +39,7 @@ export default function LoginForm() {
 
       const data = await response.json()
       // Redirect based on user type
-      if (data.user.user_type === "agent") {
+      if (data.user.user_type === "associate") {
         router.push("/agent/dashboard")
       } else if (data.user.user_type === "admin") {
         router.push("/admin/dashboard")

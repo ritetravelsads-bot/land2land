@@ -7,7 +7,7 @@ import UnifiedSidebar from "./unified-sidebar"
 import { Toaster } from "@/components/ui/toaster"
 import { Toaster as SonnerToaster } from "@/components/ui/sonner"
 
-type UserRole = "admin" | "agent" | "builder" | "buyer" | "customer"
+type UserRole = "admin" | "associate" | "builder" | "buyer" | "customer"
 
 interface DashboardLayoutWrapperProps {
   children: React.ReactNode

@@ -52,7 +52,7 @@ export async function POST() {
         // The account itself
         db.collection("users").deleteOne({ _id: new ObjectId(userIdString) }),
         // Listings owned by this user (stored with `agent: user._id`)
-        db.collection("listings").deleteMany({ agent: userId }),
+        db.collection("listings").deleteMany({ associate: userId }),
         // Support tickets opened by this user (`user_id` stored as a string)
         db.collection("tickets").deleteMany({ user_id: userIdString }),
       ])

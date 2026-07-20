@@ -147,7 +147,7 @@ export default function AdminLeadsList() {
       const response = await fetch("/api/admin/users")
       if (response.ok) {
         const users = await response.json()
-        setAgents(users.filter((u: Agent & { user_type: string }) => u.user_type === "agent"))
+        setAgents(users.filter((u: Agent & { user_type: string }) => u.user_type === "associate"))
       }
     } catch (error) {
       console.error("Failed to fetch agents:", error)

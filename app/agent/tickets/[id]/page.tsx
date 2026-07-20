@@ -9,7 +9,7 @@ import { ArrowLeft, Clock, CheckCircle2, AlertCircle, User, Shield, Send } from 
 interface Reply {
   id: string
   message: string
-  sender_type: "agent" | "admin"
+  sender_type: "associate" | "admin"
   sender_name: string
   created_at: string
 }

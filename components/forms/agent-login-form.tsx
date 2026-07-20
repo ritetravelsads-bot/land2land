@@ -37,7 +37,7 @@ export default function AgentLoginForm() {
 
       const data = await response.json()
 
-      if (data.user.user_type !== "agent") {
+      if (data.user.user_type !== "associate") {
         throw new Error("This account does not have agent privileges")
       }
 
