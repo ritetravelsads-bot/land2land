@@ -105,8 +105,8 @@ export async function POST(req: NextRequest) {
 
     const doc: Omit<ReraRequest, "_id"> = {
       associate: user._id.toString(),
-      agent_name: user.username,
-      agent_email: user.email,
+      associate_name: user.username,
+      associate_email: user.email,
       listing: listingId,
       listing_name: (listing.property_name as string) || "",
       listing_slug: (listing.slug as string) || "",
@@ -119,7 +119,7 @@ export async function POST(req: NextRequest) {
       land_area: typeof body.land_area === "string" ? body.land_area.trim() : "",
       estimated_value: Number(body.estimated_value) || 0,
       aadhaar_or_pan: typeof body.aadhaar_or_pan === "string" ? body.aadhaar_or_pan.trim() : "",
-      agent_notes: typeof body.agent_notes === "string" ? body.agent_notes.trim() : "",
+      associate_notes: typeof body.associate_notes === "string" ? body.associate_notes.trim() : "",
       status: "submitted",
       requested_documents: [],
       stage_history: [firstEvent],

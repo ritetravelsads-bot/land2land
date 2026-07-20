@@ -188,7 +188,7 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
               {request.listing_name || "Land property"}
             </h1>
             <p className="text-sm text-muted-foreground">
-              Requested by {request.agent_name} · {formatDate(request.created_at)}
+              Requested by {request.associate_name} · {formatDate(request.created_at)}
             </p>
           </div>
         </div>
@@ -227,13 +227,13 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
                 />
               ) : null}
               <Detail label="PAN / Aadhaar" value={request.aadhaar_or_pan} />
-              <Detail label="Associate" value={request.agent_name} />
-              <Detail label="Agent Email" value={request.agent_email} />
+              <Detail label="Associate" value={request.associate_name} />
+              <Detail label="Associate Email" value={request.associate_email} />
             </dl>
-            {request.agent_notes && (
+            {request.associate_notes && (
               <div className="mt-4 border-t border-border pt-4">
-                <p className="mb-1 text-xs font-semibold text-muted-foreground">Agent&apos;s note</p>
-                <p className="text-sm text-foreground">{request.agent_notes}</p>
+                <p className="mb-1 text-xs font-semibold text-muted-foreground">Associate&apos;s note</p>
+                <p className="text-sm text-foreground">{request.associate_notes}</p>
               </div>
             )}
             <div className="mt-4 border-t border-border pt-4">

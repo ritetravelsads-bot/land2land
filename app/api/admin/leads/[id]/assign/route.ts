@@ -46,8 +46,8 @@ export async function POST(
       user_type: "associate"
     })
 
-    if (!agent) {
-      return NextResponse.json({ error: "Agent not found" }, { status: 404 })
+    if (!associate) {
+      return NextResponse.json({ error: "Associate not found" }, { status: 404 })
     }
 
     // Check if lead exists
@@ -75,7 +75,7 @@ export async function POST(
 
     return NextResponse.json({ 
       success: true, 
-      message: `Lead assigned to ${agent.username || agent.email}`,
+      message: `Lead assigned to ${associate.username || associate.email}`,
       assigned_to: agent_id,
       assigned_at: new Date(),
     })

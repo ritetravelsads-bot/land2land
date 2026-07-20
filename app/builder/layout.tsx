@@ -20,7 +20,7 @@ export default async function BuilderLayout({ children }: { children: React.Reac
     redirect("/auth/login")
   }
 
-  if (user.user_type !== "agent") {
+  if (user.user_type !== "associate") {
     redirect("/")
   }
 

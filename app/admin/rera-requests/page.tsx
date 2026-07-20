@@ -118,7 +118,7 @@ export default function AdminReraQueuePage() {
                     {r.project_location || "Location not specified"}
                   </p>
                   <div className="mt-2 flex flex-wrap gap-2 text-xs text-muted-foreground">
-                    <span className="rounded bg-muted px-2 py-0.5">Agent: {r.agent_name}</span>
+                    <span className="rounded bg-muted px-2 py-0.5">Associate: {r.associate_name}</span>
                     <span className="rounded bg-muted px-2 py-0.5">
                       Applicant: {r.applicant_name}
                     </span>

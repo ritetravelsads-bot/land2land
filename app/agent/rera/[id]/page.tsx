@@ -251,10 +251,10 @@ export default function AgentReraDetailPage({ params }: { params: Promise<{ id: 
           ) : null}
           <Detail label="PAN / Aadhaar" value={request.aadhaar_or_pan} />
         </dl>
-        {request.agent_notes && (
+        {request.associate_notes && (
           <div className="mt-4 border-t border-border pt-4">
             <p className="mb-1 text-xs font-semibold text-muted-foreground">Your note</p>
-            <p className="text-sm text-foreground">{request.agent_notes}</p>
+            <p className="text-sm text-foreground">{request.associate_notes}</p>
           </div>
         )}
       </div>

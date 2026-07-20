@@ -640,7 +640,7 @@ export default function AdminLeadsList() {
                   <div key={i} className="bg-muted/50 rounded-lg p-3">
                     <p className="text-sm">{note.content}</p>
                     <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
-                      <span>{note.created_by_name || note.created_by_type}</span>
+                      <span>{note.created_by_type}</span>
                       <span>•</span>
                       <span>{formatDate(note.created_at)} at {formatTime(note.created_at)}</span>
                     </div>

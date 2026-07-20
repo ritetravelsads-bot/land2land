@@ -35,7 +35,7 @@ export default function FindAgentPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [verifiedOnly, setVerifiedOnly] = useState(false)
 
-  const { data, isLoading } = useSWR<{ success: boolean; agents: Agent[] }>("/api/agents", fetcher)
+  const { data, isLoading } = useSWR<{ success: boolean; agents: Associate[] }>("/api/agents", fetcher)
   const agents = data?.agents ?? []
 
   const filteredAgents = agents.filter((agent) => {
