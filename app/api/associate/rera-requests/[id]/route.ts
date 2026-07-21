@@ -16,7 +16,7 @@ async function loadOwnedRequest(id: string, user: any, db: any) {
   }
   const request = await db.collection(COLLECTIONS.RERA_REQUESTS).findOne({ _id: objectId })
   if (!request) return { error: "Request not found.", status: 404 as const }
-  if (user.user_type !== "admin" && request.agent !== user._id.toString()) {
+  if (user.user_type !== "admin" && request.associate !== user._id.toString()) {
     return { error: "Not authorized to view this request.", status: 403 as const }
   }
   return { request, objectId }
@@ -90,10 +90,10 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     const event: ReraStageEvent = {
       status: newStatus,
       note: allRequiredUploaded
-        ? "Associate uploaded the requested documents."
+        ? "Associate uploaded all requested documents."
         : "Associate uploaded some documents.",
       by: user._id.toString(),
-      by_role: user.user_type === "admin" ? "admin" : "agent",
+      by_role: user.user_type === "admin" ? "admin" : "associate",
       at: now,
     }
 

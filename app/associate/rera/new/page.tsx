@@ -37,7 +37,7 @@ export default function NewAssociateReraRequestPage() {
     land_area: "",
     estimated_value: "",
     aadhaar_or_pan: "",
-    agent_notes: "",
+    associate_notes: "",
   })
 
   useEffect(() => {
@@ -285,8 +285,8 @@ export default function NewAssociateReraRequestPage() {
               Anything else we should know?
             </label>
             <textarea
-              value={form.agent_notes}
-              onChange={(e) => set("agent_notes", e.target.value)}
+              value={form.associate_notes}
+              onChange={(e) => set("associate_notes", e.target.value)}
               className={inputCls}
               rows={3}
               placeholder="Optional message to the admin team"

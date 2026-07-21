@@ -14,7 +14,7 @@ export async function GET() {
     // Get all properties owned by this associate
     const properties = await db
       .collection("listings")
-      .find({ agent: { $in: [user._id, user._id?.toString()] } })
+      .find({ associate: { $in: [user._id, user._id?.toString()] } })
       .project({ _id: 1, property_name: 1 })
       .toArray()
 

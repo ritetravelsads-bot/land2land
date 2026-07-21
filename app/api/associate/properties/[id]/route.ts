@@ -21,7 +21,7 @@ export async function GET(
       return NextResponse.json({ error: "Property not found" }, { status: 404 })
     }
 
-    if (user.user_type === "associate" && property.agent?.toString() !== user._id?.toString()) {
+    if (user.user_type === "associate" && property.associate?.toString() !== user._id?.toString()) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 403 })
     }
 
@@ -66,7 +66,7 @@ export async function PUT(
 
     const {
       _id: _id,
-      agent: _agent,
+      associate: _agent,
       review_status: _rs,
       review_notes: _rn,
       reviewed_at: _ra,
@@ -89,7 +89,7 @@ export async function PUT(
 
     const ownershipFilter = isAdmin
       ? { _id: new ObjectId(id) }
-      : { _id: new ObjectId(id), agent: { $in: [user._id, user._id?.toString()] } }
+      : { _id: new ObjectId(id), associate: { $in: [user._id, user._id?.toString()] } }
 
     const incUpdate = isAdmin ? {} : { $inc: { submission_count: 1 } }
 
@@ -130,7 +130,7 @@ export async function DELETE(
     const deleteFilter =
       user.user_type === "admin"
         ? { _id: new ObjectId(id) }
-        : { _id: new ObjectId(id), agent: { $in: [user._id, user._id?.toString()] } }
+        : { _id: new ObjectId(id), associate: { $in: [user._id, user._id?.toString()] } }
     const result = await db.collection("listings").deleteOne(deleteFilter)
 
     if (result.deletedCount === 0) {

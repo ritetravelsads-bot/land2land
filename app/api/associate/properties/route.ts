@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
     const query =
       user.user_type === "admin"
         ? {}
-        : { agent: { $in: [user._id, user._id?.toString()] } }
+        : { associate: { $in: [user._id, user._id?.toString()] } }
     const properties = await db
       .collection("listings")
       .find(query)
@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
     const property = {
       ...body,
       slug,
-      agent: user._id,
+      associate: user._id,
       review_status: isAdmin ? "approved" : "pending",
       review_notes: "",
       submission_count: 1,
