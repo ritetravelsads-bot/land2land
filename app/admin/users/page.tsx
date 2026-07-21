@@ -2,6 +2,7 @@
 import { useEffect, useState, useCallback } from "react"
 import { Trash2, RefreshCw, Phone, Mail, User, Calendar, Shield, Search, Filter, ChevronDown, UserPlus, X, Eye, EyeOff, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { UserAvatar } from "@/components/ui/user-avatar"
 import { toast } from "sonner"
 
 interface UserData {
@@ -10,6 +11,7 @@ interface UserData {
   email: string
   phone_number?: string
   user_type: string
+  profile_picture?: string | null
   created_at?: string
   date_joined?: string
   is_verified?: boolean
@@ -329,9 +331,11 @@ export default function AdminUsersPage() {
                     <tr key={user._id} className="hover:bg-muted/30 transition-colors">
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
-                          <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-sm">
-                            {user.username?.charAt(0)?.toUpperCase() || "U"}
-                          </div>
+                          <UserAvatar
+                            name={user.username}
+                            src={user.profile_picture}
+                            className="h-8 w-8 text-sm"
+                          />
                           <div>
                             <p className="font-medium text-foreground">{user.username || "-"}</p>
                             {user.is_verified && (

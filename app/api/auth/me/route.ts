@@ -36,6 +36,7 @@ export async function GET() {
           username: user.username,
           email: user.email,
           user_type: user.user_type,
+          phone_number: user.phone_number,
           profile_picture: user.profile_picture,
         },
       }),

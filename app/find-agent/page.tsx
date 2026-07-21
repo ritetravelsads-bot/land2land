@@ -1,127 +1,47 @@
 "use client"
 
 import { useState } from "react"
-import { Star, MapPin, Phone, Calendar, ShieldCheck, MessageSquare, BarChart2 } from "lucide-react"
+import useSWR from "swr"
+import { Phone, ShieldCheck, MessageSquare, BarChart2, Calendar, Search, Loader2, MessageCircle } from "lucide-react"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
+import { UserAvatar } from "@/components/ui/user-avatar"
 
-const agents = [
-  {
-    id: 1,
-    name: "Rajesh Kumar",
-    initials: "RK",
-    title: "Agricultural Land Specialist",
-    location: "Uttar Pradesh",
-    experience: "8+ years",
-    specialization: "Agricultural Land",
-    rating: 4.8,
-    reviews: 145,
-    about: "Expert in high-yield agricultural land deals across North India",
-    phone: "+91 98765-43210",
-    responseTime: "< 2 hours",
-    deals: "250+",
-    verified: true,
-  },
-  {
-    id: 2,
-    name: "Priya Singh",
-    initials: "PS",
-    title: "Farm Investment Advisor",
-    location: "Punjab",
-    experience: "6+ years",
-    specialization: "Farmland",
-    rating: 4.7,
-    reviews: 128,
-    about: "Specializes in organic farm investments and lease-back models",
-    phone: "+91 98765-43211",
-    responseTime: "< 3 hours",
-    deals: "180+",
-    verified: true,
-  },
-  {
-    id: 3,
-    name: "Amit Patel",
-    initials: "AP",
-    title: "Investment Land Consultant",
-    location: "Gujarat",
-    experience: "10+ years",
-    specialization: "Investment Properties",
-    rating: 4.9,
-    reviews: 267,
-    about: "Focuses on high-ROI land corridors and infrastructure development zones",
-    phone: "+91 98765-43212",
-    responseTime: "< 1 hour",
-    deals: "380+",
-    verified: true,
-  },
-  {
-    id: 4,
-    name: "Neha Desai",
-    initials: "ND",
-    title: "Land Development Expert",
-    location: "Maharashtra",
-    experience: "7+ years",
-    specialization: "Land Development",
-    rating: 4.6,
-    reviews: 92,
-    about: "Assists in land development projects and regulatory clearances",
-    phone: "+91 98765-43213",
-    responseTime: "< 4 hours",
-    deals: "140+",
-    verified: true,
-  },
-  {
-    id: 5,
-    name: "Vikram Sharma",
-    initials: "VS",
-    title: "Orchard & Plantation Specialist",
-    location: "Himachal Pradesh",
-    experience: "9+ years",
-    specialization: "Farmland",
-    rating: 4.8,
-    reviews: 156,
-    about: "Expert in orchard land and plantation investments",
-    phone: "+91 98765-43214",
-    responseTime: "< 2 hours",
-    deals: "195+",
-    verified: true,
-  },
-  {
-    id: 6,
-    name: "Divya Nair",
-    initials: "DN",
-    title: "Irrigation & Water Rights Specialist",
-    location: "Madhya Pradesh",
-    experience: "8+ years",
-    specialization: "Agricultural Land",
-    rating: 4.7,
-    reviews: 118,
-    about: "Specializes in canal-fed and irrigation-backed land deals",
-    phone: "+91 98765-43215",
-    responseTime: "< 3 hours",
-    deals: "165+",
-    verified: true,
-  },
-]
+interface Agent {
+  id: string
+  name: string
+  phone: string | null
+  profile_picture: string | null
+  verified: boolean
+  joined: string | null
+}
+
+const fetcher = (url: string) => fetch(url).then((r) => r.json())
+
+function formatJoined(date: string | null) {
+  if (!date) return null
+  try {
+    return new Date(date).toLocaleDateString("en-IN", { month: "short", year: "numeric" })
+  } catch {
+    return null
+  }
+}
+
+function digitsOnly(phone: string) {
+  return phone.replace(/\D/g, "")
+}
 
 export default function FindAgentPage() {
   const [searchQuery, setSearchQuery] = useState("")
-  const [selectedLocation, setSelectedLocation] = useState("All")
-  const [selectedSpecialization, setSelectedSpecialization] = useState("All")
-  const [selectedExperience, setSelectedExperience] = useState("Any")
+  const [verifiedOnly, setVerifiedOnly] = useState(false)
 
-  const locations = ["All", "Uttar Pradesh", "Punjab", "Gujarat", "Maharashtra", "Himachal Pradesh", "Madhya Pradesh"]
-  const specializations = ["All Specializations", "Agricultural Land", "Farmland", "Investment Properties", "Land Development"]
-  const experiences = ["Any experience", "5+ years", "7+ years", "10+ years"]
+  const { data, isLoading } = useSWR<{ success: boolean; agents: Agent[] }>("/api/agents", fetcher)
+  const agents = data?.agents ?? []
 
   const filteredAgents = agents.filter((agent) => {
-    const matchesSearch = agent.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                         agent.specialization.toLowerCase().includes(searchQuery.toLowerCase())
-    const matchesLocation = selectedLocation === "All" || agent.location === selectedLocation
-    const matchesSpecialization = selectedSpecialization === "All Specializations" || agent.specialization === selectedSpecialization
-    const matchesExperience = selectedExperience === "Any experience" || parseInt(agent.experience) >= parseInt(selectedExperience)
-    
-    return matchesSearch && matchesLocation && matchesSpecialization && matchesExperience
+    const matchesSearch = agent.name.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesVerified = !verifiedOnly || agent.verified
+    return matchesSearch && matchesVerified
   })
 
   return (
@@ -131,174 +51,159 @@ export default function FindAgentPage() {
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Hero Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#125007] mb-4">Find Expert Land Agents</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#125007] mb-4 text-balance">Find Expert Land Agents</h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto text-pretty">
             Connect with verified land agents and consultants across India. Get expert guidance for your land investment.
           </p>
         </div>
 
         {/* Search & Filters */}
-        <div className="bg-white rounded-lg shadow-md p-8 mb-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-6">
-            <div>
+        <div className="bg-white rounded-lg shadow-md p-6 md:p-8 mb-12">
+          <div className="flex flex-col md:flex-row gap-4 md:items-end">
+            <div className="flex-1">
               <label className="block text-sm font-medium text-gray-700 mb-2">Search Agent Name</label>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search by agent name"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
+                />
+              </div>
+            </div>
+
+            <label className="flex items-center gap-2 text-sm font-medium text-gray-700 md:pb-2.5 cursor-pointer">
               <input
-                type="text"
-                placeholder="Search by name or specialty"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
+                type="checkbox"
+                checked={verifiedOnly}
+                onChange={(e) => setVerifiedOnly(e.target.checked)}
+                className="h-4 w-4 rounded border-gray-300 text-[#125007] focus:ring-[#125007]"
               />
-            </div>
+              Verified only
+            </label>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
-              <select
-                value={selectedLocation}
-                onChange={(e) => setSelectedLocation(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
-              >
-                {locations.map((loc) => (
-                  <option key={loc} value={loc}>{loc}</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Specialization</label>
-              <select
-                value={selectedSpecialization}
-                onChange={(e) => setSelectedSpecialization(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
-              >
-                {specializations.map((spec) => (
-                  <option key={spec} value={spec}>{spec}</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Experience</label>
-              <select
-                value={selectedExperience}
-                onChange={(e) => setSelectedExperience(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#125007]"
-              >
-                {experiences.map((exp) => (
-                  <option key={exp} value={exp}>{exp}</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">&nbsp;</label>
-              <button
-                onClick={() => {
-                  setSearchQuery("")
-                  setSelectedLocation("All")
-                  setSelectedSpecialization("All Specializations")
-                  setSelectedExperience("Any experience")
-                }}
-                className="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-2 rounded-lg font-semibold transition-colors"
-              >
-                Clear Filters
-              </button>
-            </div>
-          </div>
-
-          <div className="text-sm text-gray-600">
-            Found {filteredAgents.length} {filteredAgents.length === 1 ? "agent" : "agents"}
-          </div>
-        </div>
-
-        {/* Agents Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {filteredAgents.map((agent) => (
-            <div key={agent.id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-              <div className="bg-gradient-to-r from-[#125007] to-[#4a7c2e] p-6 text-white">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-16 h-16 rounded-full bg-white/20 border-2 border-white/40 flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
-                    {agent.initials}
-                  </div>
-                  {agent.verified && (
-                    <div className="bg-white text-[#125007] px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
-                      <span className="text-[#125007]">&#10003;</span> Verified
-                    </div>
-                  )}
-                </div>
-                <h3 className="text-xl font-bold mb-1">{agent.name}</h3>
-                <p className="text-green-100 text-sm mb-2">{agent.title}</p>
-              </div>
-
-              <div className="p-6">
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <MapPin className="w-4 h-4" />
-                    {agent.location}
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <Calendar className="w-4 h-4" />
-                    {agent.experience} experience
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="flex text-yellow-400">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className={`w-4 h-4 ${i < Math.floor(agent.rating) ? "fill-current" : "text-gray-300"}`} />
-                      ))}
-                    </div>
-                    <span className="text-sm font-semibold text-gray-700">{agent.rating}</span>
-                    <span className="text-xs text-gray-500">({agent.reviews} reviews)</span>
-                  </div>
-                  <p className="text-sm text-gray-700 italic">"{agent.about}"</p>
-                </div>
-
-                <div className="grid grid-cols-3 gap-3 mb-6 pb-6 border-b border-gray-200">
-                  <div className="text-center">
-                    <div className="text-sm font-bold text-[#125007]">{agent.deals}</div>
-                    <div className="text-xs text-gray-600">Deals</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-sm font-bold text-[#125007]">{agent.responseTime}</div>
-                    <div className="text-xs text-gray-600">Response</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-sm font-bold text-[#125007]">{agent.specialization}</div>
-                    <div className="text-xs text-gray-600">Specialty</div>
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <button className="w-full bg-[#125007] hover:bg-[#1d3610] text-white px-4 py-2.5 rounded-lg font-semibold transition-colors">
-                    Connect Now
-                  </button>
-                  <button className="w-full border-2 border-[#125007] text-[#125007] hover:bg-green-50 px-4 py-2.5 rounded-lg font-semibold transition-colors">
-                    View Profile
-                  </button>
-                </div>
-
-                <div className="mt-4 flex items-center gap-3 text-xs text-gray-600 pt-4 border-t border-gray-200">
-                  <Phone className="w-3.5 h-3.5" />
-                  <span>{agent.phone}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {filteredAgents.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-600 text-lg mb-4">No agents found matching your criteria.</p>
             <button
               onClick={() => {
                 setSearchQuery("")
-                setSelectedLocation("All")
-                setSelectedSpecialization("All Specializations")
-                setSelectedExperience("Any experience")
+                setVerifiedOnly(false)
               }}
-              className="text-[#125007] font-semibold hover:underline"
+              className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg font-semibold transition-colors"
             >
-              Clear filters and try again
+              Clear
             </button>
+          </div>
+
+          {!isLoading && (
+            <div className="text-sm text-gray-600 mt-4">
+              Found {filteredAgents.length} {filteredAgents.length === 1 ? "agent" : "agents"}
+            </div>
+          )}
+        </div>
+
+        {/* Loading State */}
+        {isLoading && (
+          <div className="flex flex-col items-center justify-center py-16 text-gray-500">
+            <Loader2 className="w-8 h-8 animate-spin text-[#125007] mb-3" />
+            <p>Loading agents...</p>
+          </div>
+        )}
+
+        {/* Agents Grid */}
+        {!isLoading && filteredAgents.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {filteredAgents.map((agent) => {
+              const joined = formatJoined(agent.joined)
+              return (
+                <div
+                  key={agent.id}
+                  className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col"
+                >
+                  <div className="bg-gradient-to-r from-[#125007] to-[#4a7c2e] p-6 text-white">
+                    <div className="flex items-start justify-between mb-4">
+                      <UserAvatar
+                        name={agent.name}
+                        src={agent.profile_picture}
+                        className="w-16 h-16 border-2 border-white/40 bg-white/20 text-white"
+                        textClassName="text-xl"
+                      />
+                      {agent.verified && (
+                        <div className="bg-white text-[#125007] px-2 py-1 rounded text-xs font-bold flex items-center gap-1">
+                          <ShieldCheck className="w-3.5 h-3.5" /> Verified
+                        </div>
+                      )}
+                    </div>
+                    <h3 className="text-xl font-bold mb-1 capitalize">{agent.name}</h3>
+                    <p className="text-green-100 text-sm">Land Agent</p>
+                  </div>
+
+                  <div className="p-6 flex flex-col flex-1">
+                    <div className="space-y-3 mb-6">
+                      {joined && (
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <Calendar className="w-4 h-4" />
+                          Member since {joined}
+                        </div>
+                      )}
+                      {agent.phone && (
+                        <div className="flex items-center gap-2 text-sm text-gray-600">
+                          <Phone className="w-4 h-4" />
+                          {agent.phone}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="mt-auto space-y-3">
+                      {agent.phone ? (
+                        <div className="grid grid-cols-2 gap-3">
+                          <a
+                            href={`tel:${agent.phone}`}
+                            className="flex items-center justify-center gap-2 bg-[#125007] hover:bg-[#1d3610] text-white px-4 py-2.5 rounded-lg font-semibold transition-colors"
+                          >
+                            <Phone className="w-4 h-4" />
+                            Call
+                          </a>
+                          <a
+                            href={`https://wa.me/${digitsOnly(agent.phone).length === 10 ? "91" + digitsOnly(agent.phone) : digitsOnly(agent.phone)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2 border-2 border-[#125007] text-[#125007] hover:bg-green-50 px-4 py-2.5 rounded-lg font-semibold transition-colors"
+                          >
+                            <MessageCircle className="w-4 h-4" />
+                            Chat
+                          </a>
+                        </div>
+                      ) : (
+                        <div className="text-center text-sm text-gray-500 py-2.5 border border-dashed border-gray-300 rounded-lg">
+                          Contact details not available
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!isLoading && filteredAgents.length === 0 && (
+          <div className="text-center py-16 mb-12">
+            <p className="text-gray-600 text-lg mb-4">
+              {agents.length === 0 ? "No agents have registered yet." : "No agents found matching your search."}
+            </p>
+            {agents.length > 0 && (
+              <button
+                onClick={() => {
+                  setSearchQuery("")
+                  setVerifiedOnly(false)
+                }}
+                className="text-[#125007] font-semibold hover:underline"
+              >
+                Clear search and try again
+              </button>
+            )}
           </div>
         )}
 

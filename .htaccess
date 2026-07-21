@@ -23,6 +23,8 @@ RequestHeader set X-Forwarded-Port "443"
 # Pass the exact requested URL directly to the PM2 app
 RewriteRule ^(.*)$ http://127.0.0.1:3008%{REQUEST_URI} [P,L]
 
+RewriteRule ^google2a84e53130347dd4\.html$ - [L]
+
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php82” package as the default “PHP” programming language.
 <IfModule mime_module>
