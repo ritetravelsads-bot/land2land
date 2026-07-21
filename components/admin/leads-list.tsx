@@ -50,7 +50,7 @@ interface LeadWithId extends Lead {
   _id: string
 }
 
-interface Agent {
+interface Associate {
   _id: string
   username: string
   email: string
@@ -103,15 +103,15 @@ export default function AdminLeadsList() {
   const [priorityFilter, setPriorityFilter] = useState<string>("all")
   const [showUnassigned, setShowUnassigned] = useState(false)
   
-  // Agents for assignment
-  const [agents, setAgents] = useState<Agent[]>([])
+  // Associates for assignment
+  const [associates, setAssociates] = useState<Associate[]>([])
   
   // Dialogs
   const [selectedLead, setSelectedLead] = useState<LeadWithId | null>(null)
   const [showAssignDialog, setShowAssignDialog] = useState(false)
   const [showNotesDialog, setShowNotesDialog] = useState(false)
   const [showDetailDialog, setShowDetailDialog] = useState(false)
-  const [selectedAgent, setSelectedAgent] = useState<string>("")
+  const [selectedAssociate, setSelectedAssociate] = useState<string>("")
   const [newNote, setNewNote] = useState("")
   const [actionLoading, setActionLoading] = useState(false)
 
@@ -142,22 +142,22 @@ export default function AdminLeadsList() {
     }
   }, [page, search, statusFilter, priorityFilter, showUnassigned])
 
-  const fetchAgents = useCallback(async () => {
+  const fetchAssociates = useCallback(async () => {
     try {
       const response = await fetch("/api/admin/users")
       if (response.ok) {
         const users = await response.json()
-        setAgents(users.filter((u: Agent & { user_type: string }) => u.user_type === "agent"))
+        setAssociates(users.filter((u: Associate & { user_type: string }) => u.user_type === "associate"))
       }
     } catch (error) {
-      console.error("Failed to fetch agents:", error)
+      console.error("Failed to fetch associates:", error)
     }
   }, [])
 
   useEffect(() => {
     fetchLeads()
-    fetchAgents()
-  }, [fetchLeads, fetchAgents])
+    fetchAssociates()
+  }, [fetchLeads, fetchAssociates])
 
   const handleStatusChange = async (leadId: string, newStatus: LeadStatus) => {
     try {
@@ -192,20 +192,20 @@ export default function AdminLeadsList() {
   }
 
   const handleAssignLead = async () => {
-    if (!selectedLead || !selectedAgent) return
+    if (!selectedLead || !selectedAssociate) return
     
     setActionLoading(true)
     try {
       const response = await fetch(`/api/admin/leads/${selectedLead._id}/assign`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ agent_id: selectedAgent }),
+        body: JSON.stringify({ associate_id: selectedAssociate }),
       })
       
       if (response.ok) {
         setShowAssignDialog(false)
         setSelectedLead(null)
-        setSelectedAgent("")
+        setSelectedAssociate("")
         fetchLeads()
       }
     } catch (error) {
@@ -480,7 +480,7 @@ export default function AdminLeadsList() {
                             setSelectedLead(lead)
                             setShowAssignDialog(true)
                           }}
-                          title="Assign to Agent"
+                          title="Assign to Associate"
                         >
                           <UserPlus className="h-3.5 w-3.5" />
                         </Button>
@@ -583,9 +583,9 @@ export default function AdminLeadsList() {
       <Dialog open={showAssignDialog} onOpenChange={setShowAssignDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Assign Lead to Agent</DialogTitle>
+            <DialogTitle>Assign Lead to Associate</DialogTitle>
             <DialogDescription>
-              Select an agent to assign this lead to. They will be able to see and manage this lead.
+              Select an associate to assign this lead to. They will be able to see and manage this lead.
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
@@ -600,14 +600,14 @@ export default function AdminLeadsList() {
                 )}
               </div>
             )}
-            <Select value={selectedAgent} onValueChange={setSelectedAgent}>
+            <Select value={selectedAssociate} onValueChange={setSelectedAssociate}>
               <SelectTrigger>
-                <SelectValue placeholder="Select an agent" />
+                <SelectValue placeholder="Select an associate" />
               </SelectTrigger>
               <SelectContent>
-                {agents.map((agent) => (
-                  <SelectItem key={agent._id} value={agent._id}>
-                    {agent.username || agent.email}
+                {associates.map((associate) => (
+                  <SelectItem key={associate._id} value={associate._id}>
+                    {associate.username || associate.email}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -617,7 +617,7 @@ export default function AdminLeadsList() {
             <Button variant="outline" onClick={() => setShowAssignDialog(false)}>
               Cancel
             </Button>
-            <Button onClick={handleAssignLead} disabled={!selectedAgent || actionLoading}>
+            <Button onClick={handleAssignLead} disabled={!selectedAssociate || actionLoading}>
               {actionLoading ? "Assigning..." : "Assign Lead"}
             </Button>
           </DialogFooter>

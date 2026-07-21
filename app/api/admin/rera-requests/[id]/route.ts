@@ -121,7 +121,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
         note:
           typeof body.note === "string" && body.note.trim()
             ? body.note.trim()
-            : `Requested ${cleaned.length} document(s) from the agent.`,
+            : `Requested ${cleaned.length} document(s) from the associate.`,
         by: user._id.toString(),
         by_role: "admin",
         at: now,
@@ -154,7 +154,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
       const reason = typeof body.reason === "string" ? body.reason.trim() : ""
       if (!reason) {
         return NextResponse.json(
-          { error: "Please provide a reason so the agent knows why." },
+          { error: "Please provide a reason so the associate knows why." },
           { status: 400 },
         )
       }

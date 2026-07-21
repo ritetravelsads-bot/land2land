@@ -266,16 +266,16 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
                 />
               </div>
 
-              {/* Seller / Agent */}
+              {/* Seller / Associate */}
               <div className="space-y-1.5">
                 <label className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
                   <Building2 className="h-3 w-3" />
-                  Seller / Agent
+                  Seller / Associate
                 </label>
                 <Input
                   type="text"
                   name="developer"
-                  placeholder="Seller / agent name"
+                  placeholder="Seller / associate name"
                   className="h-9 bg-background"
                   value={filters.developer || ""}
                   onChange={handleInputChange}

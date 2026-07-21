@@ -20,7 +20,7 @@ import {
 } from "lucide-react"
 
 interface DashboardSidebarProps {
-  userRole: "buyer" | "builder" | "agent"
+  userRole: "buyer" | "builder" | "associate"
   userName?: string
 }
 

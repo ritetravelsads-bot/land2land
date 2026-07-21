@@ -22,7 +22,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
                          pathname?.startsWith("/builder") || 
                          pathname?.startsWith("/buyer") || 
                          pathname?.startsWith("/dashboard") ||
-                         pathname?.startsWith("/agent")
+                         pathname?.startsWith("/associate")
   
   // Don't render the mega menu header and footer for dashboard pages
   if (isDashboardPage) {

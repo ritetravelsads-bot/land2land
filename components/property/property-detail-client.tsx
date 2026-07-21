@@ -112,13 +112,13 @@ export function PropertyDetailClient({
   const nextImage = () => setActiveImage((prev) => (prev + 1) % images.length)
   const prevImage = () => setActiveImage((prev) => (prev - 1 + images.length) % images.length)
 
-  // Manager / agent info
+  // Manager / associate info
   const manager = property.assigned_manager ||
     property.manager || {
-      name: property.agent_name || "Land2Land Expert",
-      phone: property.agent_phone || "+91 9205190063",
-      email: property.agent_email || "contact@land2land.com",
-      photo: property.agent_photo,
+      name: property.associate_name || "Land2Land Expert",
+      phone: property.associate_phone || "+91 9205190063",
+      email: property.associate_email || "contact@land2land.com",
+      photo: property.associate_photo,
     }
 
   // Build land spec grid — only show rows that have a value
