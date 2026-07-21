@@ -21,7 +21,7 @@ export const COLLECTIONS = {
 }
 
 // User types
-export type UserType = "buyer" | "seller" | "agent" | "admin"
+export type UserType = "buyer" | "seller" | "associate" | "admin"
 
 export interface User {
   _id?: string
@@ -212,13 +212,13 @@ export interface Amenities {
   icon_class: string
 }
 
-// A land Seller / Agent (formerly "Builder"/"Developer").
+// A land Seller / Associate (formerly "Builder"/"Developer").
 export interface Seller {
   _id?: string
   name: string
   slug: string
   logo?: string
-  seller_type?: "owner" | "agent" | "broker"
+  seller_type?: "owner" | "associate" | "broker"
   phone?: string
   email?: string
 }
@@ -290,9 +290,9 @@ export interface Lead {
   source_url?: string           // The page URL where lead was captured
   
   // Ownership & Assignment
-  property_owner_id?: string    // The agent/admin who owns the property
-  property_owner_type?: "admin" | "agent"
-  assigned_to?: string          // Agent ID if admin assigns to an agent
+  property_owner_id?: string    // The associate/admin who owns the property
+  property_owner_type?: "admin" | "associate"
+  assigned_to?: string          // Associate ID if admin assigns to an associate
   assigned_by?: string          // Admin ID who assigned the lead
   assigned_at?: Date
   
@@ -304,7 +304,7 @@ export interface Lead {
   notes?: Array<{
     content: string
     created_by: string
-    created_by_type: "admin" | "agent"
+    created_by_type: "admin" | "associate"
     created_at: Date
   }>
   last_contacted_at?: Date
@@ -405,7 +405,7 @@ export interface ReraStageEvent {
   status: ReraRequestStatus
   note?: string
   by: string                  // user id who made the change
-  by_role: "agent" | "admin"
+  by_role: "associate" | "admin"
   at: string | Date
 }
 
@@ -413,14 +413,14 @@ export interface ReraRequest {
   _id?: string
 
   // Who + which land
-  agent: string               // agent user id
-  agent_name?: string
-  agent_email?: string
+  associate: string               // associate user id
+  associate_name?: string
+  associate_email?: string
   listing: string             // listing / property id
   listing_name?: string       // denormalized for quick display
   listing_slug?: string
 
-  // Applicant details supplied by the agent
+  // Applicant details supplied by the associate
   applicant_name: string
   applicant_type: ReraApplicantType
   contact_phone: string
@@ -429,7 +429,7 @@ export interface ReraRequest {
   land_area?: string          // free text, e.g. "5 acres"
   estimated_value?: number
   aadhaar_or_pan?: string     // applicant identity reference
-  agent_notes?: string        // any message from the agent
+  associate_notes?: string        // any message from the associate
 
   // Admin-managed workflow
   status: ReraRequestStatus
