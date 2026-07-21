@@ -5,13 +5,13 @@ import { useParams, useRouter } from "next/navigation"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
-import { 
-  ArrowLeft, 
-  Clock, 
-  CheckCircle, 
-  AlertCircle, 
-  User, 
-  Shield, 
+import {
+  ArrowLeft,
+  Clock,
+  CheckCircle,
+  AlertCircle,
+  User,
+  Shield,
   Send,
   Calendar,
   Tag,
@@ -248,11 +248,10 @@ export default function AdminTicketDetailPage() {
               <div key={index} className={`p-4 ${reply.from === "admin" ? "bg-primary/5" : ""}`}>
                 <div className="flex items-start gap-3">
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      reply.from === "admin"
+                    className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${reply.from === "admin"
                         ? "bg-primary/10"
                         : "bg-blue-500/10"
-                    }`}
+                      }`}
                   >
                     {reply.from === "admin" ? (
                       <Shield className="h-4 w-4 text-primary" />
@@ -309,7 +308,7 @@ export default function AdminTicketDetailPage() {
               <textarea
                 value={replyMessage}
                 onChange={(e) => setReplyMessage(e.target.value)}
-                placeholder="Type your response to the agent..."
+                placeholder="Type your response to the associate..."
                 className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-input focus:outline-none focus:ring-1 focus:ring-ring resize-none h-32"
                 required
               />

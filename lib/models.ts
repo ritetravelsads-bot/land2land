@@ -75,11 +75,11 @@ export const LAND_DOCUMENT_TYPES: Array<{
   label: string
   hint: string
 }> = [
-  { key: "fard", label: "Fard", hint: "फर्द — record of rights (ownership proof)" },
-  { key: "intkal", label: "Intkal", hint: "इंतकाल — mutation / transfer record" },
-  { key: "girdawari", label: "Girdawari", hint: "गिरदावरी — crop inspection record" },
-  { key: "shizra", label: "Shizra", hint: "शजरा — map of the land (field sketch)" },
-]
+    { key: "fard", label: "Fard", hint: "फर्द — record of rights (ownership proof)" },
+    { key: "intkal", label: "Intkal", hint: "इंतकाल — mutation / transfer record" },
+    { key: "girdawari", label: "Girdawari", hint: "गिरदावरी — crop inspection record" },
+    { key: "shizra", label: "Shizra", hint: "शजरा — map of the land (field sketch)" },
+  ]
 
 // A single uploaded document file.
 export interface LandDocumentFile {
@@ -143,7 +143,7 @@ export interface Listing {
   property_size: number      // legacy size field (sqft)
   property_video?: string
   neighborhood: string
-  seller?: string            // seller / agent id (was `builder`)
+  seller?: string            // seller / associate id (was `builder`)
   builder?: string           // deprecated alias of `seller`
   possession: string
   latitude: number
@@ -152,7 +152,7 @@ export interface Listing {
   availability_status: "available" | "pending" | "sold"
   is_featured: boolean
   is_hot: boolean
-  agent: string
+  associate: string
   amenities: string[]
   facilities: string[]
   main_thumbnail: string
@@ -212,7 +212,7 @@ export interface Amenities {
   icon_class: string
 }
 
-// A land Seller / Agent (formerly "Builder"/"Developer").
+// A land Seller / Associate (formerly "Builder"/"Developer").
 export interface Seller {
   _id?: string
   name: string
@@ -275,31 +275,31 @@ export type LeadPriority = "low" | "medium" | "high" | "urgent"
 
 export interface Lead {
   _id?: string
-  
+
   // Contact Information
   name: string
   email: string
   phone: string
   message?: string
-  
+
   // Property & Source
   property_id?: string          // MongoDB ObjectId as string
   property_name?: string        // Denormalized for quick display
   property_slug?: string        // For linking to property page
   source: LeadSource
   source_url?: string           // The page URL where lead was captured
-  
+
   // Ownership & Assignment
-  property_owner_id?: string    // The agent/admin who owns the property
+  property_owner_id?: string    // The associate/admin who owns the property
   property_owner_type?: "admin" | "associate"
   assigned_to?: string          // Associate ID if admin assigns to an associate
   assigned_by?: string          // Admin ID who assigned the lead
   assigned_at?: Date
-  
+
   // Status & Priority
   status: LeadStatus
   priority: LeadPriority
-  
+
   // Follow-up tracking
   notes?: Array<{
     content: string
@@ -309,13 +309,13 @@ export interface Lead {
   }>
   last_contacted_at?: Date
   next_follow_up?: Date
-  
+
   // Budget & Requirements (optional, from enquiry form)
   budget_min?: number
   budget_max?: number
   preferred_bhk?: number
   preferred_location?: string
-  
+
   // Timestamps
   created_at: Date
   updated_at: Date
@@ -420,7 +420,7 @@ export interface ReraRequest {
   listing_name?: string       // denormalized for quick display
   listing_slug?: string
 
-  // Applicant details supplied by the agent
+  // Applicant details supplied by the associate
   applicant_name: string
   applicant_type: ReraApplicantType
   contact_phone: string

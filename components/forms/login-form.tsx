@@ -40,7 +40,7 @@ export default function LoginForm() {
       const data = await response.json()
       // Redirect based on user type
       if (data.user.user_type === "associate") {
-        router.push("/agent/dashboard")
+        router.push("/associate/dashboard")
       } else if (data.user.user_type === "admin") {
         router.push("/admin/dashboard")
       } else {
@@ -103,8 +103,8 @@ export default function LoginForm() {
         </div>
       </div>
 
-      <GoogleSignInButton 
-        mode="login" 
+      <GoogleSignInButton
+        mode="login"
         onError={(err) => {
           setGoogleError(err)
           setError("")

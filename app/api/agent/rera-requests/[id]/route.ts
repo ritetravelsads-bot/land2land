@@ -16,13 +16,13 @@ async function loadOwnedRequest(id: string, user: any, db: any) {
   }
   const request = await db.collection(COLLECTIONS.RERA_REQUESTS).findOne({ _id: objectId })
   if (!request) return { error: "Request not found.", status: 404 as const }
-  if (user.user_type !== "admin" && request.agent !== user._id.toString()) {
+  if (user.user_type !== "admin" && request.associate !== user._id.toString()) {
     return { error: "Not authorized to view this request.", status: 403 as const }
   }
   return { request, objectId }
 }
 
-// GET /api/agent/rera-requests/[id]
+// GET /api/associate/rera-requests/[id]
 export async function GET(_req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params
@@ -44,7 +44,7 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
   }
 }
 
-// PATCH /api/agent/rera-requests/[id]
+// PATCH /api/associate/rera-requests/[id]
 // Associate responds to a document request by uploading files.
 // body: { documents: [{ key, file }] }
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -93,8 +93,8 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     const event: ReraStageEvent = {
       status: newStatus,
       note: allRequiredUploaded
-        ? "Agent uploaded the requested documents."
-        : "Agent uploaded some documents.",
+        ? "Associate uploaded the requested documents."
+        : "Associate uploaded some documents.",
       by: user._id.toString(),
       by_role: user.user_type === "admin" ? "admin" : "associate",
       at: now,

@@ -52,10 +52,10 @@ async function getProperty(id: string): Promise<Property | null> {
     await client.connect()
     const db = client.db("land2land")
     const collection = db.collection("listings")
-    
+
     // Try to find by slug first, then fall back to _id
     let property = await collection.findOne({ slug: id })
-    
+
     if (!property) {
       try {
         const objectId = new ObjectId(id)
@@ -64,9 +64,9 @@ async function getProperty(id: string): Promise<Property | null> {
         // Invalid ObjectId format
       }
     }
-    
+
     if (!property) return null
-    
+
     return {
       ...property,
       _id: property._id?.toString(),
@@ -83,7 +83,7 @@ async function getDeveloper(developerId: string) {
     await client.connect()
     const db = client.db("land2land")
     const collection = db.collection("sellers")
-    
+
     let developer = null
     try {
       const objectId = new ObjectId(developerId)
@@ -91,9 +91,9 @@ async function getDeveloper(developerId: string) {
     } catch {
       // Invalid ObjectId format
     }
-    
+
     if (!developer) return null
-    
+
     return {
       ...developer,
       _id: developer._id?.toString(),
@@ -110,19 +110,19 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params
   const property = await getProperty(id)
-  
+
   if (!property) {
-    return { 
+    return {
       title: "Property Not Found | Land2Land",
       robots: { index: false, follow: false }
     }
   }
 
   const title = property.meta_title || `${property.property_name} | ${property.city} | Land2Land`
-  const description = property.meta_description || 
-    property.short_description || 
+  const description = property.meta_description ||
+    property.short_description ||
     `${property.property_name} - ${property.property_type || "Property"} in ${property.city}, ${property.state}. ${property.bedrooms ? `${property.bedrooms} BHK` : ""} ${property.area_sqft ? `${property.area_sqft} sqft` : ""}. Price: ${formatPriceToIndian(property.lowest_price)}${property.max_price ? ` - ${formatPriceToIndian(property.max_price)}` : ""}`
-  
+
   const canonicalUrl = `${baseUrl}/properties/${property.slug || id}`
   const ogImage = property.main_banner || property.main_thumbnail || property.multiple_images?.[0]
 
@@ -191,14 +191,14 @@ export default async function PropertyDetailPage({
   if (reviewStatus && reviewStatus !== "approved") {
     const user = await getCurrentUser()
     const isAdmin = user?.user_type === "admin"
-    const isOwner = user && property.agent?.toString() === user._id?.toString()
+    const isOwner = user && property.associate?.toString() === user._id?.toString()
     if (!isAdmin && !isOwner) {
       return <ListingUnderReview />
     }
   }
 
   const developer = property.developer_id ? await getDeveloper(property.developer_id) : null
-  
+
   // Generate schema markup arrays
   const propertySchemas = generatePropertySchema(property)
   const breadcrumbSchema = generatePropertyBreadcrumbSchema(property, "properties", "Properties")
@@ -221,7 +221,7 @@ export default async function PropertyDetailPage({
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      
+
       <PropertyDetailClient property={property} developer={developer} />
     </>
   )

@@ -20,7 +20,7 @@ export default function BottomNav() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch("/api/auth/me", { 
+        const response = await fetch("/api/auth/me", {
           credentials: "include",
           cache: "no-store",
         })
@@ -53,7 +53,7 @@ export default function BottomNav() {
     pathname?.includes("/builder") ||
     pathname?.includes("/dashboard") ||
     pathname?.includes("/admin") ||
-    pathname?.includes("/agent")
+    pathname?.includes("/associate")
   ) {
     return null
   }
@@ -81,10 +81,10 @@ export default function BottomNav() {
           </Link>
 
           {/* Floating Action Button for Add Property - Always visible */}
-          <Link 
-            href={isBuilder ? "/agent/properties/new" : "/auth/login?redirect=/agent/properties/new"} 
-            className="fab" 
-            aria-label="Add property" 
+          <Link
+            href={isBuilder ? "/associate/properties/new" : "/auth/login?redirect=/associate/properties/new"}
+            className="fab"
+            aria-label="Add property"
             title="Add Property"
           >
             <Plus size={24} />

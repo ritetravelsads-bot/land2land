@@ -36,7 +36,7 @@ export default function MegaMenuHeader() {
     // Defer auth check to not block initial render
     const checkAuth = async () => {
       try {
-        const response = await fetch("/api/auth/me", { 
+        const response = await fetch("/api/auth/me", {
           credentials: "include",
           // IMPORTANT: Never cache auth responses - each user must get their own session
           cache: "no-store",
@@ -127,7 +127,7 @@ export default function MegaMenuHeader() {
             </Link>
 
             <Link
-              href="/find-agent"
+              href="/find-associate"
               className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
             >
               Find Associate
@@ -264,7 +264,7 @@ export default function MegaMenuHeader() {
             </Link>
 
             <Link
-              href="/find-agent"
+              href="/find-associate"
               className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] hover:bg-gray-50 rounded transition-colors"
             >
               Find Associate

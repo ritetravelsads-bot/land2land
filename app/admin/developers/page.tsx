@@ -32,7 +32,7 @@ export default function AdminDevelopersPage() {
   }, [])
 
   const handleDelete = async (id: string) => {
-    if (confirm("Are you sure you want to delete this seller / agent?")) {
+    if (confirm("Are you sure you want to delete this seller / associate?")) {
       try {
         const res = await fetch(`/api/admin/developers/${id}`, { method: "DELETE" })
         if (res.ok) {
@@ -57,7 +57,7 @@ export default function AdminDevelopersPage() {
                   <p className="text-sm text-muted-foreground">Manage land sellers, owners and agents</p>
                 </div>
                 <Button asChild className="text-xs h-8">
-                  <Link href="/admin/developers/new">Add Seller / Agent</Link>
+                  <Link href="/admin/developers/new">Add Seller / Associate</Link>
                 </Button>
               </div>
 

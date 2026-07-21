@@ -4,7 +4,7 @@ import { NextResponse } from "next/server"
 import { ObjectId } from "mongodb"
 import type { NextRequest } from "next/server"
 
-// POST assign lead to an agent
+// POST assign lead to an associate
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -20,7 +20,7 @@ export async function POST(
     const { agent_id } = body
 
     if (!agent_id) {
-      return NextResponse.json({ error: "Agent ID is required" }, { status: 400 })
+      return NextResponse.json({ error: "Associate ID is required" }, { status: 400 })
     }
 
     const db = await getDatabase()
@@ -33,7 +33,7 @@ export async function POST(
       return NextResponse.json({ error: "Invalid lead ID" }, { status: 400 })
     }
 
-    // Validate associate ID and check if user is an agent
+    // Validate associate ID and check if user is an associate
     let agentObjectId: ObjectId
     try {
       agentObjectId = new ObjectId(agent_id)
@@ -41,7 +41,7 @@ export async function POST(
       return NextResponse.json({ error: "Invalid associate ID" }, { status: 400 })
     }
 
-    const associate = await db.collection("users").findOne({ 
+    const associate = await db.collection("users").findOne({
       _id: agentObjectId,
       user_type: "associate"
     })
@@ -59,7 +59,7 @@ export async function POST(
     // Update lead with assignment
     const result = await db.collection("leads").updateOne(
       { _id: leadObjectId },
-      { 
+      {
         $set: {
           assigned_to: agent_id,
           assigned_by: user._id,
@@ -73,8 +73,8 @@ export async function POST(
       return NextResponse.json({ error: "Failed to assign lead" }, { status: 500 })
     }
 
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       message: `Lead assigned to ${associate.username || associate.email}`,
       assigned_to: agent_id,
       assigned_at: new Date(),
@@ -85,7 +85,7 @@ export async function POST(
   }
 }
 
-// DELETE unassign lead from agent
+// DELETE unassign lead from associate
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -108,7 +108,7 @@ export async function DELETE(
 
     const result = await db.collection("leads").updateOne(
       { _id: leadObjectId },
-      { 
+      {
         $unset: {
           assigned_to: "",
           assigned_by: "",
@@ -124,8 +124,8 @@ export async function DELETE(
       return NextResponse.json({ error: "Lead not found" }, { status: 404 })
     }
 
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       message: "Lead unassigned successfully",
     })
   } catch (error) {

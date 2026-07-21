@@ -60,9 +60,9 @@ export default function AgentRegisterForm() {
       }
 
       toast.success("Welcome to Land2Land!", {
-        description: "Your agent account has been created successfully. Check your email for a welcome message.",
+        description: "Your associate account has been created successfully. Check your email for a welcome message.",
       })
-      router.push("/agent/login?success=registered")
+      router.push("/associate/login?success=registered")
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred")
       toast.error("Registration failed", {
@@ -93,7 +93,7 @@ export default function AgentRegisterForm() {
 
       <div className="space-y-1">
         <label htmlFor="username" className="text-xs font-medium text-foreground">
-          Agent Name
+          Associate Name
         </label>
         <Input
           id="username"
@@ -115,7 +115,7 @@ export default function AgentRegisterForm() {
           id="email"
           name="email"
           type="email"
-          placeholder="agent@agency.com"
+          placeholder="associate@agency.com"
           value={formData.email}
           onChange={handleChange}
           required
@@ -174,7 +174,7 @@ export default function AgentRegisterForm() {
       {error && <p className="text-xs text-red-600 bg-red-50 p-2 rounded">{error}</p>}
 
       <Button type="submit" disabled={loading} className="w-full h-8 text-xs bg-blue-600 hover:bg-blue-700">
-        {loading ? "Creating account..." : "Register as Agent"}
+        {loading ? "Creating account..." : "Register as Associate"}
       </Button>
 
       <p className="text-xs text-muted-foreground text-center">

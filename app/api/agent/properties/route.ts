@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
 
     const db = await getDatabase()
     // Agents only see their own listings; admins see everything.
-    // Match both ObjectId and string forms of `agent` so listings whose owner
+    // Match both ObjectId and string forms of `associate` so listings whose owner
     // field may have been stored as a string still show up.
     const query =
       user.user_type === "admin"
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)/g, "")
-      
+
       // Ensure unique slug
       let counter = 1
       let uniqueSlug = slug

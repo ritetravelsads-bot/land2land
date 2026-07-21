@@ -45,15 +45,15 @@ export default function GoogleSignInButton({
 
   const handleGoogleSignIn = async () => {
     setLoading(true)
-    
+
     try {
       // Sign in with Google using Firebase
       const result = await signInWithPopup(auth!, googleProvider!)
       const user = result.user
-      
+
       // Get the ID token to verify on the server
       const idToken = await user.getIdToken()
-      
+
       // Send user data to our API to save/verify in MongoDB
       const response = await fetch("/api/auth/google", {
         method: "POST",
@@ -68,21 +68,21 @@ export default function GoogleSignInButton({
           userType: mode === "register" ? userType : undefined,
         }),
       })
-      
+
       if (!response.ok) {
         const data = await response.json()
         throw new Error(data.error || "Google sign-in failed")
       }
-      
+
       const data = await response.json()
-      
+
       if (onSuccess) {
         onSuccess()
       }
-      
+
       // Redirect based on user type
       if (data.user.user_type === "associate") {
-        router.push("/agent/dashboard")
+        router.push("/associate/dashboard")
       } else if (data.user.user_type === "admin") {
         router.push("/admin/dashboard")
       } else {

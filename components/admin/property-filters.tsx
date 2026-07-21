@@ -5,18 +5,18 @@ import React from "react"
 import { useState, useCallback } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
 } from "@/components/ui/select"
-import { 
-  Search, 
-  SlidersHorizontal, 
-  X, 
-  ChevronDown, 
+import {
+  Search,
+  SlidersHorizontal,
+  X,
+  ChevronDown,
   ChevronUp,
   Home,
   IndianRupee,
@@ -120,7 +120,7 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
               onBlur={() => setSearchFocused(false)}
             />
             {filters.search && (
-              <button 
+              <button
                 onClick={() => clearSingleFilter("search")}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
               >
@@ -131,8 +131,8 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
 
           {/* Quick Filters */}
           <div className="flex gap-2 flex-wrap sm:flex-nowrap">
-            <Select 
-              value={filters.property_type || "all"} 
+            <Select
+              value={filters.property_type || "all"}
               onValueChange={(value) => handleChange("property_type", value)}
             >
               <SelectTrigger className="w-full sm:w-[160px] h-10 bg-background">
@@ -149,8 +149,8 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
               </SelectContent>
             </Select>
 
-            <Select 
-              value={filters.status || "all"} 
+            <Select
+              value={filters.status || "all"}
               onValueChange={(value) => handleChange("status", value)}
             >
               <SelectTrigger className="w-full sm:w-[150px] h-10 bg-background">
@@ -208,8 +208,8 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
                   <Filter className="h-3 w-3" />
                   Listing Type
                 </label>
-                <Select 
-                  value={filters.listing_type || "all"} 
+                <Select
+                  value={filters.listing_type || "all"}
                   onValueChange={(value) => handleChange("listing_type", value)}
                 >
                   <SelectTrigger className="h-9 bg-background">
@@ -232,8 +232,8 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
                   <Home className="h-3 w-3" />
                   Ownership
                 </label>
-                <Select 
-                  value={filters.ownership_type || "all"} 
+                <Select
+                  value={filters.ownership_type || "all"}
                   onValueChange={(value) => handleChange("ownership_type", value)}
                 >
                   <SelectTrigger className="h-9 bg-background">
@@ -266,16 +266,16 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
                 />
               </div>
 
-              {/* Seller / Agent */}
+              {/* Seller / Associate */}
               <div className="space-y-1.5">
                 <label className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
                   <Building2 className="h-3 w-3" />
-                  Seller / Agent
+                  Seller / Associate
                 </label>
                 <Input
                   type="text"
                   name="developer"
-                  placeholder="Seller / agent name"
+                  placeholder="Seller / associate name"
                   className="h-9 bg-background"
                   value={filters.developer || ""}
                   onChange={handleInputChange}
@@ -289,8 +289,8 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
                 <IndianRupee className="h-3 w-3" />
                 Budget Range
               </label>
-              <Select 
-                value={filters.minPrice && filters.maxPrice ? `${filters.minPrice}-${filters.maxPrice}` : filters.minPrice ? `${filters.minPrice}-` : "all"} 
+              <Select
+                value={filters.minPrice && filters.maxPrice ? `${filters.minPrice}-${filters.maxPrice}` : filters.minPrice ? `${filters.minPrice}-` : "all"}
                 onValueChange={(value) => {
                   const { min, max } = parseBudgetRange(value)
                   handleChange("minPrice", min ? String(min) : "")
@@ -359,14 +359,14 @@ export function PropertyFilters({ onChange, initial = {} }: PropertyFiltersProps
         <div className="px-4 pb-3 flex flex-wrap items-center gap-2">
           <span className="text-xs text-muted-foreground">Active filters:</span>
           {Object.entries(filters).filter(([, value]) => value && value !== "").map(([key, value]) => {
-            const label: string = key === "search" ? `"${value}"` : 
-                         key === "property_type" ? (PROPERTY_TYPES.find(t => t.value === value)?.label || String(value)) :
-                         key === "status" ? (STATUS_OPTIONS.find(s => s.value === value)?.label || String(value)) :
-                         key === "listing_type" ? (LISTING_TYPES.find(l => l.value === value)?.label || String(value)) :
-                         key === "ownership_type" ? (OWNERSHIP_OPTIONS.find(o => o.value === value)?.label || String(value)) :
-                         key === "minPrice" ? `Min: ₹${Number(value).toLocaleString()}` :
-                         key === "maxPrice" ? `Max: ₹${Number(value).toLocaleString()}` :
-                         String(value)
+            const label: string = key === "search" ? `"${value}"` :
+              key === "property_type" ? (PROPERTY_TYPES.find(t => t.value === value)?.label || String(value)) :
+                key === "status" ? (STATUS_OPTIONS.find(s => s.value === value)?.label || String(value)) :
+                  key === "listing_type" ? (LISTING_TYPES.find(l => l.value === value)?.label || String(value)) :
+                    key === "ownership_type" ? (OWNERSHIP_OPTIONS.find(o => o.value === value)?.label || String(value)) :
+                      key === "minPrice" ? `Min: ₹${Number(value).toLocaleString()}` :
+                        key === "maxPrice" ? `Max: ₹${Number(value).toLocaleString()}` :
+                          String(value)
             return (
               <button
                 key={key}

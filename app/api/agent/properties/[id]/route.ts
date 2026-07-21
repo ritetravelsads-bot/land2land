@@ -22,7 +22,7 @@ export async function GET(
     }
 
     // Check if the property belongs to the associate (admins can access all)
-    if (user.user_type === "associate" && property.agent?.toString() !== user._id?.toString()) {
+    if (user.user_type === "associate" && property.associate?.toString() !== user._id?.toString()) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 403 })
     }
 
@@ -54,7 +54,7 @@ export async function PUT(
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)/g, "")
-      
+
       // Ensure unique slug (excluding current property)
       let counter = 1
       let uniqueSlug = slug
@@ -71,9 +71,9 @@ export async function PUT(
     const isAdmin = user.user_type === "admin"
 
     // Never let the client override moderation or ownership fields directly.
-    // `agent` in particular is stored as an ObjectId; if the client echoes it
+    // `associate` in particular is stored as an ObjectId; if the client echoes it
     // back as a string, it breaks owner-scoped queries and the listing would
-    // disappear from the agent's dashboard after a resubmit.
+    // disappear from the associate's dashboard after a resubmit.
     const {
       _id: _id,
       associate: _agent,
@@ -90,12 +90,12 @@ export async function PUT(
     const moderationUpdate = isAdmin
       ? {}
       : {
-          review_status: "pending",
-          review_notes: "",
-          submitted_at: new Date(),
-          reviewed_at: null,
-          reviewed_by: null,
-        }
+        review_status: "pending",
+        review_notes: "",
+        submitted_at: new Date(),
+        reviewed_at: null,
+        reviewed_by: null,
+      }
 
     // Agents can only update their own listings; admins can update any.
     const ownershipFilter = isAdmin

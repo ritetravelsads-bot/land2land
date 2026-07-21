@@ -9,7 +9,7 @@ export const revalidate = 0
 
 const APPLICANT_TYPES = ["individual", "company", "partnership", "huf", "society"]
 
-// GET /api/agent/rera-requests
+// GET /api/associate/rera-requests
 // Agents get their own requests; admins get everything.
 export async function GET() {
   try {
@@ -34,8 +34,8 @@ export async function GET() {
   }
 }
 
-// POST /api/agent/rera-requests
-// Create a new RERA registration request for one of the agent's listings.
+// POST /api/associate/rera-requests
+// Create a new RERA registration request for one of the associate's listings.
 export async function POST(req: NextRequest) {
   try {
     const user = await getCurrentUser()
@@ -71,7 +71,7 @@ export async function POST(req: NextRequest) {
     const db = await getDatabase()
 
     // Verify the listing exists and (for agents) belongs to them.
-    // Listings store `agent` as the user's ObjectId, so match on that.
+    // Listings store `associate` as the user's ObjectId, so match on that.
     // Also accept the string form to stay robust to either storage type.
     const listingQuery: Record<string, unknown> =
       user.user_type === "admin"
@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
     const now = new Date()
     const firstEvent: ReraStageEvent = {
       status: "submitted",
-      note: "Request submitted by agent.",
+      note: "Request submitted by associate.",
       by: user._id.toString(),
       by_role: user.user_type === "admin" ? "admin" : "associate",
       at: now,

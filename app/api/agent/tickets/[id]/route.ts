@@ -45,7 +45,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
 
     const db = await getDatabase()
 
-    // Verify the ticket belongs to this agent
+    // Verify the ticket belongs to this associate
     const ticket = await db.collection("tickets").findOne({
       _id: new ObjectId(id),
       user_id: user._id?.toString(),

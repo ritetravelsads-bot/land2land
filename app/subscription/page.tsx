@@ -23,7 +23,7 @@ export default function SubscriptionPage() {
         { name: "Email support", included: true },
         { name: "Advanced filters", included: false },
         { name: "Direct messaging", included: false },
-        { name: "Agent connections", included: false },
+        { name: "Associate connections", included: false },
       ],
       cta: "Get Started Free",
     },
@@ -38,7 +38,7 @@ export default function SubscriptionPage() {
         { name: "Advanced filters", included: true },
         { name: "Direct messaging", included: true },
         { name: "Priority email support", included: true },
-        { name: "Agent connections", included: true },
+        { name: "Associate connections", included: true },
         { name: "Custom price alerts", included: true },
         { name: "Market insights", included: false },
       ],
@@ -56,7 +56,7 @@ export default function SubscriptionPage() {
         { name: "Custom price alerts", included: true },
         { name: "Advanced market analytics", included: true },
         { name: "24/7 phone support", included: true },
-        { name: "Dedicated land agent", included: true },
+        { name: "Dedicated land associate", included: true },
         { name: "Investment insights", included: true },
         { name: "Priority listing boost", included: true },
       ],
@@ -70,7 +70,7 @@ export default function SubscriptionPage() {
     "Saved Properties",
     "Direct Messaging",
     "Support",
-    "Agent Network",
+    "Associate Network",
     "Analytics",
     "Custom Alerts",
   ]
@@ -79,7 +79,7 @@ export default function SubscriptionPage() {
     {
       name: "Amit Verma",
       role: "Land Investor",
-      content: "Land2Land's Professional plan made it easy to find the right farm investment. The agent connections were invaluable.",
+      content: "Land2Land's Professional plan made it easy to find the right farm investment. The associate connections were invaluable.",
       rating: 5,
     },
     {
@@ -114,11 +114,10 @@ export default function SubscriptionPage() {
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`rounded-xl overflow-hidden transition-all transform hover:scale-105 ${
-                plan.popular
+              className={`rounded-xl overflow-hidden transition-all transform hover:scale-105 ${plan.popular
                   ? "ring-2 ring-[#125007] md:scale-105 bg-white shadow-xl"
                   : "bg-white shadow-lg"
-              }`}
+                }`}
             >
               {plan.popular && (
                 <div className="bg-gradient-to-r from-[#125007] to-[#4a7c2e] text-white text-center py-3 text-sm font-bold">
@@ -136,11 +135,10 @@ export default function SubscriptionPage() {
                 </div>
 
                 <button
-                  className={`w-full px-6 py-3 rounded-lg font-semibold transition-all mb-8 ${
-                    plan.popular
+                  className={`w-full px-6 py-3 rounded-lg font-semibold transition-all mb-8 ${plan.popular
                       ? "bg-gradient-to-r from-[#125007] to-[#4a7c2e] hover:shadow-lg text-white"
                       : "border-2 border-[#125007] text-[#125007] hover:bg-green-50"
-                  }`}
+                    }`}
                 >
                   {plan.cta}
                 </button>

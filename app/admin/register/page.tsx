@@ -41,8 +41,8 @@ export default function AdminRegisterPage() {
                 <Link href="/auth/register" className="text-xs text-blue-600 hover:text-blue-700 font-medium">
                   Create customer account
                 </Link>
-                <Link href="/agent/register" className="text-xs text-blue-600 hover:text-blue-700 font-medium">
-                  Register as agent
+                <Link href="/associate/register" className="text-xs text-blue-600 hover:text-blue-700 font-medium">
+                  Register as associate
                 </Link>
               </div>
             </div>

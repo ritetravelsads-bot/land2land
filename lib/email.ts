@@ -483,7 +483,7 @@ export function welcomeUserTemplate(data: {
   user_type: string
 }) {
   const dashboardUrl = data.user_type === "associate"
-    ? `${COMPANY_WEBSITE}/agent/dashboard`
+    ? `${COMPANY_WEBSITE}/associate/dashboard`
     : `${COMPANY_WEBSITE}/buyer/dashboard`
 
   const content = `

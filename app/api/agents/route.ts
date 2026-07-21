@@ -3,7 +3,7 @@ import { NextResponse } from "next/server"
 
 export const dynamic = "force-dynamic"
 
-// Public endpoint: list registered agents for the "Find an Agent" page.
+// Public endpoint: list registered agents for the "Find an Associate" page.
 // Only non-sensitive fields are exposed (never email or password).
 export async function GET() {
   try {

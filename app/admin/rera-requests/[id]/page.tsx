@@ -275,7 +275,7 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
           {/* Pending requested docs (not yet uploaded) */}
           {requestedDocs.some((d) => !d.file) && (
             <div className="rounded-lg border border-border bg-card p-5">
-              <h2 className="mb-3 text-sm font-semibold text-foreground">Awaiting from Agent</h2>
+              <h2 className="mb-3 text-sm font-semibold text-foreground">Awaiting from Associate</h2>
               <ul className="space-y-2">
                 {requestedDocs
                   .filter((d) => !d.file)
@@ -376,7 +376,7 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
               <Textarea
                 value={docRequestNote}
                 onChange={(e) => setDocRequestNote(e.target.value)}
-                placeholder="Optional message to the agent"
+                placeholder="Optional message to the associate"
                 rows={2}
                 className="mt-3"
               />
@@ -442,7 +442,7 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
 
           {/* Admin notes */}
           <div className="rounded-lg border border-border bg-card p-5">
-            <h2 className="mb-3 text-sm font-semibold text-foreground">Message to Agent</h2>
+            <h2 className="mb-3 text-sm font-semibold text-foreground">Message to Associate</h2>
             <Textarea
               value={adminNotes}
               onChange={(e) => setAdminNotes(e.target.value)}

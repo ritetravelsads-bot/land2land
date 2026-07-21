@@ -102,12 +102,12 @@ const getNavConfig = (role: UserRole): NavSection[] => {
         {
           title: "Main",
           items: [
-            { href: "/agent/dashboard", label: "Dashboard", icon: Home },
-            { href: "/agent/properties", label: "Properties", icon: Package },
-            { href: "/agent/rera", label: "RERA Requests", icon: ShieldCheck },
-            { href: "/agent/reviews", label: "Reviews", icon: Star },
-            { href: "/agent/tickets", label: "Support Tickets", icon: MessageSquare },
-            { href: "/agent/profile", label: "Profile", icon: User },
+            { href: "/associate/dashboard", label: "Dashboard", icon: Home },
+            { href: "/associate/properties", label: "Properties", icon: Package },
+            { href: "/associate/rera", label: "RERA Requests", icon: ShieldCheck },
+            { href: "/associate/reviews", label: "Reviews", icon: Star },
+            { href: "/associate/tickets", label: "Support Tickets", icon: MessageSquare },
+            { href: "/associate/profile", label: "Profile", icon: User },
           ],
         },
       ]

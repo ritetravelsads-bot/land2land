@@ -26,11 +26,11 @@ export async function GET(request: NextRequest) {
     const unassigned = searchParams.get("unassigned") === "true"
 
     const db = await getDatabase()
-    
+
     // Build filter query
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const filter: any = {}
-    
+
     if (status) filter.status = status
     if (priority) filter.priority = priority
     if (source) filter.source = source
@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
     if (ownerId) filter.property_owner_id = ownerId
     if (assignedTo) filter.assigned_to = assignedTo
     if (unassigned) filter.assigned_to = { $exists: false }
-    
+
     if (search) {
       filter.$or = [
         { name: { $regex: search, $options: "i" } },
@@ -49,10 +49,10 @@ export async function GET(request: NextRequest) {
     }
 
     const skip = (page - 1) * limit
-    
+
     // Get total count
     const total = await db.collection("leads").countDocuments(filter)
-    
+
     // Get leads with pagination
     const leads = await db.collection("leads")
       .find(filter)
@@ -129,8 +129,8 @@ export async function POST(request: NextRequest) {
       property_id: property_id || null,
       property_name: propertyData?.property_name || null,
       property_slug: propertyData?.slug || null,
-      property_owner_id: propertyData?.agent || null,
-      property_owner_type: propertyData?.agent ? "associate" : "admin",
+      property_owner_id: propertyData?.associate || null,
+      property_owner_type: propertyData?.associate ? "associate" : "admin",
       source: source || "other",
       status: "new" as LeadStatus,
       priority: priority || "medium" as LeadPriority,
@@ -141,9 +141,9 @@ export async function POST(request: NextRequest) {
 
     const result = await db.collection("leads").insertOne(lead)
 
-    return NextResponse.json({ 
-      _id: result.insertedId.toString(), 
-      ...lead 
+    return NextResponse.json({
+      _id: result.insertedId.toString(),
+      ...lead
     }, { status: 201 })
   } catch (error) {
     console.error("[v0] Error creating lead:", error)

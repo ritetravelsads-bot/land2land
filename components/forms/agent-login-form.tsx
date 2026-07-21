@@ -38,10 +38,10 @@ export default function AgentLoginForm() {
       const data = await response.json()
 
       if (data.user.user_type !== "associate") {
-        throw new Error("This account does not have agent privileges")
+        throw new Error("This account does not have associate privileges")
       }
 
-      router.push("/agent/dashboard")
+      router.push("/associate/dashboard")
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred")
     } finally {
@@ -53,7 +53,7 @@ export default function AgentLoginForm() {
     <form onSubmit={handleSubmit} className="space-y-3">
       <div className="space-y-1">
         <label htmlFor="email" className="text-xs font-medium text-foreground">
-          Agent Email
+          Associate Email
         </label>
         <Input
           id="email"
@@ -86,7 +86,7 @@ export default function AgentLoginForm() {
       {error && <p className="text-xs text-red-600 bg-red-50 p-2 rounded">{error}</p>}
 
       <Button type="submit" disabled={loading} className="w-full h-8 text-xs bg-blue-600 hover:bg-blue-700">
-        {loading ? "Signing in..." : "Agent Sign In"}
+        {loading ? "Signing in..." : "Associate Sign In"}
       </Button>
     </form>
   )

@@ -4,7 +4,7 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import type { LeadStatus, LeadPriority } from "@/lib/models"
 
-// GET leads for agent (leads assigned to them OR leads on their properties)
+// GET leads for associate (leads assigned to them OR leads on their properties)
 export async function GET(request: NextRequest) {
   try {
     const user = await getCurrentUser()
@@ -21,16 +21,16 @@ export async function GET(request: NextRequest) {
     const filter_type = searchParams.get("filter_type") // "assigned" | "my_properties" | "all"
 
     const db = await getDatabase()
-    
-    // Build base filter - agent sees leads assigned to them OR from their properties
+
+    // Build base filter - associate sees leads assigned to them OR from their properties
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let baseFilter: any = {}
-    
+
     if (filter_type === "assigned") {
-      // Only leads directly assigned to this agent
+      // Only leads directly assigned to this associate
       baseFilter = { assigned_to: user._id }
     } else if (filter_type === "my_properties") {
-      // Only leads from agent's own properties
+      // Only leads from associate's own properties
       baseFilter = { property_owner_id: user._id }
     } else {
       // All accessible leads (default)
@@ -41,14 +41,14 @@ export async function GET(request: NextRequest) {
         ]
       }
     }
-    
+
     // Add additional filters
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const filter: any = { ...baseFilter }
-    
+
     if (status) filter.status = status
     if (priority) filter.priority = priority
-    
+
     if (search) {
       filter.$and = [
         baseFilter,
@@ -65,10 +65,10 @@ export async function GET(request: NextRequest) {
     }
 
     const skip = (page - 1) * limit
-    
+
     // Get total count
     const total = await db.collection("leads").countDocuments(filter)
-    
+
     // Get leads with pagination
     const leads = await db.collection("leads")
       .find(filter)
@@ -83,14 +83,14 @@ export async function GET(request: NextRequest) {
       _id: lead._id.toString(),
     }))
 
-    // Get stats specific to this agent
+    // Get stats specific to this associate
     const baseStatsFilter = {
       $or: [
         { assigned_to: user._id },
         { property_owner_id: user._id },
       ]
     }
-    
+
     const stats = {
       total: await db.collection("leads").countDocuments(baseStatsFilter),
       new: await db.collection("leads").countDocuments({ ...baseStatsFilter, status: "new" }),
@@ -113,7 +113,7 @@ export async function GET(request: NextRequest) {
       stats,
     })
   } catch (error) {
-    console.error("[v0] Error fetching agent leads:", error)
+    console.error("[v0] Error fetching associate leads:", error)
     return NextResponse.json({ error: "Failed to fetch leads" }, { status: 500 })
   }
 }

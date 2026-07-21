@@ -53,7 +53,7 @@ export default function DashboardHeader({ userName, userRole }: DashboardHeaderP
       case "admin":
         return "/admin/dashboard"
       case "associate":
-        return "/agent/dashboard"
+        return "/associate/dashboard"
       case "builder":
         return "/builder"
       case "buyer":
@@ -69,7 +69,7 @@ export default function DashboardHeader({ userName, userRole }: DashboardHeaderP
       case "admin":
         return "/admin/dashboard"
       case "associate":
-        return "/agent/profile"
+        return "/associate/profile"
       case "builder":
         return "/builder/profile"
       case "buyer":
