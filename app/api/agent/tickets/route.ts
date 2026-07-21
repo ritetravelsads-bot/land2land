@@ -6,7 +6,7 @@ import type { NextRequest } from "next/server"
 export async function GET() {
   try {
     const user = await getCurrentUser()
-    if (!user || user.user_type !== "agent") {
+    if (!user || user.user_type !== "associate") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -19,7 +19,7 @@ export async function GET() {
 
     return NextResponse.json(tickets)
   } catch (error) {
-    console.error("[v0] Error fetching agent tickets:", error)
+    console.error("[v0] Error fetching associate tickets:", error)
     return NextResponse.json({ error: "Failed to fetch tickets" }, { status: 500 })
   }
 }
@@ -27,7 +27,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const user = await getCurrentUser()
-    if (!user || user.user_type !== "agent") {
+    if (!user || user.user_type !== "associate") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 

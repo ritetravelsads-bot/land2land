@@ -25,8 +25,8 @@ export default async function DashboardLayout({ children }: { children: React.Re
     redirect("/admin/dashboard")
   }
 
-  if (user.user_type === "agent") {
-    redirect("/agent/dashboard")
+  if (user.user_type === "associate") {
+    redirect("/associate/dashboard")
   }
 
   // For customers, show the buyer dashboard

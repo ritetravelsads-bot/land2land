@@ -10,7 +10,7 @@ import PropertyFormStep3 from "./property-form-step-3"
 import PropertyFormStep4 from "./property-form-step-4"
 
 export default function PropertyFormMultiStep({
-  apiEndpoint = "/api/agent/properties",
+  apiEndpoint = "/api/associate/properties",
   initialData,
   isEdit = false,
   onSubmit, // Declare the onSubmit variable here
@@ -23,7 +23,7 @@ export default function PropertyFormMultiStep({
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(1)
   const [loading, setLoading] = useState(false)
-  
+
   const defaultFormData = {
     property_name: "",
     slug: "",
@@ -85,7 +85,7 @@ export default function PropertyFormMultiStep({
     // Land documents for verification
     documents: {} as Record<string, any>,
   }
-  
+
   // Helper function to ensure array fields are properly formatted
   const normalizeArrayField = (value: any): string[] => {
     if (Array.isArray(value)) {
@@ -105,7 +105,7 @@ export default function PropertyFormMultiStep({
     }
     return []
   }
-  
+
   // Merge initial data with defaults to ensure all fields exist
   const [formData, setFormData] = useState(() => {
     if (initialData) {
@@ -129,9 +129,9 @@ export default function PropertyFormMultiStep({
         // Preserve uploaded documents as an object
         documents: initialData.documents && typeof initialData.documents === "object" ? initialData.documents : {},
       }
-      
 
-      
+
+
       return normalizedData
     }
     return defaultFormData
@@ -157,24 +157,24 @@ export default function PropertyFormMultiStep({
     setLoading(true)
     try {
       const method = isEdit ? "PUT" : "POST"
-      
 
-      
+
+
       // Clean up the form data - remove _id for updates (it's in the URL)
       // and convert numeric strings to numbers
       const cleanedData: Record<string, any> = {}
-      
+
       for (const [key, value] of Object.entries(formData)) {
         // Skip _id field for updates - it's already in the API endpoint URL
         if (key === "_id") continue
-        
+
         // Convert numeric string fields to numbers
         const numericFields = [
           "lowest_price", "max_price", "area_sqft",
           "area_value", "road_width", "price_per_unit",
           "latitude", "longitude"
         ]
-        
+
         if (numericFields.includes(key) && value !== "" && value !== null && value !== undefined) {
           const num = Number(value)
           cleanedData[key] = isNaN(num) ? value : num
@@ -182,25 +182,25 @@ export default function PropertyFormMultiStep({
           cleanedData[key] = value
         }
       }
-      
 
-      
+
+
       const res = await fetch(apiEndpoint, {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cleanedData),
       })
-      
+
       const data = await res.json()
-      
+
       if (res.ok) {
         const slug = data.property?.slug || data.slug || cleanedData.slug
         const id = data.property?._id || data._id
 
         // Agents/owners return to their dashboard so they can track review status.
         // Admins go straight to the published listing.
-        if (apiEndpoint.includes("/agent/")) {
-          router.push("/agent/properties?submitted=1")
+        if (apiEndpoint.includes("/associate/")) {
+          router.push("/associate/properties?submitted=1")
         } else {
           router.push(`/properties/${slug || id}`)
         }
@@ -230,13 +230,12 @@ export default function PropertyFormMultiStep({
           {steps.map((step, idx) => (
             <div key={step.number} className="flex items-center flex-1">
               <div
-                className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${
-                  step.number < currentStep
+                className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${step.number < currentStep
                     ? "bg-primary text-primary-foreground"
                     : step.number === currentStep
                       ? "bg-primary text-primary-foreground"
                       : "bg-muted text-muted-foreground"
-                }`}
+                  }`}
               >
                 {step.number < currentStep ? <Check size={18} /> : step.number}
               </div>

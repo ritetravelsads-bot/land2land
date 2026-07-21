@@ -5,7 +5,7 @@ import { NextResponse } from "next/server"
 import { ObjectId } from "mongodb"
 import type { NextRequest } from "next/server"
 
-const ALLOWED_USER_TYPES = ["admin", "agent", "customer", "buyer", "seller", "builder"]
+const ALLOWED_USER_TYPES = ["admin", "associate", "customer", "buyer", "seller", "builder"]
 
 export async function GET() {
   try {
@@ -23,6 +23,7 @@ export async function GET() {
         email: 1,
         phone_number: 1,
         user_type: 1,
+        profile_picture: 1,
         created_at: 1,
         date_joined: 1,
         is_verified: 1

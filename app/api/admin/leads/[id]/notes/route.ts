@@ -11,7 +11,7 @@ export async function POST(
 ) {
   try {
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "admin" && user.user_type !== "agent")) {
+    if (!user || (user.user_type !== "admin" && user.user_type !== "associate")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -39,7 +39,7 @@ export async function POST(
     }
 
     // Agents can only add notes to leads assigned to them or owned by them
-    if (user.user_type === "agent") {
+    if (user.user_type === "associate") {
       const hasAccess = lead.assigned_to === user._id || lead.property_owner_id === user._id
       if (!hasAccess) {
         return NextResponse.json({ error: "Unauthorized - Lead not accessible" }, { status: 403 })
@@ -49,7 +49,7 @@ export async function POST(
     const note = {
       content: content.trim(),
       created_by: user._id,
-      created_by_type: user.user_type as "admin" | "agent",
+      created_by_type: user.user_type as "admin" | "associate",
       created_by_name: user.username || user.email,
       created_at: new Date(),
     }

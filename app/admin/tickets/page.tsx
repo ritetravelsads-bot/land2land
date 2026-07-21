@@ -82,7 +82,7 @@ export default function AdminTicketsPage() {
       {/* Header */}
       <div>
         <h1 className="text-xl font-bold text-foreground">Support Tickets</h1>
-        <p className="text-sm text-muted-foreground">Manage and respond to agent support requests</p>
+        <p className="text-sm text-muted-foreground">Manage and respond to associate support requests</p>
       </div>
 
       {/* Stats Cards */}
@@ -139,11 +139,10 @@ export default function AdminTicketsPage() {
           <button
             key={tab.key}
             onClick={() => setFilter(tab.key)}
-            className={`px-4 py-2 text-sm font-medium rounded-lg whitespace-nowrap transition-colors ${
-              filter === tab.key
+            className={`px-4 py-2 text-sm font-medium rounded-lg whitespace-nowrap transition-colors ${filter === tab.key
                 ? "bg-primary text-primary-foreground"
                 : "bg-muted text-muted-foreground hover:bg-muted/80"
-            }`}
+              }`}
           >
             {tab.label} ({tab.count})
           </button>

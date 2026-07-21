@@ -2,6 +2,7 @@
 import { useEffect, useState, useCallback } from "react"
 import { Trash2, RefreshCw, Phone, Mail, User, Calendar, Shield, Search, Filter, ChevronDown, UserPlus, X, Eye, EyeOff, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { UserAvatar } from "@/components/ui/user-avatar"
 import { toast } from "sonner"
 
 interface UserData {
@@ -10,6 +11,7 @@ interface UserData {
   email: string
   phone_number?: string
   user_type: string
+  profile_picture?: string | null
   created_at?: string
   date_joined?: string
   is_verified?: boolean
@@ -33,7 +35,7 @@ export default function AdminUsersPage() {
     user_type: "customer",
   })
 
-  const USER_TYPE_OPTIONS = ["customer", "buyer", "seller", "agent", "builder", "admin"]
+  const USER_TYPE_OPTIONS = ["customer", "buyer", "seller", "associate", "builder", "admin"]
 
   const resetForm = () => {
     setForm({ username: "", email: "", phone_number: "", password: "", user_type: "customer" })
@@ -157,7 +159,7 @@ export default function AdminUsersPage() {
   const getUserTypeBadge = (type: string) => {
     const badges: Record<string, string> = {
       admin: "bg-red-100 text-red-700 border-red-200",
-      agent: "bg-blue-100 text-blue-700 border-blue-200",
+      associate: "bg-blue-100 text-blue-700 border-blue-200",
       buyer: "bg-green-100 text-green-700 border-green-200",
       seller: "bg-amber-100 text-amber-700 border-amber-200",
       builder: "bg-purple-100 text-purple-700 border-purple-200",
@@ -329,9 +331,11 @@ export default function AdminUsersPage() {
                     <tr key={user._id} className="hover:bg-muted/30 transition-colors">
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
-                          <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-sm">
-                            {user.username?.charAt(0)?.toUpperCase() || "U"}
-                          </div>
+                          <UserAvatar
+                            name={user.username}
+                            src={user.profile_picture}
+                            className="h-8 w-8 text-sm"
+                          />
                           <div>
                             <p className="font-medium text-foreground">{user.username || "-"}</p>
                             {user.is_verified && (
@@ -410,9 +414,9 @@ export default function AdminUsersPage() {
             </div>
             <div className="bg-card border border-border rounded-lg p-4">
               <p className="text-2xl font-bold text-foreground">
-                {users.filter(u => u.user_type === "agent").length}
+                {users.filter(u => u.user_type === "associate").length}
               </p>
-              <p className="text-xs text-muted-foreground">Agents</p>
+              <p className="text-xs text-muted-foreground">Associates</p>
             </div>
             <div className="bg-card border border-border rounded-lg p-4">
               <p className="text-2xl font-bold text-foreground">

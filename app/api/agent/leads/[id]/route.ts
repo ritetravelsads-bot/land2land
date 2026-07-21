@@ -4,14 +4,14 @@ import { NextResponse } from "next/server"
 import { ObjectId } from "mongodb"
 import type { NextRequest } from "next/server"
 
-// GET single lead by ID (agent can only see their leads)
+// GET single lead by ID (associate can only see their leads)
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -26,12 +26,12 @@ export async function GET(
     }
 
     const lead = await db.collection("leads").findOne({ _id: objectId })
-    
+
     if (!lead) {
       return NextResponse.json({ error: "Lead not found" }, { status: 404 })
     }
 
-    // Check if agent has access to this lead
+    // Check if associate has access to this lead
     const hasAccess = lead.assigned_to === user._id || lead.property_owner_id === user._id
     if (!hasAccess && user.user_type !== "admin") {
       return NextResponse.json({ error: "Unauthorized - Lead not accessible" }, { status: 403 })
@@ -41,8 +41,8 @@ export async function GET(
     let property = null
     if (lead.property_id) {
       try {
-        property = await db.collection("listings").findOne({ 
-          _id: new ObjectId(lead.property_id) 
+        property = await db.collection("listings").findOne({
+          _id: new ObjectId(lead.property_id)
         })
         if (property) {
           property = { ...property, _id: property._id.toString() }
@@ -70,7 +70,7 @@ export async function PUT(
 ) {
   try {
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -85,7 +85,7 @@ export async function PUT(
       return NextResponse.json({ error: "Invalid lead ID" }, { status: 400 })
     }
 
-    // Check if agent has access to this lead
+    // Check if associate has access to this lead
     const lead = await db.collection("leads").findOne({ _id: objectId })
     if (!lead) {
       return NextResponse.json({ error: "Lead not found" }, { status: 404 })

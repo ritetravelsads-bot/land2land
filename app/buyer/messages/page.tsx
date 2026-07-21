@@ -9,7 +9,7 @@ export default function MessagesPage() {
       </div>
 
       <div className="border border-border rounded-lg p-8 bg-card text-center">
-        <p className="text-muted-foreground">No conversations yet. Send a message to an agent to start!</p>
+        <p className="text-muted-foreground">No conversations yet. Send a message to an associate to start!</p>
       </div>
     </div>
   )

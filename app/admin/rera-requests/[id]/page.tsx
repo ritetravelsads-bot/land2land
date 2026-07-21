@@ -188,7 +188,7 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
               {request.listing_name || "Land property"}
             </h1>
             <p className="text-sm text-muted-foreground">
-              Requested by {request.agent_name} · {formatDate(request.created_at)}
+              Requested by {request.associate_name} · {formatDate(request.created_at)}
             </p>
           </div>
         </div>
@@ -227,13 +227,13 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
                 />
               ) : null}
               <Detail label="PAN / Aadhaar" value={request.aadhaar_or_pan} />
-              <Detail label="Agent" value={request.agent_name} />
-              <Detail label="Agent Email" value={request.agent_email} />
+              <Detail label="Associate" value={request.associate_name} />
+              <Detail label="Associate Email" value={request.associate_email} />
             </dl>
-            {request.agent_notes && (
+            {request.associate_notes && (
               <div className="mt-4 border-t border-border pt-4">
-                <p className="mb-1 text-xs font-semibold text-muted-foreground">Agent&apos;s note</p>
-                <p className="text-sm text-foreground">{request.agent_notes}</p>
+                <p className="mb-1 text-xs font-semibold text-muted-foreground">Associate&apos;s note</p>
+                <p className="text-sm text-foreground">{request.associate_notes}</p>
               </div>
             )}
             <div className="mt-4 border-t border-border pt-4">
@@ -250,7 +250,7 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
           {uploadedDocs.length > 0 && (
             <div className="rounded-lg border border-border bg-card p-5">
               <h2 className="mb-3 text-sm font-semibold text-foreground">
-                Documents from Agent ({uploadedDocs.length})
+                Documents from Associate ({uploadedDocs.length})
               </h2>
               <div className="flex flex-wrap gap-2">
                 {uploadedDocs.map((d) => {
@@ -275,7 +275,7 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
           {/* Pending requested docs (not yet uploaded) */}
           {requestedDocs.some((d) => !d.file) && (
             <div className="rounded-lg border border-border bg-card p-5">
-              <h2 className="mb-3 text-sm font-semibold text-foreground">Awaiting from Agent</h2>
+              <h2 className="mb-3 text-sm font-semibold text-foreground">Awaiting from Associate</h2>
               <ul className="space-y-2">
                 {requestedDocs
                   .filter((d) => !d.file)
@@ -303,7 +303,7 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
             <div className="rounded-lg border border-border bg-card p-5">
               <h2 className="mb-1 text-sm font-semibold text-foreground">Request Documents</h2>
               <p className="mb-4 text-xs text-muted-foreground">
-                Ask the agent for the papers you need. This moves the request to
+                Ask the associate for the papers you need. This moves the request to
                 &quot;Documents Requested&quot;.
               </p>
               <div className="space-y-3">
@@ -376,7 +376,7 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
               <Textarea
                 value={docRequestNote}
                 onChange={(e) => setDocRequestNote(e.target.value)}
-                placeholder="Optional message to the agent"
+                placeholder="Optional message to the associate"
                 rows={2}
                 className="mt-3"
               />
@@ -442,11 +442,11 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
 
           {/* Admin notes */}
           <div className="rounded-lg border border-border bg-card p-5">
-            <h2 className="mb-3 text-sm font-semibold text-foreground">Message to Agent</h2>
+            <h2 className="mb-3 text-sm font-semibold text-foreground">Message to Associate</h2>
             <Textarea
               value={adminNotes}
               onChange={(e) => setAdminNotes(e.target.value)}
-              placeholder="Visible to the agent on their request"
+              placeholder="Visible to the associate on their request"
               rows={4}
             />
             <div className="mt-3 flex justify-end">
@@ -480,7 +480,7 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
                       <p className="text-sm font-medium text-foreground">
                         {RERA_STATUS_LABELS[ev.status] || ev.status}
                         <span className="ml-2 text-xs font-normal text-muted-foreground">
-                          {ev.by_role === "admin" ? "Admin" : "Agent"}
+                          {ev.by_role === "admin" ? "Admin" : "Associate"}
                         </span>
                       </p>
                       {ev.note && <p className="mt-0.5 text-sm text-muted-foreground">{ev.note}</p>}
@@ -500,7 +500,7 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
           <DialogHeader>
             <DialogTitle>Approve &amp; issue RERA</DialogTitle>
             <DialogDescription>
-              Enter the official RERA registration number. It will be shown to the agent and saved on
+              Enter the official RERA registration number. It will be shown to the associate and saved on
               the listing.
             </DialogDescription>
           </DialogHeader>
@@ -530,7 +530,7 @@ export default function AdminReraDetailPage({ params }: { params: Promise<{ id: 
           <DialogHeader>
             <DialogTitle>Reject this request</DialogTitle>
             <DialogDescription>
-              Tell the agent why. They will see this reason on their request.
+              Tell the associate why. They will see this reason on their request.
             </DialogDescription>
           </DialogHeader>
           <Textarea

@@ -4,12 +4,12 @@ import { useEffect, useState, useCallback } from "react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
 } from "@/components/ui/select"
 import {
   Dialog,
@@ -21,11 +21,11 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
-import { 
-  Search, 
-  Phone, 
-  Mail, 
-  MessageSquare, 
+import {
+  Search,
+  Phone,
+  Mail,
+  MessageSquare,
   ExternalLink,
   ChevronLeft,
   ChevronRight,
@@ -85,12 +85,12 @@ export default function AgentLeadsList() {
   const [page, setPage] = useState(1)
   const [pagination, setPagination] = useState({ total: 0, pages: 1 })
   const [stats, setStats] = useState<LeadsResponse["stats"] | null>(null)
-  
+
   // Filters
   const [search, setSearch] = useState("")
   const [statusFilter, setStatusFilter] = useState<string>("all")
   const [filterType, setFilterType] = useState<string>("all")
-  
+
   // Dialogs
   const [selectedLead, setSelectedLead] = useState<LeadWithId | null>(null)
   const [showNotesDialog, setShowNotesDialog] = useState(false)
@@ -105,12 +105,12 @@ export default function AgentLeadsList() {
         page: page.toString(),
         limit: "15",
       })
-      
+
       if (search) params.set("search", search)
       if (statusFilter !== "all") params.set("status", statusFilter)
       if (filterType !== "all") params.set("filter_type", filterType)
-      
-      const response = await fetch(`/api/agent/leads?${params}`)
+
+      const response = await fetch(`/api/associate/leads?${params}`)
       if (response.ok) {
         const data: LeadsResponse = await response.json()
         setLeads(data.leads)
@@ -130,15 +130,15 @@ export default function AgentLeadsList() {
 
   const handleStatusChange = async (leadId: string, newStatus: LeadStatus) => {
     try {
-      const response = await fetch(`/api/agent/leads/${leadId}`, {
+      const response = await fetch(`/api/associate/leads/${leadId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           status: newStatus,
           last_contacted_at: newStatus === "contacted" ? new Date().toISOString() : undefined,
         }),
       })
-      
+
       if (response.ok) {
         fetchLeads()
       }
@@ -149,7 +149,7 @@ export default function AgentLeadsList() {
 
   const handleAddNote = async () => {
     if (!selectedLead || !newNote.trim()) return
-    
+
     setActionLoading(true)
     try {
       const response = await fetch(`/api/admin/leads/${selectedLead._id}/notes`, {
@@ -157,11 +157,11 @@ export default function AgentLeadsList() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content: newNote }),
       })
-      
+
       if (response.ok) {
         setNewNote("")
         // Refresh lead details
-        const leadResponse = await fetch(`/api/agent/leads/${selectedLead._id}`)
+        const leadResponse = await fetch(`/api/associate/leads/${selectedLead._id}`)
         if (leadResponse.ok) {
           const updatedLead = await leadResponse.json()
           setSelectedLead(updatedLead)
@@ -205,7 +205,7 @@ export default function AgentLeadsList() {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card className="border-l-4 border-l-green-500">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
@@ -217,7 +217,7 @@ export default function AgentLeadsList() {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card className="border-l-4 border-l-yellow-500">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
@@ -229,7 +229,7 @@ export default function AgentLeadsList() {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card className="border-l-4 border-l-emerald-500">
             <CardContent className="p-4">
               <div className="flex items-center justify-between">
@@ -272,7 +272,7 @@ export default function AgentLeadsList() {
               className="pl-9 w-[200px] h-9 text-sm"
             />
           </div>
-          
+
           <Select value={statusFilter} onValueChange={(v) => { setStatusFilter(v); setPage(1) }}>
             <SelectTrigger className="w-[130px] h-9 text-sm">
               <SelectValue placeholder="Status" />
@@ -286,7 +286,7 @@ export default function AgentLeadsList() {
               <SelectItem value="lost">Lost</SelectItem>
             </SelectContent>
           </Select>
-          
+
           <Select value={filterType} onValueChange={(v) => { setFilterType(v); setPage(1) }}>
             <SelectTrigger className="w-[150px] h-9 text-sm">
               <SelectValue placeholder="Filter" />
@@ -298,7 +298,7 @@ export default function AgentLeadsList() {
             </SelectContent>
           </Select>
         </div>
-        
+
         <Button variant="outline" size="sm" onClick={() => fetchLeads()} className="h-9">
           <RefreshCw className="h-3.5 w-3.5 mr-1.5" />
           Refresh
@@ -350,7 +350,7 @@ export default function AgentLeadsList() {
                       {lead.property_name ? (
                         <div className="flex items-center gap-1.5">
                           <Building2 className="h-3.5 w-3.5 text-muted-foreground" />
-                          <a 
+                          <a
                             href={`/property/${lead.property_slug}`}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -364,8 +364,8 @@ export default function AgentLeadsList() {
                       )}
                     </TableCell>
                     <TableCell>
-                      <Select 
-                        value={lead.status} 
+                      <Select
+                        value={lead.status}
                         onValueChange={(v) => handleStatusChange(lead._id, v as LeadStatus)}
                       >
                         <SelectTrigger className={`w-[100px] h-7 text-xs border ${STATUS_COLORS[lead.status]}`}>
@@ -495,7 +495,7 @@ export default function AgentLeadsList() {
                   <div key={i} className="bg-muted/50 rounded-lg p-3">
                     <p className="text-sm">{note.content}</p>
                     <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
-                      <span>{note.created_by_name || note.created_by_type}</span>
+                      <span>{note.created_by_type}</span>
                       <span>•</span>
                       <span>{formatDate(note.created_at)} at {formatTime(note.created_at)}</span>
                     </div>
@@ -512,8 +512,8 @@ export default function AgentLeadsList() {
                 onChange={(e) => setNewNote(e.target.value)}
                 rows={3}
               />
-              <Button 
-                onClick={handleAddNote} 
+              <Button
+                onClick={handleAddNote}
                 disabled={!newNote.trim() || actionLoading}
                 className="w-full"
               >
@@ -564,11 +564,11 @@ export default function AgentLeadsList() {
                   </Badge>
                 </div>
               </div>
-              
+
               {selectedLead.property_name && (
                 <div>
                   <p className="text-xs text-muted-foreground mb-1">Property</p>
-                  <a 
+                  <a
                     href={`/property/${selectedLead.property_slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -580,14 +580,14 @@ export default function AgentLeadsList() {
                   </a>
                 </div>
               )}
-              
+
               {selectedLead.message && (
                 <div>
                   <p className="text-xs text-muted-foreground mb-1">Message</p>
                   <p className="text-sm bg-muted/50 rounded-lg p-3">{selectedLead.message}</p>
                 </div>
               )}
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-xs text-muted-foreground mb-1">Created</p>
@@ -605,7 +605,7 @@ export default function AgentLeadsList() {
                   </div>
                 )}
               </div>
-              
+
               {/* Quick Actions */}
               <div className="flex gap-2 pt-4 border-t">
                 <Button variant="outline" size="sm" asChild>

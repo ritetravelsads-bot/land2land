@@ -67,7 +67,7 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
     loadDevelopers()
   }, [])
 
-  // Load the logged-in user so agents see their own name as the Seller / Agent
+  // Load the logged-in user so agents see their own name as the Seller / Associate
   useEffect(() => {
     const loadCurrentUser = async () => {
       try {
@@ -75,8 +75,8 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
         const data = await res.json()
         if (data?.user) {
           setCurrentUser(data.user)
-          // For agents creating a new listing, default the seller/agent to themselves
-          if (data.user.user_type === "agent" && data.user.username && !formData.developer_name) {
+          // For agents creating a new listing, default the seller/associate to themselves
+          if (data.user.user_type === "associate" && data.user.username && !formData.developer_name) {
             onChange("developer_name", data.user.username)
           }
         }
@@ -238,11 +238,11 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
         />
       </div>
 
-      {/* Seller / Agent + Ownership */}
+      {/* Seller / Associate + Ownership */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {currentUser?.user_type === "agent" ? (
+        {currentUser?.user_type === "associate" ? (
           <div>
-            <label className="text-xs font-medium text-muted-foreground block mb-1.5">Seller / Agent</label>
+            <label className="text-xs font-medium text-muted-foreground block mb-1.5">Seller / Associate</label>
             <input
               type="text"
               value={formData.developer_name || currentUser.username || ""}
@@ -253,12 +253,12 @@ export default function PropertyFormStep1({ formData, onChange }: any) {
           </div>
         ) : (
           <ComboSelect
-            label="Seller / Agent"
+            label="Seller / Associate"
             value={selectedDeveloperName}
             onChange={handleDeveloperChange}
             options={developers}
             onAddNew={handleAddDeveloper}
-            placeholder="Select or add seller / agent..."
+            placeholder="Select or add seller / associate..."
             loading={loadingDevelopers}
           />
         )}

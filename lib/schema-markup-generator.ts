@@ -316,9 +316,10 @@ export function generateOrganizationSchema() {
       }
     ],
     sameAs: [
-      "https://www.facebook.com/land2land",
-      "https://www.instagram.com/land2land",
-      "https://www.linkedin.com/company/land2land",
+      "https://www.instagram.com/_land2land_/",
+      "https://www.facebook.com/profile.php?id=61591888530826",
+      "https://www.youtube.com/@Land2Land2026",
+      "https://in.pinterest.com/land2landofficial/",
     ],
     contactPoint: {
       "@type": "ContactPoint",
@@ -458,9 +459,10 @@ export function generateLocalBusinessSchema() {
       }
     ],
     sameAs: [
-      "https://www.facebook.com/land2land",
-      "https://www.instagram.com/land2land",
-      "https://www.linkedin.com/company/land2land",
+      "https://www.instagram.com/_land2land_/",
+      "https://www.facebook.com/profile.php?id=61591888530826",
+      "https://www.youtube.com/@Land2Land2026",
+      "https://in.pinterest.com/land2landofficial/",
     ],
-  }
-}
+    }
+    }

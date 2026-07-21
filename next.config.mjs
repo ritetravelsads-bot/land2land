@@ -70,7 +70,7 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
   },
   reactStrictMode: true,
-  
+
   // Remove legacy polyfills for modern browsers only (saves ~14KB)
   // Using Turbopack alias to replace polyfill module with empty file
   turbopack: {
@@ -79,7 +79,7 @@ const nextConfig = {
       'next/dist/build/polyfills/polyfill-module': './lib/modern-polyfill.js',
     },
   },
-  
+
   // Webpack fallback for when not using Turbopack
   webpack(config) {
     config.resolve.alias = {
@@ -89,7 +89,7 @@ const nextConfig = {
     };
     return config;
   },
-  
+
   // Disable caching for API routes and pages to ensure fresh data
   async headers() {
     return [
@@ -123,8 +123,8 @@ const nextConfig = {
         ],
       },
       {
-        // Apply to agent pages
-        source: "/agent/:path*",
+        // Apply to associate pages
+        source: "/associate/:path*",
         headers: [
           { key: "Cache-Control", value: "private, no-store, no-cache, must-revalidate" },
           { key: "Vary", value: "Cookie" },

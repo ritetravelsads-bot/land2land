@@ -48,7 +48,7 @@ function detectAppContext(): {
 
   const ua = window.navigator.userAgent || ""
   const hasBridge = typeof window.median !== "undefined" || typeof window.gonative !== "undefined"
-  // Median / GoNative user-agent markers + the app suffix Median appends.
+  // Median / GoNative user-associate markers + the app suffix Median appends.
   const uaMedian = /median|gonative/i.test(ua)
   const isMedian = hasBridge || uaMedian
 

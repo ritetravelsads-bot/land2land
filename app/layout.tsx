@@ -244,6 +244,7 @@ export default function RootLayout({
 
               gtag('config', 'GT-TWTD7NL7');
               gtag('config', 'G-5DJ4YE3VTN');
+              gtag('config', 'G-SS0TB16N1B');
             `,
           }}
         />

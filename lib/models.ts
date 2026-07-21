@@ -21,7 +21,7 @@ export const COLLECTIONS = {
 }
 
 // User types
-export type UserType = "buyer" | "seller" | "agent" | "admin"
+export type UserType = "buyer" | "seller" | "associate" | "admin"
 
 export interface User {
   _id?: string
@@ -75,11 +75,11 @@ export const LAND_DOCUMENT_TYPES: Array<{
   label: string
   hint: string
 }> = [
-  { key: "fard", label: "Fard", hint: "फर्द — record of rights (ownership proof)" },
-  { key: "intkal", label: "Intkal", hint: "इंतकाल — mutation / transfer record" },
-  { key: "girdawari", label: "Girdawari", hint: "गिरदावरी — crop inspection record" },
-  { key: "shizra", label: "Shizra", hint: "शजरा — map of the land (field sketch)" },
-]
+    { key: "fard", label: "Fard", hint: "फर्द — record of rights (ownership proof)" },
+    { key: "intkal", label: "Intkal", hint: "इंतकाल — mutation / transfer record" },
+    { key: "girdawari", label: "Girdawari", hint: "गिरदावरी — crop inspection record" },
+    { key: "shizra", label: "Shizra", hint: "शजरा — map of the land (field sketch)" },
+  ]
 
 // A single uploaded document file.
 export interface LandDocumentFile {
@@ -143,7 +143,7 @@ export interface Listing {
   property_size: number      // legacy size field (sqft)
   property_video?: string
   neighborhood: string
-  seller?: string            // seller / agent id (was `builder`)
+  seller?: string            // seller / associate id (was `builder`)
   builder?: string           // deprecated alias of `seller`
   possession: string
   latitude: number
@@ -152,7 +152,7 @@ export interface Listing {
   availability_status: "available" | "pending" | "sold"
   is_featured: boolean
   is_hot: boolean
-  agent: string
+  associate: string
   amenities: string[]
   facilities: string[]
   main_thumbnail: string
@@ -212,13 +212,13 @@ export interface Amenities {
   icon_class: string
 }
 
-// A land Seller / Agent (formerly "Builder"/"Developer").
+// A land Seller / Associate (formerly "Builder"/"Developer").
 export interface Seller {
   _id?: string
   name: string
   slug: string
   logo?: string
-  seller_type?: "owner" | "agent" | "broker"
+  seller_type?: "owner" | "associate" | "broker"
   phone?: string
   email?: string
 }
@@ -275,47 +275,47 @@ export type LeadPriority = "low" | "medium" | "high" | "urgent"
 
 export interface Lead {
   _id?: string
-  
+
   // Contact Information
   name: string
   email: string
   phone: string
   message?: string
-  
+
   // Property & Source
   property_id?: string          // MongoDB ObjectId as string
   property_name?: string        // Denormalized for quick display
   property_slug?: string        // For linking to property page
   source: LeadSource
   source_url?: string           // The page URL where lead was captured
-  
+
   // Ownership & Assignment
-  property_owner_id?: string    // The agent/admin who owns the property
-  property_owner_type?: "admin" | "agent"
-  assigned_to?: string          // Agent ID if admin assigns to an agent
+  property_owner_id?: string    // The associate/admin who owns the property
+  property_owner_type?: "admin" | "associate"
+  assigned_to?: string          // Associate ID if admin assigns to an associate
   assigned_by?: string          // Admin ID who assigned the lead
   assigned_at?: Date
-  
+
   // Status & Priority
   status: LeadStatus
   priority: LeadPriority
-  
+
   // Follow-up tracking
   notes?: Array<{
     content: string
     created_by: string
-    created_by_type: "admin" | "agent"
+    created_by_type: "admin" | "associate"
     created_at: Date
   }>
   last_contacted_at?: Date
   next_follow_up?: Date
-  
+
   // Budget & Requirements (optional, from enquiry form)
   budget_min?: number
   budget_max?: number
   preferred_bhk?: number
   preferred_location?: string
-  
+
   // Timestamps
   created_at: Date
   updated_at: Date
@@ -341,12 +341,12 @@ export interface Testimonial {
 }
 
 // --- RERA Registration Requests ---
-// An agent asks the platform for help registering their land with RERA.
+// An associate asks the platform for help registering their land with RERA.
 // The request flows through several admin-controlled stages:
-//   submitted           -> agent created the request, waiting for admin
+//   submitted           -> associate created the request, waiting for admin
 //   under_review        -> admin is reviewing the request
-//   documents_requested -> admin asked the agent for specific documents (agent action needed)
-//   documents_submitted -> agent uploaded the requested documents (back to admin)
+//   documents_requested -> admin asked the associate for specific documents (associate action needed)
+//   documents_submitted -> associate uploaded the requested documents (back to admin)
 //   processing          -> admin is processing the RERA registration
 //   approved            -> RERA obtained (rera_number is set)
 //   rejected            -> admin rejected the request (rejection_reason is set)
@@ -389,14 +389,14 @@ export const RERA_APPLICANT_TYPE_LABELS: Record<ReraApplicantType, string> = {
   society: "Society / Trust",
 }
 
-// A document the admin requests from the agent for a RERA registration.
+// A document the admin requests from the associate for a RERA registration.
 export interface ReraRequestedDocument {
   key: string                 // unique id for this requested item
   label: string               // what the admin is asking for, e.g. "Title Deed"
   note?: string               // extra instructions from the admin
   required: boolean
   requested_at: string | Date
-  file?: LandDocumentFile     // the file the agent uploads in response
+  file?: LandDocumentFile     // the file the associate uploads in response
   uploaded_at?: string | Date
 }
 
@@ -405,7 +405,7 @@ export interface ReraStageEvent {
   status: ReraRequestStatus
   note?: string
   by: string                  // user id who made the change
-  by_role: "agent" | "admin"
+  by_role: "associate" | "admin"
   at: string | Date
 }
 
@@ -413,14 +413,14 @@ export interface ReraRequest {
   _id?: string
 
   // Who + which land
-  agent: string               // agent user id
-  agent_name?: string
-  agent_email?: string
+  associate: string               // associate user id
+  associate_name?: string
+  associate_email?: string
   listing: string             // listing / property id
   listing_name?: string       // denormalized for quick display
   listing_slug?: string
 
-  // Applicant details supplied by the agent
+  // Applicant details supplied by the associate
   applicant_name: string
   applicant_type: ReraApplicantType
   contact_phone: string
@@ -429,13 +429,13 @@ export interface ReraRequest {
   land_area?: string          // free text, e.g. "5 acres"
   estimated_value?: number
   aadhaar_or_pan?: string     // applicant identity reference
-  agent_notes?: string        // any message from the agent
+  associate_notes?: string        // any message from the associate
 
   // Admin-managed workflow
   status: ReraRequestStatus
   requested_documents: ReraRequestedDocument[]
   stage_history: ReraStageEvent[]
-  admin_notes?: string        // internal / feedback note shown to the agent
+  admin_notes?: string        // internal / feedback note shown to the associate
   rera_number?: string        // set when approved
   rejection_reason?: string   // set when rejected
 

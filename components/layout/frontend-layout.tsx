@@ -16,14 +16,14 @@ const WhatsAppButton = lazy(() => import("@/components/ui/whatsapp-button"))
 
 export default function FrontendLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  
+
   // Check if we're on a dashboard page
-  const isDashboardPage = pathname?.startsWith("/admin") || 
-                         pathname?.startsWith("/builder") || 
-                         pathname?.startsWith("/buyer") || 
-                         pathname?.startsWith("/dashboard") ||
-                         pathname?.startsWith("/agent")
-  
+  const isDashboardPage = pathname?.startsWith("/admin") ||
+    pathname?.startsWith("/builder") ||
+    pathname?.startsWith("/buyer") ||
+    pathname?.startsWith("/dashboard") ||
+    pathname?.startsWith("/associate")
+
   // Don't render the mega menu header and footer for dashboard pages
   if (isDashboardPage) {
     return (
@@ -33,7 +33,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
       </>
     )
   }
-  
+
   return (
     <>
       <MedianBridge />

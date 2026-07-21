@@ -4,7 +4,7 @@ import type React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import { Phone, Mail, ChevronDown, Send } from "lucide-react"
+import { Phone, Mail, ChevronDown, Send, Instagram, Facebook, Youtube } from "lucide-react"
 import { toast } from "sonner"
 
 export default function Footer() {
@@ -63,6 +63,26 @@ export default function Footer() {
     }
   }
 
+  const PinterestIcon = ({ size = 18 }: { size?: number }) => (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 4.237 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.182-.78 1.172-4.97 1.172-4.97s-.299-.599-.299-1.484c0-1.39.806-2.428 1.809-2.428.853 0 1.265.641 1.265 1.408 0 .858-.546 2.14-.828 3.329-.236.995.499 1.807 1.481 1.807 1.777 0 3.144-1.874 3.144-4.579 0-2.394-1.72-4.068-4.177-4.068-2.845 0-4.516 2.134-4.516 4.34 0 .859.331 1.781.744 2.281a.3.3 0 0 1 .069.288c-.076.315-.245.995-.278 1.134-.043.183-.145.222-.334.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.472 6.165 5.776 0 3.447-2.173 6.22-5.189 6.22-1.013 0-1.966-.526-2.292-1.148l-.623 2.377c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.446 2.962.446 5.523 0 10-4.477 10-10S17.523 2 12 2z" />
+    </svg>
+  )
+
+  const socialLinks = [
+    { name: "Instagram", href: "https://www.instagram.com/_land2land_/", icon: Instagram },
+    { name: "Facebook", href: "https://www.facebook.com/profile.php?id=61591888530826", icon: Facebook },
+    { name: "YouTube", href: "https://www.youtube.com/@Land2Land2026", icon: Youtube },
+    { name: "Pinterest", href: "https://in.pinterest.com/land2landofficial/", icon: PinterestIcon },
+  ]
+
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "About Land2Land", href: "/about" },
@@ -86,7 +106,7 @@ export default function Footer() {
     { name: "Buy Land", href: "/buy" },
     { name: "Sell Land", href: "/sell" },
     { name: "Farm Investments", href: "/investments" },
-    { name: "Find Agent", href: "/find-agent" },
+    { name: "Find Associate", href: "/find-associate" },
     { name: "Property Management", href: "/property-management" },
     { name: "Farms", href: "/farms" },
   ]
@@ -177,6 +197,27 @@ export default function Footer() {
                 >
                   info@land2land.com
                 </a>
+              </div>
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-[#125007] mb-3">Follow Us</p>
+              <div className="flex items-center gap-3">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon
+                  return (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Follow Land2Land on ${social.name}`}
+                      className="w-10 h-10 bg-[#125007] hover:bg-[#6ba82b] rounded-lg flex items-center justify-center text-white transition-colors"
+                    >
+                      <Icon size={18} />
+                    </a>
+                  )
+                })}
               </div>
             </div>
           </div>

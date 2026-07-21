@@ -14,12 +14,12 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
 
-    const { 
-      name, 
-      email, 
-      phone, 
-      message, 
-      property_id, 
+    const {
+      name,
+      email,
+      phone,
+      message,
+      property_id,
       property_name,
       property_slug,
       company_name,
@@ -83,16 +83,16 @@ export async function POST(req: NextRequest) {
 
     // Get property owner info if property_id is provided
     let propertyOwnerId: string | null = null
-    let propertyOwnerType: "admin" | "agent" = "admin"
-    
+    let propertyOwnerType: "admin" | "associate" = "admin"
+
     if (property_id) {
       try {
-        const property = await db.collection("listings").findOne({ 
-          _id: new ObjectId(property_id) 
+        const property = await db.collection("listings").findOne({
+          _id: new ObjectId(property_id)
         })
-        if (property && property.agent) {
-          propertyOwnerId = property.agent
-          propertyOwnerType = "agent"
+        if (property && property.associate) {
+          propertyOwnerId = property.associate
+          propertyOwnerType = "associate"
         }
       } catch {
         // Invalid property ID, continue without owner info
@@ -100,10 +100,10 @@ export async function POST(req: NextRequest) {
     }
 
     // Create a lead record for tracking
-    const leadSource: LeadSource = enquiry_type === "office_space" 
-      ? "property_enquiry" 
+    const leadSource: LeadSource = enquiry_type === "office_space"
+      ? "property_enquiry"
       : "property_enquiry"
-    
+
     const lead = {
       name,
       email: email || "",

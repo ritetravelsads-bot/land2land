@@ -10,7 +10,7 @@ export async function GET(
   try {
     const { id } = await params
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -21,8 +21,8 @@ export async function GET(
       return NextResponse.json({ error: "Property not found" }, { status: 404 })
     }
 
-    // Check if the property belongs to the agent (admins can access all)
-    if (user.user_type === "agent" && property.agent?.toString() !== user._id?.toString()) {
+    // Check if the property belongs to the associate (admins can access all)
+    if (user.user_type === "associate" && property.associate?.toString() !== user._id?.toString()) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 403 })
     }
 
@@ -40,7 +40,7 @@ export async function PUT(
   try {
     const { id } = await params
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -54,7 +54,7 @@ export async function PUT(
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)/g, "")
-      
+
       // Ensure unique slug (excluding current property)
       let counter = 1
       let uniqueSlug = slug
@@ -65,18 +65,18 @@ export async function PUT(
       slug = uniqueSlug
     }
 
-    // When an agent edits their listing, it goes back into the review queue
+    // When an associate edits their listing, it goes back into the review queue
     // (read-your-writes: a rejected listing can be fixed and resubmitted).
     // Admins editing keep the listing approved.
     const isAdmin = user.user_type === "admin"
 
     // Never let the client override moderation or ownership fields directly.
-    // `agent` in particular is stored as an ObjectId; if the client echoes it
+    // `associate` in particular is stored as an ObjectId; if the client echoes it
     // back as a string, it breaks owner-scoped queries and the listing would
-    // disappear from the agent's dashboard after a resubmit.
+    // disappear from the associate's dashboard after a resubmit.
     const {
       _id: _id,
-      agent: _agent,
+      associate: _agent,
       review_status: _rs,
       review_notes: _rn,
       reviewed_at: _ra,
@@ -90,19 +90,19 @@ export async function PUT(
     const moderationUpdate = isAdmin
       ? {}
       : {
-          review_status: "pending",
-          review_notes: "",
-          submitted_at: new Date(),
-          reviewed_at: null,
-          reviewed_by: null,
-        }
+        review_status: "pending",
+        review_notes: "",
+        submitted_at: new Date(),
+        reviewed_at: null,
+        reviewed_by: null,
+      }
 
     // Agents can only update their own listings; admins can update any.
     const ownershipFilter = isAdmin
       ? { _id: new ObjectId(id) }
-      : { _id: new ObjectId(id), agent: { $in: [user._id, user._id?.toString()] } }
+      : { _id: new ObjectId(id), associate: { $in: [user._id, user._id?.toString()] } }
 
-    // Each agent resubmission counts as a new review attempt.
+    // Each associate resubmission counts as a new review attempt.
     const incUpdate = isAdmin ? {} : { $inc: { submission_count: 1 } }
 
     const result = await db.collection("listings").updateOne(ownershipFilter, {
@@ -134,7 +134,7 @@ export async function DELETE(
   try {
     const { id } = await params
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -143,7 +143,7 @@ export async function DELETE(
     const deleteFilter =
       user.user_type === "admin"
         ? { _id: new ObjectId(id) }
-        : { _id: new ObjectId(id), agent: { $in: [user._id, user._id?.toString()] } }
+        : { _id: new ObjectId(id), associate: { $in: [user._id, user._id?.toString()] } }
     const result = await db.collection("listings").deleteOne(deleteFilter)
 
     if (result.deletedCount === 0) {

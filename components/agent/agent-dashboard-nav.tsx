@@ -17,12 +17,12 @@ export default function AgentDashboardNav() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/")
 
   const navItems = [
-    { href: "/agent/dashboard", label: "Dashboard", icon: Home },
-    { href: "/agent/properties", label: "Properties", icon: Package },
-    { href: "/agent/leads", label: "Leads", icon: UserPlus },
-    { href: "/agent/reviews", label: "Reviews", icon: Star },
-    { href: "/agent/tickets", label: "Support Tickets", icon: MessageSquare },
-    { href: "/agent/profile", label: "Profile", icon: User },
+    { href: "/associate/dashboard", label: "Dashboard", icon: Home },
+    { href: "/associate/properties", label: "Properties", icon: Package },
+    { href: "/associate/leads", label: "Leads", icon: UserPlus },
+    { href: "/associate/reviews", label: "Reviews", icon: Star },
+    { href: "/associate/tickets", label: "Support Tickets", icon: MessageSquare },
+    { href: "/associate/profile", label: "Profile", icon: User },
   ]
 
   return (
@@ -34,9 +34,8 @@ export default function AgentDashboardNav() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-2 px-3 py-2 text-xs font-medium rounded whitespace-nowrap transition-colors ${
-                isActive(item.href) ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-muted"
-              }`}
+              className={`flex items-center gap-2 px-3 py-2 text-xs font-medium rounded whitespace-nowrap transition-colors ${isActive(item.href) ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-muted"
+                }`}
             >
               <Icon size={16} />
               {item.label}

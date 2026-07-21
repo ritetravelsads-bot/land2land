@@ -4,12 +4,12 @@ import { useEffect, useState, useCallback } from "react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
 } from "@/components/ui/select"
 import {
   Dialog,
@@ -21,11 +21,11 @@ import {
 } from "@/components/ui/dialog"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
-import { 
-  Search, 
-  Phone, 
-  Mail, 
-  MessageSquare, 
+import {
+  Search,
+  Phone,
+  Mail,
+  MessageSquare,
   ExternalLink,
   UserPlus,
   ChevronLeft,
@@ -50,7 +50,7 @@ interface LeadWithId extends Lead {
   _id: string
 }
 
-interface Agent {
+interface Associate {
   _id: string
   username: string
   email: string
@@ -96,16 +96,16 @@ export default function AdminLeadsList() {
   const [page, setPage] = useState(1)
   const [pagination, setPagination] = useState({ total: 0, pages: 1 })
   const [stats, setStats] = useState<LeadsResponse["stats"] | null>(null)
-  
+
   // Filters
   const [search, setSearch] = useState("")
   const [statusFilter, setStatusFilter] = useState<string>("all")
   const [priorityFilter, setPriorityFilter] = useState<string>("all")
   const [showUnassigned, setShowUnassigned] = useState(false)
-  
+
   // Agents for assignment
-  const [agents, setAgents] = useState<Agent[]>([])
-  
+  const [agents, setAgents] = useState<Associate[]>([])
+
   // Dialogs
   const [selectedLead, setSelectedLead] = useState<LeadWithId | null>(null)
   const [showAssignDialog, setShowAssignDialog] = useState(false)
@@ -122,12 +122,12 @@ export default function AdminLeadsList() {
         page: page.toString(),
         limit: "15",
       })
-      
+
       if (search) params.set("search", search)
       if (statusFilter !== "all") params.set("status", statusFilter)
       if (priorityFilter !== "all") params.set("priority", priorityFilter)
       if (showUnassigned) params.set("unassigned", "true")
-      
+
       const response = await fetch(`/api/admin/leads?${params}`)
       if (response.ok) {
         const data: LeadsResponse = await response.json()
@@ -147,7 +147,7 @@ export default function AdminLeadsList() {
       const response = await fetch("/api/admin/users")
       if (response.ok) {
         const users = await response.json()
-        setAgents(users.filter((u: Agent & { user_type: string }) => u.user_type === "agent"))
+        setAgents(users.filter((u: Associate & { user_type: string }) => u.user_type === "associate"))
       }
     } catch (error) {
       console.error("Failed to fetch agents:", error)
@@ -166,7 +166,7 @@ export default function AdminLeadsList() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus }),
       })
-      
+
       if (response.ok) {
         fetchLeads()
       }
@@ -182,7 +182,7 @@ export default function AdminLeadsList() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ priority: newPriority }),
       })
-      
+
       if (response.ok) {
         fetchLeads()
       }
@@ -193,7 +193,7 @@ export default function AdminLeadsList() {
 
   const handleAssignLead = async () => {
     if (!selectedLead || !selectedAgent) return
-    
+
     setActionLoading(true)
     try {
       const response = await fetch(`/api/admin/leads/${selectedLead._id}/assign`, {
@@ -201,7 +201,7 @@ export default function AdminLeadsList() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ agent_id: selectedAgent }),
       })
-      
+
       if (response.ok) {
         setShowAssignDialog(false)
         setSelectedLead(null)
@@ -217,7 +217,7 @@ export default function AdminLeadsList() {
 
   const handleAddNote = async () => {
     if (!selectedLead || !newNote.trim()) return
-    
+
     setActionLoading(true)
     try {
       const response = await fetch(`/api/admin/leads/${selectedLead._id}/notes`, {
@@ -225,7 +225,7 @@ export default function AdminLeadsList() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ content: newNote }),
       })
-      
+
       if (response.ok) {
         setNewNote("")
         // Refresh lead details
@@ -244,12 +244,12 @@ export default function AdminLeadsList() {
 
   const handleDeleteLead = async (leadId: string) => {
     if (!confirm("Are you sure you want to delete this lead?")) return
-    
+
     try {
       const response = await fetch(`/api/admin/leads/${leadId}`, {
         method: "DELETE",
       })
-      
+
       if (response.ok) {
         fetchLeads()
       }
@@ -324,7 +324,7 @@ export default function AdminLeadsList() {
               className="pl-9 w-[200px] h-9 text-sm"
             />
           </div>
-          
+
           <Select value={statusFilter} onValueChange={(v) => { setStatusFilter(v); setPage(1) }}>
             <SelectTrigger className="w-[130px] h-9 text-sm">
               <SelectValue placeholder="Status" />
@@ -338,7 +338,7 @@ export default function AdminLeadsList() {
               <SelectItem value="lost">Lost</SelectItem>
             </SelectContent>
           </Select>
-          
+
           <Select value={priorityFilter} onValueChange={(v) => { setPriorityFilter(v); setPage(1) }}>
             <SelectTrigger className="w-[130px] h-9 text-sm">
               <SelectValue placeholder="Priority" />
@@ -351,7 +351,7 @@ export default function AdminLeadsList() {
               <SelectItem value="low">Low</SelectItem>
             </SelectContent>
           </Select>
-          
+
           <Button
             variant={showUnassigned ? "default" : "outline"}
             size="sm"
@@ -362,7 +362,7 @@ export default function AdminLeadsList() {
             Unassigned
           </Button>
         </div>
-        
+
         <Button variant="outline" size="sm" onClick={() => fetchLeads()} className="h-9">
           <RefreshCw className="h-3.5 w-3.5 mr-1.5" />
           Refresh
@@ -413,7 +413,7 @@ export default function AdminLeadsList() {
                       {lead.property_name ? (
                         <div className="flex items-center gap-1.5">
                           <Building2 className="h-3.5 w-3.5 text-muted-foreground" />
-                          <a 
+                          <a
                             href={`/property/${lead.property_slug}`}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -427,8 +427,8 @@ export default function AdminLeadsList() {
                       )}
                     </TableCell>
                     <TableCell>
-                      <Select 
-                        value={lead.status} 
+                      <Select
+                        value={lead.status}
                         onValueChange={(v) => handleStatusChange(lead._id, v as LeadStatus)}
                       >
                         <SelectTrigger className={`w-[100px] h-7 text-xs border ${STATUS_COLORS[lead.status]}`}>
@@ -444,8 +444,8 @@ export default function AdminLeadsList() {
                       </Select>
                     </TableCell>
                     <TableCell>
-                      <Select 
-                        value={lead.priority} 
+                      <Select
+                        value={lead.priority}
                         onValueChange={(v) => handlePriorityChange(lead._id, v as LeadPriority)}
                       >
                         <SelectTrigger className={`w-[90px] h-7 text-xs ${PRIORITY_COLORS[lead.priority]}`}>
@@ -480,7 +480,7 @@ export default function AdminLeadsList() {
                             setSelectedLead(lead)
                             setShowAssignDialog(true)
                           }}
-                          title="Assign to Agent"
+                          title="Assign to Associate"
                         >
                           <UserPlus className="h-3.5 w-3.5" />
                         </Button>
@@ -531,7 +531,7 @@ export default function AdminLeadsList() {
                               </DropdownMenuItem>
                             )}
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem 
+                            <DropdownMenuItem
                               className="text-destructive"
                               onClick={() => handleDeleteLead(lead._id)}
                             >
@@ -583,9 +583,9 @@ export default function AdminLeadsList() {
       <Dialog open={showAssignDialog} onOpenChange={setShowAssignDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Assign Lead to Agent</DialogTitle>
+            <DialogTitle>Assign Lead to Associate</DialogTitle>
             <DialogDescription>
-              Select an agent to assign this lead to. They will be able to see and manage this lead.
+              Select an associate to assign this lead to. They will be able to see and manage this lead.
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-4">
@@ -602,12 +602,12 @@ export default function AdminLeadsList() {
             )}
             <Select value={selectedAgent} onValueChange={setSelectedAgent}>
               <SelectTrigger>
-                <SelectValue placeholder="Select an agent" />
+                <SelectValue placeholder="Select an associate" />
               </SelectTrigger>
               <SelectContent>
-                {agents.map((agent) => (
-                  <SelectItem key={agent._id} value={agent._id}>
-                    {agent.username || agent.email}
+                {agents.map((associate) => (
+                  <SelectItem key={associate._id} value={associate._id}>
+                    {associate.username || associate.email}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -640,7 +640,7 @@ export default function AdminLeadsList() {
                   <div key={i} className="bg-muted/50 rounded-lg p-3">
                     <p className="text-sm">{note.content}</p>
                     <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
-                      <span>{note.created_by_name || note.created_by_type}</span>
+                      <span>{note.created_by_type}</span>
                       <span>•</span>
                       <span>{formatDate(note.created_at)} at {formatTime(note.created_at)}</span>
                     </div>
@@ -657,8 +657,8 @@ export default function AdminLeadsList() {
                 onChange={(e) => setNewNote(e.target.value)}
                 rows={3}
               />
-              <Button 
-                onClick={handleAddNote} 
+              <Button
+                onClick={handleAddNote}
                 disabled={!newNote.trim() || actionLoading}
                 className="w-full"
               >
@@ -709,11 +709,11 @@ export default function AdminLeadsList() {
                   </Badge>
                 </div>
               </div>
-              
+
               {selectedLead.property_name && (
                 <div>
                   <p className="text-xs text-muted-foreground mb-1">Property</p>
-                  <a 
+                  <a
                     href={`/property/${selectedLead.property_slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -725,14 +725,14 @@ export default function AdminLeadsList() {
                   </a>
                 </div>
               )}
-              
+
               {selectedLead.message && (
                 <div>
                   <p className="text-xs text-muted-foreground mb-1">Message</p>
                   <p className="text-sm bg-muted/50 rounded-lg p-3">{selectedLead.message}</p>
                 </div>
               )}
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-xs text-muted-foreground mb-1">Created</p>
