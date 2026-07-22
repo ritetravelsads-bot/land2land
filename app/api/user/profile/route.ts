@@ -18,8 +18,20 @@ export async function PUT(req: NextRequest) {
 
     const updates: Record<string, unknown> = {}
 
+    if (typeof body.display_name === "string") {
+      const trimmed = body.display_name.trim()
+      if (trimmed.length < 2 || trimmed.length > 80) {
+        return NextResponse.json({ error: "Name must be between 2 and 80 characters" }, { status: 400 })
+      }
+      updates.display_name = trimmed
+    }
+
     if (typeof body.phone_number === "string") {
-      updates.phone_number = body.phone_number.trim()
+      const cleaned = body.phone_number.replace(/\D/g, "")
+      if (cleaned.length > 0 && !/^[6-9]\d{9}$/.test(cleaned)) {
+        return NextResponse.json({ error: "Invalid phone number. Must be a 10-digit Indian mobile number." }, { status: 400 })
+      }
+      updates.phone_number = cleaned || body.phone_number.trim()
     }
 
     if (typeof body.profile_picture === "string" || body.profile_picture === null) {

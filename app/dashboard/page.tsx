@@ -1,56 +1,23 @@
-"use client"
-import { useEffect, useState } from "react"
+import { redirect } from "next/navigation"
+import { getCurrentUser } from "@/lib/auth"
 
-export default function DashboardPage() {
-  const [user, setUser] = useState<any>(null)
-  const [loading, setLoading] = useState(true)
+export const dynamic = "force-dynamic"
 
-  useEffect(() => {
-    const loadUser = async () => {
-      try {
-        const res = await fetch("/api/auth/me", { cache: "no-store", credentials: "include" })
-        const userData = await res.json()
-        setUser(userData)
-      } catch (error) {
-        console.error("[v0] Error loading user:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
+export default async function DashboardPage() {
+  const user = await getCurrentUser()
 
-    loadUser()
-  }, [])
+  if (!user) {
+    redirect("/auth/login")
+  }
 
-  return (
-    <div className="max-w-4xl mx-auto space-y-8">
-      <div className="space-y-2">
-        <h1 className="text-2xl md:text-3xl font-bold text-foreground">Dashboard</h1>
-        <p className="text-sm text-muted-foreground">Welcome back, {user?.username || "User"}!</p>
-      </div>
+  if (user.user_type === "admin") {
+    redirect("/admin/dashboard")
+  }
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="p-4 border border-border rounded-lg">
-          <p className="text-xs text-muted-foreground">Active Quotes</p>
-          <p className="text-2xl font-bold text-primary mt-2">0</p>
-        </div>
-        <div className="p-4 border border-border rounded-lg">
-          <p className="text-xs text-muted-foreground">Completed Projects</p>
-          <p className="text-2xl font-bold text-primary mt-2">0</p>
-        </div>
-        <div className="p-4 border border-border rounded-lg">
-          <p className="text-xs text-muted-foreground">Member Since</p>
-          <p className="text-sm text-primary mt-2">
-            {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : "N/A"}
-          </p>
-        </div>
-      </div>
+  if (user.user_type === "associate") {
+    redirect("/associate/dashboard")
+  }
 
-      <div className="space-y-3">
-        <h2 className="text-lg font-semibold text-foreground">Quick Actions</h2>
-        <div className="border border-border rounded-lg p-4 text-center text-sm text-muted-foreground">
-          No recent activity
-        </div>
-      </div>
-    </div>
-  )
+  // customer / quick-registered buyers
+  redirect("/buyer")
 }

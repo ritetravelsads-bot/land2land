@@ -20,8 +20,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     redirect("/auth/login")
   }
 
+  if (user.user_type === "associate") {
+    redirect("/associate/dashboard")
+  }
+
   if (user.user_type !== "admin") {
-    redirect("/dashboard")
+    redirect("/buyer")
   }
 
   return (

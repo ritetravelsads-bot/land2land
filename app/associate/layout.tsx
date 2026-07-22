@@ -20,8 +20,12 @@ export default async function AssociateLayout({ children }: { children: React.Re
     redirect("/auth/login")
   }
 
+  if (user.user_type === "admin") {
+    redirect("/admin/dashboard")
+  }
+
   if (user.user_type !== "associate") {
-    redirect("/dashboard")
+    redirect("/buyer")
   }
 
   return (

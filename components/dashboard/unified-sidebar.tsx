@@ -71,6 +71,7 @@ const getNavConfig = (role: UserRole): NavSection[] => {
             { href: "/admin/users", label: "Users", icon: Users },
             { href: "/admin/reviews", label: "Reviews", icon: Star },
             { href: "/admin/tickets", label: "Support Tickets", icon: MessageSquare },
+            { href: "/admin/messages", label: "Buyer Messages", icon: MessageCircle },
             { href: "/admin/contacts", label: "Contacts", icon: MessageCircle },
             { href: "/admin/quotes", label: "Quotes", icon: FileText },
           ],
