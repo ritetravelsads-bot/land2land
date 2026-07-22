@@ -34,6 +34,7 @@ export async function GET() {
         user: {
           id: user._id,
           username: user.username,
+          display_name: (user as any).display_name || "",
           email: user.email,
           user_type: user.user_type,
           phone_number: user.phone_number,
