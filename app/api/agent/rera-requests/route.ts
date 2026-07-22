@@ -9,17 +9,17 @@ export const revalidate = 0
 
 const APPLICANT_TYPES = ["individual", "company", "partnership", "huf", "society"]
 
-// GET /api/agent/rera-requests
-// Agents get their own requests; admins get everything.
+// GET /api/associate/rera-requests
+// Associates get their own requests; admins get everything.
 export async function GET() {
   try {
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
     const db = await getDatabase()
-    const query = user.user_type === "admin" ? {} : { agent: user._id.toString() }
+    const query = user.user_type === "admin" ? {} : { associate: user._id.toString() }
 
     const requests = await db
       .collection(COLLECTIONS.RERA_REQUESTS)
@@ -34,12 +34,12 @@ export async function GET() {
   }
 }
 
-// POST /api/agent/rera-requests
-// Create a new RERA registration request for one of the agent's listings.
+// POST /api/associate/rera-requests
+// Create a new RERA registration request for one of the associate's listings.
 export async function POST(req: NextRequest) {
   try {
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -70,13 +70,13 @@ export async function POST(req: NextRequest) {
 
     const db = await getDatabase()
 
-    // Verify the listing exists and (for agents) belongs to them.
-    // Listings store `agent` as the user's ObjectId, so match on that.
+    // Verify the listing exists and (for associates) belongs to them.
+    // Listings store `associate` as the user's ObjectId, so match on that.
     // Also accept the string form to stay robust to either storage type.
     const listingQuery: Record<string, unknown> =
       user.user_type === "admin"
         ? { _id: listingObjectId }
-        : { _id: listingObjectId, agent: { $in: [user._id, user._id.toString()] } }
+        : { _id: listingObjectId, associate: { $in: [user._id, user._id.toString()] } }
     const listing = await db.collection(COLLECTIONS.LISTINGS).findOne(listingQuery)
     if (!listing) {
       return NextResponse.json({ error: "Property not found or not yours." }, { status: 404 })
@@ -97,16 +97,16 @@ export async function POST(req: NextRequest) {
     const now = new Date()
     const firstEvent: ReraStageEvent = {
       status: "submitted",
-      note: "Request submitted by agent.",
+      note: "Request submitted by associate.",
       by: user._id.toString(),
-      by_role: user.user_type === "admin" ? "admin" : "agent",
+      by_role: user.user_type === "admin" ? "admin" : "associate",
       at: now,
     }
 
     const doc: Omit<ReraRequest, "_id"> = {
-      agent: user._id.toString(),
-      agent_name: user.username,
-      agent_email: user.email,
+      associate: user._id.toString(),
+      associate_name: user.username,
+      associate_email: user.email,
       listing: listingId,
       listing_name: (listing.property_name as string) || "",
       listing_slug: (listing.slug as string) || "",
@@ -119,7 +119,7 @@ export async function POST(req: NextRequest) {
       land_area: typeof body.land_area === "string" ? body.land_area.trim() : "",
       estimated_value: Number(body.estimated_value) || 0,
       aadhaar_or_pan: typeof body.aadhaar_or_pan === "string" ? body.aadhaar_or_pan.trim() : "",
-      agent_notes: typeof body.agent_notes === "string" ? body.agent_notes.trim() : "",
+      associate_notes: typeof body.associate_notes === "string" ? body.associate_notes.trim() : "",
       status: "submitted",
       requested_documents: [],
       stage_history: [firstEvent],

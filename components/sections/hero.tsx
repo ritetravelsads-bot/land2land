@@ -66,7 +66,7 @@ export default function Hero() {
             </div>
             <div className="text-white space-y-2">
               <p className="text-4xl md:text-5xl font-bold">1200+</p>
-              <p className="text-white/90 text-sm md:text-base font-medium">Verified Agents</p>
+              <p className="text-white/90 text-sm md:text-base font-medium">Verified Associates</p>
             </div>
             <div className="text-white space-y-2">
               <p className="text-4xl md:text-5xl font-bold">98%</p>

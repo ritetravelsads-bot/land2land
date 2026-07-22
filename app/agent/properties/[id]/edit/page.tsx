@@ -14,17 +14,17 @@ export default function EditPropertyPage({ params }: { params: Promise<{ id: str
   useEffect(() => {
     const loadProperty = async () => {
       try {
-        const res = await fetch(`/api/agent/properties/${id}`)
+        const res = await fetch(`/api/associate/properties/${id}`)
         if (res.ok) {
           const data = await res.json()
           setInitialData(data)
         } else {
           console.error("[v0] Failed to fetch property data")
-          router.push("/agent/properties")
+          router.push("/associate/properties")
         }
       } catch (error) {
         console.error("[v0] Error loading property:", error)
-        router.push("/agent/properties")
+        router.push("/associate/properties")
       } finally {
         setLoading(false)
       }
@@ -51,7 +51,7 @@ export default function EditPropertyPage({ params }: { params: Promise<{ id: str
   return (
     <PropertyFormWrapper title="Edit Property" description="Update the details of your property listing">
       <PropertyFormMultiStep
-        apiEndpoint={`/api/agent/properties/${id}`}
+        apiEndpoint={`/api/associate/properties/${id}`}
         initialData={initialData}
         isEdit={true}
       />

@@ -95,6 +95,11 @@ const CTA = dynamic(() => import("@/components/sections/cta"), {
   loading: () => <div className="h-48 bg-slate-50 animate-pulse" />,
 })
 
+const ListYourLandGuide = dynamic(() => import("@/components/sections/list-your-land"), {
+  ssr: true,
+  loading: () => <div className="h-48 bg-slate-50 animate-pulse" />,
+})
+
 export default function Home() {
   return (
     <main>
@@ -110,6 +115,11 @@ export default function Home() {
       {/* Browse by Land Type — bento grid */}
       <Suspense fallback={<div className="h-64 bg-white animate-pulse" />}>
         <LandTypesBrowse />
+      </Suspense>
+
+      {/* List Your Land Guide */}
+      <Suspense fallback={<div className="h-48 bg-slate-50 animate-pulse" />}>
+        <ListYourLandGuide />
       </Suspense>
 
       {/* Search land anywhere promo band */}

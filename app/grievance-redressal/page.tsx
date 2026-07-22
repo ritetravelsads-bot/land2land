@@ -44,7 +44,7 @@ export default function GrievanceRedressalPage() {
                 <li>Inaccurate, misleading, or unauthorized land or property listings.</li>
                 <li>Misuse of your personal data or privacy-related concerns.</li>
                 <li>Content that is unlawful, offensive, or infringes intellectual property rights.</li>
-                <li>Conduct of agents, developers, or other users on the platform.</li>
+                <li>Conduct of associates, developers, or other users on the platform.</li>
                 <li>Quality or delivery of advisory and consultation services.</li>
               </ul>
             </section>
@@ -135,7 +135,6 @@ export default function GrievanceRedressalPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   )
 }

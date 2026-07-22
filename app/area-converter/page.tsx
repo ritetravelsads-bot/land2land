@@ -258,7 +258,6 @@ export default function AreaConverterPage() {
           </div>
         </section>
       </div>
-      <Footer />
     </main>
   )
 }

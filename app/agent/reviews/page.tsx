@@ -3,14 +3,14 @@
 import { Star, MessageSquare } from "lucide-react"
 import { useEffect, useState } from "react"
 
-export default function AgentReviewsPage() {
+export default function AssociateReviewsPage() {
   const [reviews, setReviews] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const loadReviews = async () => {
       try {
-        const res = await fetch("/api/agent/reviews")
+        const res = await fetch("/api/associate/reviews")
         const data = await res.json()
         setReviews(data)
       } catch (error) {

@@ -9,23 +9,23 @@ export const dynamic = "force-dynamic"
 export const revalidate = 0
 
 export const metadata: Metadata = {
-  title: "Agent Dashboard | Land2Land",
+  title: "Associate Dashboard | Land2Land",
   description: "Manage your property listings",
 }
 
-export default async function AgentLayout({ children }: { children: React.ReactNode }) {
+export default async function AssociateLayout({ children }: { children: React.ReactNode }) {
   const user = await getCurrentUser()
 
   if (!user) {
     redirect("/auth/login")
   }
 
-  if (user.user_type !== "agent") {
+  if (user.user_type !== "associate") {
     redirect("/dashboard")
   }
 
   return (
-    <DashboardLayoutWrapper userRole="agent" userName={user.username}>
+    <DashboardLayoutWrapper userRole="associate" userName={user.username}>
       {children}
     </DashboardLayoutWrapper>
   )

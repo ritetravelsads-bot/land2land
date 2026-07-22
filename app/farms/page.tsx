@@ -302,7 +302,6 @@ export default function FarmsPage() {
           </div>
         </section>
       </div>
-      <Footer />
     </main>
   )
 }

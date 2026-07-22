@@ -23,7 +23,7 @@ export default function SubscriptionPage() {
         { name: "Email support", included: true },
         { name: "Advanced filters", included: false },
         { name: "Direct messaging", included: false },
-        { name: "Agent connections", included: false },
+        { name: "Associate connections", included: false },
       ],
       cta: "Get Started Free",
     },
@@ -38,7 +38,7 @@ export default function SubscriptionPage() {
         { name: "Advanced filters", included: true },
         { name: "Direct messaging", included: true },
         { name: "Priority email support", included: true },
-        { name: "Agent connections", included: true },
+        { name: "Associate connections", included: true },
         { name: "Custom price alerts", included: true },
         { name: "Market insights", included: false },
       ],
@@ -56,7 +56,7 @@ export default function SubscriptionPage() {
         { name: "Custom price alerts", included: true },
         { name: "Advanced market analytics", included: true },
         { name: "24/7 phone support", included: true },
-        { name: "Dedicated land agent", included: true },
+        { name: "Dedicated land associate", included: true },
         { name: "Investment insights", included: true },
         { name: "Priority listing boost", included: true },
       ],
@@ -70,7 +70,7 @@ export default function SubscriptionPage() {
     "Saved Properties",
     "Direct Messaging",
     "Support",
-    "Agent Network",
+    "Associate Network",
     "Analytics",
     "Custom Alerts",
   ]
@@ -79,7 +79,7 @@ export default function SubscriptionPage() {
     {
       name: "Amit Verma",
       role: "Land Investor",
-      content: "Land2Land's Professional plan made it easy to find the right farm investment. The agent connections were invaluable.",
+      content: "Land2Land's Professional plan made it easy to find the right farm investment. The associate connections were invaluable.",
       rating: 5,
     },
     {
@@ -206,7 +206,7 @@ export default function SubscriptionPage() {
                 <td className="text-center py-4 px-4 text-gray-600">24/7 Phone</td>
               </tr>
               <tr className="border-b border-gray-100 hover:bg-green-50">
-                <td className="py-4 px-4 text-gray-800 font-medium">Agent Network</td>
+                <td className="py-4 px-4 text-gray-800 font-medium">Associate Network</td>
                 <td className="text-center py-4 px-4"><X className="w-5 h-5 text-gray-300 mx-auto" /></td>
                 <td className="text-center py-4 px-4"><Check className="w-5 h-5 text-green-600 mx-auto" /></td>
                 <td className="text-center py-4 px-4"><Check className="w-5 h-5 text-green-600 mx-auto" /></td>
@@ -291,7 +291,6 @@ export default function SubscriptionPage() {
         </div>
       </div>
 
-      <Footer />
     </main>
   )
 }

@@ -7,14 +7,14 @@ import { Plus, ShieldCheck, FileWarning, MapPin, ArrowRight, Loader2 } from "luc
 import ReraStatusBadge from "@/components/rera/rera-status-badge"
 import type { ReraRequest } from "@/lib/models"
 
-export default function AgentReraPage() {
+export default function AssociateReraPage() {
   const [requests, setRequests] = useState<ReraRequest[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch("/api/agent/rera-requests", {
+        const res = await fetch("/api/associate/rera-requests", {
           cache: "no-store",
           credentials: "include",
         })
@@ -47,7 +47,7 @@ export default function AgentReraPage() {
           </div>
         </div>
         <Button asChild>
-          <Link href="/agent/rera/new">
+          <Link href="/associate/rera/new">
             <Plus className="mr-2 h-4 w-4" />
             New Request
           </Link>
@@ -81,7 +81,7 @@ export default function AgentReraPage() {
             Start a request and we&apos;ll guide you through RERA registration.
           </p>
           <Button asChild>
-            <Link href="/agent/rera/new">
+            <Link href="/associate/rera/new">
               <Plus className="mr-2 h-4 w-4" />
               Create Your First Request
             </Link>
@@ -92,7 +92,7 @@ export default function AgentReraPage() {
           {requests.map((r) => (
             <Link
               key={r._id}
-              href={`/agent/rera/${r._id}`}
+              href={`/associate/rera/${r._id}`}
               className="block rounded-lg border border-border bg-card p-4 transition-colors hover:border-primary/50"
             >
               <div className="flex items-center justify-between gap-4">

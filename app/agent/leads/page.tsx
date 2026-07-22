@@ -1,17 +1,17 @@
 import type { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { getCurrentUser } from "@/lib/auth"
-import AgentLeadsList from "@/components/agent/leads-list"
+import AssociateLeadsList from "@/components/associate/leads-list"
 
 export const metadata: Metadata = {
-  title: "My Leads | Agent Dashboard",
+  title: "My Leads | Associate Dashboard",
   description: "View and manage your property leads",
 }
 
-export default async function AgentLeadsPage() {
+export default async function AssociateLeadsPage() {
   const user = await getCurrentUser()
   
-  if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+  if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
     redirect("/auth/login")
   }
 
@@ -25,7 +25,7 @@ export default async function AgentLeadsPage() {
           </p>
         </div>
 
-        <AgentLeadsList />
+        <AssociateLeadsList />
       </div>
     </div>
   )

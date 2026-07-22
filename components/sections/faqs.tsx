@@ -21,7 +21,7 @@ const faqs = [
     id: 3,
     question: "Can I invest in land remotely without visiting in person?",
     answer:
-      "Yes, absolutely. We provide high-resolution photos, 360° tours, location maps, ROI projections, and verified agent consultations. Our land specialists can guide your decisions remotely, and we handle all documentation and transfer processes with legal support.",
+      "Yes, absolutely. We provide high-resolution photos, 360° tours, location maps, ROI projections, and verified associate consultations. Our land specialists can guide your decisions remotely, and we handle all documentation and transfer processes with legal support.",
   },
   {
     id: 4,
@@ -132,7 +132,7 @@ export default function FAQs() {
         <p className="text-center text-gray-600 mt-8 text-sm">
           Still have questions?{" "}
           <a
-            href="/find-agent"
+            href="/find-associate"
             className="text-slate-800 font-semibold underline underline-offset-2 hover:opacity-80 transition-opacity"
           >
             Talk to a land expert

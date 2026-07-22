@@ -116,12 +116,12 @@ export default function PropertyManagementPage() {
     message: "",
   })
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e:any) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault()
     console.log("[v0] Form submitted:", formData)
     alert("Thank you! We'll contact you soon to schedule a consultation.")

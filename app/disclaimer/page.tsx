@@ -86,7 +86,7 @@ export default function DisclaimerPage() {
             <section className="space-y-3">
               <h2 className="text-2xl font-semibold text-foreground">Limitation of Liability</h2>
               <p className="text-muted-foreground">
-                Under no circumstances shall Land2Land, its directors, employees, partners, agents, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:
+                Under no circumstances shall Land2Land, its directors, employees, partners, associates, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from:
               </p>
               <ul className="list-disc pl-6 space-y-2 text-muted-foreground">
                 <li>Your use or inability to use the website or services</li>

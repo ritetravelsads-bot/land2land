@@ -82,7 +82,7 @@ export default function AdminTicketsPage() {
       {/* Header */}
       <div>
         <h1 className="text-xl font-bold text-foreground">Support Tickets</h1>
-        <p className="text-sm text-muted-foreground">Manage and respond to agent support requests</p>
+        <p className="text-sm text-muted-foreground">Manage and respond to associate support requests</p>
       </div>
 
       {/* Stats Cards */}

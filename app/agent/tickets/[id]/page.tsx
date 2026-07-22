@@ -9,7 +9,7 @@ import { ArrowLeft, Clock, CheckCircle2, AlertCircle, User, Shield, Send } from 
 interface Reply {
   id: string
   message: string
-  sender_type: "agent" | "admin"
+  sender_type: "associate" | "admin"
   sender_name: string
   created_at: string
 }
@@ -28,7 +28,7 @@ interface TicketData {
   replies?: Reply[]
 }
 
-export default function AgentTicketDetailPage() {
+export default function AssociateTicketDetailPage() {
   const params = useParams()
   const id = params.id as string
   const [ticket, setTicket] = useState<TicketData | null>(null)
@@ -42,7 +42,7 @@ export default function AgentTicketDetailPage() {
 
   const loadTicket = async () => {
     try {
-      const res = await fetch(`/api/agent/tickets/${id}`)
+      const res = await fetch(`/api/associate/tickets/${id}`)
       const data = await res.json()
       setTicket(data)
     } catch (error) {
@@ -58,7 +58,7 @@ export default function AgentTicketDetailPage() {
     
     setSubmitting(true)
     try {
-      const res = await fetch(`/api/agent/tickets/${id}`, {
+      const res = await fetch(`/api/associate/tickets/${id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: replyMessage }),
@@ -136,7 +136,7 @@ export default function AgentTicketDetailPage() {
     <div className="space-y-6 max-w-4xl">
       {/* Back Button */}
       <Link
-        href="/agent/tickets"
+        href="/associate/tickets"
         className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />

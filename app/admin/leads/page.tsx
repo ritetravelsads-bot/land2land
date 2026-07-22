@@ -5,7 +5,7 @@ import AdminLeadsList from "@/components/admin/leads-list"
 
 export const metadata: Metadata = {
   title: "Lead Management | Land2Land Admin",
-  description: "Manage property enquiry leads, assign to agents, and track conversions",
+  description: "Manage property enquiry leads, assign to associates, and track conversions",
 }
 
 export default async function LeadsPage() {
@@ -21,7 +21,7 @@ export default async function LeadsPage() {
         <div className="space-y-2">
           <h1 className="text-2xl md:text-3xl font-bold text-foreground">Lead Management</h1>
           <p className="text-sm text-muted-foreground">
-            Track property enquiries, assign leads to agents, and monitor conversion rates
+            Track property enquiries, assign leads to associates, and monitor conversion rates
           </p>
         </div>
 

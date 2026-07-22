@@ -1,15 +1,15 @@
 import type { Metadata } from "next"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
-import AgentRegisterForm from "@/components/forms/agent-register-form"
+import AssociateRegisterForm from "@/components/forms/associate-register-form"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Agent Registration | CountyRoof",
-  description: "Register as a real estate agent or property seller on CountyRoof.",
+  title: "Associate Registration | CountyRoof",
+  description: "Register as a real estate associate or property seller on CountyRoof.",
 }
 
-export default function AgentRegisterPage() {
+export default function AssociateRegisterPage() {
   return (
     <>
       <Header />
@@ -20,16 +20,16 @@ export default function AgentRegisterPage() {
               <div className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-blue-100 mb-3">
                 <span className="text-lg font-bold text-blue-700">👤</span>
               </div>
-              <h1 className="text-2xl font-bold text-foreground">Join as Agent</h1>
+              <h1 className="text-2xl font-bold text-foreground">Join as Associate</h1>
               <p className="text-sm text-muted-foreground">Register to list and manage properties</p>
             </div>
 
-            <AgentRegisterForm />
+            <AssociateRegisterForm />
 
             <div className="text-center text-sm">
               <p className="text-muted-foreground">
                 Already have an account?{" "}
-                <Link href="/agent/login" className="text-primary hover:underline font-medium">
+                <Link href="/associate/login" className="text-primary hover:underline font-medium">
                   Sign in
                 </Link>
               </p>

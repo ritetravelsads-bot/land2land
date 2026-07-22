@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     canonical: 'https://land2land.com',
   },
   title: "Land2Land | Buy & Sell All Types of Land",
-  description: "Buy, sell, and invest in all types of land — agricultural, residential land, commercial, industrial, abadi land and farmland across India. Connect with verified sellers and agents on Land2Land.",
+  description: "Buy, sell, and invest in all types of land — agricultural, residential land, commercial, industrial, abadi land and farmland across India. Connect with verified sellers and associates on Land2Land.",
   keywords: [
     "Land for Sale",
     "Agricultural Land",
@@ -141,7 +141,7 @@ export default function RootLayout({
               "@id": "https://land2land.com/#organization",
               name: "Land2Land",
               alternateName: "Land2Land Real Estate",
-              description: "Premium property marketplace connecting buyers, sellers, and agents in Gurgaon and Delhi NCR",
+              description: "Premium property marketplace connecting buyers, sellers, and associates in Gurgaon and Delhi NCR",
               url: "https://land2land.com",
               logo: {
                 "@type": "ImageObject",

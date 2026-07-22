@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Home, Package, MessageSquare, Star, LogOut, User, UserPlus } from "lucide-react"
 
-export default function AgentDashboardNav() {
+export default function AssociateDashboardNav() {
   const pathname = usePathname()
   const router = useRouter()
 
@@ -17,12 +17,12 @@ export default function AgentDashboardNav() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/")
 
   const navItems = [
-    { href: "/agent/dashboard", label: "Dashboard", icon: Home },
-    { href: "/agent/properties", label: "Properties", icon: Package },
-    { href: "/agent/leads", label: "Leads", icon: UserPlus },
-    { href: "/agent/reviews", label: "Reviews", icon: Star },
-    { href: "/agent/tickets", label: "Support Tickets", icon: MessageSquare },
-    { href: "/agent/profile", label: "Profile", icon: User },
+    { href: "/associate/dashboard", label: "Dashboard", icon: Home },
+    { href: "/associate/properties", label: "Properties", icon: Package },
+    { href: "/associate/leads", label: "Leads", icon: UserPlus },
+    { href: "/associate/reviews", label: "Reviews", icon: Star },
+    { href: "/associate/tickets", label: "Support Tickets", icon: MessageSquare },
+    { href: "/associate/profile", label: "Profile", icon: User },
   ]
 
   return (

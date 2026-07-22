@@ -316,7 +316,6 @@ export default function InvestmentsPage() {
           </div>
         </section>
       </div>
-      <Footer />
     </main>
   )
 }

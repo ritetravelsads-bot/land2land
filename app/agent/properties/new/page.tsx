@@ -3,13 +3,13 @@
 import PropertyFormWrapper from "@/components/forms/property-form-wrapper"
 import PropertyFormMultiStep from "@/components/forms/property-form-multistep"
 
-export default function AgentAddPropertyPage() {
+export default function AssociateAddPropertyPage() {
   return (
     <PropertyFormWrapper
       title="List New Property"
       description="Fill in the details to add your property to Land2Land"
     >
-      <PropertyFormMultiStep apiEndpoint="/api/agent/properties" />
+      <PropertyFormMultiStep apiEndpoint="/api/associate/properties" />
     </PropertyFormWrapper>
   )
 }

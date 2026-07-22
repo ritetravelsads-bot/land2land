@@ -77,7 +77,7 @@ export default function LandTypesBrowse() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-[var(--land-sage)] mb-2">Browse by Category</p>
             <h2 className="text-2xl md:text-3xl font-bold text-[var(--land-earth)] text-balance">
-              Every Type of Land,<br className="hidden sm:block" /> One Marketplace
+              Find Every Type of Land & Property<br className="hidden sm:block" /> In One Trusted Marketplace
             </h2>
           </div>
           <Link

@@ -154,7 +154,7 @@ export default async function LandTypePage({ params }: PageProps) {
         </div>
       </section>
 
-      <Footer />
+
     </main>
   )
 }

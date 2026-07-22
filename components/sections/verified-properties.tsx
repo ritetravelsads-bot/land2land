@@ -53,9 +53,9 @@ export default function VerifiedProperties() {
           <div>
             <div className="flex items-center gap-2 mb-1">
               <Shield size={20} className="text-amber-600" />
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Verified Properties</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Explore Verified Land & Property Across India</h2>
             </div>
-            <p className="text-sm text-gray-500">Hand-checked listings across all land types — trusted deals with clear titles and verified ownership.</p>
+            <p className="text-sm text-gray-500">Find hand-verified land and property listings from trusted owners, developers, and real estate professionals.</p>
           </div>
           {properties.length > 3 && (
             <div className="hidden md:flex items-center gap-2">

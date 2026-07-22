@@ -14,7 +14,7 @@ const features = [
   {
     icon: Users,
     title: "Direct Seller & Buyer Network",
-    description: "Connect directly with verified sellers, agents, buyers, and investors.",
+    description: "Connect directly with verified sellers, associates, buyers, and investors.",
   },
   {
     icon: TrendingUp,

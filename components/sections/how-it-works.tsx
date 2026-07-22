@@ -1,6 +1,6 @@
 const steps = [
   { title: "Search", description: "Browse thousands of verified listings" },
-  { title: "Connect", description: "Message agents and property owners directly" },
+  { title: "Connect", description: "Message associates and property owners directly" },
   { title: "Schedule", description: "Book property tours at your convenience" },
   { title: "Transact", description: "Secure, transparent transactions" },
 ]

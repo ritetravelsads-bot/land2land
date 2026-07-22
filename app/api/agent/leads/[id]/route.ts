@@ -4,14 +4,14 @@ import { NextResponse } from "next/server"
 import { ObjectId } from "mongodb"
 import type { NextRequest } from "next/server"
 
-// GET single lead by ID (agent can only see their leads)
+// GET single lead by ID (associate can only see their leads)
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -31,7 +31,7 @@ export async function GET(
       return NextResponse.json({ error: "Lead not found" }, { status: 404 })
     }
 
-    // Check if agent has access to this lead
+    // Check if associate has access to this lead
     const hasAccess = lead.assigned_to === user._id || lead.property_owner_id === user._id
     if (!hasAccess && user.user_type !== "admin") {
       return NextResponse.json({ error: "Unauthorized - Lead not accessible" }, { status: 403 })
@@ -63,14 +63,14 @@ export async function GET(
   }
 }
 
-// PUT update lead (agents can update status, add follow-up, etc.)
+// PUT update lead (associates can update status, add follow-up, etc.)
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const user = await getCurrentUser()
-    if (!user || (user.user_type !== "agent" && user.user_type !== "admin")) {
+    if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
@@ -85,7 +85,7 @@ export async function PUT(
       return NextResponse.json({ error: "Invalid lead ID" }, { status: 400 })
     }
 
-    // Check if agent has access to this lead
+    // Check if associate has access to this lead
     const lead = await db.collection("leads").findOne({ _id: objectId })
     if (!lead) {
       return NextResponse.json({ error: "Lead not found" }, { status: 404 })
@@ -96,17 +96,17 @@ export async function PUT(
       return NextResponse.json({ error: "Unauthorized - Lead not accessible" }, { status: 403 })
     }
 
-    // Build update object (agents can update limited fields)
+    // Build update object (associates can update limited fields)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const update: any = {
       updated_at: new Date(),
     }
 
-    const agentAllowedFields = [
+    const associateAllowedFields = [
       "status", "priority", "next_follow_up", "last_contacted_at"
     ]
 
-    for (const field of agentAllowedFields) {
+    for (const field of associateAllowedFields) {
       if (body[field] !== undefined) {
         if (field === "next_follow_up" || field === "last_contacted_at") {
           update[field] = body[field] ? new Date(body[field]) : null

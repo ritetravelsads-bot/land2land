@@ -51,8 +51,8 @@ export default function TrendingLandProperties() {
               <TrendingUp size={20} className="text-amber-600" />
             </div>
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Trending Properties</h2>
-              <p className="text-sm text-gray-500 font-medium">Most viewed land listings across all categories</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">India's Most Popular Land & Property Listings</h2>
+              <p className="text-sm text-gray-500 font-medium">Updated regularly to showcase the latest market trends and buyer interest across India.</p>
             </div>
           </div>
         </div>

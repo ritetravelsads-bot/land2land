@@ -8,7 +8,7 @@ import { Mail, Phone, Save } from "lucide-react"
 import ProfileImageUpload from "@/components/account/profile-image-upload"
 import DeleteAccountSection from "@/components/account/delete-account-section"
 
-export default function AgentProfilePage() {
+export default function AssociateProfilePage() {
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -78,7 +78,7 @@ export default function AgentProfilePage() {
     <div className="space-y-6 max-w-2xl">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold text-foreground">Agent Profile</h1>
+        <h1 className="text-2xl font-bold text-foreground">Associate Profile</h1>
         <p className="text-sm text-muted-foreground mt-1">Manage your profile information</p>
       </div>
 

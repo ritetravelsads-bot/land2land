@@ -10,7 +10,7 @@ import PropertyFormStep3 from "./property-form-step-3"
 import PropertyFormStep4 from "./property-form-step-4"
 
 export default function PropertyFormMultiStep({
-  apiEndpoint = "/api/agent/properties",
+  apiEndpoint = "/api/associate/properties",
   initialData,
   isEdit = false,
   onSubmit, // Declare the onSubmit variable here
@@ -197,10 +197,10 @@ export default function PropertyFormMultiStep({
         const slug = data.property?.slug || data.slug || cleanedData.slug
         const id = data.property?._id || data._id
 
-        // Agents/owners return to their dashboard so they can track review status.
+        // Associates/owners return to their dashboard so they can track review status.
         // Admins go straight to the published listing.
-        if (apiEndpoint.includes("/agent/")) {
-          router.push("/agent/properties?submitted=1")
+        if (apiEndpoint.includes("/associate/")) {
+          router.push("/associate/properties?submitted=1")
         } else {
           router.push(`/properties/${slug || id}`)
         }

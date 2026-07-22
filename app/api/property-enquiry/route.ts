@@ -83,16 +83,16 @@ export async function POST(req: NextRequest) {
 
     // Get property owner info if property_id is provided
     let propertyOwnerId: string | null = null
-    let propertyOwnerType: "admin" | "agent" = "admin"
+    let propertyOwnerType: "admin" | "associate" = "admin"
     
     if (property_id) {
       try {
         const property = await db.collection("listings").findOne({ 
           _id: new ObjectId(property_id) 
         })
-        if (property && property.agent) {
-          propertyOwnerId = property.agent
-          propertyOwnerType = "agent"
+        if (property && property.associate) {
+          propertyOwnerId = property.associate
+          propertyOwnerType = "associate"
         }
       } catch {
         // Invalid property ID, continue without owner info
@@ -115,7 +115,7 @@ export async function POST(req: NextRequest) {
       source: leadSource,
       source_url: source_url || null,
       property_owner_id: propertyOwnerId,
-      property_owner_type: propertyOwnerType,
+      property_owner_type: propertyOwnerType as "admin" | "associate",
       status: "new" as const,
       priority: "medium" as const,
       notes: [],

@@ -19,7 +19,7 @@ interface CurrentUser {
   id: string
   email: string
   username: string
-  user_type: "customer" | "agent" | "admin"
+  user_type: "customer" | "associate" | "admin"
 }
 
 const landTypes = LAND_TYPE_LIST.map((t) => ({ name: t.label, href: `/land/${t.slug}` }))
@@ -71,14 +71,14 @@ export default function MegaMenuHeader() {
 
   const getDashboardLink = () => {
     if (!currentUser) return "/dashboard"
-    if (currentUser.user_type === "agent") return "/builder/dashboard"
+    if (currentUser.user_type === "associate") return "/associate/dashboard"
     if (currentUser.user_type === "admin") return "/admin/dashboard"
     return "/buyer"
   }
 
   const getDashboardLabel = () => {
     if (!currentUser) return "My Dashboard"
-    if (currentUser.user_type === "agent") return "Seller Dashboard"
+    if (currentUser.user_type === "associate") return "Associate Dashboard"
     if (currentUser.user_type === "admin") return "Admin Dashboard"
     return "Buyer Dashboard"
   }
@@ -127,10 +127,10 @@ export default function MegaMenuHeader() {
             </Link>
 
             <Link
-              href="/find-agent"
+              href="/find-associate"
               className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
             >
-              Find Agent
+              Find Associate
             </Link>
 
             {/* Land Types Dropdown */}
@@ -264,10 +264,10 @@ export default function MegaMenuHeader() {
             </Link>
 
             <Link
-              href="/find-agent"
+              href="/find-associate"
               className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] hover:bg-gray-50 rounded transition-colors"
             >
-              Find Agent
+              Find Associate
             </Link>
 
             <div className="border-t border-gray-100 my-2" />

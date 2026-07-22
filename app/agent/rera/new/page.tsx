@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft, ShieldCheck, Loader2 } from "lucide-react"
 import { RERA_APPLICANT_TYPE_LABELS, type ReraApplicantType } from "@/lib/models"
 
-interface AgentListing {
+interface AssociateListing {
   _id: string
   property_name: string
   address?: string
@@ -22,7 +22,7 @@ const inputCls =
 
 export default function NewReraRequestPage() {
   const router = useRouter()
-  const [listings, setListings] = useState<AgentListing[]>([])
+  const [listings, setListings] = useState<AssociateListing[]>([])
   const [loadingListings, setLoadingListings] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -37,13 +37,13 @@ export default function NewReraRequestPage() {
     land_area: "",
     estimated_value: "",
     aadhaar_or_pan: "",
-    agent_notes: "",
+    associate_notes: "",
   })
 
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch("/api/agent/properties", {
+        const res = await fetch("/api/associate/properties", {
           cache: "no-store",
           credentials: "include",
         })
@@ -86,7 +86,7 @@ export default function NewReraRequestPage() {
 
     setSubmitting(true)
     try {
-      const res = await fetch("/api/agent/rera-requests", {
+      const res = await fetch("/api/associate/rera-requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -97,7 +97,7 @@ export default function NewReraRequestPage() {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || "Failed to submit request")
-      router.push(`/agent/rera/${data.id}`)
+      router.push(`/associate/rera/${data.id}`)
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong")
       setSubmitting(false)
@@ -108,7 +108,7 @@ export default function NewReraRequestPage() {
     <div className="mx-auto max-w-2xl space-y-6">
       {/* Back */}
       <Link
-        href="/agent/rera"
+        href="/associate/rera"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
       >
         <ArrowLeft className="h-4 w-4" />
@@ -140,7 +140,7 @@ export default function NewReraRequestPage() {
           ) : listings.length === 0 ? (
             <p className="text-sm text-muted-foreground">
               You have no properties yet.{" "}
-              <Link href="/agent/properties/new" className="text-primary underline">
+              <Link href="/associate/properties/new" className="text-primary underline">
                 Add a property
               </Link>{" "}
               first.
@@ -286,8 +286,8 @@ export default function NewReraRequestPage() {
               Anything else we should know?
             </label>
             <textarea
-              value={form.agent_notes}
-              onChange={(e) => set("agent_notes", e.target.value)}
+              value={form.associate_notes}
+              onChange={(e) => set("associate_notes", e.target.value)}
               className={inputCls}
               rows={3}
               placeholder="Optional message to the admin team"
@@ -303,7 +303,7 @@ export default function NewReraRequestPage() {
 
         <div className="flex justify-end gap-3">
           <Button type="button" variant="outline" asChild disabled={submitting}>
-            <Link href="/agent/rera">Cancel</Link>
+            <Link href="/associate/rera">Cancel</Link>
           </Button>
           <Button type="submit" disabled={submitting || listings.length === 0}>
             {submitting ? (

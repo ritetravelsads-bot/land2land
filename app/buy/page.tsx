@@ -185,7 +185,6 @@ export default function BuyPage() {
           </div>
         </section>
       </div>
-      <Footer />
     </main>
   )
 }

@@ -28,7 +28,7 @@ export default function ListingUnderReview() {
           </div>
         </div>
       </main>
-      <Footer />
+
     </>
   )
 }

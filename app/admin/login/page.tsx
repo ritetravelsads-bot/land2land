@@ -30,8 +30,8 @@ export default function AdminLoginPage() {
               <Link href="/auth/login" className="text-primary hover:underline block">
                 Sign in as Customer
               </Link>
-              <Link href="/agent/login" className="text-primary hover:underline block">
-                Sign in as Agent
+              <Link href="/associate/login" className="text-primary hover:underline block">
+                Sign in as Associate
               </Link>
             </div>
           </div>

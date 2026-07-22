@@ -196,7 +196,7 @@ export default function AdminTicketDetailPage() {
         <div className="bg-card border border-border rounded-lg p-4">
           <div className="flex items-center gap-2 text-muted-foreground mb-2">
             <User className="h-4 w-4" />
-            <span className="text-xs">Agent</span>
+            <span className="text-xs">Associate</span>
           </div>
           <p className="text-sm font-medium text-foreground truncate">
             {ticket.customer_name || ticket.user?.email || "Unknown"}
@@ -231,7 +231,7 @@ export default function AdminTicketDetailPage() {
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="font-medium text-sm text-foreground">
-                    {ticket.customer_name || "Agent"}
+                    {ticket.customer_name || "Associate"}
                   </span>
                   <span className="text-xs text-muted-foreground">
                     {new Date(ticket.created_at).toLocaleString()}
@@ -263,7 +263,7 @@ export default function AdminTicketDetailPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="font-medium text-sm text-foreground">
-                        {reply.from === "admin" ? "Admin" : ticket.customer_name || "Agent"}
+                        {reply.from === "admin" ? "Admin" : ticket.customer_name || "Associate"}
                       </span>
                       {reply.from === "admin" && (
                         <span className="px-1.5 py-0.5 bg-primary/10 text-primary text-xs rounded">
@@ -309,7 +309,7 @@ export default function AdminTicketDetailPage() {
               <textarea
                 value={replyMessage}
                 onChange={(e) => setReplyMessage(e.target.value)}
-                placeholder="Type your response to the agent..."
+                placeholder="Type your response to the associate..."
                 className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-input focus:outline-none focus:ring-1 focus:ring-ring resize-none h-32"
                 required
               />

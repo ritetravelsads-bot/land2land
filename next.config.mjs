@@ -123,8 +123,8 @@ const nextConfig = {
         ],
       },
       {
-        // Apply to agent pages
-        source: "/agent/:path*",
+        // Apply to associate pages
+        source: "/associate/:path*",
         headers: [
           { key: "Cache-Control", value: "private, no-store, no-cache, must-revalidate" },
           { key: "Vary", value: "Cookie" },

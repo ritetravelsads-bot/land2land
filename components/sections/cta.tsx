@@ -52,7 +52,7 @@ export default function CTA() {
             variant="outline"
             className="bg-transparent text-white border-white/50 hover:bg-white/10 hover:border-white h-13 px-8 text-base font-semibold"
           >
-            <Link href="/find-agent">
+            <Link href="/find-associate">
               <Phone className="mr-2" size={20} />
               Connect with a Land Expert
             </Link>

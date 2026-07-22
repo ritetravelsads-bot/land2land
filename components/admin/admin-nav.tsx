@@ -56,7 +56,7 @@ export default function AdminNav() {
         { href: "/admin/categories", label: "Categories", icon: Grid3X3 },
         { href: "/admin/states", label: "States", icon: MapPin },
         { href: "/admin/amenities", label: "Amenities", icon: Zap },
-        { href: "/admin/developers", label: "Sellers / Agents", icon: Building2 },
+        { href: "/admin/developers", label: "Sellers / Associates", icon: Building2 },
         { href: "/admin/facilities", label: "Facilities", icon: Hammer },
       ],
     },

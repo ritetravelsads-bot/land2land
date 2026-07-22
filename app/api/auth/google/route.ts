@@ -9,7 +9,7 @@ interface GoogleAuthPayload {
   displayName: string
   photoURL: string | null
   uid: string
-  userType?: "customer" | "agent"
+  userType?: "customer" | "associate"
 }
 
 async function handleGoogleAuth(payload: GoogleAuthPayload) {

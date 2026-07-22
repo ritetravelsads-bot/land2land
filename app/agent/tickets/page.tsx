@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-export default function AgentTicketsPage() {
+export default function AssociateTicketsPage() {
   const [tickets, setTickets] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [isCreateOpen, setIsCreateOpen] = useState(false)
@@ -30,7 +30,7 @@ export default function AgentTicketsPage() {
 
   const loadTickets = async () => {
     try {
-      const res = await fetch("/api/agent/tickets")
+      const res = await fetch("/api/associate/tickets")
       const data = await res.json()
       setTickets(data)
     } catch (error) {
@@ -44,7 +44,7 @@ export default function AgentTicketsPage() {
     e.preventDefault()
     setSubmitting(true)
     try {
-      const res = await fetch("/api/agent/tickets", {
+      const res = await fetch("/api/associate/tickets", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -240,7 +240,7 @@ export default function AgentTicketsPage() {
           {tickets.map((ticket) => (
             <Link
               key={ticket._id}
-              href={`/agent/tickets/${ticket._id}`}
+              href={`/associate/tickets/${ticket._id}`}
               className="block bg-card border border-border rounded-lg p-4 hover:border-primary/50 transition-colors"
             >
               <div className="flex items-start justify-between gap-4">

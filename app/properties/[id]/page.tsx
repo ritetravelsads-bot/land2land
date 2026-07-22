@@ -191,7 +191,7 @@ export default async function PropertyDetailPage({
   if (reviewStatus && reviewStatus !== "approved") {
     const user = await getCurrentUser()
     const isAdmin = user?.user_type === "admin"
-    const isOwner = user && property.agent?.toString() === user._id?.toString()
+    const isOwner = user && property.associate?.toString() === user._id?.toString()
     if (!isAdmin && !isOwner) {
       return <ListingUnderReview />
     }

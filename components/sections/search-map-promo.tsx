@@ -14,17 +14,17 @@ export default function SearchMapPromo() {
               Pan-India Land Search
             </div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--land-earth)] text-balance">
-              Search Any Land Type <span className="text-[var(--land-primary)]">Anywhere</span> in India
+              Find Your Perfect<span className="text-[var(--land-primary)]"> Property Anywhere</span> in India
             </h2>
             <p className="text-[var(--land-earth)]/65 leading-relaxed max-w-md">
-              Compare prices across agricultural, residential, commercial, industrial, abadi land and farmland categories — with verified ownership records and live market data.
+              Browse verified agricultural land, residential plots, commercial properties, industrial land, Abadi land, farmland and investment opportunities across India. Compare transparent prices, verify ownership records and connect with trusted property owners through one secure marketplace.
             </p>
 
             {/* Feature pills */}
             <div className="flex flex-wrap gap-2.5">
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-700 shadow-sm">
                 <Shield size={12} className="text-emerald-600" />
-                Verified Titles
+                Verified Ownership
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-700 shadow-sm">
                 <TrendingUp size={12} className="text-amber-600" />
@@ -36,7 +36,7 @@ export default function SearchMapPromo() {
               </div>
               <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full text-xs text-gray-700 shadow-sm">
                 <Search size={12} className="text-gray-500" />
-                1 Lakh+ Listings
+                100,000+ Verified Listings
               </div>
             </div>
 

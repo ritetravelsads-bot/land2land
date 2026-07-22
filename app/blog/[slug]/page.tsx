@@ -524,7 +524,6 @@ export default async function BlogPostPage({
       </main>
 
       <BackToTop />
-      <Footer />
     </>
   )
 }

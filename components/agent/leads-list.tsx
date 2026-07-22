@@ -79,7 +79,7 @@ const PRIORITY_COLORS: Record<LeadPriority, string> = {
   urgent: "bg-red-100 text-red-600",
 }
 
-export default function AgentLeadsList() {
+export default function AssociateLeadsList() {
   const [leads, setLeads] = useState<LeadWithId[]>([])
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
@@ -110,7 +110,7 @@ export default function AgentLeadsList() {
       if (statusFilter !== "all") params.set("status", statusFilter)
       if (filterType !== "all") params.set("filter_type", filterType)
       
-      const response = await fetch(`/api/agent/leads?${params}`)
+      const response = await fetch(`/api/associate/leads?${params}`)
       if (response.ok) {
         const data: LeadsResponse = await response.json()
         setLeads(data.leads)
@@ -130,7 +130,7 @@ export default function AgentLeadsList() {
 
   const handleStatusChange = async (leadId: string, newStatus: LeadStatus) => {
     try {
-      const response = await fetch(`/api/agent/leads/${leadId}`, {
+      const response = await fetch(`/api/associate/leads/${leadId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
@@ -161,7 +161,7 @@ export default function AgentLeadsList() {
       if (response.ok) {
         setNewNote("")
         // Refresh lead details
-        const leadResponse = await fetch(`/api/agent/leads/${selectedLead._id}`)
+        const leadResponse = await fetch(`/api/associate/leads/${selectedLead._id}`)
         if (leadResponse.ok) {
           const updatedLead = await leadResponse.json()
           setSelectedLead(updatedLead)

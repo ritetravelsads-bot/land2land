@@ -63,7 +63,7 @@ export default function BuyerDashboard() {
 
         <div className="border border-border rounded-lg p-6 bg-card">
           <h2 className="text-lg font-semibold text-foreground mb-4">Recent Messages</h2>
-          <p className="text-sm text-muted-foreground">No messages yet. Connect with agents to get started!</p>
+          <p className="text-sm text-muted-foreground">No messages yet. Connect with associates to get started!</p>
         </div>
       </div>
     </div>

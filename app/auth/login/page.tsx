@@ -6,7 +6,7 @@ import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Login | Land2Land",
-  description: "Login to your Land2Land account to manage land properties, find investments, or connect with agents.",
+  description: "Login to your Land2Land account to manage land properties, find investments, or connect with associates.",
 }
 
 export default function LoginPage() {

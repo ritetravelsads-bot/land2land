@@ -10,7 +10,7 @@ export interface User {
   email: string
   password?: string
   phone_number?: string
-  user_type: "customer" | "agent" | "admin"
+  user_type: "customer" | "associate" | "admin"
   profile_picture?: string
   date_joined: Date
   last_login?: Date
@@ -60,9 +60,9 @@ export async function requireAdmin() {
   return user
 }
 
-export async function requireAgent() {
+export async function requireAssociate() {
   const user = await requireAuth()
-  if (user.user_type !== "agent" && user.user_type !== "admin") {
+  if (user.user_type !== "associate" && user.user_type !== "admin") {
     throw new Error("Forbidden")
   }
   return user

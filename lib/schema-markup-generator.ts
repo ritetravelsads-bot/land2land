@@ -289,7 +289,7 @@ export function generateOrganizationSchema() {
       height: 512,
     },
     image: `${BASE_URL}/og-image.png`,
-    description: "Premium property marketplace connecting buyers, sellers, and agents in Gurgaon and Delhi NCR",
+    description: "Premium property marketplace connecting buyers, sellers, and associates in Gurgaon and Delhi NCR",
     telephone: "+91-9205190063",
     priceRange: "$$-$$$$",
     address: {

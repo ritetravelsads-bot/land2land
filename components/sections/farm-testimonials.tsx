@@ -28,7 +28,7 @@ const testimonials = [
     name: "Anita Patel",
     title: "Business Owner, Gujarat",
     initials: "AP",
-    quote: "Connected with verified agents through Land2Land for industrial land. They understood my requirements perfectly. Highly recommended!",
+    quote: "Connected with verified associates through Land2Land for industrial land. They understood my requirements perfectly. Highly recommended!",
     rating: 5,
   },
 ]

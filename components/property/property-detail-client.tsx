@@ -112,13 +112,13 @@ export function PropertyDetailClient({
   const nextImage = () => setActiveImage((prev) => (prev + 1) % images.length)
   const prevImage = () => setActiveImage((prev) => (prev - 1 + images.length) % images.length)
 
-  // Manager / agent info
+  // Manager / associate info
   const manager = property.assigned_manager ||
     property.manager || {
-      name: property.agent_name || "Land2Land Expert",
-      phone: property.agent_phone || "+91 9205190063",
-      email: property.agent_email || "contact@land2land.com",
-      photo: property.agent_photo,
+      name: property.associate_name || "Land2Land Expert",
+      phone: property.associate_phone || "+91 9205190063",
+      email: property.associate_email || "contact@land2land.com",
+      photo: property.associate_photo,
     }
 
   // Build land spec grid — only show rows that have a value
@@ -513,7 +513,7 @@ export function PropertyDetailClient({
                 )}
               </div>
 
-              {/* Agent contact card */}
+              {/* Associate contact card */}
               <div className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent border-2 border-primary/20 rounded-2xl p-5">
                 <div className="text-center mb-4">
                   <div className="w-14 h-14 mx-auto rounded-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center mb-3 shadow-lg shadow-primary/20">

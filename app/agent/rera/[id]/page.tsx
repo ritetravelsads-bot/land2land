@@ -33,7 +33,7 @@ function formatDate(d: string | Date | undefined) {
   })
 }
 
-export default function AgentReraDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default function AssociateReraDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params)
   const [request, setRequest] = useState<ReraRequest | null>(null)
   const [loading, setLoading] = useState(true)
@@ -45,7 +45,7 @@ export default function AgentReraDetailPage({ params }: { params: Promise<{ id: 
 
   const load = async () => {
     try {
-      const res = await fetch(`/api/agent/rera-requests/${id}`, {
+      const res = await fetch(`/api/associate/rera-requests/${id}`, {
         cache: "no-store",
         credentials: "include",
       })
@@ -78,7 +78,7 @@ export default function AgentReraDetailPage({ params }: { params: Promise<{ id: 
         .filter((d) => docFiles[d.key])
         .map((d) => ({ key: d.key, file: docFiles[d.key] }))
 
-      const res = await fetch(`/api/agent/rera-requests/${id}`, {
+      const res = await fetch(`/api/associate/rera-requests/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -106,7 +106,7 @@ export default function AgentReraDetailPage({ params }: { params: Promise<{ id: 
     return (
       <div className="space-y-4">
         <Link
-          href="/agent/rera"
+          href="/associate/rera"
           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
@@ -127,7 +127,7 @@ export default function AgentReraDetailPage({ params }: { params: Promise<{ id: 
     <div className="mx-auto max-w-3xl space-y-6">
       {/* Back */}
       <Link
-        href="/agent/rera"
+        href="/associate/rera"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
       >
         <ArrowLeft className="h-4 w-4" />
@@ -251,10 +251,10 @@ export default function AgentReraDetailPage({ params }: { params: Promise<{ id: 
           ) : null}
           <Detail label="PAN / Aadhaar" value={request.aadhaar_or_pan} />
         </dl>
-        {request.agent_notes && (
+        {request.associate_notes && (
           <div className="mt-4 border-t border-border pt-4">
             <p className="mb-1 text-xs font-semibold text-muted-foreground">Your note</p>
-            <p className="text-sm text-foreground">{request.agent_notes}</p>
+            <p className="text-sm text-foreground">{request.associate_notes}</p>
           </div>
         )}
       </div>

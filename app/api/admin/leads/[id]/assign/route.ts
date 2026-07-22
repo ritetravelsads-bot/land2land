@@ -4,7 +4,7 @@ import { NextResponse } from "next/server"
 import { ObjectId } from "mongodb"
 import type { NextRequest } from "next/server"
 
-// POST assign lead to an agent
+// POST assign lead to an associate
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -17,10 +17,10 @@ export async function POST(
 
     const { id } = await params
     const body = await request.json()
-    const { agent_id } = body
+    const { associate_id } = body
 
-    if (!agent_id) {
-      return NextResponse.json({ error: "Agent ID is required" }, { status: 400 })
+    if (!associate_id) {
+      return NextResponse.json({ error: "Associate ID is required" }, { status: 400 })
     }
 
     const db = await getDatabase()
@@ -33,21 +33,21 @@ export async function POST(
       return NextResponse.json({ error: "Invalid lead ID" }, { status: 400 })
     }
 
-    // Validate agent ID and check if user is an agent
-    let agentObjectId: ObjectId
+    // Validate associate ID and check if user is an associate
+    let associateObjectId: ObjectId
     try {
-      agentObjectId = new ObjectId(agent_id)
+      associateObjectId = new ObjectId(associate_id)
     } catch {
-      return NextResponse.json({ error: "Invalid agent ID" }, { status: 400 })
+      return NextResponse.json({ error: "Invalid associate ID" }, { status: 400 })
     }
 
-    const agent = await db.collection("users").findOne({ 
-      _id: agentObjectId,
-      user_type: "agent"
+    const associate = await db.collection("users").findOne({ 
+      _id: associateObjectId,
+      user_type: "associate"
     })
 
-    if (!agent) {
-      return NextResponse.json({ error: "Agent not found" }, { status: 404 })
+    if (!associate) {
+      return NextResponse.json({ error: "Associate not found" }, { status: 404 })
     }
 
     // Check if lead exists
@@ -61,7 +61,7 @@ export async function POST(
       { _id: leadObjectId },
       { 
         $set: {
-          assigned_to: agent_id,
+          assigned_to: associate_id,
           assigned_by: user._id,
           assigned_at: new Date(),
           updated_at: new Date(),
@@ -75,8 +75,8 @@ export async function POST(
 
     return NextResponse.json({ 
       success: true, 
-      message: `Lead assigned to ${agent.username || agent.email}`,
-      assigned_to: agent_id,
+      message: `Lead assigned to ${associate.username || associate.email}`,
+      assigned_to: associate_id,
       assigned_at: new Date(),
     })
   } catch (error) {
@@ -85,7 +85,7 @@ export async function POST(
   }
 }
 
-// DELETE unassign lead from agent
+// DELETE unassign lead from associate
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }

@@ -1,15 +1,15 @@
 import type { Metadata } from "next"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
-import AgentLoginForm from "@/components/forms/agent-login-form"
+import AssociateLoginForm from "@/components/forms/associate-login-form"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Agent Login | CountyRoof",
-  description: "Login for real estate agents and property sellers.",
+  title: "Associate Login | CountyRoof",
+  description: "Login for real estate associates and property sellers.",
 }
 
-export default function AgentLoginPage() {
+export default function AssociateLoginPage() {
   return (
     <>
       <Header />
@@ -20,16 +20,16 @@ export default function AgentLoginPage() {
               <div className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-blue-100 mb-3">
                 <span className="text-lg font-bold text-blue-700">👤</span>
               </div>
-              <h1 className="text-2xl font-bold text-foreground">Agent Portal</h1>
+              <h1 className="text-2xl font-bold text-foreground">Associate Portal</h1>
               <p className="text-sm text-muted-foreground">Sign in to manage your properties</p>
             </div>
 
-            <AgentLoginForm />
+            <AssociateLoginForm />
 
             <div className="space-y-2 text-center text-sm">
               <p className="text-muted-foreground">
                 Don't have an account?{" "}
-                <Link href="/agent/register" className="text-primary hover:underline font-medium">
+                <Link href="/associate/register" className="text-primary hover:underline font-medium">
                   Register here
                 </Link>
               </p>

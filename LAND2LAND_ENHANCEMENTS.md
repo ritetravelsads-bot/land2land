@@ -103,12 +103,12 @@ Successfully transformed Land2Land from a generic real estate platform to a focu
 
 2. **Authentication**
    - Require login for property submission
-   - Track user's properties in /agent/dashboard
+   - Track user's properties in /associate/dashboard
    - Save searches and favorites
 
 3. **Enhanced Features**
    - Add image upload to /sell form
-   - Implement actual agent directory on /find-agent
+   - Implement actual associate directory on /find-associate
    - Add payment integration to /subscription
    - Build complete /property-management features
 

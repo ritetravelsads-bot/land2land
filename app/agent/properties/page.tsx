@@ -31,7 +31,7 @@ const REVIEW_META: Record<
   rejected: { label: "Needs Changes", cls: "bg-red-100 text-red-700", Icon: XCircle },
 }
 
-export default function AgentPropertiesPage() {
+export default function AssociatePropertiesPage() {
   const [properties, setProperties] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [showSubmitted, setShowSubmitted] = useState(false)
@@ -45,7 +45,7 @@ export default function AgentPropertiesPage() {
   useEffect(() => {
     const loadProperties = async () => {
       try {
-        const res = await fetch("/api/agent/properties", { cache: "no-store", credentials: "include" })
+        const res = await fetch("/api/associate/properties", { cache: "no-store", credentials: "include" })
         const data = await res.json()
         setProperties(Array.isArray(data) ? data : [])
       } catch (error) {
@@ -61,7 +61,7 @@ export default function AgentPropertiesPage() {
   const handleDelete = async (id: string) => {
     if (confirm("Are you sure you want to delete this property?")) {
       try {
-        const res = await fetch(`/api/agent/properties/${id}`, { method: "DELETE" })
+        const res = await fetch(`/api/associate/properties/${id}`, { method: "DELETE" })
         if (res.ok) {
           setProperties(properties.filter((p) => p._id !== id))
         }
@@ -110,7 +110,7 @@ export default function AgentPropertiesPage() {
           <p className="text-sm text-muted-foreground mt-1">Manage your listed properties</p>
         </div>
         <Button asChild>
-          <Link href="/agent/properties/new">
+          <Link href="/associate/properties/new">
             <Plus className="h-4 w-4 mr-2" />
             Add Property
           </Link>
@@ -147,7 +147,7 @@ export default function AgentPropertiesPage() {
           <Building2 className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
           <p className="text-sm text-muted-foreground mb-4">No properties yet</p>
           <Button asChild>
-            <Link href="/agent/properties/new">
+            <Link href="/associate/properties/new">
               <Plus className="h-4 w-4 mr-2" />
               Create Your First Listing
             </Link>
@@ -196,7 +196,7 @@ export default function AgentPropertiesPage() {
                       </Link>
                     </Button>
                     <Button asChild variant="ghost" size="icon" className="h-8 w-8">
-                      <Link href={`/agent/properties/${property._id}/edit`}>
+                      <Link href={`/associate/properties/${property._id}/edit`}>
                         <Edit2 className="h-4 w-4" />
                       </Link>
                     </Button>
@@ -219,7 +219,7 @@ export default function AgentPropertiesPage() {
                       {property.review_notes || "Please review your details and documents, then resubmit."}
                     </p>
                     <Button asChild size="sm" className="mt-2 h-8">
-                      <Link href={`/agent/properties/${property._id}/edit`}>
+                      <Link href={`/associate/properties/${property._id}/edit`}>
                         <RefreshCw className="mr-1.5 h-3.5 w-3.5" />
                         Fix & Resubmit
                       </Link>

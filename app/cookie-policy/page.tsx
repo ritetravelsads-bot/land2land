@@ -133,7 +133,6 @@ export default function CookiePolicyPage() {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   )
 }

@@ -4,7 +4,7 @@ import { ObjectId } from "mongodb"
 import { type NextRequest, NextResponse } from "next/server"
 
 // Shared profile-update endpoint for ALL user types (customer, buyer, seller,
-// agent, builder, admin). Only whitelisted, non-privileged fields can be
+// associate, builder, admin). Only whitelisted, non-privileged fields can be
 // updated so a user can never escalate their own role or change their password
 // through this route.
 export async function PUT(req: NextRequest) {

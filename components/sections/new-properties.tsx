@@ -55,8 +55,8 @@ export default function NewProperties() {
               <Clock size={12} />
               Just Added
             </span>
-            <h2 className="text-2xl md:text-3xl font-bold text-primary">Fresh Land Listings</h2>
-            <p className="text-sm text-gray-600">Newly added verified land across every category</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-primary">Latest Land & Property Listings Across India</h2>
+            <p className="text-sm text-gray-600">Browse agricultural land, residential plots, commercial properties, industrial land, farmhouses, villas, and investment opportunities with verified ownership records, transparent pricing, and complete property details all in one trusted marketplace.</p>
           </div>
           {properties.length > 3 && (
             <div className="hidden md:flex items-center gap-2">
