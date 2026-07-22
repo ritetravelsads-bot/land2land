@@ -38,13 +38,14 @@ export default function LoginForm() {
       }
 
       const data = await response.json()
-      // Redirect based on user type
+      // Hard navigation so the browser sends the new auth cookie on a fresh request,
+      // bypassing any stale Next.js RSC cache that could resolve to the wrong dashboard.
       if (data.user.user_type === "associate") {
-        router.push("/associate/dashboard")
+        window.location.href = "/associate/dashboard"
       } else if (data.user.user_type === "admin") {
-        router.push("/admin/dashboard")
+        window.location.href = "/admin/dashboard"
       } else {
-        router.push("/dashboard")
+        window.location.href = "/buyer"
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred")

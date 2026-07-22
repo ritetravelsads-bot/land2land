@@ -41,7 +41,9 @@ export default function AdminLoginForm() {
         throw new Error("This account does not have admin privileges")
       }
 
-      router.push("/admin/dashboard")
+      // Hard navigation so the browser sends the new auth cookie on a fresh request,
+      // bypassing any stale Next.js RSC cache that could resolve to the wrong dashboard.
+      window.location.href = "/admin/dashboard"
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred")
     } finally {
