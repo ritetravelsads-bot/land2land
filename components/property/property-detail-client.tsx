@@ -651,6 +651,11 @@ function CompactEnquiryForm({
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState("")
+  const [buyer, setBuyer] = useState<{
+    username: string
+    user_type: string
+    isNew: boolean
+  } | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -671,6 +676,7 @@ function CompactEnquiryForm({
       const data = await res.json()
       if (res.ok) {
         setSuccess(true)
+        setBuyer(data.buyer || null)
         setName("")
         setPhone("")
       } else {
@@ -685,14 +691,45 @@ function CompactEnquiryForm({
 
   if (success) {
     return (
-      <div className="bg-card border border-border rounded-2xl p-6 text-center">
-        <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center mx-auto mb-3">
+      <div className="bg-card border border-border rounded-2xl p-6 text-center space-y-4">
+        {/* Success icon */}
+        <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center mx-auto">
           <Check className="h-6 w-6 text-emerald-600" />
         </div>
-        <h3 className="font-bold text-foreground mb-1">Thank You!</h3>
-        <p className="text-sm text-muted-foreground mb-4">Our team will call you shortly.</p>
-        <Button variant="outline" size="sm" onClick={() => setSuccess(false)}>
-          Submit Another
+
+        <div>
+          <h3 className="font-bold text-foreground mb-1">
+            {buyer?.isNew ? "Welcome to Land2Land!" : "Enquiry Submitted!"}
+          </h3>
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            Our team will call you shortly.
+          </p>
+        </div>
+
+        {/* Buyer account notice */}
+        {buyer && (
+          <div className="bg-primary/5 border border-primary/20 rounded-xl p-3 text-left space-y-2">
+            <p className="text-xs font-semibold text-primary flex items-center gap-1.5">
+              <User className="h-3.5 w-3.5" />
+              {buyer.isNew ? "Account Created Automatically" : "Logged In as Buyer"}
+            </p>
+            <p className="text-[11px] text-muted-foreground leading-relaxed">
+              {buyer.isNew
+                ? "A buyer account has been created for you. Visit your dashboard to track enquiries and saved properties."
+                : "You are now logged in. Visit your dashboard to manage your enquiries."}
+            </p>
+            <Link
+              href="/buyer"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
+            >
+              Go to Buyer Dashboard
+              <ChevronRightIcon className="h-3 w-3" />
+            </Link>
+          </div>
+        )}
+
+        <Button variant="outline" size="sm" className="w-full" onClick={() => { setSuccess(false); setBuyer(null) }}>
+          Submit Another Enquiry
         </Button>
       </div>
     )
@@ -701,6 +738,9 @@ function CompactEnquiryForm({
   return (
     <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl p-5 space-y-3 shadow-sm">
       <h4 className="font-semibold text-foreground text-sm">Quick Enquiry</h4>
+      <p className="text-[11px] text-muted-foreground leading-relaxed">
+        Submit your details and get automatically registered as a buyer.
+      </p>
 
       {error && (
         <div className="p-2.5 bg-destructive/10 border border-destructive/20 rounded-lg text-xs text-destructive">
@@ -750,7 +790,7 @@ function CompactEnquiryForm({
             Submitting...
           </>
         ) : (
-          "Get Callback"
+          "Get Callback & Register"
         )}
       </Button>
 
@@ -759,6 +799,7 @@ function CompactEnquiryForm({
         <Link href="/privacy-policy" className="text-primary hover:underline">
           Privacy Policy
         </Link>
+        . A buyer account will be created using your details.
       </p>
     </form>
   )
