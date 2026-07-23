@@ -47,7 +47,9 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     title: "Land2Land",
-    statusBarStyle: "default",
+    // "black-translucent" extends content under the iOS status bar and
+    // pairs correctly with viewport-fit=cover for the notch / Dynamic Island.
+    statusBarStyle: "black-translucent",
   },
   formatDetection: {
     telephone: false,
@@ -60,8 +62,8 @@ export const metadata: Metadata = {
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       { url: "/favicon-64x64.png", sizes: "64x64", type: "image/png" },
-      { url: "/icons/icon-192.jpeg", sizes: "192x192", type: "image/jpeg" },
-      { url: "/icons/icon-512.jpeg", sizes: "512x512", type: "image/jpeg" },
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: "/apple-touch-icon.png",
   },
@@ -250,6 +252,21 @@ export default function RootLayout({
         />
         {/* ------------------------------------------- */}
 
+        {/* Register service worker for offline support and Play Store quality check */}
+        <Script
+          id="sw-register"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                    .catch(function() {});
+                });
+              }
+            `,
+          }}
+        />
         <HeadTagsInjector />
         <FrontendLayout>
           {children}

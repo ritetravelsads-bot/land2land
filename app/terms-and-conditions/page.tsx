@@ -1,6 +1,4 @@
 import type { Metadata } from "next"
-import Header from "@/components/layout/header"
-import Footer from "@/components/layout/footer"
 
 export const metadata: Metadata = {
   title: "Terms & Conditions | Land2Land",
@@ -12,13 +10,11 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <>
-      <Header />
-      <main className="min-h-screen px-4 py-12 bg-background">
+    <main className="min-h-screen px-4 py-12 bg-background">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="space-y-2 border-b border-border pb-6">
             <h1 className="text-3xl font-bold text-foreground">TERMS & CONDITIONS</h1>
-            <p className="text-muted-foreground">Land2Land - Effective Date: To be inserted</p>
+            <p className="text-muted-foreground">Land2Land - Effective Date: July 1, 2025</p>
           </div>
 
           <div className="max-w-none text-foreground space-y-6">
@@ -221,21 +217,8 @@ export default function TermsPage() {
               <div className="p-4 bg-card border border-border rounded-lg">
                 <p className="text-muted-foreground leading-relaxed italic">
                   "I voluntarily provide my personal information and consent to being contacted by Land2Land via phone, SMS, WhatsApp, and email regarding land consultation and offers. I agree to the Privacy Policy and Terms & Conditions."
-                </p>
-              </div>
-            </section>
-          </div>
-
-          <div className="mt-12 pt-6 border-t border-border">
-            <p className="text-muted-foreground text-sm">
-              If you have any questions about these Terms & Conditions, please contact us at{" "}
-              <a href="mailto:info@land2land.com" className="text-primary hover:underline">
-                info@land2land.com
-              </a>
-            </p>
-          </div>
+          </p>
         </div>
-      </main>
-    </>
+    </main>
   )
 }
