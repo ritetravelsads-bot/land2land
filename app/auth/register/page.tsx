@@ -1,6 +1,4 @@
 import type { Metadata } from "next"
-import Header from "@/components/layout/header"
-import Footer from "@/components/layout/footer"
 import RegisterForm from "@/components/forms/register-form"
 import Link from "next/link"
 
@@ -11,9 +9,7 @@ export const metadata: Metadata = {
 
 export default function RegisterPage() {
   return (
-    <>
-      <Header />
-      <main className="min-h-screen flex items-center justify-center px-4 py-12">
+    <main className="min-h-screen flex items-center justify-center px-4 py-12 median-auth-page">
         <div className="w-full max-w-sm">
           <div className="space-y-6">
             <div className="space-y-2 text-center">
@@ -33,7 +29,6 @@ export default function RegisterPage() {
             </div>
           </div>
         </div>
-      </main>
-    </>
+    </main>
   )
 }

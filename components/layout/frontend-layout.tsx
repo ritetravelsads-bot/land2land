@@ -7,6 +7,7 @@ import MegaMenuHeader from "./mega-menu-header"
 import NavigationProgress from "./navigation-progress"
 import RoutePrefetcher from "./route-prefetcher"
 import MedianBridge from "@/components/mobile/median-bridge"
+import PullToRefresh from "@/components/mobile/pull-to-refresh"
 import { Toaster } from "@/components/ui/sonner"
 
 // Lazy load non-critical below-fold components
@@ -29,6 +30,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
     return (
       <>
         <MedianBridge />
+        <PullToRefresh />
         {children}
       </>
     )
@@ -37,6 +39,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
   return (
     <>
       <MedianBridge />
+      <PullToRefresh />
       <Suspense fallback={null}>
         <NavigationProgress />
       </Suspense>

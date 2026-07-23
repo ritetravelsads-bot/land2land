@@ -556,25 +556,58 @@ html {
   }
 
   .bottom-nav {
-    @apply flex items-center justify-around px-0;
+    @apply flex items-center justify-around px-1 pt-1.5 pb-1;
   }
 
   .bottom-nav-item {
-    @apply flex-1 flex flex-col items-center justify-center gap-1 px-2 py-2 text-xs font-medium text-muted-foreground hover:text-primary transition-colors relative;
+    @apply flex-1 flex flex-col items-center justify-center gap-0.5 px-1 py-1.5 text-[11px] font-medium text-muted-foreground transition-colors relative;
+  }
+
+  /* The icon sits inside a pill that fills in when active — a common native pattern */
+  .bottom-nav-item svg {
+    @apply relative z-10 transition-transform duration-200;
+  }
+
+  .bottom-nav-item::before {
+    @apply absolute top-1 left-1/2 h-8 w-14 -translate-x-1/2 rounded-full bg-primary/10 opacity-0 scale-90 transition-all duration-200;
+    content: "";
   }
 
   .bottom-nav-item.active {
-    @apply text-primary;
+    @apply text-primary font-semibold;
   }
 
-  .bottom-nav-item.active::after {
-    @apply absolute bottom-0 left-0 right-0 h-0.5 bg-primary;
-    content: "";
+  .bottom-nav-item.active::before {
+    @apply opacity-100 scale-100;
+  }
+
+  .bottom-nav-item.active svg {
+    @apply -translate-y-0.5;
+  }
+
+  /* Pressed feedback for a native tactile feel */
+  .bottom-nav-item:active svg {
+    @apply scale-90;
   }
 
   /* Floating Action Button */
   .fab {
-    @apply absolute left-1/2 -translate-x-1/2 -top-6 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center;
+    @apply absolute left-1/2 -translate-x-1/2 -top-6 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-lg flex items-center justify-center transition-transform duration-150;
+    box-shadow: 0 6px 16px -2px color-mix(in oklab, var(--primary) 50%, transparent);
+  }
+
+  .fab:active {
+    @apply scale-90 -translate-x-1/2;
+  }
+
+  /* Compact app-bar action buttons (mobile header inside the app) */
+  .app-bar-action {
+    @apply transition-transform duration-150;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .app-bar-action:active {
+    @apply scale-90 bg-primary/10;
   }
 
   /* Bento card with high-density spacing */
@@ -632,6 +665,50 @@ html {
 .pwa-standalone body {
   /* Remove the grey tap flash for a native touch feel */
   -webkit-tap-highlight-color: transparent;
+  /* Smooth momentum scrolling like a native scroll view */
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
+}
+
+/* ---- Compact app bar: slim the sticky header down inside the wrapper ---- */
+.median-app header nav,
+.pwa-standalone header nav {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Shrink the oversized logo so it reads as a compact app title bar on phones */
+@media (max-width: 1023px) {
+  .median-app header a img,
+  .pwa-standalone header a img {
+    width: 140px !important;
+    max-width: 140px;
+  }
+}
+
+/* ---- Tap ripple / press feedback on interactive elements ---- */
+.median-app a,
+.median-app button,
+.pwa-standalone a,
+.pwa-standalone button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Cards and primary tappables gently scale on press for a tactile feel */
+.median-app a:active,
+.median-app button:active,
+.median-app [role="button"]:active,
+.pwa-standalone a:active,
+.pwa-standalone button:active,
+.pwa-standalone [role="button"]:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* The FAB keeps its own stronger press state (scale + centering) */
+.median-app .fab:active,
+.pwa-standalone .fab:active {
+  transform: translateX(-50%) scale(0.9);
 }
 
 /* Disable the iOS long-press callout / selection everywhere except real inputs */

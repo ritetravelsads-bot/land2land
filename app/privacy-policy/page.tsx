@@ -1,6 +1,4 @@
 import type { Metadata } from "next"
-import Header from "@/components/layout/header"
-import Footer from "@/components/layout/footer"
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Land2Land",
@@ -12,15 +10,13 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <>
-      <Header />
-      <main className="min-h-screen px-4 py-12 bg-background">
+    <main className="min-h-screen px-4 py-12 bg-background">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="space-y-4">
             <h1 className="text-4xl font-bold text-foreground">Land2Land</h1>
             <h2 className="text-2xl font-semibold text-foreground">Legal & Policy Framework</h2>
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-              <p><strong>Effective Date:</strong> To be inserted</p>
+              <p><strong>Effective Date:</strong> July 1, 2025</p>
               <p><strong>Website:</strong> https://land2land.com</p>
               <p><strong>Jurisdiction:</strong> Gurugram, Haryana, India</p>
             </div>
@@ -197,7 +193,6 @@ export default function PrivacyPolicyPage() {
             </section>
           </div>
         </div>
-      </main>
-    </>
+    </main>
   )
 }
