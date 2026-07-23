@@ -41,7 +41,7 @@ export default function CTA() {
             size="lg"
             className="bg-[var(--land-ochre)] text-[var(--land-earth)] hover:bg-[var(--land-ochre)]/85 h-13 px-8 text-base font-bold shadow-lg"
           >
-            <Link href="/buy">
+            <Link href="/properties">
               Browse Land Listings
               <ArrowRight className="ml-2" size={20} />
             </Link>

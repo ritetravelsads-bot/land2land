@@ -36,7 +36,7 @@ export default function MegaMenuHeader() {
     // Defer auth check to not block initial render
     const checkAuth = async () => {
       try {
-        const response = await fetch("/api/auth/me", { 
+        const response = await fetch("/api/auth/me", {
           credentials: "include",
           // IMPORTANT: Never cache auth responses - each user must get their own session
           cache: "no-store",
@@ -112,7 +112,7 @@ export default function MegaMenuHeader() {
             </Link>
 
             <Link
-              href="/buy"
+              href="/properties"
               className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
             >
               Buy
@@ -251,7 +251,6 @@ export default function MegaMenuHeader() {
       {mobileMenuOpen && (
         <div
           className="lg:hidden border-t border-gray-200 bg-white fixed left-0 right-0 bottom-0 z-40 overflow-y-auto"
-          style={{ top: "calc(4rem + env(safe-area-inset-top, 0px))" }}
         >
           <div className="flex flex-col gap-1 px-4 py-3">
             {/* Mobile Search Bar */}
@@ -267,7 +266,7 @@ export default function MegaMenuHeader() {
             </Link>
 
             <Link
-              href="/buy"
+              href="/properties"
               className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] hover:bg-gray-50 rounded transition-colors"
             >
               Buy

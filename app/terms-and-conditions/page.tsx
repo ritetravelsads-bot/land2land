@@ -217,7 +217,10 @@ export default function TermsPage() {
               <div className="p-4 bg-card border border-border rounded-lg">
                 <p className="text-muted-foreground leading-relaxed italic">
                   "I voluntarily provide my personal information and consent to being contacted by Land2Land via phone, SMS, WhatsApp, and email regarding land consultation and offers. I agree to the Privacy Policy and Terms & Conditions."
-          </p>
+              </p>
+              </div>
+            </section>
+          </div>
         </div>
     </main>
   )

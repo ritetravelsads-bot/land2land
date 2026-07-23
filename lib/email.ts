@@ -578,6 +578,111 @@ export function newUserAdminTemplate(data: {
   return emailWrapper(content, `New ${data.user_type} registration: ${data.name}`)
 }
 
+// 10. Sell Enquiry - Admin Notification
+export function sellEnquiryAdminTemplate(data: {
+  ownerName: string
+  ownerEmail: string
+  ownerPhone: string
+  propertyType: string
+  size: string
+  sizeUnit: string
+  location: string
+  state: string
+  price: string
+  facilities: string[]
+  description: string
+}) {
+  const content = `
+    <div class="content">
+      <h2>New Sell / List Property Enquiry</h2>
+      <p>A property owner has submitted a listing request via the website.</p>
+
+      <div class="info-box">
+        <table width="100%" cellspacing="0" cellpadding="0">
+          <tr class="info-row">
+            <td class="info-label">Owner Name</td>
+            <td class="info-value">${data.ownerName}</td>
+          </tr>
+          <tr class="info-row">
+            <td class="info-label">Phone</td>
+            <td class="info-value"><a href="tel:${data.ownerPhone}" style="color:#125007;font-weight:600;">${data.ownerPhone}</a></td>
+          </tr>
+          ${data.ownerEmail ? `
+          <tr class="info-row">
+            <td class="info-label">Email</td>
+            <td class="info-value"><a href="mailto:${data.ownerEmail}" style="color:#125007;">${data.ownerEmail}</a></td>
+          </tr>` : ""}
+          <tr class="info-row">
+            <td class="info-label">Property Type</td>
+            <td class="info-value">${data.propertyType}</td>
+          </tr>
+          <tr class="info-row">
+            <td class="info-label">Size</td>
+            <td class="info-value">${data.size} ${data.sizeUnit}</td>
+          </tr>
+          <tr class="info-row">
+            <td class="info-label">Location</td>
+            <td class="info-value">${data.location}${data.state ? `, ${data.state}` : ""}</td>
+          </tr>
+          <tr class="info-row">
+            <td class="info-label">Expected Price</td>
+            <td class="info-value">₹${Number(data.price).toLocaleString("en-IN")}</td>
+          </tr>
+          ${data.facilities.length > 0 ? `
+          <tr class="info-row">
+            <td class="info-label">Facilities</td>
+            <td class="info-value">${data.facilities.join(", ")}</td>
+          </tr>` : ""}
+        </table>
+      </div>
+
+      ${data.description ? `
+      <p><strong>Description:</strong></p>
+      <div style="background-color:#f8fafc;padding:20px;border-radius:8px;margin-top:12px;">
+        <p style="margin:0;white-space:pre-wrap;">${data.description}</p>
+      </div>` : ""}
+
+      <div class="divider"></div>
+      <p style="font-size:13px;color:#64748b;">Received on: ${new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })}</p>
+    </div>
+  `
+  return emailWrapper(content, `New sell enquiry from ${data.ownerName} — ${data.size} ${data.sizeUnit} in ${data.state}`)
+}
+
+// 11. Sell Enquiry - Owner Confirmation
+export function sellEnquiryOwnerTemplate(data: {
+  ownerName: string
+  propertyType: string
+  size: string
+  sizeUnit: string
+  location: string
+  state: string
+}) {
+  const content = `
+    <div class="content">
+      <h2>Your Listing Request Has Been Received!</h2>
+      <p>Dear <strong>${data.ownerName}</strong>,</p>
+      <p>Thank you for choosing ${COMPANY_NAME} to sell your land. We have received your listing request for <strong>${data.size} ${data.sizeUnit}</strong> of ${data.propertyType} in <strong>${data.location}${data.state ? `, ${data.state}` : ""}</strong>.</p>
+
+      <div class="highlight-box">
+        <h3>What Happens Next?</h3>
+        <p>Our team will review your property details and reach out within 24 hours to verify the listing and connect you with potential buyers.</p>
+      </div>
+
+      <p style="text-align:center;">
+        <a href="${COMPANY_WEBSITE}/properties" class="cta-button">Browse Active Listings</a>
+      </p>
+
+      <div class="divider"></div>
+
+      <p>For immediate assistance, please call us at <a href="tel:${COMPANY_PHONE}" style="color:#125007;font-weight:600;">${COMPANY_PHONE}</a>.</p>
+
+      <p>Best regards,<br><strong>The ${COMPANY_NAME} Team</strong></p>
+    </div>
+  `
+  return emailWrapper(content, `Your property listing request has been received — ${COMPANY_NAME}`)
+}
+
 // Send email helper function
 export async function sendEmail({
   to,

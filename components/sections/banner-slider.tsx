@@ -14,7 +14,7 @@ const slides = [
     tag: "All Land Types — One Platform",
     title: "Every Type of Land, One Marketplace",
     subtitle: "1 lakh+ verified listings across India with clear titles and live pricing.",
-    cta: { label: "Browse All Land", href: "/buy" },
+    cta: { label: "Browse All Land", href: "/properties" },
   },
   {
     id: 2,

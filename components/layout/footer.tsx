@@ -86,7 +86,7 @@ export default function Footer() {
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "About Land2Land", href: "/about" },
-    { name: "Buy Land", href: "/buy" },
+    { name: "Buy Land", href: "/properties" },
     { name: "Sell Land", href: "/sell" },
     { name: "Farm Blog", href: "/blogs" },
     { name: "Career", href: "/career" },
@@ -103,7 +103,7 @@ export default function Footer() {
   ]
 
   const landTypes = [
-    { name: "Buy Land", href: "/buy" },
+    { name: "Buy Land", href: "/properties" },
     { name: "Sell Land", href: "/sell" },
     { name: "Farm Investments", href: "/investments" },
     { name: "Find Associate", href: "/find-associate" },
