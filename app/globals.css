@@ -670,11 +670,33 @@ html {
   overscroll-behavior-y: none;
 }
 
-/* ---- Compact app bar: slim the sticky header down inside the wrapper ---- */
+/* ---- Compact app bar: slim the sticky header + fix the safe-area double-padding ---- */
+/*
+  The <header> has an inline style paddingTop: env(safe-area-inset-top, 0px).
+  Median's native shell also pushes the WebView down by the status bar height
+  automatically — so we must zero-out the extra padding to avoid a double gap.
+*/
+.median-app header,
+.pwa-standalone header {
+  padding-top: 0 !important;
+}
+
 .median-app header nav,
 .pwa-standalone header nav {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+/* ---- Hide footer in the app wrapper — bottom nav replaces it ---- */
+.median-app footer,
+.pwa-standalone footer {
+  display: none !important;
+}
+
+/* ---- Hide the WhatsApp float button inside the app wrapper ---- */
+.median-app [aria-label="Chat on WhatsApp"],
+.pwa-standalone [aria-label="Chat on WhatsApp"] {
+  display: none !important;
 }
 
 /* Shrink the oversized logo so it reads as a compact app title bar on phones */
