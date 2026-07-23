@@ -670,11 +670,36 @@ html {
   overscroll-behavior-y: none;
 }
 
-/* ---- Compact app bar: slim the sticky header down inside the wrapper ---- */
+/* ---- Compact app bar: fill behind the iOS/Android status bar ---- */
+/*
+  layout.tsx sets viewportFit=cover + appleWebApp statusBarStyle=black-translucent.
+  This extends the WebView UNDER the native status bar — the status bar is
+  transparent and the app draws behind it. The header MUST pad itself by
+  env(safe-area-inset-top) so its content clears the status bar text/icons.
+  Without this, the logo/icons sit underneath the carrier/time text = white gap.
+*/
+.median-app header,
+.pwa-standalone header {
+  padding-top: env(safe-area-inset-top, 0px) !important;
+  background-color: white;
+}
+
 .median-app header nav,
 .pwa-standalone header nav {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+
+/* ---- Hide footer in the app wrapper — bottom nav replaces it ---- */
+.median-app footer,
+.pwa-standalone footer {
+  display: none !important;
+}
+
+/* ---- Hide the WhatsApp float button inside the app wrapper ---- */
+.median-app [aria-label="Chat on WhatsApp"],
+.pwa-standalone [aria-label="Chat on WhatsApp"] {
+  display: none !important;
 }
 
 /* Shrink the oversized logo so it reads as a compact app title bar on phones */
