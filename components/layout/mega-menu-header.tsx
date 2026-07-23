@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, LogOut, User, ChevronDown, Map, TrendingUp } from "lucide-react"
+import { Menu, X, LogOut, User, ChevronDown, Map, TrendingUp, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -219,14 +219,32 @@ export default function MegaMenuHeader() {
             ) : null}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-gray-700 hover:text-[#125007] transition-colors"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile App-Bar Actions */}
+          <div className="lg:hidden flex items-center gap-1">
+            <Link
+              href="/properties"
+              className="app-bar-action p-2 text-gray-700 hover:text-[#125007] transition-colors rounded-full"
+              aria-label="Search properties"
+            >
+              <Search size={22} />
+            </Link>
+
+            <Link
+              href={currentUser ? getDashboardLink() : "/auth/login"}
+              className="app-bar-action p-2 text-gray-700 hover:text-[#125007] transition-colors rounded-full"
+              aria-label={currentUser ? "My account" : "Sign in"}
+            >
+              <User size={22} />
+            </Link>
+
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="app-bar-action p-2 text-gray-700 hover:text-[#125007] transition-colors rounded-full"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </nav>
       </header>
 
