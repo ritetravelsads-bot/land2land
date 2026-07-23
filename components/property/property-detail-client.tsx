@@ -243,7 +243,7 @@ export function PropertyDetailClient({
               {propertyTypeDisplayName}
             </Link>
             <ChevronRightIcon className="h-3 w-3 flex-shrink-0" />
-            <span className="text-foreground font-medium truncate max-w-[200px]">{property.property_name}</span>
+            <span className="text-foreground font-medium truncate">{property.property_name}</span>
           </nav>
         </div>
       </div>
