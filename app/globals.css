@@ -670,15 +670,18 @@ html {
   overscroll-behavior-y: none;
 }
 
-/* ---- Compact app bar: slim the sticky header + fix the safe-area double-padding ---- */
+/* ---- Compact app bar: fill behind the iOS/Android status bar ---- */
 /*
-  The <header> has an inline style paddingTop: env(safe-area-inset-top, 0px).
-  Median's native shell also pushes the WebView down by the status bar height
-  automatically — so we must zero-out the extra padding to avoid a double gap.
+  layout.tsx sets viewportFit=cover + appleWebApp statusBarStyle=black-translucent.
+  This extends the WebView UNDER the native status bar — the status bar is
+  transparent and the app draws behind it. The header MUST pad itself by
+  env(safe-area-inset-top) so its content clears the status bar text/icons.
+  Without this, the logo/icons sit underneath the carrier/time text = white gap.
 */
 .median-app header,
 .pwa-standalone header {
-  padding-top: 0 !important;
+  padding-top: env(safe-area-inset-top, 0px) !important;
+  background-color: white;
 }
 
 .median-app header nav,

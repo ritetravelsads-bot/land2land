@@ -110,7 +110,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-white">
       <head>
         {/* CRITICAL: Preload LCP images FIRST - before any other resources */}
         {/* These must be at the very top of <head> for maximum priority */}
