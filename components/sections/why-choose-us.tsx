@@ -1,33 +1,33 @@
-import { Shield, Award, Users, TrendingUp, Clock, HeadphonesIcon } from "lucide-react"
+import { Map, Sparkles, MapPin, LineChart, Briefcase, Network } from "lucide-react"
 
 const features = [
   {
-    icon: Shield,
+    icon: Map,
     title: "Nationwide Land Coverage",
     description: "Explore properties across cities, districts, industrial corridors and emerging investment zones.",
   },
   {
-    icon: Award,
+    icon: Sparkles,
     title: "Curated Investment Opportunities",
     description: "Discover handpicked land with strong growth potential and future appreciation.",
   },
   {
-    icon: Users,
+    icon: MapPin,
     title: "Location-Based Discovery",
     description: "Search properties by state, city, district or nearby landmarks with ease.",
   },
   {
-    icon: TrendingUp,
+    icon: LineChart,
     title: "Market Intelligence",
     description: "Stay informed with land trends, pricing insights and investment hotspots.",
   },
   {
-    icon: Clock,
+    icon: Briefcase,
     title: "Land for Every Purpose",
     description: "From farming and housing to industries and commercial projects—find land that matches your goals.",
   },
   {
-    icon: HeadphonesIcon,
+    icon: Network,
     title: "A Growing Real Estate Ecosystem",
     description: "Connect with developers, brokers, landowners and investors through one trusted platform.",
   },
