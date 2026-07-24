@@ -26,7 +26,7 @@ export default function PopularLocations() {
               <MapPin size={18} className="text-[var(--land-sage)]" />
               <h2 className="text-xl md:text-2xl font-bold text-[var(--land-earth)]">Popular Locations</h2>
             </div>
-            <p className="text-sm text-[var(--land-earth)]/60">Browse land listings by city or district</p>
+            <p className="text-sm text-[var(--land-earth)]/60">Explore verified land for sale in India's top cities and districts.</p>
           </div>
         </div>
 

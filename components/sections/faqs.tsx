@@ -7,39 +7,39 @@ import { cn } from "@/lib/utils"
 const faqs = [
   {
     id: 1,
-    question: "What types of land does Land2Land specialise in?",
+    question: "What types of land can I buy on Land2Land?",
     answer:
-      "Land2Land covers every kind of land — agricultural and farmland, residential land, commercial and industrial land, abadi land, and investment-grade parcels across India. We feature verified listings from Punjab, Haryana, Uttar Pradesh, Rajasthan, Madhya Pradesh, Maharashtra, Karnataka, and many other states. Every listing is thoroughly verified for ownership and legal clearance.",
+      "Land2Land offers agricultural land, residential plots, commercial land, industrial land, farm land, development land, warehouses and investment properties across India.",
   },
   {
     id: 2,
-    question: "How do I know if the land is legally verified?",
+    question: "How do I find land for sale in my city or state?",
     answer:
-      "Every property on Land2Land undergoes rigorous verification including title check, legal clearance, encumbrance checks, and zoning or land-use confirmation. We provide detailed verification reports and connect you with certified legal advisors to ensure complete transparency.",
+      "Search by state, city, district, village, property type or budget to discover verified land listings across India.",
   },
   {
     id: 3,
-    question: "Can I invest in land remotely without visiting in person?",
+    question: "Can I invest in land through Land2Land?",
     answer:
-      "Yes, absolutely. We provide high-resolution photos, 360° tours, location maps, ROI projections, and verified associate consultations. Our land specialists can guide your decisions remotely, and we handle all documentation and transfer processes with legal support.",
+      "Yes. Explore high-growth land investment opportunities, commercial land, industrial plots, farmland and residential developments in prime locations.",
   },
   {
     id: 4,
-    question: "What is the average ROI on land investments?",
+    question: "How do I contact a property owner?",
     answer:
-      "Based on verified transactions on Land2Land, land typically delivers 12-25% annual returns depending on type and location — agricultural land through appreciation and yield, and residential, commercial or industrial plots through appreciation and rental potential. We provide historical ROI data and connect you with experts who can help maximize returns.",
+      "Open any property listing and submit an enquiry to connect directly with the property owner, seller or authorised representative.",
   },
   {
     id: 5,
-    question: "How does the Area Converter tool help?",
+    question: "Which states have the most land listings?",
     answer:
-      "Our free Area Converter instantly converts between Bigha, Acre, Katha, Sq Yard, Sq Foot, and Hectare — eliminating confusion when comparing land sizes across regions. It's especially useful when investing across different Indian states with varying land measurement units.",
+      "Browse thousands of land listings in Uttar Pradesh, Maharashtra, Gujarat, Rajasthan, Haryana, Madhya Pradesh, Punjab and many other states.",
   },
   {
     id: 6,
-    question: "Are there subscription plans for serious investors?",
+    question: "Why choose Land2Land?",
     answer:
-      "Yes. Our Premium subscription gives you exclusive access to investment opportunities before public listing, priority expert consultations, ROI tracking dashboards, and market reports. We also offer custom land advisory and partnership programs for bulk land purchases.",
+      "Land2Land makes it easy to buy, sell and invest in land with powerful search tools, location-based discovery and thousands of property opportunities across India.",
   },
 ]
 

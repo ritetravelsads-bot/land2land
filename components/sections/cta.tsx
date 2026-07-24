@@ -29,10 +29,10 @@ export default function CTA() {
         </div>
 
         <h2 className="text-white text-balance text-3xl md:text-4xl font-bold">
-          Start Your Land Investment Journey Today
+          Discover India's Best Land Investment Opportunities
         </h2>
         <p className="text-white/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-          Join 15,000+ buyers, sellers and investors who trust Land2Land for transparent, verified land of every type across India.
+          Buy, sell and invest in agricultural land, residential plots, commercial properties and industrial land through India's growing land marketplace.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-2">
@@ -42,7 +42,7 @@ export default function CTA() {
             className="bg-[var(--land-ochre)] text-[var(--land-earth)] hover:bg-[var(--land-ochre)]/85 h-13 px-8 text-base font-bold shadow-lg"
           >
             <Link href="/properties">
-              Browse Land Listings
+              Browse Properties
               <ArrowRight className="ml-2" size={20} />
             </Link>
           </Button>
@@ -54,7 +54,7 @@ export default function CTA() {
           >
             <Link href="/find-associate">
               <Phone className="mr-2" size={20} />
-              Connect with a Land Expert
+              Speak with an Expert 
             </Link>
           </Button>
         </div>

@@ -7,7 +7,7 @@ import { TrendingUp, DollarSign, Users, Award } from "lucide-react"
 const opportunities = [
   {
     title: "High-ROI Farmland",
-    description: "50-acre organic farmland with a proven track record of strong annual returns",
+    description: "Ideal for farming, agribusiness & long-term investment.",
     location: "Punjab",
     type: "Farmland",
     investment: "₹45 Lakhs",
@@ -21,7 +21,7 @@ const opportunities = [
   },
   {
     title: "Commercial Land on Highway",
-    description: "High-visibility commercial land on a fast-growing arterial road with strong rental demand",
+    description: "Perfect for retail, logistics & commercial development.",
     location: "Maharashtra",
     type: "Commercial",
     investment: "₹28 Lakhs",
@@ -35,7 +35,7 @@ const opportunities = [
   },
   {
     title: "Industrial Land Parcel",
-    description: "30-acre industrial land in a notified zone with power load and wide access roads",
+    description: "Ideal for manufacturing, logistics & industrial expansion.",
     location: "Haryana",
     type: "Industrial",
     investment: "₹36 Lakhs",
@@ -49,7 +49,7 @@ const opportunities = [
   },
   {
     title: "Residential Land in Gated Layout",
-    description: "Ready-to-build residential land in an approved gated layout near a growth corridor",
+    description: "Perfect for residential development & long-term investment.",
     location: "Rajasthan",
     type: "Residential",
     investment: "₹22 Lakhs",
@@ -73,7 +73,7 @@ export default function InvestmentOpportunities() {
           </div>
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Investment Opportunities</h2>
-            <p className="text-sm text-gray-500 font-medium">High-ROI land across agricultural, commercial, industrial and residential categories</p>
+            <p className="text-sm text-gray-500 font-medium">Discover high-return land investment opportunities across India's fastest-growing markets.</p>
           </div>
         </div>
 
@@ -139,7 +139,7 @@ export default function InvestmentOpportunities() {
 
         <div className="flex justify-center pt-8">
           <Button asChild size="lg" className="bg-slate-900 hover:bg-slate-800 text-white">
-            <Link href="/investments">View All Investment Opportunities</Link>
+            <Link href="/investments">Explore All Investment Opportunities </Link>
           </Button>
         </div>
       </div>

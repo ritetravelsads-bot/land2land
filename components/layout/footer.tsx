@@ -174,7 +174,7 @@ export default function Footer() {
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-[#125007] mb-4">About Land2Land</h2>
               <p className="text-sm text-gray-600 leading-relaxed max-w-sm">
-                India&apos;s trusted agricultural land and farm property marketplace. We connect landowners, farmers, and investors with verified land opportunities across India. Our platform provides transparent pricing, expert advisory, and secure transactions for agricultural land, farmland, and land investments. Empowering rural India through digital real estate.
+                Land2Land is India's trusted marketplace for buying, selling and investing in land. Explore verified agricultural, residential, commercial and industrial properties across India all in one platform.
               </p>
             </div>
 

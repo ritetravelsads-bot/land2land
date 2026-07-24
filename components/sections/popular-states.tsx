@@ -5,35 +5,35 @@ import { MapPin } from "lucide-react"
 const states = [
   {
     name: "Maharashtra",
-    label: "Localities in Maharashtra",
+    label: "Growth corridors & premium investment locations.",
     count: "1,120+",
     href: "/buy?region=maharashtra",
     bg: "from-orange-400 to-red-500",
   },
   {
     name: "Gujarat",
-    label: "Localities in Gujarat",
+    label: "Industrial hubs & business expansion opportunities.",
     count: "870+",
     href: "/buy?region=gujarat",
     bg: "from-blue-400 to-indigo-500",
   },
   {
     name: "Rajasthan",
-    label: "Localities in Rajasthan",
+    label: "Solar, tourism & large-scale development land.",
     count: "980+",
     href: "/buy?region=rajasthan",
     bg: "from-yellow-400 to-orange-500",
   },
   {
     name: "Haryana",
-    label: "Localities in Haryana",
+    label: "NCR growth, logistics & commercial hotspots.",
     count: "760+",
     href: "/buy?region=haryana",
     bg: "from-slate-500 to-slate-700",
   },
   {
     name: "Madhya Pradesh",
-    label: "Localities in Madhya Pradesh",
+    label: "Emerging investment destinations & affordable land.",
     count: "1,050+",
     href: "/buy?region=madhya-pradesh",
     bg: "from-purple-400 to-pink-500",
@@ -50,7 +50,7 @@ export default function PopularStates() {
               <MapPin size={20} className="text-slate-500" />
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Properties in Popular States</h2>
             </div>
-            <p className="text-sm text-gray-400">Land available across agricultural, residential and commercial categories</p>
+            <p className="text-sm text-gray-400">Invest in land across India's leading growth corridors and emerging markets</p>
           </div>
           <Button asChild variant="outline" className="hidden md:flex border-slate-300 text-slate-700 hover:bg-slate-50">
             <Link href="/buy">Explore More States</Link>
@@ -71,11 +71,12 @@ export default function PopularStates() {
               {/* Content */}
               <div className="relative h-full flex flex-col justify-between p-4 text-white">
                 <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
-                  <MapPin size={16} />
+                  <MapPin size={16} /> 
                 </div>
                 <div>
+                  <p className="text-sm font-bold">{state.name}</p>
                   <p className="text-xs text-white/80 mb-0.5">{state.label}</p>
-                  <p className="text-sm font-bold">{state.count} listings</p>
+                  <p className="text-xs font-bold">{state.count} listings</p>
                 </div>
               </div>
             </Link>

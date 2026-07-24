@@ -3,33 +3,33 @@ import { Shield, Award, Users, TrendingUp, Clock, HeadphonesIcon } from "lucide-
 const features = [
   {
     icon: Shield,
-    title: "100% Verified Land Titles",
-    description: "Every property has verified ownership documents and legal clearance.",
+    title: "Nationwide Land Coverage",
+    description: "Explore properties across cities, districts, industrial corridors and emerging investment zones.",
   },
   {
     icon: Award,
-    title: "Expert Land Advisory",
-    description: "Personalized guidance from land specialists and market experts across every land type.",
+    title: "Curated Investment Opportunities",
+    description: "Discover handpicked land with strong growth potential and future appreciation.",
   },
   {
     icon: Users,
-    title: "Direct Seller & Buyer Network",
-    description: "Connect directly with verified sellers, associates, buyers, and investors.",
+    title: "Location-Based Discovery",
+    description: "Search properties by state, city, district or nearby landmarks with ease.",
   },
   {
     icon: TrendingUp,
-    title: "Investment ROI Tracking",
-    description: "Real-time analytics and historical ROI data for informed investment decisions.",
+    title: "Market Intelligence",
+    description: "Stay informed with land trends, pricing insights and investment hotspots.",
   },
   {
     icon: Clock,
-    title: "Fast Land Transactions",
-    description: "Streamlined process with legal verification and documentation support.",
+    title: "Land for Every Purpose",
+    description: "From farming and housing to industries and commercial projects—find land that matches your goals.",
   },
   {
     icon: HeadphonesIcon,
-    title: "24/7 Customer Support",
-    description: "Round-the-clock assistance for all your buying and selling queries.",
+    title: "A Growing Real Estate Ecosystem",
+    description: "Connect with developers, brokers, landowners and investors through one trusted platform.",
   },
 ]
 
@@ -47,13 +47,13 @@ export default function WhyChooseUs() {
       <div className="relative max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <span className="inline-block px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[var(--land-ochre)] text-xs font-semibold uppercase tracking-widest mb-3">
-            Why Land2Land
+            Why Choose Land2Land?
           </span>
           <h2 className="text-white mb-4 text-3xl md:text-4xl font-bold text-balance">
-            India&apos;s Most Trusted Land Marketplace
+            Everything You Need to Find the Right Land
           </h2>
           <p className="text-white/65 text-base max-w-2xl mx-auto leading-relaxed">
-            Buy, sell and invest in agricultural, residential, commercial and industrial land with confidence.
+            One platform. Smarter decisions. Better opportunities.
           </p>
         </div>
 
