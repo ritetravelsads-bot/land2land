@@ -5,7 +5,9 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { AgreementCheckbox } from "@/components/forms/agreement-checkbox"
 import { toast } from "sonner"
+import type { UserType } from "@/lib/agreement-links"
 
 export default function AssociateRegisterForm() {
   const router = useRouter()
@@ -19,10 +21,15 @@ export default function AssociateRegisterForm() {
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+  const [agreementAccepted, setAgreementAccepted] = useState<Record<string, boolean>>({})
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleAgreementChange = (agreementId: string, accepted: boolean) => {
+    setAgreementAccepted((prev) => ({ ...prev, [agreementId]: accepted }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -36,6 +43,13 @@ export default function AssociateRegisterForm() {
 
     if (formData.password.length < 8) {
       setError("Password must be at least 8 characters")
+      return
+    }
+
+    // Check if all required agreements are accepted
+    const requiredAgreements = Object.values(agreementAccepted)
+    if (requiredAgreements.length > 0 && !requiredAgreements.every((accepted) => accepted)) {
+      setError("You must accept all agreements to continue")
       return
     }
 
@@ -170,6 +184,12 @@ export default function AssociateRegisterForm() {
           className="h-8 text-xs"
         />
       </div>
+
+      <AgreementCheckbox
+        userType="associate"
+        agreementAccepted={agreementAccepted}
+        onAgreementChange={handleAgreementChange}
+      />
 
       {error && <p className="text-xs text-red-600 bg-red-50 p-2 rounded">{error}</p>}
 
