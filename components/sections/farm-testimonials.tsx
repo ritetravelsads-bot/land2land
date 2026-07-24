@@ -7,28 +7,28 @@ const testimonials = [
     name: "Rajesh Kumar",
     title: "Farmer, Punjab",
     initials: "RK",
-    quote: "Land2Land helped me find the perfect agricultural land. The verification process was transparent and the team was very helpful.",
+    quote: "Found the right investment opportunity much faster than expected. The location filters were exactly what I needed.",
     rating: 5,
   },
   {
     name: "Priya Sharma",
     title: "Land Buyer, Bengaluru",
     initials: "PS",
-    quote: "I bought a residential land in an approved layout through Land2Land. Their title checks and ROI tools gave me complete confidence.",
+    quote: "I explored multiple locations across different states without visiting each one. It saved weeks of research.",
     rating: 5,
   },
   {
     name: "Vikram Singh",
     title: "Investor, Haryana",
     initials: "VS",
-    quote: "The area converter saved me hours of calculation. I picked up a commercial land on the main road well within my budget.",
+    quote: "The platform helped me discover emerging growth corridors that I would have otherwise missed.",
     rating: 5,
   },
   {
     name: "Anita Patel",
     title: "Business Owner, Gujarat",
     initials: "AP",
-    quote: "Connected with verified associates through Land2Land for industrial land. They understood my requirements perfectly. Highly recommended!",
+    quote: "Everything I needed—from location insights to investment options—was available in one place.",
     rating: 5,
   },
 ]
@@ -42,10 +42,10 @@ export default function FarmTestimonials() {
             Real Stories
           </span>
           <h2 className="text-2xl md:text-3xl font-bold text-[var(--land-earth)] mb-2">
-            Trusted by Buyers, Sellers &amp; Investors
+            Join India's Growing Land Community
           </h2>
           <p className="text-[var(--land-earth)]/60 text-sm md:text-base">
-            Join thousands who&apos;ve found their perfect land on Land2Land
+            Helping people make smarter land decisions every day.
           </p>
         </div>
 
