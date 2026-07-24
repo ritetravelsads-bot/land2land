@@ -35,7 +35,7 @@ export function AgreementCheckbox({
               id={agreement.id}
               checked={isChecked}
               onCheckedChange={(checked) => onAgreementChange(agreement.id, checked as boolean)}
-              className="mt-0.5"
+              className="mt-0.5 border-2 border-gray-400 hover:border-gray-600"
             />
             <div className="flex-1 space-y-1">
               <label
