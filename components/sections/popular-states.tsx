@@ -74,9 +74,9 @@ export default function PopularStates() {
                   <MapPin size={16} /> 
                 </div>
                 <div>
-                  <p className="text-xs text-white/80 mb-0.5">{state.name}</p>
+                  <p className="text-sm font-bold">{state.name}</p>
                   <p className="text-xs text-white/80 mb-0.5">{state.label}</p>
-                  <p className="text-sm font-bold">{state.count} listings</p>
+                  <p className="text-xs font-bold">{state.count} listings</p>
                 </div>
               </div>
             </Link>
