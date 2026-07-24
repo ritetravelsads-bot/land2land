@@ -5,7 +5,6 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { AgreementCheckbox } from "@/components/forms/agreement-checkbox"
 import { toast } from "sonner"
 import type { UserType } from "@/lib/agreement-links"
 
@@ -184,12 +183,6 @@ export default function AssociateRegisterForm() {
           className="h-8 text-xs"
         />
       </div>
-
-      <AgreementCheckbox
-        userType="associate"
-        agreementAccepted={agreementAccepted}
-        onAgreementChange={handleAgreementChange}
-      />
 
       {error && <p className="text-xs text-red-600 bg-red-50 p-2 rounded">{error}</p>}
 
