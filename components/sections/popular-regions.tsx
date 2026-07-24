@@ -67,7 +67,7 @@ export default function PopularRegions() {
             </div>
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Lands For You</h2>
-              <p className="text-sm text-gray-500 font-medium">Browse land opportunities across India by state</p>
+              <p className="text-sm text-gray-500 font-medium">Explore Verified Land for Sale Across India by State</p>
             </div>
           </div>
           <Button asChild variant="ghost" size="sm" className="hidden md:flex text-gray-500 hover:text-gray-800">
