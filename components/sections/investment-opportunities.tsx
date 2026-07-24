@@ -139,7 +139,7 @@ export default function InvestmentOpportunities() {
 
         <div className="flex justify-center pt-8">
           <Button asChild size="lg" className="bg-slate-900 hover:bg-slate-800 text-white">
-            <Link href="/investments">View All Investment Opportunities</Link>
+            <Link href="/investments">Explore All Investment Opportunities </Link>
           </Button>
         </div>
       </div>
