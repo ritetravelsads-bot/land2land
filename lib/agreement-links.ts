@@ -43,10 +43,10 @@ export function getAgreementsForUserType(userType: UserType): AgreementDocument[
 // Get agreement download URL
 export function getAgreementUrl(agreementId: string): string {
   const agreementUrls: Record<string, string> = {
-    "buyer-agreement": "/agreements/buyer-advisory-clean-title-guarantee.txt",
-    "enquiry-form-agreement": "/agreements/enquiry-form-terms.txt",
-    "associate-agreement": "/agreements/channel-partner-agreement.txt",
-    "seller-agreement": "/agreements/exclusive-land-listing-title-verification.txt",
+    "buyer-agreement": "/agreements/buyer-advisory",
+    "enquiry-form-agreement": "/agreements/enquiry-form-terms",
+    "associate-agreement": "/agreements/channel-partner",
+    "seller-agreement": "/agreements/seller-mandate",
   }
 
   return agreementUrls[agreementId] || "#"
