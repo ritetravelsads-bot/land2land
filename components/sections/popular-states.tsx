@@ -71,7 +71,8 @@ export default function PopularStates() {
               {/* Content */}
               <div className="relative h-full flex flex-col justify-between p-4 text-white">
                 <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
-                  <MapPin size={16} />
+                  <MapPin size={16} /> 
+                  {state.name}
                 </div>
                 <div>
                   <p className="text-xs text-white/80 mb-0.5">{state.label}</p>
