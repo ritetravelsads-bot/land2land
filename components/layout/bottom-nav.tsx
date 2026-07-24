@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Search, Heart, Plus, MessageSquare, User } from "lucide-react"
+import { Search, Heart, Plus, Home, User } from "lucide-react"
 
 interface CurrentUser {
   id: string
@@ -90,9 +90,9 @@ export default function BottomNav() {
             <Plus size={24} />
           </Link>
 
-          <Link href="/messages" className={`bottom-nav-item ${isActive("/messages") ? "active" : ""}`}>
-            <MessageSquare size={20} />
-            <span>Messages</span>
+          <Link href="/" className={`bottom-nav-item ${pathname === "/" ? "active" : ""}`}>
+            <Home size={20} />
+            <span>Home</span>
           </Link>
 
           <Link
