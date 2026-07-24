@@ -16,6 +16,12 @@ export const AGREEMENT_DOCUMENTS: AgreementDocument[] = [
     userTypes: ["customer", "buyer"],
   },
   {
+    id: "enquiry-form-agreement",
+    title: "Property Enquiry Form Terms & Conditions",
+    description: "I understand and agree to the terms for submitting property enquiries through this platform",
+    userTypes: ["customer", "buyer"],
+  },
+  {
     id: "associate-agreement",
     title: "Channel Partner Agreement",
     description: "Read and agree to the terms as an associate/broker working with our platform",
@@ -38,6 +44,7 @@ export function getAgreementsForUserType(userType: UserType): AgreementDocument[
 export function getAgreementUrl(agreementId: string): string {
   const agreementUrls: Record<string, string> = {
     "buyer-agreement": "/agreements/buyer-advisory-clean-title-guarantee.txt",
+    "enquiry-form-agreement": "/agreements/enquiry-form-terms.txt",
     "associate-agreement": "/agreements/channel-partner-agreement.txt",
     "seller-agreement": "/agreements/exclusive-land-listing-title-verification.txt",
   }
@@ -49,6 +56,7 @@ export function getAgreementUrl(agreementId: string): string {
 export function getAgreementName(agreementId: string): string {
   const names: Record<string, string> = {
     "buyer-agreement": "Buyer Agreement",
+    "enquiry-form-agreement": "Enquiry Form Agreement",
     "associate-agreement": "Associate Agreement",
     "seller-agreement": "Seller Agreement",
   }
