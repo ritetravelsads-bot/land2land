@@ -7,16 +7,16 @@ import { MapPin, ArrowRight } from "lucide-react"
 
 const regions = [
   {
-    name: "Punjab",
-    description: "Farmland, residential land & commercial corridors",
+    name: "Haryana",
+    description: "Explore NCR, industrial, residential & investment land in Haryana.",
     count: "1,240+",
     image: "/regions/punjab.png",
     href: "/buy?region=punjab",
     accent: "from-amber-600/80 to-amber-900/80",
   },
   {
-    name: "Haryana",
-    description: "Industrial zones, NCR-adjacent land & highway land",
+    name: "Punjab",
+    description: "Verified agricultural, residential, commercial & industrial land across Punjab.",
     count: "980+",
     image: "/regions/haryana.png",
     href: "/buy?region=haryana",
@@ -24,7 +24,7 @@ const regions = [
   },
   {
     name: "Uttar Pradesh",
-    description: "India's largest land market — all parcel types available",
+    description: "Find verified farmland, plots, commercial & industrial land across Uttar Pradesh.",
     count: "2,150+",
     image: "/regions/up.png",
     href: "/buy?region=uttar-pradesh",
@@ -32,7 +32,7 @@ const regions = [
   },
   {
     name: "Rajasthan",
-    description: "Semi-arid investment land, tourism & solar zones",
+    description: "Discover agricultural, tourism, solar & investment land in Rajasthan.",
     count: "890+",
     image: "/regions/rajasthan.png",
     href: "/buy?region=rajasthan",
@@ -40,7 +40,7 @@ const regions = [
   },
   {
     name: "Madhya Pradesh",
-    description: "Affordable agricultural & NA plots in central India",
+    description: "Browse affordable agricultural, residential & commercial land in Madhya Pradesh.",
     count: "760+",
     image: "/regions/mp.png",
     href: "/buy?region=madhya-pradesh",
@@ -48,7 +48,7 @@ const regions = [
   },
   {
     name: "Maharashtra",
-    description: "Commercial, MIDC industrial & high-value land corridors",
+    description: "Explore premium commercial, industrial, residential & investment land in Maharashtra.",
     count: "1,120+",
     image: "/regions/maharashtra.png",
     href: "/buy?region=maharashtra",
