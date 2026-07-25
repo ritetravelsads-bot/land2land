@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import GoogleSignInButton from "@/components/auth/google-sign-in-button"
 import { toast } from "sonner"
+import type { UserType } from "@/lib/agreement-links"
 
 export default function RegisterForm() {
   const router = useRouter()
@@ -22,6 +23,7 @@ export default function RegisterForm() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [googleError, setGoogleError] = useState("")
+  const [agreementAccepted, setAgreementAccepted] = useState<Record<string, boolean>>({})
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -30,6 +32,11 @@ export default function RegisterForm() {
 
   const handleUserTypeChange = (value: string) => {
     setFormData((prev) => ({ ...prev, user_type: value }))
+    setAgreementAccepted({})
+  }
+
+  const handleAgreementChange = (agreementId: string, accepted: boolean) => {
+    setAgreementAccepted((prev) => ({ ...prev, [agreementId]: accepted }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -43,6 +50,13 @@ export default function RegisterForm() {
 
     if (formData.password.length < 8) {
       setError("Password must be at least 8 characters")
+      return
+    }
+
+    // Check if all required agreements are accepted
+    const requiredAgreements = Object.values(agreementAccepted)
+    if (requiredAgreements.length > 0 && !requiredAgreements.every((accepted) => accepted)) {
+      setError("You must accept all agreements to continue")
       return
     }
 

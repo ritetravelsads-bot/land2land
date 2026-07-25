@@ -6,6 +6,7 @@ import Link from "next/link"
 import { useState } from "react"
 import { Phone, Mail, ChevronDown, Send, Instagram, Facebook, Youtube } from "lucide-react"
 import { toast } from "sonner"
+import { getCorrectHref } from "@/lib/link-validator"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -143,13 +144,16 @@ export default function Footer() {
         <ul
           className={`space-y-1.5 overflow-hidden transition-all duration-300 md:block ${isExpanded ? "max-h-96" : "max-h-0 md:max-h-96"}`}
         >
-          {items.map((item, idx) => (
-            <li key={idx} className="pt-2 md:pt-0">
-              <Link href={item.href} className="text-xs text-gray-600 hover:text-[#125007] transition-colors">
-                {item.name}
-              </Link>
-            </li>
-          ))}
+          {items.map((item, idx) => {
+            const correctHref = getCorrectHref(item.href)
+            return (
+              <li key={idx} className="pt-2 md:pt-0">
+                <Link href={correctHref} className="text-xs text-gray-600 hover:text-[#125007] transition-colors">
+                  {item.name}
+                </Link>
+              </li>
+            )
+          })}
         </ul>
       </div>
     )
@@ -306,13 +310,13 @@ export default function Footer() {
               © {currentYear} land2land.com All rights reserved.
             </p>
             <div className="flex items-center gap-6">
-              <Link href="/privacy-policy" className="text-xs text-gray-600 hover:text-[#125007] transition-colors">
+              <Link href={getCorrectHref("/privacy-policy")} className="text-xs text-gray-600 hover:text-[#125007] transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="/terms-and-conditions" className="text-xs text-gray-600 hover:text-[#125007] transition-colors">
+              <Link href={getCorrectHref("/terms-and-conditions")} className="text-xs text-gray-600 hover:text-[#125007] transition-colors">
                 Terms & Conditions
               </Link>
-              <Link href="/site-map" className="text-xs text-gray-600 hover:text-[#125007] transition-colors">
+              <Link href={getCorrectHref("/site-map")} className="text-xs text-gray-600 hover:text-[#125007] transition-colors">
                 Sitemap
               </Link>
             </div>
