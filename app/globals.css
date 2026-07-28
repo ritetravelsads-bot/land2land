@@ -710,24 +710,35 @@ header.header-scroll-aware.header-scrolled {
 
   /* The icon sits inside a pill that fills in when active — a common native pattern */
   .bottom-nav-item svg {
-    @apply relative z-10 transition-transform duration-200;
+    @apply relative z-10 transition-all duration-200;
   }
 
+  /* Pill indicator behind the icon */
   .bottom-nav-item::before {
-    @apply absolute top-1 left-1/2 h-8 w-14 -translate-x-1/2 rounded-full bg-primary/10 opacity-0 scale-90 transition-all duration-200;
+    @apply absolute top-0.5 left-1/2 h-8 w-14 -translate-x-1/2 rounded-full opacity-0 scale-75 transition-all duration-250;
     content: "";
+    background-color: color-mix(in oklab, var(--primary) 15%, transparent);
   }
 
   .bottom-nav-item.active {
     @apply text-primary font-semibold;
   }
 
+  /* Show the pill fully on active */
   .bottom-nav-item.active::before {
     @apply opacity-100 scale-100;
   }
 
+  /* Active icon: lift up slightly and fill with primary color */
   .bottom-nav-item.active svg {
     @apply -translate-y-0.5;
+    filter: drop-shadow(0 0 3px color-mix(in oklab, var(--primary) 60%, transparent));
+  }
+
+  /* Active label: bolder and slightly larger */
+  .bottom-nav-item.active span {
+    @apply text-primary;
+    font-weight: 700;
   }
 
   /* Pressed feedback for a native tactile feel */
@@ -825,14 +836,22 @@ header.header-scroll-aware.header-scrolled {
 */
 .median-app header,
 .pwa-standalone header {
-  padding-top: env(safe-area-inset-top, 0px) !important;
+  /* Let the header grow to include the status-bar safe-area — do NOT add
+     padding-top on the header itself because it has a fixed height:64px set
+     inline. Instead override the height to calc(64px + inset) so the nav
+     content never gets squished underneath the status bar text. */
+  height: calc(64px + env(safe-area-inset-top, 0px)) !important;
+  padding-top: 0 !important;
   background-color: white;
 }
 
 .median-app header nav,
 .pwa-standalone header nav {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  /* Push the row of logo+icons down by the status-bar height so they sit
+     in the visible 64px band below the carrier/time text. */
+  padding-top: env(safe-area-inset-top, 0px);
+  height: 100%;
+  align-items: center;
 }
 
 /* ---- Hide footer in the app wrapper — bottom nav replaces it ---- */
