@@ -4,6 +4,8 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import DashboardHeader from "./dashboard-header"
 import UnifiedSidebar from "./unified-sidebar"
+import DashboardBottomNav from "./dashboard-bottom-nav"
+import PageTransition from "@/components/layout/page-transition"
 import { Toaster } from "@/components/ui/toaster"
 import { Toaster as SonnerToaster } from "@/components/ui/sonner"
 
@@ -52,8 +54,13 @@ export default function DashboardLayoutWrapper({
 
       {/* Main Content Area */}
       <main className={`min-h-[calc(100vh-3.5rem)] transition-all duration-300 ${sidebarMinimized ? "md:ml-16" : "md:ml-64"}`}>
-        <div className="p-4 md:p-6 lg:p-8">{children}</div>
+        <PageTransition>
+          <div className="p-4 md:p-6 lg:p-8">{children}</div>
+        </PageTransition>
       </main>
+
+      {/* Mobile bottom navigation — replaces inaccessible desktop sidebar on phones */}
+      <DashboardBottomNav userRole={userRole} />
 
       {/* Toast Notifications */}
       <Toaster />

@@ -82,20 +82,164 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Reduce rendering complexity on mobile */
+/* ============================================================
+   GLOBAL MOBILE / TOUCH IMPROVEMENTS
+   Applied to ALL mobile browsers — not just .median-app wrapper
+   ============================================================ */
+
+/* 1. Eliminate the 300ms tap delay and grey flash on all touch devices */
+@media (pointer: coarse) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea,
+  label {
+    touch-action: manipulation;
+  }
+
+  html,
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+  }
+}
+
+/* 2. Reduce rendering complexity on mobile */
 @media (max-width: 767px) {
   /* Simplify animations on mobile for better performance */
   .hover-lift,
   .interactive-element {
     transition-duration: 150ms;
   }
-  
+
   /* Disable complex hover effects on touch devices */
   @media (hover: none) {
     .hover-lift:hover,
     .hover\:scale-105:hover {
       transform: none;
     }
+  }
+}
+
+/* ============================================================
+   PAGE SLIDE TRANSITION KEYFRAMES
+   Used by PageTransition component — mobile slide animations
+   ============================================================ */
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Page transition wrapper — GPU-composited layer */
+.page-transition-wrapper {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  min-height: 100%;
+}
+
+/* Forward navigation: slide in from right */
+.page-slide-forward {
+  animation: slide-in-from-right 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Back navigation (popstate / swipe-back): slide in from left */
+.page-slide-back {
+  animation: slide-in-from-left 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Only animate on mobile — desktop navigation has no transition */
+@media (min-width: 768px) {
+  .page-slide-forward,
+  .page-slide-back {
+    animation: none;
+  }
+}
+
+/* ============================================================
+   AUTO-HIDE HEADER
+   .header-hidden toggled by MegaMenuHeader on scroll-down
+   ============================================================ */
+header.header-scroll-aware {
+  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 200ms ease;
+}
+
+header.header-scroll-aware.header-hidden {
+  transform: translateY(-100%);
+}
+
+header.header-scroll-aware.header-scrolled {
+  box-shadow: 0 2px 16px -4px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================
+   SCROLL SNAP — horizontal card carousels feel native
+   Add .scroll-snap-x to overflow-x-auto containers
+   Add .scroll-snap-item to each child card
+   ============================================================ */
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-left: 1rem;
+}
+
+.scroll-snap-item {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   ENHANCED PRESS STATES — spring-physics bounce for ALL mobile
+   Extends the existing .median-app scope to all touch devices
+   ============================================================ */
+@media (pointer: coarse) {
+  /* Gentle scale on all tappable elements */
+  a:active,
+  button:active,
+  [role="button"]:active {
+    transform: scale(0.97);
+    transition: transform 80ms ease;
+  }
+
+  /* Bottom nav items get a stronger tactile bounce */
+  .bottom-nav-item:active {
+    transform: scale(0.88);
+    transition: transform 80ms ease;
+  }
+
+  /* Release spring — slight overshoot using spring cubic-bezier */
+  .bottom-nav-item {
+    transition: color 150ms ease, transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* FAB press with centering preserved */
+  .fab:active {
+    transform: translateX(-50%) scale(0.88) !important;
+    transition: transform 80ms ease !important;
+    box-shadow: 0 2px 8px -2px color-mix(in oklab, var(--primary) 40%, transparent) !important;
   }
 }
 
@@ -560,7 +704,8 @@ html {
   }
 
   .bottom-nav-item {
-    @apply flex-1 flex flex-col items-center justify-center gap-0.5 px-1 py-1.5 text-[11px] font-medium text-muted-foreground transition-colors relative;
+    @apply flex-1 flex flex-col items-center justify-center gap-0.5 px-1 py-1.5 text-[11px] font-medium text-muted-foreground relative;
+    transition: color 150ms ease, transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   /* The icon sits inside a pill that fills in when active — a common native pattern */

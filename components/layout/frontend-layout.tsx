@@ -8,6 +8,7 @@ import NavigationProgress from "./navigation-progress"
 import RoutePrefetcher from "./route-prefetcher"
 import MedianBridge from "@/components/mobile/median-bridge"
 import PullToRefresh from "@/components/mobile/pull-to-refresh"
+import PageTransition from "./page-transition"
 import { Toaster } from "@/components/ui/sonner"
 
 // Lazy load non-critical below-fold components
@@ -45,7 +46,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
         <NavigationProgress />
       </Suspense>
       <RoutePrefetcher />
-      {children}
+      <PageTransition>{children}</PageTransition>
       <Suspense fallback={<div className="min-h-[600px] bg-gradient-to-b from-gray-50 to-white" />}>
         <Footer />
       </Suspense>
