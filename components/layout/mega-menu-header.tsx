@@ -28,6 +28,48 @@ export default function MegaMenuHeader() {
   const [mounted, setMounted] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null)
+  const [headerHidden, setHeaderHidden] = useState(false)
+  const [headerScrolled, setHeaderScrolled] = useState(false)
+
+  // Auto-hide header on scroll down, reveal on scroll up
+  useEffect(() => {
+    let lastScrollY = window.scrollY
+    let ticking = false
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY
+          const delta = currentScrollY - lastScrollY
+
+          setHeaderScrolled(currentScrollY > 10)
+
+          // Only hide after scrolling down 50px to avoid flickering on small swipes
+          if (currentScrollY > 10) {
+            if (delta > 6) {
+              // Scrolling down — hide header to reclaim screen space
+              setHeaderHidden(true)
+              // Always close mobile menu when header hides
+              setMobileMenuOpen(false)
+            } else if (delta < -4) {
+              // Scrolling up — reveal header
+              setHeaderHidden(false)
+            }
+          } else {
+            // At the very top — always show
+            setHeaderHidden(false)
+          }
+
+          lastScrollY = currentScrollY
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   useEffect(() => {
     setMounted(true)
@@ -83,8 +125,8 @@ export default function MegaMenuHeader() {
   return (
     <>
       {/* 1. FIXED HEADER: Removed from document flow to prevent Flexbox squishing */}
-      <header 
-        className="fixed top-0 left-0 right-0 z-50 w-full bg-white border-b border-gray-200 shadow-sm transition-none flex-none"
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 w-full bg-white border-b border-gray-200 flex-none header-scroll-aware${headerHidden ? " header-hidden" : ""}${headerScrolled ? " header-scrolled" : ""}`}
         style={{ height: "64px" }}
       >
         <nav className="flex items-center justify-between px-4 md:px-6 w-full h-full overflow-hidden">
