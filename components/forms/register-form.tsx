@@ -191,6 +191,7 @@ export default function RegisterForm() {
         />
       </div>
 
+
       {error && <p className="text-xs text-red-600 bg-red-50 p-2 rounded">{error}</p>}
       {googleError && <p className="text-xs text-red-600 bg-red-50 p-2 rounded">{googleError}</p>}
 

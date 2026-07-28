@@ -29,7 +29,6 @@ export default function MegaMenuHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null)
 
-
   useEffect(() => {
     setMounted(true)
 
@@ -61,8 +60,6 @@ export default function MegaMenuHeader() {
     }
   }, [])
 
-
-
   const handleLogout = async () => {
     await fetch("/api/auth/logout", { method: "POST", credentials: "include" })
     setCurrentUser(null)
@@ -85,20 +82,22 @@ export default function MegaMenuHeader() {
 
   return (
     <>
-      <header
-        className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white shadow-sm"
+      {/* 1. FIXED HEADER: Removed from document flow to prevent Flexbox squishing */}
+      <header 
+        className="fixed top-0 left-0 right-0 z-50 w-full bg-white border-b border-gray-200 shadow-sm transition-none flex-none"
+        style={{ height: "64px" }}
       >
-        <nav className="flex items-center justify-between px-4 py-3 md:px-6">
-          <Link href="/" className="flex items-center gap-2 shrink-0">
+        <nav className="flex items-center justify-between px-4 md:px-6 w-full h-full overflow-hidden">
+          {/* Logo Container - Hardlocked with inline minWidth/minHeight to prevent WebView squishing */}
+          <Link href="/" className="flex items-center shrink-0">
             <Image
               src="/images/logo.png"
               alt="Land2Land Logo"
               width={200}
-              height={50}
+              height={40}
               priority
-              fetchPriority="high"
-              className="h-auto"
-              style={{ width: "200px", height: "auto" }}
+              className="shrink-0 object-contain object-left w-[150px] md:w-[200px]"
+              style={{ minWidth: "150px", minHeight: "40px" }}
             />
           </Link>
 
@@ -162,12 +161,12 @@ export default function MegaMenuHeader() {
           </div>
 
           {/* Desktop Search */}
-          <div className="hidden lg:block relative">
+          <div className="hidden lg:block relative flex-1 max-w-md mx-4">
             <HeaderSearch />
           </div>
 
-          {/* Desktop Auth */}
-          <div className="hidden lg:flex items-center gap-2">
+          {/* Desktop Auth - Locked minimum width so it doesn't shift other elements when it loads */}
+          <div className="hidden lg:flex items-center gap-2 shrink-0 justify-end" style={{ minWidth: "150px" }}>
             {mounted ? (
               currentUser ? (
                 <DropdownMenu>
@@ -175,7 +174,7 @@ export default function MegaMenuHeader() {
                     <Button
                       variant="outline"
                       size="sm"
-                      className="text-sm h-9 border-[#125007] text-[#125007] bg-transparent"
+                      className="text-sm h-9 border-[#125007] text-[#125007] bg-transparent flex-none"
                     >
                       <User size={16} className="mr-2" />
                       {currentUser.username}
@@ -206,11 +205,11 @@ export default function MegaMenuHeader() {
                     asChild
                     variant="outline"
                     size="sm"
-                    className="text-sm h-9 border-[#125007] text-[#125007] bg-transparent hover:bg-[#125007]/5"
+                    className="text-sm h-9 border-[#125007] text-[#125007] bg-transparent hover:bg-[#125007]/5 flex-none"
                   >
                     <Link href="/auth/login">List Land</Link>
                   </Button>
-                  <Button asChild size="sm" className="text-sm h-9 bg-[#125007] hover:bg-[#1d3610]">
+                  <Button asChild size="sm" className="text-sm h-9 bg-[#125007] hover:bg-[#1d3610] flex-none">
                     <Link href="/auth/register">Sign Up</Link>
                   </Button>
                 </>
@@ -218,40 +217,50 @@ export default function MegaMenuHeader() {
             ) : null}
           </div>
 
-          {/* Mobile App-Bar Actions */}
-          <div className="lg:hidden flex items-center gap-1">
+          {/* Mobile App-Bar Actions - Hardlocked container width and SVG constraints */}
+          <div 
+            className="lg:hidden flex items-center gap-1 shrink-0 justify-end" 
+            style={{ minWidth: "120px" }}
+          >
             <Link
               href="/properties"
-              className="app-bar-action p-2 text-gray-700 hover:text-[#125007] transition-colors rounded-full"
+              className="app-bar-action p-2 text-gray-700 hover:text-[#125007] transition-colors rounded-full shrink-0"
               aria-label="Search properties"
             >
-              <Search size={22} />
+              <Search size={22} className="shrink-0" style={{ minWidth: "22px", minHeight: "22px" }} />
             </Link>
 
             <Link
               href={currentUser ? getDashboardLink() : "/auth/login"}
-              className="app-bar-action p-2 text-gray-700 hover:text-[#125007] transition-colors rounded-full"
+              className="app-bar-action p-2 text-gray-700 hover:text-[#125007] transition-colors rounded-full shrink-0"
               aria-label={currentUser ? "My account" : "Sign in"}
             >
-              <User size={22} />
+              <User size={22} className="shrink-0" style={{ minWidth: "22px", minHeight: "22px" }} />
             </Link>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="app-bar-action p-2 text-gray-700 hover:text-[#125007] transition-colors rounded-full"
+              className="app-bar-action p-2 text-gray-700 hover:text-[#125007] transition-colors rounded-full shrink-0"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+              {mobileMenuOpen ? (
+                <X size={22} className="shrink-0" style={{ minWidth: "22px", minHeight: "22px" }} />
+              ) : (
+                <Menu size={22} className="shrink-0" style={{ minWidth: "22px", minHeight: "22px" }} />
+              )}
             </button>
           </div>
         </nav>
       </header>
 
+      {/* 2. INVISIBLE SPACER: Prevents the page content from hiding under the fixed header */}
+      <div className="w-full flex-none block" style={{ height: "64px" }} aria-hidden="true" />
+
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <div
           className="lg:hidden border-t border-gray-200 bg-white fixed left-0 right-0 bottom-0 z-40 overflow-y-auto"
-          style={{ top: "calc(4rem + env(safe-area-inset-top, 0px))" }}
+          style={{ top: "64px" }} // Perfectly aligns just beneath the 64px fixed header
         >
           <div className="flex flex-col gap-1 px-4 py-3">
             {/* Mobile Search Bar */}

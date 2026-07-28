@@ -146,26 +146,20 @@ export default function FindAssociatePage() {
                           Member since {joined}
                         </div>
                       )}
-                      {associate.phone && (
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                          <Phone className="w-4 h-4" />
-                          {associate.phone}
-                        </div>
-                      )}
                     </div>
 
                     <div className="mt-auto space-y-3">
                       {associate.phone ? (
                         <div className="grid grid-cols-2 gap-3">
                           <a
-                            href={`tel:${associate.phone}`}
+                            href={`tel:9205190063`}
                             className="flex items-center justify-center gap-2 bg-[#125007] hover:bg-[#1d3610] text-white px-4 py-2.5 rounded-lg font-semibold transition-colors"
                           >
                             <Phone className="w-4 h-4" />
                             Call
                           </a>
                           <a
-                            href={`https://wa.me/${digitsOnly(associate.phone).length === 10 ? "91" + digitsOnly(associate.phone) : digitsOnly(associate.phone)}`}
+                            href="https://wa.me/919205190063"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center justify-center gap-2 border-2 border-[#125007] text-[#125007] hover:bg-green-50 px-4 py-2.5 rounded-lg font-semibold transition-colors"

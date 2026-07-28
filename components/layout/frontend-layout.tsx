@@ -38,13 +38,13 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
   
   return (
     <>
+      <MegaMenuHeader />
       <MedianBridge />
       <PullToRefresh />
       <Suspense fallback={null}>
         <NavigationProgress />
       </Suspense>
       <RoutePrefetcher />
-      <MegaMenuHeader />
       {children}
       <Suspense fallback={<div className="min-h-[600px] bg-gradient-to-b from-gray-50 to-white" />}>
         <Footer />
