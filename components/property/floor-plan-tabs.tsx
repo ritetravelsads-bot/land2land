@@ -154,14 +154,22 @@ export function FloorPlanTabs({ floorPlans, configurations, units }: FloorPlanTa
 
   // Lightbox component rendered via portal - Mobile optimized
   const lightboxContent = showLightbox && mounted ? (
-    <div 
-      className="fixed inset-0 w-screen h-screen bg-black/98 flex flex-col"
-      style={{ zIndex: 99999 }}
+    <div
+      className="fixed inset-0 bg-black/98 flex flex-col"
+      style={{
+        zIndex: 99999,
+        // Use 100dvh so the overlay fills exactly the visible viewport on
+        // mobile browsers where the URL bar shrinks/expands, and also
+        // respects safe-area insets on iOS/Android app wrappers.
+        width: '100dvw',
+        height: '100dvh',
+      }}
       onClick={closeLightbox}
     >
-      {/* Top Bar - Responsive */}
-      <div 
+      {/* Top Bar - Responsive, padded for status-bar / notch in app wrappers */}
+      <div
         className="flex items-center justify-between px-3 py-2 md:px-5 md:py-3 bg-black/80 border-b border-white/10 shrink-0"
+        style={{ paddingTop: 'max(0.5rem, env(safe-area-inset-top, 0.5rem))' }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Left: Image info - Hidden on very small screens */}
@@ -237,17 +245,24 @@ export function FloorPlanTabs({ floorPlans, configurations, units }: FloorPlanTa
           </button>
         )}
 
-        {/* Image Container with zoom */}
-        <div 
-          className="relative transition-transform duration-200 ease-out w-full h-full max-w-[95vw] md:max-w-[80vw] max-h-[70vh] md:max-h-[75vh]"
-          style={{ transform: `scale(${zoomLevel})` }}
+        {/* Image Container with zoom — uses flex-based sizing so it fills the
+            available space between the top bar and bottom bar on every device.
+            We avoid vh/vw percentages that break when the browser chrome is visible. */}
+        <div
+          className="relative transition-transform duration-200 ease-out"
+          style={{
+            transform: `scale(${zoomLevel})`,
+            // Fill ALL available flex space; the parent is flex-1 + overflow-auto
+            width: '100%',
+            height: '100%',
+          }}
         >
           <Image
             src={plans[lightboxIndex].image}
             alt={`Floor Plan - ${plans[lightboxIndex].label}`}
             fill
             className="object-contain"
-            sizes="(max-width: 768px) 95vw, 80vw"
+            sizes="(max-width: 768px) 100vw, 85vw"
             priority
           />
         </div>
@@ -264,9 +279,10 @@ export function FloorPlanTabs({ floorPlans, configurations, units }: FloorPlanTa
         )}
       </div>
 
-      {/* Bottom Navigation Bar - Mobile Friendly */}
-      <div 
+      {/* Bottom Navigation Bar - includes home-indicator safe-area on iOS */}
+      <div
         className="bg-black/80 border-t border-white/10 px-3 py-2 md:px-5 md:py-3 shrink-0"
+        style={{ paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom, 0.5rem))' }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Mobile Navigation Arrows + Thumbnails */}

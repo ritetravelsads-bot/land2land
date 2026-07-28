@@ -82,15 +82,17 @@ export function MasterPlanSection({ masterPlan, propertyName }: MasterPlanSectio
 
   // Lightbox component rendered via portal
   const lightboxContent = showLightbox && mounted ? (
-    <div 
+    <div
       style={{
         position: 'fixed',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        width: '100vw',
-        height: '100vh',
+        // 100dvh fills the true visible viewport — avoids the browser chrome
+        // and respects safe-area insets on iOS/Android app wrappers.
+        width: '100dvw',
+        height: '100dvh',
         zIndex: 99999,
         backgroundColor: 'rgba(0, 0, 0, 0.97)',
         display: 'flex',
@@ -98,15 +100,16 @@ export function MasterPlanSection({ masterPlan, propertyName }: MasterPlanSectio
       }}
       onClick={closeLightbox}
     >
-      {/* Top Controls Bar */}
-      <div 
+      {/* Top Controls Bar — padded for iOS/Android status bar */}
+      <div
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '16px 20px',
+          padding: `max(16px, env(safe-area-inset-top, 16px)) 20px 16px`,
           backgroundColor: 'rgba(0, 0, 0, 0.8)',
           borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
+          flexShrink: 0,
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -233,15 +236,17 @@ export function MasterPlanSection({ masterPlan, propertyName }: MasterPlanSectio
         }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Image Container with zoom */}
-        <div 
-          style={{ 
+        {/* Image Container with zoom — fills all available flex space between
+            the top bar and bottom bar so the image is always fully visible
+            without scrolling on any screen size or app wrapper. */}
+        <div
+          style={{
             position: 'relative',
             transition: 'transform 0.2s ease-out',
             transform: `scale(${zoomLevel})`,
-            width: '75vw',
-            height: '70vh',
-            maxWidth: '1100px',
+            // Fill the full flex-1 container — let the parent constrain the size
+            width: '100%',
+            height: '100%',
           }}
         >
           <Image
@@ -249,21 +254,22 @@ export function MasterPlanSection({ masterPlan, propertyName }: MasterPlanSectio
             alt={`Master Plan - ${propertyName || "Project"}`}
             fill
             style={{ objectFit: 'contain' }}
-            sizes="85vw"
+            sizes="(max-width: 768px) 100vw, 85vw"
             priority
           />
         </div>
       </div>
 
-      {/* Bottom Info Bar */}
-      <div 
+      {/* Bottom Info Bar — padded for iOS home indicator */}
+      <div
         style={{
           backgroundColor: 'rgba(0, 0, 0, 0.8)',
           borderTop: '1px solid rgba(255, 255, 255, 0.15)',
-          padding: '16px 20px',
+          padding: `16px 20px max(16px, env(safe-area-inset-bottom, 16px))`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          flexShrink: 0,
         }}
         onClick={(e) => e.stopPropagation()}
       >
