@@ -153,22 +153,29 @@ html {
   }
 }
 
-/* Page transition wrapper — GPU-composited layer */
+/* Page transition wrapper.
+   IMPORTANT: do NOT set a persistent transform / will-change here. A transform
+   on this always-present ancestor turns it into the containing block for every
+   position: fixed descendant, which traps modals / lightboxes / dropdowns
+   inside the wrapper instead of the viewport. The transform is only applied
+   *during* the slide animation (via the keyframes below) and removed on
+   completion, so idle fixed overlays anchor to the viewport as expected. */
 .page-transition-wrapper {
-  will-change: transform, opacity;
-  transform: translateZ(0);
-  backface-visibility: hidden;
   min-height: 100%;
 }
 
-/* Forward navigation: slide in from right */
+/* Forward navigation: slide in from right.
+   animation-fill-mode is 'none' so no residual transform remains after the
+   animation finishes — this is what lets fixed children work once it settles. */
 .page-slide-forward {
-  animation: slide-in-from-right 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: slide-in-from-right 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
 }
 
 /* Back navigation (popstate / swipe-back): slide in from left */
 .page-slide-back {
-  animation: slide-in-from-left 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: slide-in-from-left 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
 }
 
 /* Only animate on mobile — desktop navigation has no transition */
