@@ -18,6 +18,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { cn, formatPriceToIndian } from '@/lib/utils'
 import LocationHero from '@/components/property/location-hero'
 import LuxuryPropertyCard from '@/components/property/luxury-property-card'
+import { PropertyWhatsAppLink } from '@/components/ui/whatsapp-button'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import useSWR from 'swr'
@@ -413,11 +414,19 @@ export default function SlugPage() {
                           {property.area_sqft && <span>{Math.round(property.area_sqft)} Sqft</span>}
                         </div>
                       </div>
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between gap-2">
                         <p className="text-2xl font-bold text-[var(--luxury-navy)]">{property.price_range || formatPriceToIndian(property.lowest_price)}</p>
-                        <Link href={`/properties/${property.slug || property._id}`} className="luxury-button">
-                          View Details
-                        </Link>
+                        <div className="flex items-center gap-2">
+                          <PropertyWhatsAppLink
+                            propertyName={property.property_name}
+                            price={property.price_range || (property.lowest_price ? formatPriceToIndian(property.lowest_price) : undefined)}
+                            variant="pill"
+                            withLabel
+                          />
+                          <Link href={`/properties/${property.slug || property._id}`} className="luxury-button">
+                            View Details
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>

@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MapPin, Bed, Bath, Maximize2, CheckCircle2, Zap } from 'lucide-react'
 import { formatPriceToIndian, getPropertyUrl } from '@/lib/utils'
+import { PropertyWhatsAppLink } from '@/components/ui/whatsapp-button'
 
 
 
@@ -126,6 +127,15 @@ export default function LuxuryPropertyCard({
               RERA Registered
             </div>
           )}
+
+          {/* WhatsApp quick-enquiry — visible on hover */}
+          <div className="absolute bottom-3 right-3 transition-all duration-200">
+            <PropertyWhatsAppLink
+              propertyName={property_name}
+              price={priceDisplay}
+              propertyUrl={typeof window !== 'undefined' ? `${window.location.origin}${propertyUrl}` : undefined}
+            />
+          </div>
         </div>
 
         {/* Content Container */}
