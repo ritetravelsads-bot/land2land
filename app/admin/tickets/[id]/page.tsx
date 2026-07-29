@@ -55,7 +55,8 @@ export default function AdminTicketDetailPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          message: replyMessage,
+          // API expects `reply_message`, not `message`
+          reply_message: replyMessage,
           status: newStatus,
         }),
       })
@@ -242,43 +243,44 @@ export default function AdminTicketDetailPage() {
             </div>
           </div>
 
-          {/* Replies */}
+          {/* Replies — stored with `sender_type` ("admin" | "associate") and `sender_name` */}
           {ticket.replies &&
-            ticket.replies.map((reply: any, index: number) => (
-              <div key={index} className={`p-4 ${reply.from === "admin" ? "bg-primary/5" : ""}`}>
-                <div className="flex items-start gap-3">
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      reply.from === "admin"
-                        ? "bg-primary/10"
-                        : "bg-blue-500/10"
-                    }`}
-                  >
-                    {reply.from === "admin" ? (
-                      <Shield className="h-4 w-4 text-primary" />
-                    ) : (
-                      <User className="h-4 w-4 text-blue-500" />
-                    )}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="font-medium text-sm text-foreground">
-                        {reply.from === "admin" ? "Admin" : ticket.customer_name || "Associate"}
-                      </span>
-                      {reply.from === "admin" && (
-                        <span className="px-1.5 py-0.5 bg-primary/10 text-primary text-xs rounded">
-                          Staff
-                        </span>
+            ticket.replies.map((reply: any, index: number) => {
+              const isAdmin = reply.sender_type === "admin"
+              return (
+                <div key={reply.id || index} className={`p-4 ${isAdmin ? "bg-primary/5" : ""}`}>
+                  <div className="flex items-start gap-3">
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                        isAdmin ? "bg-primary/10" : "bg-blue-500/10"
+                      }`}
+                    >
+                      {isAdmin ? (
+                        <Shield className="h-4 w-4 text-primary" />
+                      ) : (
+                        <User className="h-4 w-4 text-blue-500" />
                       )}
-                      <span className="text-xs text-muted-foreground">
-                        {new Date(reply.created_at).toLocaleString()}
-                      </span>
                     </div>
-                    <p className="text-sm text-muted-foreground whitespace-pre-wrap">{reply.message}</p>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="font-medium text-sm text-foreground">
+                          {reply.sender_name || (isAdmin ? "Admin" : ticket.customer_name || "Associate")}
+                        </span>
+                        {isAdmin && (
+                          <span className="px-1.5 py-0.5 bg-primary/10 text-primary text-xs rounded">
+                            Staff
+                          </span>
+                        )}
+                        <span className="text-xs text-muted-foreground">
+                          {new Date(reply.created_at).toLocaleString()}
+                        </span>
+                      </div>
+                      <p className="text-sm text-muted-foreground whitespace-pre-wrap">{reply.message}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
         </div>
       </div>
 
