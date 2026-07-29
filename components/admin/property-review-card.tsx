@@ -14,6 +14,9 @@ import {
   CheckCircle2,
   XCircle,
   ExternalLink,
+  User,
+  Mail,
+  Phone,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
@@ -109,6 +112,36 @@ export default function PropertyReviewCard({
               {statusBadge.label}
             </span>
           </div>
+
+          {/* Submitted by — associate name, email, phone */}
+          {(property.associate_name || property.associate_email) && (
+            <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 rounded-md border border-border bg-muted/40 px-2.5 py-1.5 text-xs">
+              {property.associate_name && (
+                <span className="flex items-center gap-1 font-medium text-foreground">
+                  <User className="h-3.5 w-3.5 text-muted-foreground" />
+                  {property.associate_name}
+                </span>
+              )}
+              {property.associate_email && (
+                <a
+                  href={`mailto:${property.associate_email}`}
+                  className="flex items-center gap-1 text-muted-foreground hover:text-primary"
+                >
+                  <Mail className="h-3.5 w-3.5" />
+                  {property.associate_email}
+                </a>
+              )}
+              {property.associate_phone && (
+                <a
+                  href={`tel:${property.associate_phone}`}
+                  className="flex items-center gap-1 text-muted-foreground hover:text-primary"
+                >
+                  <Phone className="h-3.5 w-3.5" />
+                  {property.associate_phone}
+                </a>
+              )}
+            </div>
+          )}
 
           <div className="mt-2 flex flex-wrap gap-2 text-xs">
             <span className="rounded bg-muted px-2 py-0.5 font-medium">{formatPriceToIndian(property.lowest_price)}</span>
