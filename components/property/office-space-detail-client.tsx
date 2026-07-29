@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { createPortal } from "react-dom"
 import {
   MapPin, Building2, Users, Clock, Phone, Mail, 
   ChevronLeft, ChevronRight, Share2, Heart, 
@@ -90,6 +91,19 @@ export function OfficeSpaceDetailClient({ property, developer }: OfficeSpaceDeta
   const [activeImage, setActiveImage] = useState(0)
   const [showFullscreen, setShowFullscreen] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => setMounted(true), [])
+
+  useEffect(() => {
+    if (showFullscreen) {
+      const prev = document.body.style.overflow
+      document.body.style.overflow = "hidden"
+      return () => {
+        document.body.style.overflow = prev
+      }
+    }
+  }, [showFullscreen])
   const { addProperty: addToRecentlyViewed } = useRecentlyViewed()
 
   const officeSpace = property.office_space || {}
@@ -631,35 +645,67 @@ export function OfficeSpaceDetailClient({ property, developer }: OfficeSpaceDeta
       {/* FAQs */}
       <PropertyFaq faqs={property.faqs || []} />
 
-      {/* Image Gallery Modal */}
-      {showFullscreen && images.length > 0 && (
-        <div className="fixed inset-0 z-50 bg-black flex items-center justify-center">
-          <button
+      {/* Image Gallery Modal — portaled to body so it escapes the
+          PageTransition transformed wrapper and fills the true viewport. */}
+      {mounted &&
+        showFullscreen &&
+        images.length > 0 &&
+        createPortal(
+          <div
+            className="fixed inset-0 bg-black flex items-center justify-center"
+            style={{ zIndex: 99999, width: "100dvw", height: "100dvh" }}
             onClick={() => setShowFullscreen(false)}
-            className="absolute top-4 right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-10"
           >
-            <X className="h-6 w-6" />
-          </button>
-          {images.length > 1 && (
-            <>
-              <button onClick={prevImage} className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white">
-                <ChevronLeft className="h-6 w-6" />
-              </button>
-              <button onClick={nextImage} className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white">
-                <ChevronRight className="h-6 w-6" />
-              </button>
-            </>
-          )}
-          <img
-            src={images[activeImage]}
-            alt={property.property_name}
-            className="max-h-[90vh] max-w-[90vw] object-contain"
-          />
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-sm bg-black/50 px-4 py-2 rounded-full">
-            {activeImage + 1} / {images.length}
-          </div>
-        </div>
-      )}
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+                setShowFullscreen(false)
+              }}
+              className="absolute right-4 p-2 bg-white/10 hover:bg-white/20 rounded-full text-white z-10"
+              style={{ top: "max(1rem, env(safe-area-inset-top, 1rem))" }}
+              aria-label="Close gallery"
+            >
+              <X className="h-6 w-6" />
+            </button>
+            {images.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    prevImage()
+                  }}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white z-10"
+                  aria-label="Previous photo"
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    nextImage()
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white z-10"
+                  aria-label="Next photo"
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </button>
+              </>
+            )}
+            <img
+              src={images[activeImage] || "/placeholder.svg"}
+              alt={property.property_name}
+              className="max-h-[85dvh] max-w-[92vw] object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <div
+              className="absolute left-1/2 -translate-x-1/2 text-white text-sm bg-black/50 px-4 py-2 rounded-full"
+              style={{ bottom: "max(1rem, env(safe-area-inset-bottom, 1rem))" }}
+            >
+              {activeImage + 1} / {images.length}
+            </div>
+          </div>,
+          document.body,
+        )}
     </main>
   )
 }
