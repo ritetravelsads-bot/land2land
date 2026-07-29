@@ -19,7 +19,8 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
       id: new ObjectId().toString(),
       message: body.reply_message,
       sender_type: "admin",
-      sender_name: user.username || "Admin",
+      // Always use capital "Admin" for consistency, regardless of username
+      sender_name: "Admin",
       created_at: new Date(),
     }
 
@@ -29,7 +30,6 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
         $set: {
           status: body.status,
           updated_at: new Date(),
-          admin_reply: body.reply_message, // Keep for backward compatibility
           replied_at: new Date(),
         },
         $push: { replies: reply } as any,

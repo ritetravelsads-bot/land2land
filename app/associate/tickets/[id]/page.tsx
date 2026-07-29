@@ -108,25 +108,11 @@ export default function AssociateTicketDetailPage() {
     }
   }
 
-  // Combine old admin_reply with new replies array
+  // Return properly-structured replies array (no need for legacy admin_reply field anymore)
   const getAllReplies = (): Reply[] => {
-    const replies: Reply[] = []
+    if (!ticket?.replies) return []
     
-    if (ticket?.admin_reply && ticket.replied_at) {
-      replies.push({
-        id: "legacy-admin-reply",
-        message: ticket.admin_reply,
-        sender_type: "admin",
-        sender_name: "Admin",
-        created_at: ticket.replied_at,
-      })
-    }
-    
-    if (ticket?.replies) {
-      replies.push(...ticket.replies)
-    }
-    
-    return replies.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
+    return ticket.replies.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
   }
 
   return (
