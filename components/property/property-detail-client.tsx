@@ -716,7 +716,7 @@ export function PropertyDetailClient({
             onClick={() => setShowDocsEnquiry(false)}
           >
             <div
-              className="relative w-full max-w-md my-auto"
+              className="relative w-full max-w-md my-auto space-y-3"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -726,7 +726,7 @@ export function PropertyDetailClient({
               >
                 <X className="h-4 w-4" />
               </button>
-              <div className="mb-3 text-center">
+              <div className="bg-card border border-border rounded-2xl shadow-lg px-6 py-5 text-center">
                 <div className="w-11 h-11 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-2">
                   <Lock className="h-5 w-5 text-primary" />
                 </div>
