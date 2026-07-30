@@ -176,43 +176,42 @@ export function EnquiryForm({ propertyId, propertyName, propertySlug }: EnquiryF
                 </div>
               )}
 
-              {/* Two column layout for name and phone */}
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-xs font-semibold text-foreground block mb-1.5">
-                    Full Name <span className="text-destructive">*</span>
-                  </label>
-                  <div className={cn(
-                    "relative rounded-lg transition-all duration-200",
-                    focusedField === "name" && "ring-2 ring-primary/20"
-                  )}>
-                    <User className={cn(
-                      "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 transition-colors",
-                      focusedField === "name" ? "text-primary" : "text-muted-foreground"
-                    )} />
-                    <input
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                      onFocus={() => setFocusedField("name")}
-                      onBlur={() => setFocusedField(null)}
-                      placeholder="Your name"
-                      required
-                      className="w-full pl-10 pr-3 py-3 border border-border rounded-lg bg-background text-sm focus:outline-none focus:border-primary transition-colors"
-                    />
-                  </div>
+              {/* Name field */}
+              <div>
+                <label className="text-xs font-semibold text-foreground block mb-1.5">
+                  Full Name <span className="text-destructive">*</span>
+                </label>
+                <div className={cn(
+                  "relative rounded-lg transition-all duration-200",
+                  focusedField === "name" && "ring-2 ring-primary/20"
+                )}>
+                  <User className={cn(
+                    "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 transition-colors",
+                    focusedField === "name" ? "text-primary" : "text-muted-foreground"
+                  )} />
+                  <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                    onFocus={() => setFocusedField("name")}
+                    onBlur={() => setFocusedField(null)}
+                    placeholder="Your name"
+                    required
+                    className="w-full pl-10 pr-3 py-3 border border-border rounded-lg bg-background text-sm focus:outline-none focus:border-primary transition-colors"
+                  />
                 </div>
-
-                <PhoneVerification
-                  phone={formData.phone}
-                  onPhoneChange={(phone) => setFormData(prev => ({ ...prev, phone }))}
-                  onVerified={(token) => setVerificationToken(token)}
-                  onUnverified={() => setVerificationToken("")}
-                  focused={focusedField === "phone"}
-                  onFocus={() => setFocusedField("phone")}
-                  onBlur={() => setFocusedField(null)}
-                />
               </div>
+
+              {/* Phone verification — full width so the OTP panel has room to expand */}
+              <PhoneVerification
+                phone={formData.phone}
+                onPhoneChange={(phone) => setFormData(prev => ({ ...prev, phone }))}
+                onVerified={(token) => setVerificationToken(token)}
+                onUnverified={() => setVerificationToken("")}
+                focused={focusedField === "phone"}
+                onFocus={() => setFocusedField("phone")}
+                onBlur={() => setFocusedField(null)}
+              />
 
               <div>
                 <label className="text-xs font-semibold text-foreground block mb-1.5">

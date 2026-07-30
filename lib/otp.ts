@@ -1,45 +1,41 @@
 import crypto from "crypto"
-import { getDatabase } from "@/lib/mongodb"
 
 /**
- * OTP-based phone verification using the Fast2SMS "Quick SMS" route.
+ * OTP-based phone verification powered by 2factor.in.
  *
- * The Quick SMS route (route=q) does NOT require DLT registration, so it works
- * for accounts that only have a Fast2SMS API key. Docs: https://docs.fast2sms.com
+ * 2factor.in generates and delivers the OTP via SMS — we never handle the raw
+ * code ourselves. It returns a SessionId which we use to verify the user's
+ * input against the 2factor.in API.
  *
- * If FAST2SMS_API_KEY is not configured, the module runs in "dev mode":
- * the generated code is returned from sendOtp() so it can be surfaced to the
- * developer for local testing (never do this in production with real keys).
+ * Send  : GET https://2factor.in/API/V1/{apikey}/SMS/{phone}/AUTOGEN
+ * Verify: GET https://2factor.in/API/V1/{apikey}/SMS/VERIFY/{sessionId}/{otp}
+ *
+ * No MongoDB needed — session state lives on 2factor.in's side.
  */
 
-const OTP_COLLECTION = "otp_verifications"
-const OTP_TTL_MS = 10 * 60 * 1000 // 10 minutes
-const RESEND_COOLDOWN_MS = 60 * 1000 // 60 seconds between sends
-const MAX_VERIFY_ATTEMPTS = 5
-const MAX_SENDS_PER_WINDOW = 5
-const SEND_WINDOW_MS = 60 * 60 * 1000 // 1 hour
-const TOKEN_TTL_MS = 30 * 60 * 1000 // verified token valid for 30 minutes
+const TWOFACTOR_API_KEY = "efda3ceb-8be6-11f1-908b-0200cd936042"
+const TWOFACTOR_BASE    = "https://2factor.in/API/V1"
 
-const FAST2SMS_ENDPOINT = "https://www.fast2sms.com/dev/bulkV2"
+const TOKEN_TTL_MS       = 30 * 60 * 1000  // verified token valid 30 minutes
+const RESEND_COOLDOWN_MS = 60 * 1000        // 60 s between sends (client-enforced)
 
 function getSecret(): string {
   return (
-    process.env.OTP_SECRET ||
+    process.env.OTP_SECRET   ||
     process.env.OTP_SECRET_2 ||
-    process.env.SMTP_PASS ||
+    process.env.SMTP_PASS    ||
     "land2land-fallback-otp-secret-change-me"
   )
 }
 
-function getFast2SmsKey(): string | undefined {
-  return process.env.FAST2SMS_API_KEY || process.env.FAST2SMS_API_KEY_2
-}
+// ---------------------------------------------------------------------------
+// Phone helpers
+// ---------------------------------------------------------------------------
 
 export function normalizePhone(phone: string): string {
-  // Strip everything except digits and drop a leading 91 country code / 0
   let digits = (phone || "").replace(/\D/g, "")
   if (digits.length === 12 && digits.startsWith("91")) digits = digits.slice(2)
-  if (digits.length === 11 && digits.startsWith("0")) digits = digits.slice(1)
+  if (digits.length === 11 && digits.startsWith("0"))  digits = digits.slice(1)
   return digits
 }
 
@@ -47,30 +43,20 @@ export function isValidIndianMobile(phone: string): boolean {
   return /^[6-9]\d{9}$/.test(normalizePhone(phone))
 }
 
-function hashCode(phone: string, code: string): string {
-  return crypto
-    .createHmac("sha256", getSecret())
-    .update(`${phone}:${code}`)
-    .digest("hex")
-}
+// ---------------------------------------------------------------------------
+// Signed verification token  (issued after OTP is confirmed with 2factor.in)
+// Format: base64url(phone.expiry).hmac
+// ---------------------------------------------------------------------------
 
-/**
- * Create a signed, self-contained verification token.
- * Format: base64(phone.expiryMs).hmac  — no DB lookup needed to verify.
- */
 export function createVerificationToken(phone: string): string {
   const normalized = normalizePhone(phone)
-  const expiry = Date.now() + TOKEN_TTL_MS
-  const payload = `${normalized}.${expiry}`
-  const sig = crypto.createHmac("sha256", getSecret()).update(payload).digest("hex")
-  const encoded = Buffer.from(payload).toString("base64url")
+  const expiry     = Date.now() + TOKEN_TTL_MS
+  const payload    = `${normalized}.${expiry}`
+  const sig        = crypto.createHmac("sha256", getSecret()).update(payload).digest("hex")
+  const encoded    = Buffer.from(payload).toString("base64url")
   return `${encoded}.${sig}`
 }
 
-/**
- * Verify a token issued by createVerificationToken() and confirm it matches
- * the phone number the caller is claiming to have verified.
- */
 export function verifyVerificationToken(token: string, phone: string): boolean {
   if (!token || typeof token !== "string") return false
   const parts = token.split(".")
@@ -78,138 +64,66 @@ export function verifyVerificationToken(token: string, phone: string): boolean {
   const [encoded, sig] = parts
 
   let payload: string
-  try {
-    payload = Buffer.from(encoded, "base64url").toString("utf8")
-  } catch {
-    return false
-  }
+  try { payload = Buffer.from(encoded, "base64url").toString("utf8") }
+  catch { return false }
 
   const expected = crypto.createHmac("sha256", getSecret()).update(payload).digest("hex")
-  // Constant-time comparison
-  const sigBuf = Buffer.from(sig)
-  const expBuf = Buffer.from(expected)
-  if (sigBuf.length !== expBuf.length || !crypto.timingSafeEqual(sigBuf, expBuf)) {
-    return false
-  }
+  const sigBuf   = Buffer.from(sig)
+  const expBuf   = Buffer.from(expected)
+  if (sigBuf.length !== expBuf.length || !crypto.timingSafeEqual(sigBuf, expBuf)) return false
 
-  const [tokenPhone, expiryStr] = payload.split(".")
-  const expiry = Number(expiryStr)
+  const dotIdx   = payload.lastIndexOf(".")
+  const tokenPhone = payload.slice(0, dotIdx)
+  const expiry     = Number(payload.slice(dotIdx + 1))
   if (!expiry || Date.now() > expiry) return false
   return tokenPhone === normalizePhone(phone)
 }
 
-function generateCode(): string {
-  // 6-digit numeric, no leading-zero issues (100000-999999)
-  return String(crypto.randomInt(100000, 1000000))
-}
-
-async function sendViaFast2SMS(phone: string, code: string): Promise<void> {
-  const apiKey = getFast2SmsKey()
-  const message = `${code} is your Land2Land verification code. It is valid for 10 minutes. Do not share this code with anyone.`
-
-  const params = new URLSearchParams({
-    route: "q",
-    message,
-    language: "english",
-    flash: "0",
-    numbers: phone,
-  })
-
-  const res = await fetch(`${FAST2SMS_ENDPOINT}?${params.toString()}`, {
-    method: "GET",
-    headers: {
-      authorization: apiKey as string,
-    },
-    cache: "no-store",
-  })
-
-  const data = await res.json().catch(() => ({}))
-  if (!res.ok || data?.return === false) {
-    const reason = data?.message || `HTTP ${res.status}`
-    throw new Error(`Fast2SMS send failed: ${Array.isArray(reason) ? reason.join(", ") : reason}`)
-  }
-}
+// ---------------------------------------------------------------------------
+// 2factor.in — send OTP
+// ---------------------------------------------------------------------------
 
 export interface SendOtpResult {
   ok: boolean
   error?: string
   cooldownMs?: number
-  /** Only populated in dev mode when no SMS provider is configured. */
+  sessionId?: string   // returned to client so it can verify later
+  /** Only populated in dev mode (no API key). */
   devCode?: string
 }
 
 export async function sendOtp(rawPhone: string): Promise<SendOtpResult> {
   const phone = normalizePhone(rawPhone)
+
   if (!isValidIndianMobile(phone)) {
-    return { ok: false, error: "Please enter a valid 10-digit mobile number." }
+    return { ok: false, error: "Please enter a valid 10-digit Indian mobile number." }
   }
 
-  const db = await getDatabase()
-  const col = db.collection(OTP_COLLECTION)
-  const now = Date.now()
+  // Trailing /SMS forces delivery via text message (not voice call)
+  const url = `${TWOFACTOR_BASE}/${TWOFACTOR_API_KEY}/SMS/${phone}/AUTOGEN/SMS`
 
-  const existing = await col.findOne({ phone })
-
-  // Resend cooldown
-  if (existing?.last_sent_at) {
-    const elapsed = now - new Date(existing.last_sent_at).getTime()
-    if (elapsed < RESEND_COOLDOWN_MS) {
-      return {
-        ok: false,
-        error: "Please wait before requesting another code.",
-        cooldownMs: RESEND_COOLDOWN_MS - elapsed,
-      }
-    }
-  }
-
-  // Hourly send throttle
-  if (existing?.window_start && existing?.sends_in_window != null) {
-    const windowElapsed = now - new Date(existing.window_start).getTime()
-    if (windowElapsed < SEND_WINDOW_MS && existing.sends_in_window >= MAX_SENDS_PER_WINDOW) {
-      return { ok: false, error: "Too many attempts. Please try again later." }
-    }
-  }
-
-  const code = generateCode()
-  const codeHash = hashCode(phone, code)
-  const expiresAt = new Date(now + OTP_TTL_MS)
-
-  const windowExpired =
-    !existing?.window_start ||
-    now - new Date(existing.window_start).getTime() >= SEND_WINDOW_MS
-
-  await col.updateOne(
-    { phone },
-    {
-      $set: {
-        phone,
-        code_hash: codeHash,
-        expires_at: expiresAt,
-        attempts: 0,
-        verified: false,
-        last_sent_at: new Date(now),
-        window_start: windowExpired ? new Date(now) : existing!.window_start,
-      },
-      $inc: { sends_in_window: windowExpired ? -(existing?.sends_in_window || 0) + 1 : 1 },
-    },
-    { upsert: true }
-  )
-
-  const apiKey = getFast2SmsKey()
-  if (!apiKey) {
-    // Dev mode: no provider configured. Surface the code for local testing.
-    console.log(`[v0][otp] DEV MODE - code for ${phone}: ${code}`)
-    return { ok: true, devCode: code }
-  }
-
+  let data: { Status: string; Details: string }
   try {
-    await sendViaFast2SMS(phone, code)
-    return { ok: true }
+    const res = await fetch(url, { cache: "no-store" })
+    data = await res.json()
   } catch (err) {
-    console.error("[v0][otp] Fast2SMS error:", err)
-    return { ok: false, error: "Could not send the code right now. Please try again." }
+    const msg = err instanceof Error ? err.message : "Network error"
+    console.error("[otp] 2factor.in send error:", msg)
+    return { ok: false, error: "Could not send OTP. Please try again." }
   }
+
+  if (data?.Status !== "Success") {
+    console.error("[otp] 2factor.in send failed:", data?.Details)
+    return { ok: false, error: data?.Details || "Failed to send OTP." }
+  }
+
+  // data.Details is the SessionId
+  return { ok: true, sessionId: data.Details }
 }
+
+// ---------------------------------------------------------------------------
+// 2factor.in — verify OTP
+// ---------------------------------------------------------------------------
 
 export interface VerifyOtpResult {
   ok: boolean
@@ -217,9 +131,13 @@ export interface VerifyOtpResult {
   token?: string
 }
 
-export async function verifyOtp(rawPhone: string, rawCode: string): Promise<VerifyOtpResult> {
+export async function verifyOtp(
+  rawPhone: string,
+  rawCode: string,
+  sessionId: string
+): Promise<VerifyOtpResult> {
   const phone = normalizePhone(rawPhone)
-  const code = (rawCode || "").replace(/\D/g, "")
+  const code  = (rawCode || "").replace(/\D/g, "")
 
   if (!isValidIndianMobile(phone)) {
     return { ok: false, error: "Invalid phone number." }
@@ -227,39 +145,30 @@ export async function verifyOtp(rawPhone: string, rawCode: string): Promise<Veri
   if (code.length !== 6) {
     return { ok: false, error: "Enter the 6-digit code." }
   }
-
-  const db = await getDatabase()
-  const col = db.collection(OTP_COLLECTION)
-  const record = await col.findOne({ phone })
-
-  if (!record) {
-    return { ok: false, error: "Please request a code first." }
-  }
-  if (record.verified) {
-    // Already verified — reissue a token
-    return { ok: true, token: createVerificationToken(phone) }
-  }
-  if (!record.expires_at || Date.now() > new Date(record.expires_at).getTime()) {
-    return { ok: false, error: "Code expired. Please request a new one." }
-  }
-  if ((record.attempts || 0) >= MAX_VERIFY_ATTEMPTS) {
-    return { ok: false, error: "Too many incorrect attempts. Please request a new code." }
+  if (!sessionId || typeof sessionId !== "string") {
+    return { ok: false, error: "Session expired. Please request a new code." }
   }
 
-  const candidate = hashCode(phone, code)
-  const match =
-    candidate.length === record.code_hash?.length &&
-    crypto.timingSafeEqual(Buffer.from(candidate), Buffer.from(record.code_hash))
+  const url = `${TWOFACTOR_BASE}/${TWOFACTOR_API_KEY}/SMS/VERIFY/${sessionId}/${code}`
 
-  if (!match) {
-    await col.updateOne({ phone }, { $inc: { attempts: 1 } })
-    return { ok: false, error: "Incorrect code. Please try again." }
+  let data: { Status: string; Details: string }
+  try {
+    const res = await fetch(url, { cache: "no-store" })
+    data = await res.json()
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Network error"
+    console.error("[otp] 2factor.in verify error:", msg)
+    return { ok: false, error: "Could not verify OTP. Please try again." }
   }
 
-  await col.updateOne(
-    { phone },
-    { $set: { verified: true, verified_at: new Date() } }
-  )
+  if (data?.Status !== "Success") {
+    const reason = data?.Details || "Incorrect code."
+    // 2factor returns "OTP Mismatch" for wrong codes
+    const friendly = reason.toLowerCase().includes("mismatch")
+      ? "Incorrect code. Please try again."
+      : reason
+    return { ok: false, error: friendly }
+  }
 
   return { ok: true, token: createVerificationToken(phone) }
 }

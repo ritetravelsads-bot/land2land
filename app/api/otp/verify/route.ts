@@ -3,13 +3,16 @@ import { verifyOtp } from "@/lib/otp"
 
 export async function POST(req: NextRequest) {
   try {
-    const { phone, code } = await req.json()
+    const { phone, code, sessionId } = await req.json()
 
-    if (!phone || !code) {
-      return NextResponse.json({ error: "Phone and code are required." }, { status: 400 })
+    if (!phone || !code || !sessionId) {
+      return NextResponse.json(
+        { error: "Phone, code and sessionId are required." },
+        { status: 400 }
+      )
     }
 
-    const result = await verifyOtp(phone, code)
+    const result = await verifyOtp(phone, code, sessionId)
 
     if (!result.ok) {
       return NextResponse.json({ error: result.error }, { status: 400 })
@@ -21,7 +24,7 @@ export async function POST(req: NextRequest) {
       token: result.token,
     })
   } catch (error) {
-    console.error("[v0][otp/verify] Error:", error)
+    console.error("[otp/verify] Error:", error)
     return NextResponse.json({ error: "Failed to verify code." }, { status: 500 })
   }
 }

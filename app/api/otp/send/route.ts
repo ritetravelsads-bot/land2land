@@ -12,20 +12,20 @@ export async function POST(req: NextRequest) {
     const result = await sendOtp(phone)
 
     if (!result.ok) {
+      const status = result.cooldownMs ? 429 : 400
       return NextResponse.json(
-        { error: result.error, cooldownMs: result.cooldownMs },
-        { status: 429 }
+        { error: result.error, cooldownMs: result.cooldownMs ?? null },
+        { status }
       )
     }
 
     return NextResponse.json({
       success: true,
       message: "Verification code sent.",
-      // devCode is only present when no SMS provider is configured (local testing)
-      ...(result.devCode ? { devCode: result.devCode } : {}),
+      sessionId: result.sessionId,
     })
   } catch (error) {
-    console.error("[v0][otp/send] Error:", error)
+    console.error("[otp/send] Error:", error)
     return NextResponse.json({ error: "Failed to send verification code." }, { status: 500 })
   }
 }

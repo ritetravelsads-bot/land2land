@@ -18,6 +18,7 @@ import Link from "next/link"
 import { cn, formatPriceToIndian } from "@/lib/utils"
 import { useRecentlyViewed } from "@/hooks/use-recently-viewed"
 import { PropertyWhatsAppMobileBar } from "@/components/ui/whatsapp-button"
+import { PhoneVerification } from "@/components/property/phone-verification"
 
 // Import modular components
 import { HeroBanner } from "@/components/property/hero-banner"
@@ -716,6 +717,7 @@ function CompactEnquiryForm({
 }) {
   const [name, setName] = useState("")
   const [phone, setPhone] = useState("")
+  const [verificationToken, setVerificationToken] = useState("")
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState("")
@@ -728,6 +730,10 @@ function CompactEnquiryForm({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
+    if (!verificationToken) {
+      setError("Please verify your phone number with the OTP before submitting.")
+      return
+    }
     setLoading(true)
     try {
       const res = await fetch("/api/property-enquiry", {
@@ -736,6 +742,7 @@ function CompactEnquiryForm({
         body: JSON.stringify({
           name,
           phone,
+          verification_token: verificationToken,
           property_id: propertyId,
           property_name: propertyName,
           property_slug: propertySlug,
@@ -747,6 +754,7 @@ function CompactEnquiryForm({
         setBuyer(data.buyer || null)
         setName("")
         setPhone("")
+        setVerificationToken("")
       } else {
         setError(data.error || "Failed to submit enquiry")
       }
@@ -833,25 +841,18 @@ function CompactEnquiryForm({
         </div>
       </div>
 
-      <div>
-        <label className="text-xs font-medium text-foreground block mb-1.5">
-          Phone <span className="text-destructive">*</span>
-        </label>
-        <div className="relative">
-          <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <input
-            type="tel"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="10-digit mobile number"
-            required
-            pattern="[6-9][0-9]{9}"
-            className="w-full pl-9 pr-3 py-2.5 border border-border rounded-lg bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-          />
-        </div>
-      </div>
+      <PhoneVerification
+        phone={phone}
+        onPhoneChange={setPhone}
+        onVerified={(token) => setVerificationToken(token)}
+        onUnverified={() => setVerificationToken("")}
+      />
 
-      <Button type="submit" className="w-full py-5 text-sm font-semibold rounded-xl" disabled={loading}>
+      <Button
+        type="submit"
+        className="w-full py-5 text-sm font-semibold rounded-xl"
+        disabled={loading || !verificationToken}
+      >
         {loading ? (
           <>
             <Loader2 className="h-4 w-4 mr-2 animate-spin" />
