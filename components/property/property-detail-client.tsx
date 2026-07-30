@@ -11,7 +11,7 @@ import {
   Ruler, Grid3X3,
   User, Loader2, ChevronRight as ChevronRightIcon,
   X, ImageIcon, Mountain, Droplets, Route,
-  FileText, Landmark, Leaf, Zap, Car
+  FileText, Landmark, Leaf, Zap, Car, Lock
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -89,6 +89,7 @@ export function PropertyDetailClient({
 }: PropertyDetailClientProps) {
   const [activeImage, setActiveImage] = useState(0)
   const [showFullscreen, setShowFullscreen] = useState(false)
+  const [showDocsEnquiry, setShowDocsEnquiry] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { addProperty: addToRecentlyViewed } = useRecentlyViewed()
@@ -96,16 +97,16 @@ export function PropertyDetailClient({
   // Portal target is only available on the client
   useEffect(() => setMounted(true), [])
 
-  // Lock body scroll while the fullscreen gallery is open
+  // Lock body scroll while the fullscreen gallery or documents modal is open
   useEffect(() => {
-    if (showFullscreen) {
+    if (showFullscreen || showDocsEnquiry) {
       const prev = document.body.style.overflow
       document.body.style.overflow = "hidden"
       return () => {
         document.body.style.overflow = prev
       }
     }
-  }, [showFullscreen])
+  }, [showFullscreen, showDocsEnquiry])
 
   useEffect(() => {
     if (property) {
@@ -382,6 +383,9 @@ export function PropertyDetailClient({
                 </div>
               </section>
             )}
+
+            {/* Legal Documents (blurred — unlock via enquiry) */}
+            <PropertyDocuments onUnlock={() => setShowDocsEnquiry(true)} />
 
             {/* RERA */}
             {(property.rera_registered || property.rera_id) && (
@@ -700,7 +704,104 @@ export function PropertyDetailClient({
           </div>,
           document.body,
         )}
+
+      {/* Documents enquiry modal — rendered via portal so it overlays the whole
+          page. Uses the same enquiry form as the sidebar. */}
+      {mounted &&
+        showDocsEnquiry &&
+        createPortal(
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto"
+            style={{ zIndex: 99999 }}
+            onClick={() => setShowDocsEnquiry(false)}
+          >
+            <div
+              className="relative w-full max-w-md my-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setShowDocsEnquiry(false)}
+                className="absolute -top-3 -right-3 z-10 p-2 bg-card border border-border shadow-md rounded-full text-foreground hover:bg-muted transition-colors"
+                aria-label="Close enquiry form"
+              >
+                <X className="h-4 w-4" />
+              </button>
+              <div className="mb-3 text-center">
+                <div className="w-11 h-11 mx-auto rounded-xl bg-primary/10 flex items-center justify-center mb-2">
+                  <Lock className="h-5 w-5 text-primary" />
+                </div>
+                <h3 className="text-base font-bold text-foreground">Unlock Property Documents</h3>
+                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                  Verify your number to view the sale deed, khasra map, title deed and RERA certificate.
+                </p>
+              </div>
+              <CompactEnquiryForm
+                propertyId={property._id}
+                propertyName={property.property_name}
+                propertySlug={property.slug}
+              />
+            </div>
+          </div>,
+          document.body,
+        )}
     </main>
+  )
+}
+
+// ---------- Property Documents (blurred teaser) ----------
+
+const DOCUMENTS = [
+  { src: "/images/documents/sale-deed.png", label: "Sale Deed" },
+  { src: "/images/documents/khasra-map.png", label: "Khasra Map" },
+  { src: "/images/documents/title-deed.png", label: "Title Deed" },
+  { src: "/images/documents/rera-certificate.png", label: "RERA Certificate" },
+]
+
+function PropertyDocuments({ onUnlock }: { onUnlock: () => void }) {
+  return (
+    <section>
+      <div className="flex items-center gap-2 mb-1">
+        <FileText className="h-5 w-5 text-primary" />
+        <h2 className="text-xl font-bold text-foreground">Legal Documents</h2>
+      </div>
+      <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+        Verified ownership and legal papers are available for this land. Enquire to unlock and view them.
+      </p>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {DOCUMENTS.map((doc) => (
+          <button
+            key={doc.label}
+            type="button"
+            onClick={onUnlock}
+            className="group relative aspect-[3/4] overflow-hidden rounded-xl border border-border bg-muted text-left transition-all hover:border-primary/50 hover:shadow-md"
+          >
+            <img
+              src={doc.src || "/placeholder.svg"}
+              alt=""
+              aria-hidden="true"
+              className="w-full h-full object-cover blur-[6px] scale-110 select-none pointer-events-none"
+            />
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex flex-col items-center justify-center gap-2 p-2">
+              <div className="w-9 h-9 rounded-full bg-white/90 flex items-center justify-center shadow-sm transition-transform group-hover:scale-110">
+                <Lock className="h-4 w-4 text-primary" />
+              </div>
+              <span className="text-[11px] font-semibold text-white text-center leading-tight drop-shadow">
+                {doc.label}
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+      <button
+        type="button"
+        onClick={onUnlock}
+        className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
+      >
+        <Lock className="h-3.5 w-3.5" />
+        Enquire to view all documents
+      </button>
+    </section>
   )
 }
 
