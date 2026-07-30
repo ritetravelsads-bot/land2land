@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Phone, Loader2, CheckCircle2, ShieldCheck, RefreshCw, ArrowRight } from "lucide-react"
+import { Phone, Loader2, CheckCircle2, ShieldCheck, RefreshCw, ArrowRight, PhoneCall } from "lucide-react"
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
@@ -82,8 +82,8 @@ export function PhoneVerification({
         setStage("code")
         setCode("")
         startCooldown(60)
-        toast.success("Verification code sent", {
-          description: `OTP sent to +91 ${phone}. Check your SMS inbox.`,
+        toast.success("Verification call initiated", {
+          description: `You will receive a call on +91 ${phone} with your OTP code.`,
         })
       } else {
         setError(data.error || "Could not send code. Please try again.")
@@ -114,7 +114,7 @@ export function PhoneVerification({
         setStage("verified")
         onVerified(data.token)
         toast.success("Phone verified successfully", {
-          description: "Your number has been verified.",
+          description: "Your number has been verified via call.",
         })
       } else {
         setError(data.error || "Incorrect code. Please try again.")
@@ -203,11 +203,11 @@ export function PhoneVerification({
             {sending ? (
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : stage === "code" && cooldown > 0 ? (
-              `Resend in ${cooldown}s`
+              `Recall in ${cooldown}s`
             ) : stage === "code" ? (
-              <><RefreshCw className="h-3 w-3 inline mr-1" />Resend</>
+              <><RefreshCw className="h-3 w-3 inline mr-1" />Recall</>
             ) : (
-              "Send OTP"
+              <><PhoneCall className="h-3 w-3 inline mr-1" />Call Me</>
             )}
           </button>
         )}
@@ -232,9 +232,9 @@ export function PhoneVerification({
               <span className="text-[10px] font-bold text-primary-foreground">2</span>
             </div>
             <div>
-              <p className="text-xs font-semibold text-foreground">Enter the 6-digit OTP</p>
+              <p className="text-xs font-semibold text-foreground">Enter the 6-digit OTP from your call</p>
               <p className="text-[11px] text-muted-foreground mt-0.5">
-                Sent to <span className="font-semibold text-foreground">+91 {phone}</span>. Check your SMS inbox.
+                You will receive a call on <span className="font-semibold text-foreground">+91 {phone}</span>. Listen carefully and enter the code below.
               </p>
             </div>
           </div>
