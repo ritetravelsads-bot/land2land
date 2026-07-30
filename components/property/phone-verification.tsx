@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Phone, Loader2, CheckCircle2, ShieldCheck, RefreshCw } from "lucide-react"
+import { Phone, Loader2, CheckCircle2, ShieldCheck, RefreshCw, ArrowRight } from "lucide-react"
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
@@ -63,7 +63,7 @@ export function PhoneVerification({
 
   const handleSend = async () => {
     if (!isValidPhone) {
-      setError("Enter a valid 10-digit mobile number.")
+      setError("Enter a valid 10-digit mobile number starting with 6-9.")
       return
     }
     setError("")
@@ -75,45 +75,64 @@ export function PhoneVerification({
         body: JSON.stringify({ phone }),
       })
       const data = await res.json()
+
       if (res.ok) {
+        // Advance to OTP entry regardless — OTP is stored in DB
         setStage("code")
         setCode("")
         startCooldown(60)
         toast.success("Verification code sent", {
-          description: `We sent a 6-digit code to ${phone}.`,
+          description: `OTP sent to ${phone}. Check your SMS inbox.`,
         })
+        // Dev mode: show code in a toast
         if (data.devCode) {
-          toast.info("Dev mode", { description: `Your code is ${data.devCode}` })
+          toast.info("Dev mode — OTP code", {
+            description: `Your code is: ${data.devCode}`,
+            duration: 30000,
+          })
         }
       } else {
-        setError(data.error || "Could not send code.")
-        if (data.cooldownMs) startCooldown(Math.ceil(data.cooldownMs / 1000))
+        // Cooldown / rate-limit errors still show the code entry if we already sent
+        if (data.cooldownMs) {
+          startCooldown(Math.ceil(data.cooldownMs / 1000))
+          // If a code was already sent during this cooldown, let the user enter it
+          setStage("code")
+          setCode("")
+          setError(`A code was already sent. Please wait ${Math.ceil(data.cooldownMs / 1000)}s before resending.`)
+        } else {
+          setError(data.error || "Could not send code. Please try again.")
+        }
       }
     } catch {
-      setError("Network error. Please try again.")
+      setError("Network error. Please check your connection and try again.")
     } finally {
       setSending(false)
     }
   }
 
-  const handleVerify = async (value: string) => {
+  const handleVerify = async (value?: string) => {
+    const otp = (value ?? code).replace(/\D/g, "")
+    if (otp.length !== 6) {
+      setError("Please enter the complete 6-digit code.")
+      return
+    }
     setError("")
     setVerifying(true)
     try {
       const res = await fetch("/api/otp/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, code: value }),
+        body: JSON.stringify({ phone, code: otp }),
       })
       const data = await res.json()
       if (res.ok && data.token) {
         setStage("verified")
         onVerified(data.token)
-        toast.success("Phone verified", {
-          description: "Your number has been verified successfully.",
+        toast.success("Phone verified successfully", {
+          description: "Your number has been verified.",
         })
       } else {
-        setError(data.error || "Incorrect code.")
+        setError(data.error || "Incorrect code. Please try again.")
         setCode("")
       }
     } catch {
@@ -127,12 +146,15 @@ export function PhoneVerification({
     setStage("input")
     setCode("")
     setError("")
+    if (timerRef.current) clearInterval(timerRef.current)
+    setCooldown(0)
     onUnverified?.()
   }
 
   return (
-    <div>
-      <label className="text-xs font-semibold text-foreground block mb-1.5">
+    <div className="space-y-2">
+      {/* Label */}
+      <label className="text-xs font-semibold text-foreground block">
         Phone Number {required && <span className="text-destructive">*</span>}
         {stage === "verified" && (
           <span className="ml-2 inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
@@ -141,6 +163,7 @@ export function PhoneVerification({
         )}
       </label>
 
+      {/* Phone input row */}
       <div className="flex gap-2">
         <div
           className={cn(
@@ -150,21 +173,22 @@ export function PhoneVerification({
         >
           <Phone
             className={cn(
-              "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 transition-colors",
+              "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 transition-colors pointer-events-none",
               focused ? "text-primary" : "text-muted-foreground"
             )}
           />
           <input
             type="tel"
+            inputMode="numeric"
             value={phone}
             onChange={(e) => {
               const val = e.target.value.replace(/\D/g, "").slice(0, 10)
               onPhoneChange(val)
-              if (stage === "verified") handleEditPhone()
+              if (stage !== "input") handleEditPhone()
             }}
             onFocus={onFocus}
             onBlur={onBlur}
-            placeholder="10-digit number"
+            placeholder="10-digit mobile number"
             required={required}
             pattern="[6-9][0-9]{9}"
             readOnly={stage === "verified"}
@@ -174,57 +198,68 @@ export function PhoneVerification({
             )}
           />
           {stage === "verified" && (
-            <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-emerald-500" />
+            <CheckCircle2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-emerald-500 pointer-events-none" />
           )}
         </div>
 
+        {/* Send / Resend button */}
         {stage !== "verified" && (
           <button
             type="button"
             onClick={handleSend}
-            disabled={!isValidPhone || sending || cooldown > 0}
+            disabled={!isValidPhone || sending || (stage === "input" && false) || (cooldown > 0 && stage === "input")}
             className={cn(
-              "px-4 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors shrink-0",
+              "px-4 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors shrink-0 min-h-[46px]",
               "bg-primary text-primary-foreground hover:bg-primary/90",
               "disabled:opacity-50 disabled:cursor-not-allowed"
             )}
           >
             {sending ? (
               <Loader2 className="h-4 w-4 animate-spin" />
-            ) : cooldown > 0 && stage === "code" ? (
-              `Resend ${cooldown}s`
+            ) : stage === "code" && cooldown > 0 ? (
+              `Resend in ${cooldown}s`
             ) : stage === "code" ? (
-              "Resend"
+              <><RefreshCw className="h-3 w-3 inline mr-1" />Resend</>
             ) : (
-              "Verify"
+              "Send OTP"
             )}
           </button>
         )}
 
+        {/* Change button after verified */}
         {stage === "verified" && (
           <button
             type="button"
             onClick={handleEditPhone}
-            className="px-3 rounded-lg text-xs font-medium text-muted-foreground hover:text-foreground border border-border transition-colors shrink-0 flex items-center gap-1"
+            className="px-3 rounded-lg text-xs font-medium text-muted-foreground hover:text-foreground border border-border transition-colors shrink-0 flex items-center gap-1 min-h-[46px]"
           >
             <RefreshCw className="h-3 w-3" /> Change
           </button>
         )}
       </div>
 
+      {/* OTP entry panel — shown when stage is "code" */}
       {stage === "code" && (
-        <div className="mt-3 p-3 bg-primary/5 border border-primary/15 rounded-lg">
-          <p className="text-xs text-muted-foreground mb-2">
-            Enter the 6-digit code sent to{" "}
-            <span className="font-semibold text-foreground">{phone}</span>
-          </p>
+        <div className="rounded-xl border border-primary/20 bg-primary/5 p-4 space-y-3">
+          <div className="flex items-start gap-2">
+            <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center shrink-0 mt-0.5">
+              <span className="text-[10px] font-bold text-primary-foreground">2</span>
+            </div>
+            <div>
+              <p className="text-xs font-semibold text-foreground">Enter the 6-digit OTP</p>
+              <p className="text-[11px] text-muted-foreground mt-0.5">
+                Sent to <span className="font-semibold text-foreground">+91 {phone}</span>. Check your SMS inbox.
+              </p>
+            </div>
+          </div>
+
+          {/* OTP slots */}
           <InputOTP
             maxLength={6}
             value={code}
             onChange={(val) => {
               setCode(val)
               setError("")
-              if (val.length === 6) handleVerify(val)
             }}
             disabled={verifying}
           >
@@ -237,17 +272,31 @@ export function PhoneVerification({
               <InputOTPSlot index={5} />
             </InputOTPGroup>
           </InputOTP>
-          {verifying && (
-            <p className="mt-2 text-xs text-muted-foreground flex items-center gap-1">
-              <Loader2 className="h-3 w-3 animate-spin" /> Verifying...
-            </p>
-          )}
+
+          {/* Manual verify button — clearly visible */}
+          <button
+            type="button"
+            onClick={() => handleVerify()}
+            disabled={code.length !== 6 || verifying}
+            className={cn(
+              "w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-semibold transition-colors",
+              "bg-primary text-primary-foreground hover:bg-primary/90",
+              "disabled:opacity-50 disabled:cursor-not-allowed"
+            )}
+          >
+            {verifying ? (
+              <><Loader2 className="h-4 w-4 animate-spin" /> Verifying...</>
+            ) : (
+              <><ShieldCheck className="h-4 w-4" /> Verify OTP <ArrowRight className="h-4 w-4" /></>
+            )}
+          </button>
         </div>
       )}
 
+      {/* Inline error */}
       {error && (
-        <p className="mt-1.5 text-xs text-destructive flex items-center gap-1">
-          <span className="w-1 h-1 bg-destructive rounded-full" />
+        <p className="text-xs text-destructive flex items-center gap-1.5">
+          <span className="w-1 h-1 bg-destructive rounded-full shrink-0" />
           {error}
         </p>
       )}

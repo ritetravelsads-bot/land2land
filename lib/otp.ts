@@ -105,28 +105,35 @@ function generateCode(): string {
 
 async function sendViaFast2SMS(phone: string, code: string): Promise<void> {
   const apiKey = getFast2SmsKey()
-  const message = `${code} is your Land2Land verification code. It is valid for 10 minutes. Do not share this code with anyone.`
+  const message = `${code} is your Land2Land verification code. Valid for 10 minutes. Do not share.`
 
-  const params = new URLSearchParams({
-    route: "q",
-    message,
-    language: "english",
-    flash: "0",
-    numbers: phone,
-  })
-
-  const res = await fetch(`${FAST2SMS_ENDPOINT}?${params.toString()}`, {
-    method: "GET",
+  // POST with JSON body — more reliable than GET with query params for long messages
+  const res = await fetch(FAST2SMS_ENDPOINT, {
+    method: "POST",
     headers: {
-      authorization: apiKey as string,
+      Authorization: apiKey as string,
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      route: "q",
+      message,
+      numbers: phone,
+    }),
     cache: "no-store",
   })
 
-  const data = await res.json().catch(() => ({}))
+  let data: Record<string, unknown> = {}
+  try {
+    data = await res.json()
+  } catch {
+    // non-JSON body means a network-level failure
+    throw new Error(`Fast2SMS request failed with HTTP ${res.status}`)
+  }
+
   if (!res.ok || data?.return === false) {
-    const reason = data?.message || `HTTP ${res.status}`
-    throw new Error(`Fast2SMS send failed: ${Array.isArray(reason) ? reason.join(", ") : reason}`)
+    const reason = data?.message ?? `HTTP ${res.status}`
+    const msg = Array.isArray(reason) ? (reason as string[]).join(", ") : String(reason)
+    throw new Error(`Fast2SMS send failed: ${msg}`)
   }
 }
 
