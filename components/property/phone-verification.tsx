@@ -123,7 +123,8 @@ export function PhoneVerification({
         setError(data.error || "Incorrect code. Please try again.")
         setCode("")
       }
-    } catch {
+    } catch (err) {
+      console.error("[v0] OTP verify error:", err)
       setError("Network error. Please try again.")
     } finally {
       setVerifying(false)
