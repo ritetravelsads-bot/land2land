@@ -130,10 +130,12 @@ async function sendViaFast2SMS(phone: string, code: string): Promise<void> {
     throw new Error(`Fast2SMS request failed with HTTP ${res.status}`)
   }
 
-  if (!res.ok || data?.return === false) {
+  // Fast2SMS returns HTTP 200 even for errors — check return flag and status_code
+  const failed = !res.ok || data?.return === false || (data?.status_code && data.status_code !== 200)
+  if (failed) {
     const reason = data?.message ?? `HTTP ${res.status}`
     const msg = Array.isArray(reason) ? (reason as string[]).join(", ") : String(reason)
-    throw new Error(`Fast2SMS send failed: ${msg}`)
+    throw new Error(msg)
   }
 }
 
@@ -213,8 +215,9 @@ export async function sendOtp(rawPhone: string): Promise<SendOtpResult> {
     await sendViaFast2SMS(phone, code)
     return { ok: true }
   } catch (err) {
-    console.error("[v0][otp] Fast2SMS error:", err)
-    return { ok: false, error: "Could not send the code right now. Please try again." }
+    const message = err instanceof Error ? err.message : "Could not send the code right now."
+    console.error("[otp] Fast2SMS error:", message)
+    return { ok: false, error: message }
   }
 }
 
