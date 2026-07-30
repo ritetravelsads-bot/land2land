@@ -70,25 +70,28 @@ export function PhoneVerification({
     setError("")
     setSending(true)
     try {
+      const cleanPhone = phone.replace(/\D/g, "").slice(-10)
       const res = await fetch("/api/otp/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone }),
+        body: JSON.stringify({ phone: cleanPhone }),
       })
       const data = await res.json()
 
-      if (res.ok && data.sessionId) {
+      // 2factor.in takes ~1-2s to call, but always returns 200. Check for sessionId presence.
+      if (data.sessionId) {
         setSessionId(data.sessionId)
         setStage("code")
         setCode("")
         startCooldown(60)
         toast.success("Verification call initiated", {
-          description: `You will receive a call on +91 ${phone} with your OTP code.`,
+          description: `You will receive a call on +91 ${cleanPhone} with your OTP code.`,
         })
       } else {
         setError(data.error || "Could not send code. Please try again.")
       }
-    } catch {
+    } catch (err) {
+      console.error("[v0] OTP send error:", err)
       setError("Network error. Please check your connection and try again.")
     } finally {
       setSending(false)
