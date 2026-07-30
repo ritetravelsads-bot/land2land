@@ -99,7 +99,8 @@ export async function sendOtp(rawPhone: string): Promise<SendOtpResult> {
     return { ok: false, error: "Please enter a valid 10-digit Indian mobile number." }
   }
 
-  const url = `${TWOFACTOR_BASE}/${TWOFACTOR_API_KEY}/SMS/${phone}/AUTOGEN`
+  // Trailing /SMS forces delivery via text message (not voice call)
+  const url = `${TWOFACTOR_BASE}/${TWOFACTOR_API_KEY}/SMS/${phone}/AUTOGEN/SMS`
 
   let data: { Status: string; Details: string }
   try {
