@@ -22,11 +22,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       message: "Verification code sent.",
-      // devCode is only present in dev mode (no FAST2SMS_API_KEY configured)
-      ...(result.devCode ? { devCode: result.devCode } : {}),
+      sessionId: result.sessionId,
     })
   } catch (error) {
-    console.error("[v0][otp/send] Error:", error)
+    console.error("[otp/send] Error:", error)
     return NextResponse.json({ error: "Failed to send verification code." }, { status: 500 })
   }
 }

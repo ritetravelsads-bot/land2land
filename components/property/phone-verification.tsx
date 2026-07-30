@@ -33,6 +33,7 @@ export function PhoneVerification({
 }: PhoneVerificationProps) {
   const [stage, setStage] = useState<Stage>("input")
   const [code, setCode] = useState("")
+  const [sessionId, setSessionId] = useState("")
   const [sending, setSending] = useState(false)
   const [verifying, setVerifying] = useState(false)
   const [error, setError] = useState("")
@@ -76,32 +77,16 @@ export function PhoneVerification({
       })
       const data = await res.json()
 
-      if (res.ok) {
-        // Advance to OTP entry regardless — OTP is stored in DB
+      if (res.ok && data.sessionId) {
+        setSessionId(data.sessionId)
         setStage("code")
         setCode("")
         startCooldown(60)
         toast.success("Verification code sent", {
-          description: `OTP sent to ${phone}. Check your SMS inbox.`,
+          description: `OTP sent to +91 ${phone}. Check your SMS inbox.`,
         })
-        // Dev mode: show code in a toast
-        if (data.devCode) {
-          toast.info("Dev mode — OTP code", {
-            description: `Your code is: ${data.devCode}`,
-            duration: 30000,
-          })
-        }
       } else {
-        // Cooldown / rate-limit errors still show the code entry if we already sent
-        if (data.cooldownMs) {
-          startCooldown(Math.ceil(data.cooldownMs / 1000))
-          // If a code was already sent during this cooldown, let the user enter it
-          setStage("code")
-          setCode("")
-          setError(`A code was already sent. Please wait ${Math.ceil(data.cooldownMs / 1000)}s before resending.`)
-        } else {
-          setError(data.error || "Could not send code. Please try again.")
-        }
+        setError(data.error || "Could not send code. Please try again.")
       }
     } catch {
       setError("Network error. Please check your connection and try again.")
@@ -122,7 +107,7 @@ export function PhoneVerification({
       const res = await fetch("/api/otp/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, code: otp }),
+        body: JSON.stringify({ phone, code: otp, sessionId }),
       })
       const data = await res.json()
       if (res.ok && data.token) {
@@ -145,6 +130,7 @@ export function PhoneVerification({
   const handleEditPhone = () => {
     setStage("input")
     setCode("")
+    setSessionId("")
     setError("")
     if (timerRef.current) clearInterval(timerRef.current)
     setCooldown(0)
