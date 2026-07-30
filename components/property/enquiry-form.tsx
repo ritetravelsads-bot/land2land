@@ -5,6 +5,7 @@ import { Send, Phone, User, Mail, MessageSquare, Loader2, CheckCircle, Sparkles,
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
+import { PhoneVerification } from "@/components/property/phone-verification"
 
 interface EnquiryFormProps {
   propertyId?: string
@@ -23,10 +24,20 @@ export function EnquiryForm({ propertyId, propertyName, propertySlug }: EnquiryF
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState("")
   const [focusedField, setFocusedField] = useState<string | null>(null)
+  const [verificationToken, setVerificationToken] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
+
+    if (!verificationToken) {
+      setError("Please verify your phone number before submitting.")
+      toast.error("Phone not verified", {
+        description: "Enter the OTP sent to your mobile to continue.",
+      })
+      return
+    }
+
     setLoading(true)
 
     try {
@@ -35,6 +46,7 @@ export function EnquiryForm({ propertyId, propertyName, propertySlug }: EnquiryF
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
+          verification_token: verificationToken,
           property_id: propertyId,
           property_name: propertyName,
           property_slug: propertySlug,
@@ -47,6 +59,7 @@ export function EnquiryForm({ propertyId, propertyName, propertySlug }: EnquiryF
       if (res.ok) {
         setSuccess(true)
         setFormData({ name: "", phone: "", email: "", message: "" })
+        setVerificationToken("")
         toast.success("Enquiry submitted successfully!", {
           description: "Our expert team will contact you within 2 hours.",
         })
@@ -190,31 +203,15 @@ export function EnquiryForm({ propertyId, propertyName, propertySlug }: EnquiryF
                   </div>
                 </div>
 
-                <div>
-                  <label className="text-xs font-semibold text-foreground block mb-1.5">
-                    Phone Number <span className="text-destructive">*</span>
-                  </label>
-                  <div className={cn(
-                    "relative rounded-lg transition-all duration-200",
-                    focusedField === "phone" && "ring-2 ring-primary/20"
-                  )}>
-                    <Phone className={cn(
-                      "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 transition-colors",
-                      focusedField === "phone" ? "text-primary" : "text-muted-foreground"
-                    )} />
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                      onFocus={() => setFocusedField("phone")}
-                      onBlur={() => setFocusedField(null)}
-                      placeholder="10-digit number"
-                      required
-                      pattern="[6-9][0-9]{9}"
-                      className="w-full pl-10 pr-3 py-3 border border-border rounded-lg bg-background text-sm focus:outline-none focus:border-primary transition-colors"
-                    />
-                  </div>
-                </div>
+                <PhoneVerification
+                  phone={formData.phone}
+                  onPhoneChange={(phone) => setFormData(prev => ({ ...prev, phone }))}
+                  onVerified={(token) => setVerificationToken(token)}
+                  onUnverified={() => setVerificationToken("")}
+                  focused={focusedField === "phone"}
+                  onFocus={() => setFocusedField("phone")}
+                  onBlur={() => setFocusedField(null)}
+                />
               </div>
 
               <div>
