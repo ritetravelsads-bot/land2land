@@ -25,9 +25,14 @@ const FAST2SMS_ENDPOINT = "https://www.fast2sms.com/dev/bulkV2"
 function getSecret(): string {
   return (
     process.env.OTP_SECRET ||
+    process.env.OTP_SECRET_2 ||
     process.env.SMTP_PASS ||
     "land2land-fallback-otp-secret-change-me"
   )
+}
+
+function getFast2SmsKey(): string | undefined {
+  return process.env.FAST2SMS_API_KEY || process.env.FAST2SMS_API_KEY_2
 }
 
 export function normalizePhone(phone: string): string {
@@ -99,7 +104,7 @@ function generateCode(): string {
 }
 
 async function sendViaFast2SMS(phone: string, code: string): Promise<void> {
-  const apiKey = process.env.FAST2SMS_API_KEY
+  const apiKey = getFast2SmsKey()
   const message = `${code} is your Land2Land verification code. It is valid for 10 minutes. Do not share this code with anyone.`
 
   const params = new URLSearchParams({
@@ -190,7 +195,7 @@ export async function sendOtp(rawPhone: string): Promise<SendOtpResult> {
     { upsert: true }
   )
 
-  const apiKey = process.env.FAST2SMS_API_KEY
+  const apiKey = getFast2SmsKey()
   if (!apiKey) {
     // Dev mode: no provider configured. Surface the code for local testing.
     console.log(`[v0][otp] DEV MODE - code for ${phone}: ${code}`)
