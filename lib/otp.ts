@@ -1,14 +1,14 @@
 import crypto from "crypto"
 
 /**
- * OTP-based phone verification powered by 2factor.in.
+ * OTP-based phone verification powered by 2factor.in — delivered as a VOICE CALL.
  *
- * 2factor.in generates and delivers the OTP via SMS — we never handle the raw
- * code ourselves. It returns a SessionId which we use to verify the user's
- * input against the 2factor.in API.
+ * The user receives an automated phone call that reads out a 6-digit code.
+ * We generate the 6-digit code ourselves and pass it to 2factor.in, which
+ * places the call and returns a SessionId used to verify the user's input.
  *
- * Send  : GET https://2factor.in/API/V1/{apikey}/SMS/{phone}/AUTOGEN
- * Verify: GET https://2factor.in/API/V1/{apikey}/SMS/VERIFY/{sessionId}/{otp}
+ * Send  : GET https://2factor.in/API/V1/{apikey}/VOICE/{phone}/{otp}
+ * Verify: GET https://2factor.in/API/V1/{apikey}/VOICE/VERIFY/{sessionId}/{otp}
  *
  * No MongoDB needed — session state lives on 2factor.in's side.
  */
@@ -99,8 +99,11 @@ export async function sendOtp(rawPhone: string): Promise<SendOtpResult> {
     return { ok: false, error: "Please enter a valid 10-digit Indian mobile number." }
   }
 
-  // Trailing /SMS forces delivery via text message (not voice call)
-  const url = `${TWOFACTOR_BASE}/${TWOFACTOR_API_KEY}/SMS/${phone}/AUTOGEN/SMS`
+  // Generate our own 6-digit code so it always matches the 6-slot input field.
+  const code = String(crypto.randomInt(100000, 1000000))
+
+  // VOICE endpoint places an automated phone call that reads out the code.
+  const url = `${TWOFACTOR_BASE}/${TWOFACTOR_API_KEY}/VOICE/${phone}/${code}`
 
   let data: { Status: string; Details: string }
   try {
@@ -108,13 +111,13 @@ export async function sendOtp(rawPhone: string): Promise<SendOtpResult> {
     data = await res.json()
   } catch (err) {
     const msg = err instanceof Error ? err.message : "Network error"
-    console.error("[otp] 2factor.in send error:", msg)
-    return { ok: false, error: "Could not send OTP. Please try again." }
+    console.error("[otp] 2factor.in voice call error:", msg)
+    return { ok: false, error: "Could not place the verification call. Please try again." }
   }
 
   if (data?.Status !== "Success") {
-    console.error("[otp] 2factor.in send failed:", data?.Details)
-    return { ok: false, error: data?.Details || "Failed to send OTP." }
+    console.error("[otp] 2factor.in voice call failed:", data?.Details)
+    return { ok: false, error: data?.Details || "Failed to place the verification call." }
   }
 
   // data.Details is the SessionId
@@ -149,7 +152,7 @@ export async function verifyOtp(
     return { ok: false, error: "Session expired. Please request a new code." }
   }
 
-  const url = `${TWOFACTOR_BASE}/${TWOFACTOR_API_KEY}/SMS/VERIFY/${sessionId}/${code}`
+  const url = `${TWOFACTOR_BASE}/${TWOFACTOR_API_KEY}/VOICE/VERIFY/${sessionId}/${code}`
 
   let data: { Status: string; Details: string }
   try {
@@ -158,7 +161,7 @@ export async function verifyOtp(
   } catch (err) {
     const msg = err instanceof Error ? err.message : "Network error"
     console.error("[otp] 2factor.in verify error:", msg)
-    return { ok: false, error: "Could not verify OTP. Please try again." }
+    return { ok: false, error: "Could not verify the code. Please try again." }
   }
 
   if (data?.Status !== "Success") {

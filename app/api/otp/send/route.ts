@@ -21,11 +21,11 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: "Verification code sent.",
+      message: "Verification call initiated. You will receive a phone call with your code.",
       sessionId: result.sessionId,
     })
   } catch (error) {
     console.error("[otp/send] Error:", error)
-    return NextResponse.json({ error: "Failed to send verification code." }, { status: 500 })
+    return NextResponse.json({ error: "Failed to place the verification call." }, { status: 500 })
   }
 }
