@@ -9,6 +9,7 @@ import {
   propertyEnquiryUserTemplate,
 } from "@/lib/email"
 import type { LeadSource } from "@/lib/models"
+import { verifyVerificationToken } from "@/lib/otp"
 
 const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.comfobirth@gmail.com"
 
@@ -114,6 +115,7 @@ export async function POST(req: NextRequest) {
       budget_max,
       preferred_bhk,
       preferred_location,
+      verification_token,
     } = body
 
     // Validate required fields
@@ -144,6 +146,14 @@ export async function POST(req: NextRequest) {
       )
     }
 
+    // Require a valid, signed phone-verification token that matches this phone.
+    if (!verification_token || !verifyVerificationToken(verification_token, phone)) {
+      return NextResponse.json(
+        { error: "Phone number is not verified. Please verify with the OTP and try again." },
+        { status: 403 }
+      )
+    }
+
     // Auto-register / login buyer before saving the enquiry
     let buyerInfo: Awaited<ReturnType<typeof autoRegisterBuyer>> | null = null
     try {
@@ -168,6 +178,7 @@ export async function POST(req: NextRequest) {
       enquiry_type: enquiry_type || "property",
       source: enquiry_type === "office_space" ? "office_space_detail_page" : "property_detail_page",
       buyer_user_id: buyerInfo?.userId || null,
+      phone_verified: true,
       status: "new",
       created_at: new Date(),
       updated_at: new Date(),
@@ -209,6 +220,7 @@ export async function POST(req: NextRequest) {
       property_owner_id: propertyOwnerId,
       property_owner_type: propertyOwnerType as "admin" | "associate",
       buyer_user_id: buyerInfo?.userId || null,
+      phone_verified: true,
       status: "new" as const,
       priority: "medium" as const,
       notes: [],
