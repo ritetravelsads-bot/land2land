@@ -5,11 +5,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 export const metadata: Metadata = {
   title: "Portfolio | Land2Land",
-  description: "View our completed roofing projects showcasing quality craftsmanship and customer satisfaction.",
+  description: "Explore our portfolio of completed land transactions — agricultural, residential, and commercial deals across India.",
+  alternates: {
+    canonical: "https://land2land.com/portfolio",
+  },
   openGraph: {
+    type: "website",
     title: "Portfolio | Land2Land",
-    description: "Completed roofing projects that showcase our expertise and quality work.",
+    description: "Completed land transactions showcasing our expertise across India.",
     url: "https://land2land.com/portfolio",
+    siteName: "Land2Land",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Land2Land Portfolio" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Portfolio | Land2Land",
+    description: "Completed land transactions showcasing our expertise across India.",
+    images: ["/og-image.png"],
   },
 }
 

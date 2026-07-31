@@ -22,10 +22,22 @@ export const metadata: Metadata = {
   title: "After-Sales Support | Property Registration & Management | Land2Land",
   description:
     "Comprehensive after-sales support including property registration, possession assistance, interior design referrals, rental management, and resale assistance.",
+  alternates: {
+    canonical: "https://land2land.com/services/after-sales",
+  },
   openGraph: {
+    type: "website",
     title: "After-Sales Support | Land2Land",
     description: "Complete post-purchase property support and management services.",
     url: "https://land2land.com/services/after-sales",
+    siteName: "Land2Land",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "After-Sales Property Support" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "After-Sales Support | Land2Land",
+    description: "Complete post-purchase property support and management services.",
+    images: ["/og-image.png"],
   },
 }
 

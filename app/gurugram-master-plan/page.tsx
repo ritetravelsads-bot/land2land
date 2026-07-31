@@ -9,10 +9,22 @@ import { MapPin, Building2, Train, Trees, Download, ExternalLink } from "lucide-
 export const metadata: Metadata = {
   title: "Gurugram Master Plan 2031 | Land2Land",
   description: "Explore the Gurugram Master Plan 2031 - Comprehensive guide to upcoming infrastructure, development zones, and investment opportunities in Gurugram.",
+  alternates: {
+    canonical: "https://land2land.com/gurugram-master-plan",
+  },
   openGraph: {
+    type: "website",
     title: "Gurugram Master Plan 2031 | Land2Land",
     description: "Complete guide to Gurugram's development plan and real estate investment zones.",
     url: "https://land2land.com/gurugram-master-plan",
+    siteName: "Land2Land",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Gurugram Master Plan 2031" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gurugram Master Plan 2031 | Land2Land",
+    description: "Complete guide to Gurugram's development plan and real estate investment zones.",
+    images: ["/og-image.png"],
   },
 }
 

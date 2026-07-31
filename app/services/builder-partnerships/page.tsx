@@ -22,10 +22,22 @@ export const metadata: Metadata = {
   title: "Builder Partnerships | Exclusive Project Deals | Land2Land",
   description:
     "Direct partnerships with top developers for exclusive project launches, early bird offers, and channel partner benefits. Get direct builder pricing on premium properties.",
+  alternates: {
+    canonical: "https://land2land.com/services/builder-partnerships",
+  },
   openGraph: {
+    type: "website",
     title: "Builder Partnerships | Land2Land",
     description: "Access exclusive deals through our direct builder partnerships.",
     url: "https://land2land.com/services/builder-partnerships",
+    siteName: "Land2Land",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Builder Partnerships" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Builder Partnerships | Land2Land",
+    description: "Access exclusive deals through our direct builder partnerships.",
+    images: ["/og-image.png"],
   },
 }
 

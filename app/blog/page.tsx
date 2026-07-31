@@ -6,11 +6,23 @@ import Footer from "@/components/layout/footer"
 export const metadata: Metadata = {
   title: "Blog | Land2Land",
   description:
-    "Read expert tips on roofing maintenance, installation guides, and industry insights from Land2Land professionals.",
+    "Expert insights on agricultural land, real estate investment, RERA compliance, and land buying guides across India from the Land2Land team.",
+  alternates: {
+    canonical: "https://land2land.com/blog",
+  },
   openGraph: {
+    type: "website",
     title: "Blog | Land2Land",
-    description: "Expert roofing tips and industry insights from Land2Land professionals.",
+    description: "Expert land and real estate insights from the Land2Land team.",
     url: "https://land2land.com/blog",
+    siteName: "Land2Land",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Land2Land Blog" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Land2Land",
+    description: "Expert land and real estate insights from the Land2Land team.",
+    images: ["/og-image.png"],
   },
 }
 

@@ -22,10 +22,22 @@ export const metadata: Metadata = {
   title: "Commercial Real Estate Services | Office & Retail Space | Land2Land",
   description:
     "Expert commercial real estate services for office spaces, retail shops, warehouses, and co-working spaces in Gurugram. Find the perfect commercial property for your business.",
+  alternates: {
+    canonical: "https://land2land.com/services/commercial",
+  },
   openGraph: {
+    type: "website",
     title: "Commercial Real Estate Services | Land2Land",
     description: "Complete commercial property solutions for businesses in Gurugram.",
     url: "https://land2land.com/services/commercial",
+    siteName: "Land2Land",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Commercial Real Estate Services" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Commercial Real Estate Services | Land2Land",
+    description: "Complete commercial property solutions for businesses in Gurugram.",
+    images: ["/og-image.png"],
   },
 }
 

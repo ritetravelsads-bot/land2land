@@ -6,6 +6,23 @@ import Footer from "@/components/layout/footer"
 export const metadata: Metadata = {
   title: "Subscription Plans | Land2Land",
   description: "Choose from flexible subscription plans to buy, sell, and invest in agricultural land and farmland.",
+  alternates: {
+    canonical: "https://land2land.com/subscription",
+  },
+  openGraph: {
+    type: "website",
+    title: "Subscription Plans | Land2Land",
+    description: "Choose from flexible subscription plans to buy, sell, and invest in agricultural land.",
+    url: "https://land2land.com/subscription",
+    siteName: "Land2Land",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Land2Land Subscription Plans" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Subscription Plans | Land2Land",
+    description: "Choose from flexible subscription plans to buy, sell, and invest in agricultural land.",
+    images: ["/og-image.png"],
+  },
 }
 
 export default function SubscriptionPage() {

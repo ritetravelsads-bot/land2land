@@ -20,10 +20,22 @@ export const metadata: Metadata = {
   title: "Legal Assistance | Property Legal Services | Land2Land",
   description:
     "Comprehensive legal assistance for property transactions. Document verification, title clearance, RERA compliance, and agreement drafting services.",
+  alternates: {
+    canonical: "https://land2land.com/services/legal",
+  },
   openGraph: {
+    type: "website",
     title: "Legal Assistance | Land2Land",
     description: "Complete legal support for hassle-free property transactions.",
     url: "https://land2land.com/services/legal",
+    siteName: "Land2Land",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Legal Assistance for Property" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Legal Assistance | Land2Land",
+    description: "Complete legal support for hassle-free property transactions.",
+    images: ["/og-image.png"],
   },
 }
 

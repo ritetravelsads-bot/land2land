@@ -5,6 +5,7 @@ import Link from "next/link"
 export const metadata: Metadata = {
   title: "Create Account | Land2Land",
   description: "Join Land2Land to buy, sell, or invest in land properties. Create your account to get started.",
+  robots: { index: false, follow: false },
 }
 
 export default function RegisterPage() {

@@ -20,10 +20,22 @@ export const metadata: Metadata = {
   title: "Home Loan Assistance | Best Home Loan Rates | Land2Land",
   description:
     "Get the best home loan rates with our loan assistance services. Loan eligibility assessment, documentation support, and quick approval from multiple bank partners.",
+  alternates: {
+    canonical: "https://land2land.com/services/home-loans",
+  },
   openGraph: {
+    type: "website",
     title: "Home Loan Assistance | Land2Land",
     description: "Simplified home loan processing with best interest rates.",
     url: "https://land2land.com/services/home-loans",
+    siteName: "Land2Land",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Home Loan Assistance" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Home Loan Assistance | Land2Land",
+    description: "Simplified home loan processing with best interest rates.",
+    images: ["/og-image.png"],
   },
 }
 

@@ -20,10 +20,22 @@ export const metadata: Metadata = {
   title: "NRI Services | Property Investment for NRIs | Land2Land",
   description:
     "Comprehensive real estate services for Non-Resident Indians. Virtual property tours, POA assistance, regulatory compliance, and property management.",
+  alternates: {
+    canonical: "https://land2land.com/services/nri",
+  },
   openGraph: {
+    type: "website",
     title: "NRI Services | Land2Land",
     description: "Hassle-free property investment in India for NRIs.",
     url: "https://land2land.com/services/nri",
+    siteName: "Land2Land",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "NRI Property Investment Services" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NRI Services | Land2Land",
+    description: "Hassle-free property investment in India for NRIs.",
+    images: ["/og-image.png"],
   },
 }
 

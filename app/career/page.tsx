@@ -9,10 +9,22 @@ import { Briefcase, MapPin, Clock, Users, TrendingUp, Heart, Send } from "lucide
 export const metadata: Metadata = {
   title: "Careers | Land2Land - Join Our Team",
   description: "Join Land2Land and build your career in the agricultural land marketplace. Explore opportunities in land advisory, field operations, and agri-tech across India.",
+  alternates: {
+    canonical: "https://land2land.com/career",
+  },
   openGraph: {
+    type: "website",
     title: "Careers at Land2Land",
     description: "Build your career with India's leading agricultural land marketplace.",
     url: "https://land2land.com/career",
+    siteName: "Land2Land",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Careers at Land2Land" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Careers at Land2Land",
+    description: "Build your career with India's leading agricultural land marketplace.",
+    images: ["/og-image.png"],
   },
 }
 

@@ -21,10 +21,22 @@ export const metadata: Metadata = {
   title: "Property Advisory Services | Expert Real Estate Guidance | Land2Land",
   description:
     "Get expert property advisory services for buying, selling, and investing in real estate. Personalized recommendations, market analysis, and end-to-end transaction support.",
+  alternates: {
+    canonical: "https://land2land.com/services/advisory",
+  },
   openGraph: {
+    type: "website",
     title: "Property Advisory Services | Land2Land",
     description: "Expert guidance for all your real estate decisions in Gurugram.",
     url: "https://land2land.com/services/advisory",
+    siteName: "Land2Land",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Property Advisory Services" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Property Advisory Services | Land2Land",
+    description: "Expert guidance for all your real estate decisions in Gurugram.",
+    images: ["/og-image.png"],
   },
 }
 

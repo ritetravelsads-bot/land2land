@@ -5,6 +5,10 @@ import Footer from "@/components/layout/footer"
 export const metadata: Metadata = {
   title: "Disclaimer | Land2Land",
   description: "Legal disclaimer for Land2Land land services. Important information about land listings and advisory services.",
+  alternates: {
+    canonical: "https://land2land.com/disclaimer",
+  },
+  robots: { index: false, follow: false },
 }
 
 export default function DisclaimerPage() {

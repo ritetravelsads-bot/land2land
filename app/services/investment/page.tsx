@@ -21,10 +21,22 @@ export const metadata: Metadata = {
   title: "Investment Consulting | Real Estate Investment Advisory | Land2Land",
   description:
     "Strategic real estate investment consulting services. Get expert ROI analysis, portfolio diversification strategies, and pre-launch project opportunities.",
+  alternates: {
+    canonical: "https://land2land.com/services/investment",
+  },
   openGraph: {
+    type: "website",
     title: "Investment Consulting | Land2Land",
     description: "Maximize your real estate investment returns with expert guidance.",
     url: "https://land2land.com/services/investment",
+    siteName: "Land2Land",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Investment Consulting" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Investment Consulting | Land2Land",
+    description: "Maximize your real estate investment returns with expert guidance.",
+    images: ["/og-image.png"],
   },
 }
 
