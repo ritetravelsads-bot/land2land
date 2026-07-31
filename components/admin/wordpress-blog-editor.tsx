@@ -935,6 +935,7 @@ export default function WordPressBlogEditor({ initialData }: WordPressBlogEditor
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState(false)
+  const [linkedCount, setLinkedCount] = useState(0)
   const [availableCategories, setAvailableCategories] = useState<BlogCategory[]>([])
   const [loadingCategories, setLoadingCategories] = useState(true)
   const [newCategoryName, setNewCategoryName] = useState("")
@@ -1212,6 +1213,7 @@ export default function WordPressBlogEditor({ initialData }: WordPressBlogEditor
     setLoading(true)
     setError("")
     setSuccess(false)
+    setLinkedCount(0)
 
     try {
       const url = isEditing ? `/api/admin/blog/posts/${initialData?._id}` : "/api/admin/blog/posts"
@@ -1252,6 +1254,8 @@ export default function WordPressBlogEditor({ initialData }: WordPressBlogEditor
         throw new Error(data.error || `Failed to ${isEditing ? "update" : "create"} blog post`)
       }
 
+      const data = await response.json()
+      setLinkedCount(data.linkedCount ?? 0)
       setSuccess(true)
       setFormData((prev) => ({ ...prev, is_published: publishStatus }))
 
@@ -1414,7 +1418,16 @@ export default function WordPressBlogEditor({ initialData }: WordPressBlogEditor
           error ? "bg-destructive/10 text-destructive" : "bg-green-500/10 text-green-600"
         )}>
           {error ? <AlertCircle className="h-4 w-4" /> : <CheckCircle2 className="h-4 w-4" />}
-          {error || "Post saved successfully!"}
+          {error || (
+            <span>
+              Post saved successfully!
+              {linkedCount > 0 && (
+                <span className="ml-2 font-medium">
+                  Auto-linked {linkedCount} property {linkedCount === 1 ? "listing" : "listings"}.
+                </span>
+              )}
+            </span>
+          )}
         </div>
       )}
 

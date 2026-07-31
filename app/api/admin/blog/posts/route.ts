@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb"
 import { requireAdmin } from "@/lib/auth"
+import { fetchPropertyCandidates, injectPropertyLinks } from "@/lib/blog-auto-link"
 
 const mongoUrl = process.env.MONGODB_URI || ""
 
@@ -185,12 +186,35 @@ export async function POST(request: Request) {
         updatedAt: new Date(),
       })
 
+      // Auto-link: inject internal property links when publishing
+      let linkedCount = 0
+      let linkedProperties: { name: string; slug: string; url: string }[] = []
+      if (is_published !== false && mongoUrl) {
+        try {
+          const candidates = await fetchPropertyCandidates(mongoUrl)
+          const autoLink = injectPropertyLinks(content, candidates)
+          linkedCount = autoLink.linkedCount
+          linkedProperties = autoLink.linkedProperties
+          if (linkedCount > 0) {
+            await collection.updateOne(
+              { _id: result.insertedId },
+              { $set: { content: autoLink.html, updatedAt: new Date() } },
+            )
+          }
+        } catch (linkErr) {
+          // Non-fatal: log but don't fail the publish
+          console.error("[auto-link] POST error:", linkErr)
+        }
+      }
+
       return new Response(
         JSON.stringify({
           success: true,
           message: "Blog post created successfully",
           id: result.insertedId,
           slug: finalSlug,
+          linkedCount,
+          linkedProperties,
         }),
         {
           status: 201,
