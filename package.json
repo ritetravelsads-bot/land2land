@@ -94,7 +94,7 @@
     "react-hook-form": "^7.60.0",
     "react-resizable-panels": "^2.1.7",
     "react-toastify": "11.0.5",
-    "recharts": "2.15.4",
+    "recharts": "3.8.0",
     "rxjs": "latest",
     "snappy": "latest",
     "socks": "latest",
