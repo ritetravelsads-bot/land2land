@@ -1,18 +1,20 @@
 "use client"
 
-import { useState, useEffect } from "react"
 import useSWR from "swr"
 import PageHeader from "@/components/dashboard/page-header"
-import LoadingSpinner from "@/components/loading-spinner"
+import { Spinner } from "@/components/ui/spinner"
 import { AlertCircle } from "lucide-react"
-import { LeadStatusChart, LeadSourceChart } from "@/components/admin/analytics/lead-charts"
-import { ListingTypeChart, ListingStatusChart } from "@/components/admin/analytics/listing-charts"
+import { LeadFunnelChart, LeadsTrendChart, LeadSourceChart, LeadPriorityChart } from "@/components/admin/analytics/lead-charts"
+import { ListingTypeChart, ListingStatusChart, TopCitiesChart } from "@/components/admin/analytics/listing-charts"
 
 interface AnalyticsData {
-  leadsByStatus: Record<string, number>
-  leadsBySource: Record<string, number>
-  listingsByType: Record<string, number>
-  listingsByStatus: Record<string, number>
+  funnelData: Array<{ status: string; label: string; count: number }>
+  trendData: Array<{ month: string; label: string; leads: number; converted: number }>
+  sourceData: Array<{ source: string; label: string; count: number; fill: string }>
+  priorityData: Array<{ priority: string; label: string; count: number }>
+  typeData: Array<{ type: string; label: string; count: number }>
+  statusData: Array<{ status: string; label: string; count: number }>
+  citiesData: Array<{ city: string; label: string; count: number }>
   totalLeads: number
   totalListings: number
   conversionRate: number
@@ -61,7 +63,7 @@ export default function AnalyticsPage() {
       {/* Charts Grid */}
       {isLoading ? (
         <div className="flex items-center justify-center h-96">
-          <LoadingSpinner />
+          <Spinner className="h-8 w-8" />
         </div>
       ) : error ? (
         <div className="flex items-center gap-3 p-4 bg-destructive/10 border border-destructive/30 rounded-lg text-destructive">
@@ -74,12 +76,15 @@ export default function AnalyticsPage() {
       ) : data ? (
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Lead Charts */}
-          <LeadStatusChart data={data.leadsByStatus} />
-          <LeadSourceChart data={data.leadsBySource} />
+          <LeadFunnelChart data={data.funnelData} />
+          <LeadsTrendChart data={data.trendData} />
+          <LeadSourceChart data={data.sourceData} />
+          <LeadPriorityChart data={data.priorityData} />
 
           {/* Listing Charts */}
-          <ListingTypeChart data={data.listingsByType} />
-          <ListingStatusChart data={data.listingsByStatus} />
+          <ListingTypeChart data={data.typeData} />
+          <ListingStatusChart data={data.statusData} />
+          <TopCitiesChart data={data.citiesData} />
         </div>
       ) : null}
     </div>
