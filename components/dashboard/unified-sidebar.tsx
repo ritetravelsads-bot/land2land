@@ -33,6 +33,7 @@ import {
   Code2,
   ClipboardCheck,
   ShieldCheck,
+  TrendingUp,
 } from "lucide-react"
 
 type UserRole = "admin" | "associate" | "builder" | "buyer" | "customer"
@@ -64,6 +65,8 @@ const getNavConfig = (role: UserRole): NavSection[] => {
         {
           title: "Management",
           items: [
+            { href: "/admin/dashboard", label: "Dashboard", icon: Home },
+            { href: "/admin/analytics", label: "Analytics", icon: TrendingUp },
             { href: "/admin/properties", label: "Properties", icon: Package },
             { href: "/admin/properties/review", label: "Review Queue", icon: ClipboardCheck },
             { href: "/admin/rera-requests", label: "RERA Requests", icon: ShieldCheck },
