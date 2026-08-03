@@ -8,16 +8,22 @@ import { LeadFunnelChart, LeadsTrendChart, LeadSourceChart, LeadPriorityChart } 
 import { ListingTypeChart, ListingStatusChart, TopCitiesChart } from "@/components/admin/analytics/listing-charts"
 
 interface AnalyticsData {
-  funnelData: Array<{ status: string; label: string; count: number }>
-  trendData: Array<{ month: string; label: string; leads: number; converted: number }>
-  sourceData: Array<{ source: string; label: string; count: number; fill: string }>
-  priorityData: Array<{ priority: string; label: string; count: number }>
-  typeData: Array<{ type: string; label: string; count: number }>
-  statusData: Array<{ status: string; label: string; count: number }>
-  citiesData: Array<{ city: string; label: string; count: number }>
-  totalLeads: number
-  totalListings: number
-  conversionRate: number
+  totals: {
+    totalLeads: number
+    converted: number
+    conversionRate: number
+    newLeads: number
+    totalListings: number
+  }
+  funnel: Array<{ status: string; label: string; count: number }>
+  bySource: Array<{ source: string; label: string; count: number }>
+  byPriority: Array<{ priority: string; label: string; count: number }>
+  overTime: Array<{ month: string; label: string; leads: number; converted: number }>
+  listings: {
+    byType: Array<{ type: string; label: string; count: number }>
+    byStatus: Array<{ status: string; label: string; count: number }>
+    topCities: Array<{ city: string; count: number }>
+  }
 }
 
 export default function AnalyticsPage() {
@@ -29,12 +35,12 @@ export default function AnalyticsPage() {
   const stats = [
     {
       label: "Total Leads",
-      value: data?.totalLeads ?? 0,
-      subtext: `${(data?.conversionRate ?? 0).toFixed(1)}% conversion rate`,
+      value: data?.totals?.totalLeads ?? 0,
+      subtext: `${(data?.totals?.conversionRate ?? 0).toFixed(1)}% conversion rate`,
     },
     {
       label: "Active Listings",
-      value: data?.totalListings ?? 0,
+      value: data?.totals?.totalListings ?? 0,
       subtext: "Properties available",
     },
   ]
@@ -76,15 +82,15 @@ export default function AnalyticsPage() {
       ) : data ? (
         <div className="grid gap-6 lg:grid-cols-2">
           {/* Lead Charts */}
-          <LeadFunnelChart data={data.funnelData} />
-          <LeadsTrendChart data={data.trendData} />
-          <LeadSourceChart data={data.sourceData} />
-          <LeadPriorityChart data={data.priorityData} />
+          <LeadFunnelChart data={data.funnel} />
+          <LeadsTrendChart data={data.overTime} />
+          <LeadSourceChart data={data.bySource} />
+          <LeadPriorityChart data={data.byPriority} />
 
           {/* Listing Charts */}
-          <ListingTypeChart data={data.typeData} />
-          <ListingStatusChart data={data.statusData} />
-          <TopCitiesChart data={data.citiesData} />
+          <ListingTypeChart data={data.listings.byType} />
+          <ListingStatusChart data={data.listings.byStatus} />
+          <TopCitiesChart data={data.listings.topCities} />
         </div>
       ) : null}
     </div>
