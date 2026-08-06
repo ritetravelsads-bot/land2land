@@ -113,7 +113,6 @@ export async function GET(
       },
     })
   } catch (error) {
-    console.error("[v0] Error fetching developer:", error)
     return NextResponse.json(
       { error: "Failed to fetch developer" },
       { status: 500 }

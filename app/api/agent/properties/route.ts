@@ -25,7 +25,6 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(properties)
   } catch (error) {
-    console.error("[v0] Error fetching associate properties:", error)
     return NextResponse.json({ error: "Failed to fetch properties" }, { status: 500 })
   }
 }
@@ -78,7 +77,6 @@ export async function POST(req: NextRequest) {
     const result = await db.collection("listings").insertOne(property)
     return NextResponse.json({ _id: result.insertedId, ...property }, { status: 201 })
   } catch (error) {
-    console.error("[v0] Error creating property:", error)
     return NextResponse.json({ error: "Failed to create property" }, { status: 500 })
   }
 }

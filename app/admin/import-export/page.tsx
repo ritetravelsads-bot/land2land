@@ -52,7 +52,7 @@ export default function ImportExportPage() {
       const report = await res.json()
       setValidationReport(report)
     } catch (error) {
-      console.error("[v0] Validation error:", error)
+
       toast({
         title: "Error",
         description: "Failed to validate file",
@@ -74,7 +74,7 @@ export default function ImportExportPage() {
       a.click()
       window.URL.revokeObjectURL(url)
     } catch (error) {
-      console.error("[v0] Download error:", error)
+
       toast({
         title: "Error",
         description: "Failed to download sample file",

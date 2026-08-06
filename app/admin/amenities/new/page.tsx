@@ -31,7 +31,7 @@ export default function AdminAddAmenityPage() {
         router.push("/admin/amenities")
       }
     } catch (error) {
-      console.error("[v0] Error creating amenity:", error)
+
     } finally {
       setLoading(false)
     }

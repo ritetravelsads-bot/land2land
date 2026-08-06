@@ -28,7 +28,6 @@ export async function GET() {
 
     return NextResponse.json(requests.map((r) => ({ ...r, _id: r._id.toString() })))
   } catch (error) {
-    console.error("[v0] Error listing RERA requests:", error)
     return NextResponse.json({ error: "Failed to load RERA requests" }, { status: 500 })
   }
 }
@@ -128,7 +127,6 @@ export async function POST(req: NextRequest) {
       { status: 201 },
     )
   } catch (error) {
-    console.error("[v0] Error creating RERA request:", error)
     return NextResponse.json({ error: "Failed to create RERA request" }, { status: 500 })
   }
 }

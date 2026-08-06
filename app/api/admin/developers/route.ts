@@ -18,7 +18,7 @@ export async function GET() {
       },
     })
   } catch (error) {
-    console.error("[v0] Error fetching developers:", error)
+
     return NextResponse.json({ error: "Failed to fetch developers" }, { status: 500 })
   }
 }
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
     const result = await db.collection("sellers").insertOne(developer)
     return NextResponse.json({ _id: result.insertedId, ...developer }, { status: 201 })
   } catch (error) {
-    console.error("[v0] Error creating developer:", error)
+
     return NextResponse.json({ error: "Failed to create developer" }, { status: 500 })
   }
 }

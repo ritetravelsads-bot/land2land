@@ -46,7 +46,7 @@ export async function GET(req: NextRequest) {
       },
     })
   } catch (error) {
-    console.error("[v0] Export error:", error)
+
     return NextResponse.json({ error: error instanceof Error ? error.message : "Export failed" }, { status: 400 })
   }
 }

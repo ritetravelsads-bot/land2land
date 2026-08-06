@@ -39,7 +39,7 @@ export default function AdminDashboardPage() {
           newLeads: leadsData.stats?.new || 0,
         })
       } catch (error) {
-        console.error("[v0] Error loading stats:", error)
+
       } finally {
         setLoading(false)
       }

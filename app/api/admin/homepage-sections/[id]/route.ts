@@ -32,7 +32,7 @@ export async function GET(req: Request, context: Context) {
     
     return Response.json(section)
   } catch (error) {
-    console.error("[v0] Error fetching section:", error)
+
     return Response.json({ error: "Failed to fetch section" }, { status: 500 })
   }
 }
@@ -58,7 +58,7 @@ export async function PUT(req: Request, context: Context) {
       
     return Response.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error updating section:", error)
+
     return Response.json({ error: "Failed to update section" }, { status: 500 })
   }
 }
@@ -83,7 +83,7 @@ export async function PATCH(req: Request, context: Context) {
       
     return Response.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error updating section:", error)
+
     return Response.json({ error: "Failed to update section" }, { status: 500 })
   }
 }
@@ -110,7 +110,7 @@ export async function DELETE(req: Request, context: Context) {
     
     return Response.json({ success: true, deletedCount: result.deletedCount })
   } catch (error) {
-    console.error("[v0] Error deleting section:", error)
+
     return Response.json({ error: "Failed to delete section" }, { status: 500 })
   }
 }

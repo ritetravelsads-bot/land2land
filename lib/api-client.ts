@@ -23,7 +23,6 @@ export async function apiCall(endpoint: string, options: RequestInit = {}): Prom
 
     return data
   } catch (error) {
-    console.error("[v0] API Call Error:", error)
     throw error
   }
 }

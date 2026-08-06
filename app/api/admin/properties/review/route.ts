@@ -75,7 +75,7 @@ export async function GET(req: NextRequest) {
       counts: { pending, approved, rejected },
     })
   } catch (error) {
-    console.error("[v0] Error fetching review queue:", error)
+
     return NextResponse.json({ error: "Failed to fetch review queue" }, { status: 500 })
   }
 }

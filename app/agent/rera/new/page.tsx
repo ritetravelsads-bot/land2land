@@ -50,7 +50,6 @@ export default function NewReraRequestPage() {
         const data = await res.json()
         setListings(Array.isArray(data) ? data : [])
       } catch (err) {
-        console.error("[v0] Error loading properties:", err)
       } finally {
         setLoadingListings(false)
       }

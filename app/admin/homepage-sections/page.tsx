@@ -189,27 +189,25 @@ export default function HomepageSectionsPage() {
 
   const loadSections = async () => {
     try {
-      console.log("[v0] Loading sections from API...")
+
       const response = await fetch("/api/admin/homepage-sections")
-      console.log("[v0] API response status:", response.status)
-      
+
       if (!response.ok) {
         const errorText = await response.text()
-        console.error("[v0] API returned error:", errorText)
+
         throw new Error(`Failed to load sections: ${response.status}`)
       }
       
       const data = await response.json()
-      console.log("[v0] Loaded sections data:", data)
+
       console.log("[v0] Loaded sections type:", typeof data, "is array:", Array.isArray(data))
       
       if (!Array.isArray(data)) {
-        console.warn("[v0] Data is not an array, received:", typeof data)
+
       }
       
       const sectionsArray = Array.isArray(data) ? data : []
-      console.log("[v0] Final sections array length:", sectionsArray.length)
-      
+
       if (sectionsArray.length > 0) {
         console.log("[v0] ALL Section IDs:", sectionsArray.map((s, idx) => ({ 
           index: idx, 
@@ -218,12 +216,12 @@ export default function HomepageSectionsPage() {
           idType: typeof s._id
         })))
       } else {
-        console.warn("[v0] No sections returned - database may be empty")
+
       }
       
       setSections(sectionsArray)
     } catch (error) {
-      console.error("[v0] Error loading sections:", error)
+
       toast({
         title: "Error",
         description: "Failed to load sections. Check browser console for details.",
@@ -263,7 +261,7 @@ export default function HomepageSectionsPage() {
         })
       }
     } catch (error) {
-      console.error("[v0] Error initializing sections:", error)
+
       toast({
         title: "Error",
         description: "Error initializing sections. Please try again.",
@@ -289,7 +287,7 @@ export default function HomepageSectionsPage() {
         })
       }
     } catch (error) {
-      console.error("[v0] Error updating section:", error)
+
       toast({
         title: "Error",
         description: "Failed to update section status",
@@ -353,7 +351,7 @@ export default function HomepageSectionsPage() {
         })
       }
     } catch (error) {
-      console.error("[v0] Error saving section:", error)
+
       toast({
         title: "Error",
         description: "Failed to save section changes",
@@ -386,7 +384,7 @@ export default function HomepageSectionsPage() {
           description: "Section deleted successfully!",
         })
       } catch (error) {
-        console.error("[v0] Error deleting section:", error)
+
         toast({
           title: "Error",
           description: error instanceof Error ? error.message : "Failed to delete section",

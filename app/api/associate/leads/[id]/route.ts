@@ -56,7 +56,6 @@ export async function GET(
       property,
     })
   } catch (error) {
-    console.error("[v0] Error fetching lead:", error)
     return NextResponse.json({ error: "Failed to fetch lead" }, { status: 500 })
   }
 }
@@ -123,7 +122,6 @@ export async function PUT(
 
     return NextResponse.json({ success: true, message: "Lead updated successfully" })
   } catch (error) {
-    console.error("[v0] Error updating lead:", error)
     return NextResponse.json({ error: "Failed to update lead" }, { status: 500 })
   }
 }

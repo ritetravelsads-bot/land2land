@@ -34,7 +34,7 @@ export default function AdminReraQueuePage() {
       setRequests(data.requests || [])
       if (data.counts) setCounts(data.counts)
     } catch (error) {
-      console.error("[v0] Error loading RERA queue:", error)
+
     } finally {
       setLoading(false)
     }

@@ -24,7 +24,7 @@ export default function AdminEditFacilityPage() {
         const data = await res.json()
         setFormData(data)
       } catch (error) {
-        console.error("[v0] Error loading facility:", error)
+
       } finally {
         setInitialLoading(false)
       }
@@ -51,7 +51,7 @@ export default function AdminEditFacilityPage() {
         router.push("/admin/facilities")
       }
     } catch (error) {
-      console.error("[v0] Error updating facility:", error)
+
     } finally {
       setLoading(false)
     }

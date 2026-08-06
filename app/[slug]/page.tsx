@@ -209,7 +209,6 @@ export default function SlugPage() {
         setProperties(data.properties || [])
         setPagination(data.pagination)
       } catch (error) {
-        console.error('[v0] Error fetching location:', error)
       } finally {
         setLoading(false)
       }

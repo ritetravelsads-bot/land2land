@@ -35,7 +35,7 @@ export default function AdminAddStatePage() {
         router.push("/admin/states")
       }
     } catch (error) {
-      console.error("[v0] Error creating state:", error)
+
     } finally {
       setLoading(false)
     }

@@ -23,7 +23,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 
     return NextResponse.json({ ...location, _id: location._id.toString() })
   } catch (error) {
-    console.error("[v0] Error fetching location:", error)
+
     return NextResponse.json({ error: "Failed to fetch location" }, { status: 500 })
   }
 }
@@ -82,7 +82,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     const updated = await db.collection("locations").findOne({ _id: objectId })
     return NextResponse.json({ ...updated, _id: updated?._id.toString() })
   } catch (error) {
-    console.error("[v0] Error updating location:", error)
+
     return NextResponse.json({ error: "Failed to update location" }, { status: 500 })
   }
 }
@@ -111,7 +111,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error deleting location:", error)
+
     return NextResponse.json({ error: "Failed to delete location" }, { status: 500 })
   }
 }

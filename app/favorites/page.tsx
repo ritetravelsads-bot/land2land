@@ -33,7 +33,6 @@ export default function FavoritesPage() {
           setFavorites(JSON.parse(saved))
         }
       } catch (error) {
-        console.error("[v0] Error loading favorites:", error)
       } finally {
         setLoading(false)
       }

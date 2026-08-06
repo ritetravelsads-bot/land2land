@@ -76,7 +76,6 @@ export async function POST() {
       message: "Your account and associated data have been permanently deleted.",
     })
   } catch (error) {
-    console.error("[v0] Error deleting account:", error)
     return NextResponse.json({ success: false, error: "Failed to delete account" }, { status: 500 })
   }
 }

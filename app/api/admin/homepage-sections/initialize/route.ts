@@ -119,22 +119,20 @@ const PREDEFINED_SECTIONS = [
 
 export async function POST() {
   try {
-    console.log("[v0] Initialize request started")
-    
+
     const user = await getCurrentUser()
     console.log("[v0] User check:", user ? `${user.email} (${user.user_type})` : "Not authenticated")
     
     if (!user || user.user_type !== "admin") {
-      console.log("[v0] Unauthorized - not admin")
+
       return Response.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    console.log("[v0] Connecting to database...")
     const { db } = await connectToDatabase()
     const collection = db.collection<HomepageSection>("homepage_sections")
 
     // Check if sections already exist
-    console.log("[v0] Checking for existing sections...")
+
     const existingCount = await collection.countDocuments({})
     console.log(`[v0] Existing sections count: ${existingCount}`)
     
@@ -175,7 +173,7 @@ export async function POST() {
       ids: Object.values(insertResult.insertedIds).map(id => id.toString())
     })
   } catch (error) {
-    console.error("[v0] Error initializing sections:", error)
+
     const errorMessage = error instanceof Error ? error.message : String(error)
     return Response.json({ error: "Failed to initialize sections", details: errorMessage }, { status: 500 })
   }

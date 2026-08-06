@@ -21,7 +21,6 @@ export async function apiCall(endpoint: string, method: "GET" | "POST" | "PUT" |
 
     return await response.json()
   } catch (error) {
-    console.error("[v0] API call failed:", error)
     throw error
   }
 }

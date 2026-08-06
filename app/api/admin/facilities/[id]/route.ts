@@ -18,7 +18,7 @@ export async function GET(
 
     return NextResponse.json(facility)
   } catch (error) {
-    console.error("[v0] Error fetching facility:", error)
+
     return NextResponse.json({ error: "Failed to fetch facility" }, { status: 500 })
   }
 }
@@ -53,7 +53,7 @@ export async function PUT(
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error updating facility:", error)
+
     return NextResponse.json({ error: "Failed to update facility" }, { status: 500 })
   }
 }
@@ -78,7 +78,7 @@ export async function DELETE(
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error deleting facility:", error)
+
     return NextResponse.json({ error: "Failed to delete facility" }, { status: 500 })
   }
 }

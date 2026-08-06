@@ -36,7 +36,6 @@ export default function ProtectedRoute({ children, requiredRole }: ProtectedRout
 
         setIsAuthorized(true)
       } catch (error) {
-        console.error("[v0] Auth check error:", error)
         router.push("/auth/login")
       } finally {
         setIsLoading(false)

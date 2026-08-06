@@ -9,7 +9,7 @@ export async function GET() {
 
     return NextResponse.json(categories)
   } catch (error) {
-    console.error("[v0] Error fetching categories:", error)
+
     return NextResponse.json({ error: "Failed to fetch categories" }, { status: 500 })
   }
 }
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     const result = await db.collection("categories").insertOne(category)
     return NextResponse.json({ _id: result.insertedId, ...category }, { status: 201 })
   } catch (error) {
-    console.error("[v0] Error creating category:", error)
+
     return NextResponse.json({ error: "Failed to create category" }, { status: 500 })
   }
 }

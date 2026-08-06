@@ -19,11 +19,9 @@ export default function EditPropertyPage({ params }: { params: Promise<{ id: str
           const data = await res.json()
           setInitialData(data)
         } else {
-          console.error("[v0] Failed to fetch property data")
           router.push("/associate/properties")
         }
       } catch (error) {
-        console.error("[v0] Error loading property:", error)
         router.push("/associate/properties")
       } finally {
         setLoading(false)

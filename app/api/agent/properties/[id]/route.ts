@@ -28,7 +28,6 @@ export async function GET(
 
     return NextResponse.json(property)
   } catch (error) {
-    console.error("[v0] Error fetching property:", error)
     return NextResponse.json({ error: "Failed to fetch property" }, { status: 500 })
   }
 }
@@ -122,7 +121,6 @@ export async function PUT(
     const updatedProperty = await db.collection("listings").findOne({ _id: new ObjectId(id) })
     return NextResponse.json({ success: true, property: updatedProperty })
   } catch (error) {
-    console.error("[v0] Error updating property:", error)
     return NextResponse.json({ error: "Failed to update property" }, { status: 500 })
   }
 }
@@ -152,7 +150,6 @@ export async function DELETE(
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error deleting property:", error)
     return NextResponse.json({ error: "Failed to delete property" }, { status: 500 })
   }
 }

@@ -48,18 +48,14 @@ export default function SectionPropertyEditor({ sectionId }: Props) {
           fetch("/api/properties?limit=1000"),
         ])
 
-        console.log("[v0] Section ID:", sectionId);
-        console.log("[v0] Section response status:", sectionRes.status);
         // Handle section response
         if (sectionRes.status === 404) {
-          console.warn("[v0] Section not found (404) - it may not have been initialized yet")
           setLoading(false)
           return
         }
 
         if (sectionRes.ok) {
           const sectionData = await sectionRes.json()
-          console.log("[v0] Section data:", sectionData);
           // Ensure property_ids is always an array
           if (sectionData && typeof sectionData === "object") {
             setSection({
@@ -67,9 +63,6 @@ export default function SectionPropertyEditor({ sectionId }: Props) {
               property_ids: Array.isArray(sectionData.property_ids) ? sectionData.property_ids : [],
             })
           }
-        } else {
-          const error = await sectionRes.json()
-          console.error("[v0] Error fetching section:", error)
         }
 
         // Handle properties response
@@ -84,15 +77,9 @@ export default function SectionPropertyEditor({ sectionId }: Props) {
             propertiesList = propertiesData.properties
           }
 
-          console.log("[v0] Properties response:", propertiesRes);
-          console.log("[v0] Properties response status:", propertiesRes.status);
-          console.log("[v0] Properties response data:", propertiesData);
-          console.log("[v0] Properties data:", propertiesList);
-
           setAllProperties(propertiesList)
         }
       } catch (error) {
-        console.error("[v0] Error loading data:", error)
       } finally {
         setLoading(false)
       }
@@ -129,7 +116,6 @@ export default function SectionPropertyEditor({ sectionId }: Props) {
         })
       }
     } catch (error) {
-      console.error("[v0] Error removing property:", error)
       toast({
         title: "Error",
         description: "Error removing property. Please try again.",
@@ -188,7 +174,6 @@ export default function SectionPropertyEditor({ sectionId }: Props) {
         })
       }
     } catch (error) {
-      console.error("[v0] Error adding property:", error)
       toast({
         title: "Error",
         description: "Error adding property. Please try again.",

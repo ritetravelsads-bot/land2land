@@ -38,7 +38,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(serialized)
   } catch (error) {
-    console.error("[v0] Error fetching locations:", error)
+
     return NextResponse.json({ error: "Failed to fetch locations" }, { status: 500 })
   }
 }
@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
     const result = await db.collection("locations").insertOne(location)
     return NextResponse.json({ _id: result.insertedId.toString(), ...location }, { status: 201 })
   } catch (error) {
-    console.error("[v0] Error creating location:", error)
+
     return NextResponse.json({ error: "Failed to create location" }, { status: 500 })
   }
 }

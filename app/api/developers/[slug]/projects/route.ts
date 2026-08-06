@@ -125,7 +125,6 @@ export async function GET(
       total: serializedProperties.length
     })
   } catch (error) {
-    console.error("[v0] Error fetching developer projects:", error)
     return NextResponse.json(
       { error: "Failed to fetch developer projects" },
       { status: 500 }

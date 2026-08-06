@@ -33,7 +33,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
         }
       }
     } catch (e) {
-      console.error("[v0] Invalid ObjectId format:", id, e)
+
       property = null
     }
 
@@ -43,24 +43,12 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 
     // Debug: Log image fields being retrieved
     const propertyData = property as any
-    console.log("[v0] API GET - Image fields retrieved:", {
-      main_thumbnail: propertyData.main_thumbnail,
-      main_banner: propertyData.main_banner,
-      multiple_images: propertyData.multiple_images,
-      floor_plans: propertyData.floor_plans,
-      master_plan: propertyData.master_plan,
-    })
-    
+
     // Debug: Log SEO fields being retrieved
-    console.log("[v0] API GET - SEO fields retrieved:", {
-      meta_title: propertyData.meta_title,
-      meta_description: propertyData.meta_description,
-      meta_keywords: propertyData.meta_keywords,
-    })
 
     return NextResponse.json(property)
   } catch (error) {
-    console.error("[v0] Error fetching property:", error)
+
     return NextResponse.json({ error: "Failed to fetch property", details: String(error) }, { status: 500 })
   }
 }
@@ -114,21 +102,9 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     }
 
     // Debug: Log image fields being saved
-    console.log("[v0] API PUT - Image fields being saved:", {
-      main_thumbnail: body.main_thumbnail,
-      main_banner: body.main_banner,
-      multiple_images: body.multiple_images,
-      floor_plans: body.floor_plans,
-      master_plan: body.master_plan,
-    })
-    
+
     // Debug: Log SEO fields being saved
-    console.log("[v0] API PUT - SEO fields being saved:", {
-      meta_title: body.meta_title,
-      meta_description: body.meta_description,
-      meta_keywords: body.meta_keywords,
-    })
-    
+
     // Build the update object
     const updateData = {
       ...body,
@@ -155,7 +131,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     
     return NextResponse.json({ success: true, property: serializedProperty, slug })
   } catch (error) {
-    console.error("[v0] Error updating property:", error)
+
     return NextResponse.json({ 
       error: "Failed to update property", 
       details: error instanceof Error ? error.message : String(error) 
@@ -180,7 +156,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
     try {
       objId = new ObjectId(id)
     } catch (e) {
-      console.error("[v0] Invalid ObjectId format for deletion:", id, e)
+
       return NextResponse.json({ error: "Invalid property ID format" }, { status: 400 })
     }
 
@@ -192,7 +168,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error deleting property:", error)
+
     return NextResponse.json({ error: "Failed to delete property", details: String(error) }, { status: 500 })
   }
 }

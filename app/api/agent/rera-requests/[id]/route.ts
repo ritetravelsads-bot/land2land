@@ -39,7 +39,6 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
 
     return NextResponse.json({ ...loaded.request, _id: loaded.request._id.toString() })
   } catch (error) {
-    console.error("[v0] Error loading RERA request:", error)
     return NextResponse.json({ error: "Failed to load request" }, { status: 500 })
   }
 }
@@ -111,7 +110,6 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error updating RERA request:", error)
     return NextResponse.json({ error: "Failed to update request" }, { status: 500 })
   }
 }

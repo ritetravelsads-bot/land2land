@@ -21,7 +21,6 @@ export default function AssociateReraPage() {
         const data = await res.json()
         setRequests(Array.isArray(data) ? data : [])
       } catch (error) {
-        console.error("[v0] Error loading RERA requests:", error)
       } finally {
         setLoading(false)
       }

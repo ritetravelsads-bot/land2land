@@ -36,7 +36,7 @@ export default function AdminAddCategoryPage() {
         router.push("/admin/categories")
       }
     } catch (error) {
-      console.error("[v0] Error creating category:", error)
+
     } finally {
       setLoading(false)
     }

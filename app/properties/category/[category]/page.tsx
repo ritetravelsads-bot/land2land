@@ -18,7 +18,6 @@ export default function CategoryPage({ params }: { params: { category: string } 
         const data = await res.json()
         setProperties(data.properties || [])
       } catch (error) {
-        console.error("[v0] Error loading properties:", error)
       } finally {
         setLoading(false)
       }

@@ -72,7 +72,7 @@ export default function AdminUsersPage() {
         toast.error(data.error || "Failed to create user")
       }
     } catch (error) {
-      console.error("[v0] Error creating user:", error)
+
       toast.error("Failed to create user")
     } finally {
       setSubmitting(false)
@@ -87,11 +87,11 @@ export default function AdminUsersPage() {
       if (Array.isArray(data)) {
         setUsers(data)
       } else {
-        console.error("[v0] Unexpected data format:", data)
+
         setUsers([])
       }
     } catch (error) {
-      console.error("[v0] Error loading users:", error)
+
       toast.error("Failed to load users")
     } finally {
       setLoading(false)
@@ -125,7 +125,7 @@ export default function AdminUsersPage() {
         toast.error("Failed to delete user")
       }
     } catch (error) {
-      console.error("[v0] Error deleting user:", error)
+
       toast.error("Failed to delete user")
     }
   }

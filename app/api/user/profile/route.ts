@@ -55,7 +55,6 @@ export async function PUT(req: NextRequest) {
 
     return NextResponse.json({ success: true, profile_picture: updates.profile_picture })
   } catch (error) {
-    console.error("[v0] Error updating profile:", error)
     return NextResponse.json({ error: "Failed to update profile" }, { status: 500 })
   }
 }

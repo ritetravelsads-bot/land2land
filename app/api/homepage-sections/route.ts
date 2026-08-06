@@ -13,7 +13,6 @@ export async function GET() {
 
     return Response.json(sections)
   } catch (error) {
-    console.error("[v0] Error fetching sections:", error)
     return Response.json({ error: "Failed to fetch sections" }, { status: 500 })
   }
 }
@@ -30,7 +29,6 @@ export async function POST(req: Request) {
 
     return Response.json({ _id: result.insertedId, ...section }, { status: 201 })
   } catch (error) {
-    console.error("[v0] Error creating section:", error)
     return Response.json({ error: "Failed to create section" }, { status: 500 })
   }
 }

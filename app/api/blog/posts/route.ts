@@ -268,7 +268,6 @@ export async function PUT(
       await client.close()
     }
   } catch (error) {
-    console.error("[v0] Error updating blog post:", error)
     const errorMessage = error instanceof Error ? error.message : "Failed to update blog post"
     const statusCode = errorMessage === "Unauthorized" ? 401 : 500
 
@@ -335,7 +334,6 @@ export async function DELETE(
       await client.close()
     }
   } catch (error) {
-    console.error("[v0] Error deleting blog post:", error)
     const errorMessage = error instanceof Error ? error.message : "Failed to delete blog post"
     const statusCode = errorMessage === "Unauthorized" ? 401 : 500
 

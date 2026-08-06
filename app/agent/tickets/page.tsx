@@ -34,7 +34,6 @@ export default function AssociateTicketsPage() {
       const data = await res.json()
       setTickets(data)
     } catch (error) {
-      console.error("[v0] Error loading tickets:", error)
     } finally {
       setLoading(false)
     }
@@ -55,7 +54,6 @@ export default function AssociateTicketsPage() {
         loadTickets()
       }
     } catch (error) {
-      console.error("[v0] Error creating ticket:", error)
     } finally {
       setSubmitting(false)
     }

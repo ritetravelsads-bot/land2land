@@ -9,7 +9,7 @@ export async function GET() {
 
     return NextResponse.json(facilities)
   } catch (error) {
-    console.error("[v0] Error fetching facilities:", error)
+
     return NextResponse.json({ error: "Failed to fetch facilities" }, { status: 500 })
   }
 }
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     const result = await db.collection("facilities").insertOne(facility)
     return NextResponse.json({ _id: result.insertedId, ...facility }, { status: 201 })
   } catch (error) {
-    console.error("[v0] Error creating facility:", error)
+
     return NextResponse.json({ error: "Failed to create facility" }, { status: 500 })
   }
 }

@@ -94,7 +94,7 @@ export async function GET(request: NextRequest) {
       stats,
     })
   } catch (error) {
-    console.error("[v0] Error fetching leads:", error)
+
     return NextResponse.json({ error: "Failed to fetch leads" }, { status: 500 })
   }
 }
@@ -151,7 +151,7 @@ export async function POST(request: NextRequest) {
       ...lead 
     }, { status: 201 })
   } catch (error) {
-    console.error("[v0] Error creating lead:", error)
+
     return NextResponse.json({ error: "Failed to create lead" }, { status: 500 })
   }
 }

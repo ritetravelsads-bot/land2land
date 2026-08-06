@@ -18,7 +18,7 @@ export async function GET(
 
     return NextResponse.json(amenity)
   } catch (error) {
-    console.error("[v0] Error fetching amenity:", error)
+
     return NextResponse.json({ error: "Failed to fetch amenity" }, { status: 500 })
   }
 }
@@ -53,7 +53,7 @@ export async function PUT(
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error updating amenity:", error)
+
     return NextResponse.json({ error: "Failed to update amenity" }, { status: 500 })
   }
 }
@@ -78,7 +78,7 @@ export async function DELETE(
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error deleting amenity:", error)
+
     return NextResponse.json({ error: "Failed to delete amenity" }, { status: 500 })
   }
 }

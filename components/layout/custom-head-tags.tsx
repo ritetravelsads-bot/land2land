@@ -34,7 +34,6 @@ function shouldBlockTag(tagContent: string): boolean {
   // Block any meta tag with robots name attribute that contains noindex or nofollow
   if (lower.includes('name="robots"') || lower.includes("name='robots'")) {
     if (lower.includes('noindex') || lower.includes('nofollow')) {
-      console.log("[v0] Blocking robots meta tag:", tagContent)
       return true
     }
   }
@@ -42,7 +41,6 @@ function shouldBlockTag(tagContent: string): boolean {
   // Also block meta robots tags with property attribute (edge case)
   if (lower.includes('property="robots"') || lower.includes("property='robots'")) {
     if (lower.includes('noindex') || lower.includes('nofollow')) {
-      console.log("[v0] Blocking robots meta property tag:", tagContent)
       return true
     }
   }
@@ -53,15 +51,10 @@ function shouldBlockTag(tagContent: string): boolean {
 export default async function CustomHeadTags() {
   const tags = await getActiveHeadTags()
   
-  console.log("[v0] CustomHeadTags - Fetched", tags.length, "active tags from database")
-  
   // Filter out any robots meta tags that contain noindex or nofollow
   const filteredTags = tags.filter((tag) => !shouldBlockTag(tag.tag_content))
   
-  console.log("[v0] CustomHeadTags - After filtering:", filteredTags.length, "tags will be rendered")
-  
   if (filteredTags.length === 0) {
-    console.log("[v0] CustomHeadTags - No tags to render, returning null")
     return null
   }
   

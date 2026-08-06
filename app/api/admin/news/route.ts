@@ -14,7 +14,7 @@ export async function GET() {
 
     return Response.json(news)
   } catch (error) {
-    console.error("[v0] Error fetching news:", error)
+
     return Response.json({ error: "Failed to fetch news" }, { status: 500 })
   }
 }
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
 
     return Response.json({ id: result.insertedId }, { status: 201 })
   } catch (error) {
-    console.error("[v0] Error creating news:", error)
+
     return Response.json({ error: "Failed to create news" }, { status: 500 })
   }
 }
@@ -69,7 +69,7 @@ export async function PUT(req: Request) {
 
     return Response.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error updating news:", error)
+
     return Response.json({ error: "Failed to update news" }, { status: 500 })
   }
 }

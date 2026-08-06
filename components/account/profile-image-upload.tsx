@@ -51,7 +51,6 @@ export default function ProfileImageUpload({ name, value, onChange, disabled }: 
       }
       onChange(data.url)
     } catch (err) {
-      console.error("[v0] Avatar upload error:", err)
       setError("Could not upload the image. Please try again.")
     } finally {
       setUploading(false)

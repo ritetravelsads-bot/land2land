@@ -181,7 +181,6 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
       },
     })
   } catch (error) {
-    console.error("[v0] Error fetching location:", error)
     return NextResponse.json({ error: "Failed to fetch location" }, { status: 500 })
   }
 }

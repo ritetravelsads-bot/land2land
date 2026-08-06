@@ -30,13 +30,7 @@ export default function AdminEditPropertyPage() {
         
         if (res.ok) {
           // Debug: Log image fields being loaded for edit
-          console.log("[v0] Property data loaded for edit - image fields:", {
-            main_thumbnail: data.main_thumbnail,
-            main_banner: data.main_banner,
-            multiple_images: data.multiple_images,
-            floor_plans: data.floor_plans,
-            master_plan: data.master_plan,
-          })
+
           setInitialData(data)
           setError(null)
         } else {

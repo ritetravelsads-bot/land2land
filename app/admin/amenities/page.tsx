@@ -15,7 +15,7 @@ export default function AdminAmenitiesPage() {
       const data = await res.json()
       setAmenities(data)
     } catch (error) {
-      console.error("[v0] Error loading amenities:", error)
+
     } finally {
       setLoading(false)
     }
@@ -33,7 +33,7 @@ export default function AdminAmenitiesPage() {
           setAmenities(amenities.filter((a) => a._id !== id))
         }
       } catch (error) {
-        console.error("[v0] Error deleting amenity:", error)
+
       }
     }
   }

@@ -20,7 +20,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 
     return NextResponse.json(ticket)
   } catch (error) {
-    console.error("[v0] Error fetching ticket:", error)
+
     return NextResponse.json({ error: "Failed to fetch ticket" }, { status: 500 })
   }
 }

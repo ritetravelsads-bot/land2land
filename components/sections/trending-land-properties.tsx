@@ -17,7 +17,6 @@ export default function TrendingLandProperties() {
         const data = await response.json()
         setProperties(data.properties || [])
       } catch (error) {
-        console.error("[v0] Error fetching trending land properties:", error)
         setProperties([])
       } finally {
         setLoading(false)

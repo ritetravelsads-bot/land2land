@@ -17,7 +17,6 @@ export default function FeaturedListings() {
         const data = await response.json()
         setProperties(data.properties || [])
       } catch (error) {
-        console.error("[v0] Error fetching featured properties:", error)
         setProperties([])
       } finally {
         setLoading(false)

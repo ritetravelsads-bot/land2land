@@ -91,7 +91,6 @@ export function PhoneVerification({
         setError(data.error || "Could not send code. Please try again.")
       }
     } catch (err) {
-      console.error("[v0] OTP send error:", err)
       setError("Network error. Please check your connection and try again.")
     } finally {
       setSending(false)
@@ -124,7 +123,6 @@ export function PhoneVerification({
         setCode("")
       }
     } catch (err) {
-      console.error("[v0] OTP verify error:", err)
       setError("Network error. Please try again.")
     } finally {
       setVerifying(false)

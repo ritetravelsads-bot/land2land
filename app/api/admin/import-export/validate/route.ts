@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(report)
   } catch (error) {
-    console.error("[v0] Validation error:", error)
+
     return NextResponse.json({ error: error instanceof Error ? error.message : "Validation failed" }, { status: 400 })
   }
 }

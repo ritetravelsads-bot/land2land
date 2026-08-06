@@ -25,7 +25,7 @@ export default function AdminEditCategoryPage() {
         const data = await res.json()
         setFormData(data)
       } catch (error) {
-        console.error("[v0] Error loading category:", error)
+
       } finally {
         setInitialLoading(false)
       }
@@ -58,7 +58,7 @@ export default function AdminEditCategoryPage() {
         router.push("/admin/categories")
       }
     } catch (error) {
-      console.error("[v0] Error updating category:", error)
+
     } finally {
       setLoading(false)
     }

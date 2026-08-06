@@ -229,8 +229,6 @@ export function useGeolocation(): UseGeolocationReturn {
         return browserLocation
       } catch (browserError) {
         // Browser geolocation failed, try IP-based
-        console.log("[v0] Browser geolocation failed, trying IP-based:", browserError)
-        
         try {
           const ipLocation = await getIPLocation()
           setLocation(ipLocation)

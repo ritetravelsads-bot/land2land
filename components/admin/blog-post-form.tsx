@@ -115,7 +115,6 @@ export default function BlogPostForm({ initialData }: BlogPostFormProps) {
           setAvailableCategories(data.categories || [])
         }
       } catch (err) {
-        console.error("[v0] Error fetching categories:", err)
       } finally {
         setLoadingCategories(false)
       }
@@ -129,7 +128,6 @@ export default function BlogPostForm({ initialData }: BlogPostFormProps) {
           setAvailableTags(data.tags || [])
         }
       } catch (err) {
-        console.error("[v0] Error fetching tags:", err)
       } finally {
         setLoadingTags(false)
       }
@@ -143,7 +141,6 @@ export default function BlogPostForm({ initialData }: BlogPostFormProps) {
           setAvailableKeywords(data.keywords || [])
         }
       } catch (err) {
-        console.error("[v0] Error fetching keywords:", err)
       } finally {
         setLoadingKeywords(false)
       }

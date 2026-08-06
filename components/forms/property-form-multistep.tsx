@@ -208,7 +208,6 @@ export default function PropertyFormMultiStep({
         alert(`Error saving property: ${data.error || data.message || "Unknown error"}`)
       }
     } catch (error) {
-      console.error("[v0] Error submitting property:", error)
       alert(`Error saving property: ${error instanceof Error ? error.message : "Network error"}`)
     } finally {
       setLoading(false)

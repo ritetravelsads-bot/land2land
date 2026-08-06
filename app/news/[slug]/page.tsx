@@ -19,7 +19,6 @@ export default function NewsDetailPage({ params }: { params: { slug: string } })
         const data = await res.json()
         setArticle(data)
       } catch (error) {
-        console.error("[v0] Error loading article:", error)
       } finally {
         setLoading(false)
       }

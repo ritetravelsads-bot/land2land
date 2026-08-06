@@ -80,7 +80,7 @@ export async function POST(
       assigned_at: new Date(),
     })
   } catch (error) {
-    console.error("[v0] Error assigning lead:", error)
+
     return NextResponse.json({ error: "Failed to assign lead" }, { status: 500 })
   }
 }
@@ -129,7 +129,7 @@ export async function DELETE(
       message: "Lead unassigned successfully",
     })
   } catch (error) {
-    console.error("[v0] Error unassigning lead:", error)
+
     return NextResponse.json({ error: "Failed to unassign lead" }, { status: 500 })
   }
 }

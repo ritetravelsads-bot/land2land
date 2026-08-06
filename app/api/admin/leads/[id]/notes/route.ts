@@ -72,7 +72,7 @@ export async function POST(
       note,
     })
   } catch (error) {
-    console.error("[v0] Error adding note:", error)
+
     return NextResponse.json({ error: "Failed to add note" }, { status: 500 })
   }
 }

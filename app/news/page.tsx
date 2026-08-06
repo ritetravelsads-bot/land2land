@@ -19,7 +19,6 @@ export default function NewsPage() {
         const data = await res.json()
         setNews(data.news)
       } catch (error) {
-        console.error("[v0] Error loading news:", error)
       } finally {
         setLoading(false)
       }

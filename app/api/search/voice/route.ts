@@ -835,7 +835,6 @@ export async function GET(req: NextRequest) {
       originalQuery: query,
     })
   } catch (error) {
-    console.error("[v0] Voice search error:", error)
     return NextResponse.json(
       { error: "Failed to process voice search" },
       { status: 500 }
@@ -869,7 +868,6 @@ export async function POST(req: NextRequest) {
     
     return GET(new NextRequest(url))
   } catch (error) {
-    console.error("[v0] Voice search POST error:", error)
     return NextResponse.json(
       { error: "Failed to process voice search" },
       { status: 500 }

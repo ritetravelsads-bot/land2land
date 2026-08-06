@@ -24,7 +24,7 @@ export default function AdminEditAmenityPage() {
         const data = await res.json()
         setFormData(data)
       } catch (error) {
-        console.error("[v0] Error loading amenity:", error)
+
       } finally {
         setInitialLoading(false)
       }
@@ -51,7 +51,7 @@ export default function AdminEditAmenityPage() {
         router.push("/admin/amenities")
       }
     } catch (error) {
-      console.error("[v0] Error updating amenity:", error)
+
     } finally {
       setLoading(false)
     }

@@ -31,7 +31,7 @@ export default function AdminAddFacilityPage() {
         router.push("/admin/facilities")
       }
     } catch (error) {
-      console.error("[v0] Error creating facility:", error)
+
     } finally {
       setLoading(false)
     }

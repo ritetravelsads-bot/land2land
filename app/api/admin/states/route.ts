@@ -9,7 +9,7 @@ export async function GET() {
 
     return NextResponse.json(states)
   } catch (error) {
-    console.error("[v0] Error fetching states:", error)
+
     return NextResponse.json({ error: "Failed to fetch states" }, { status: 500 })
   }
 }
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     const result = await db.collection("states").insertOne(state)
     return NextResponse.json({ _id: result.insertedId, ...state }, { status: 201 })
   } catch (error) {
-    console.error("[v0] Error creating state:", error)
+
     return NextResponse.json({ error: "Failed to create state" }, { status: 500 })
   }
 }

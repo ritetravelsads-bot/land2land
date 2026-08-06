@@ -23,7 +23,6 @@ export async function POST(
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error adding property:", error)
     return NextResponse.json({ error: "Failed to add property" }, { status: 500 })
   }
 }
@@ -48,7 +47,6 @@ export async function DELETE(
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error removing property:", error)
     return NextResponse.json({ error: "Failed to remove property" }, { status: 500 })
   }
 }

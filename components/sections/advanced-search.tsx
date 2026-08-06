@@ -167,7 +167,6 @@ export default function AdvancedSearch() {
         setShowSuggestions(false)
       }
     } catch (error) {
-      console.error("[v0] Voice search error:", error)
     } finally {
       setIsVoiceSearching(false)
     }

@@ -29,7 +29,6 @@ export default function RecommendedProperties() {
         const data = await response.json()
         setProperties(data.properties || [])
       } catch (error) {
-        console.error("[v0] Error fetching properties:", error)
       } finally {
         setLoading(false)
       }

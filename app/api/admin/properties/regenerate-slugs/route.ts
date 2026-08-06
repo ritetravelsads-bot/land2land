@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
       updatedCount 
     })
   } catch (error) {
-    console.error("[v0] Error regenerating slugs:", error)
+
     return NextResponse.json({ error: "Failed to regenerate slugs" }, { status: 500 })
   }
 }

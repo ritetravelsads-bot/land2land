@@ -24,7 +24,7 @@ export default function AdminEditStatePage() {
         const data = await res.json()
         setFormData(data)
       } catch (error) {
-        console.error("[v0] Error loading state:", error)
+
       } finally {
         setInitialLoading(false)
       }
@@ -57,7 +57,7 @@ export default function AdminEditStatePage() {
         router.push("/admin/states")
       }
     } catch (error) {
-      console.error("[v0] Error updating state:", error)
+
     } finally {
       setLoading(false)
     }

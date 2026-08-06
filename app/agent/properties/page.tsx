@@ -49,7 +49,6 @@ export default function AssociatePropertiesPage() {
         const data = await res.json()
         setProperties(Array.isArray(data) ? data : [])
       } catch (error) {
-        console.error("[v0] Error loading properties:", error)
       } finally {
         setLoading(false)
       }
@@ -66,7 +65,6 @@ export default function AssociatePropertiesPage() {
           setProperties(properties.filter((p) => p._id !== id))
         }
       } catch (error) {
-        console.error("[v0] Error deleting property:", error)
       }
     }
   }

@@ -19,7 +19,6 @@ export async function GET() {
 
     return NextResponse.json(tickets)
   } catch (error) {
-    console.error("[v0] Error fetching associate tickets:", error)
     return NextResponse.json({ error: "Failed to fetch tickets" }, { status: 500 })
   }
 }
@@ -57,7 +56,6 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true, ticket_id: result.insertedId })
   } catch (error) {
-    console.error("[v0] Error creating ticket:", error)
     return NextResponse.json({ error: "Failed to create ticket" }, { status: 500 })
   }
 }

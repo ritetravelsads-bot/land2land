@@ -59,7 +59,6 @@ export default function DocumentUploadField({
         uploaded_at: new Date().toISOString(),
       })
     } catch (err) {
-      console.error("[v0] Document upload error:", err)
       setError("Could not upload the file. Please try again.")
     } finally {
       setUploading(false)

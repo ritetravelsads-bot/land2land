@@ -21,7 +21,7 @@ export default function AdminDevelopersPage() {
       const data = await res.json()
       setDevelopers(data)
     } catch (error) {
-      console.error("[v0] Error loading developers:", error)
+
     } finally {
       setLoading(false)
     }
@@ -39,7 +39,7 @@ export default function AdminDevelopersPage() {
           setDevelopers(developers.filter((d) => d._id !== id))
         }
       } catch (error) {
-        console.error("[v0] Error deleting developer:", error)
+
       }
     }
   }

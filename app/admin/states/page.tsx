@@ -15,7 +15,7 @@ export default function AdminStatesPage() {
       const data = await res.json()
       setStates(data)
     } catch (error) {
-      console.error("[v0] Error loading states:", error)
+
     } finally {
       setLoading(false)
     }
@@ -33,7 +33,7 @@ export default function AdminStatesPage() {
           setStates(states.filter((s) => s._id !== id))
         }
       } catch (error) {
-        console.error("[v0] Error deleting state:", error)
+
       }
     }
   }

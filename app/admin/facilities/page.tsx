@@ -15,7 +15,7 @@ export default function AdminFacilitiesPage() {
       const data = await res.json()
       setFacilities(data)
     } catch (error) {
-      console.error("[v0] Error loading facilities:", error)
+
     } finally {
       setLoading(false)
     }
@@ -33,7 +33,7 @@ export default function AdminFacilitiesPage() {
           setFacilities(facilities.filter((f) => f._id !== id))
         }
       } catch (error) {
-        console.error("[v0] Error deleting facility:", error)
+
       }
     }
   }

@@ -28,7 +28,6 @@ export default function CategorySection({ title, category, icon, limit = 4, desc
         const data = await response.json()
         setProperties(data.properties || [])
       } catch (error) {
-        console.error("[v0] Error fetching properties:", error)
       } finally {
         setLoading(false)
       }

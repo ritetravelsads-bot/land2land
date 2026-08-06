@@ -21,20 +21,16 @@ async function SectionHeader({ sectionId }: { sectionId: string }) {
   const fetchUrl = `${baseUrl}/api/admin/homepage-sections/${sectionId}`
   
   try {
-    console.log("[v0] SectionHeader: sectionId =", sectionId)
-    console.log("[v0] SectionHeader: baseUrl =", baseUrl)
-    console.log("[v0] SectionHeader: fetchUrl =", fetchUrl)
-    
+
+
+
     const res = await fetch(fetchUrl, {
       cache: "no-store",
     })
-    
-    console.log("[v0] SectionHeader: fetch status =", res.status)
 
     if (res.status === 404) {
       const errorData = await res.json().catch(() => ({}))
-      console.log("[v0] SectionHeader: 404 error data =", errorData)
-      
+
       return (
         <div className="border-2 border-dashed rounded-lg p-8 bg-muted/30">
           <div className="flex items-center justify-between">
@@ -140,7 +136,7 @@ async function SectionHeader({ sectionId }: { sectionId: string }) {
       </div>
     )
   } catch (error) {
-    console.error("[v0] Error loading section header:", error)
+
     return (
       <div className="border-2 border-dashed rounded-lg p-8 bg-muted/30">
         <div className="flex items-center justify-between">

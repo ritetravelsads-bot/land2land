@@ -140,7 +140,7 @@ export async function POST(request: Request) {
       await client.close()
     }
   } catch (error) {
-    console.error("[v0] Error creating blog category:", error)
+
     const errorMessage = error instanceof Error ? error.message : "Failed to create category"
     const statusCode = errorMessage === "Unauthorized" ? 401 : 500
 
@@ -202,7 +202,7 @@ export async function DELETE(request: Request) {
       await client.close()
     }
   } catch (error) {
-    console.error("[v0] Error deleting blog category:", error)
+
     const errorMessage = error instanceof Error ? error.message : "Failed to delete category"
     const statusCode = errorMessage === "Unauthorized" ? 401 : 500
 

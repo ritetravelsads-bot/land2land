@@ -31,7 +31,6 @@ export default function AssociateProfilePage() {
           setProfilePicture(u.profile_picture || null)
         }
       } catch (error) {
-        console.error("[v0] Error loading user:", error)
       } finally {
         setLoading(false)
       }
@@ -58,7 +57,6 @@ export default function AssociateProfilePage() {
         alert("Failed to update profile")
       }
     } catch (error) {
-      console.error("[v0] Error updating profile:", error)
       alert("Failed to update profile")
     } finally {
       setSaving(false)

@@ -189,7 +189,6 @@ export default function DynamicSections() {
         const data = await response.json()
         setSections(data || [])
       } catch (error) {
-        console.error("[v0] Error fetching sections:", error)
       } finally {
         setLoading(false)
       }

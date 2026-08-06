@@ -41,7 +41,6 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 
     return NextResponse.json({ property: propertyData, reviews })
   } catch (error) {
-    console.error("[v0] Error fetching property:", error)
     return NextResponse.json({ error: "Failed to fetch property", details: String(error) }, { status: 500 })
   }
 }

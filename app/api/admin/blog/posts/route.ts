@@ -225,7 +225,7 @@ export async function POST(request: Request) {
       await client.close()
     }
   } catch (error) {
-    console.error("[v0] Error creating blog post:", error)
+
     const errorMessage = error instanceof Error ? error.message : "Failed to create blog post"
     const statusCode = errorMessage === "Unauthorized" ? 401 : 500
 

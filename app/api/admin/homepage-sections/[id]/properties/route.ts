@@ -33,7 +33,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
 
     return Response.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error adding property:", error)
+
     return Response.json({ error: "Failed to add property" }, { status: 500 })
   }
 }
@@ -61,7 +61,7 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
 
     return Response.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error removing property:", error)
+
     return Response.json({ error: "Failed to remove property" }, { status: 500 })
   }
 }

@@ -71,7 +71,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
       property: updated ? { ...updated, _id: updated._id.toString() } : null,
     })
   } catch (error) {
-    console.error("[v0] Error reviewing property:", error)
+
     return NextResponse.json({ error: "Failed to review property" }, { status: 500 })
   }
 }

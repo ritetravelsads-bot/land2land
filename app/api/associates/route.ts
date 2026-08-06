@@ -34,7 +34,6 @@ export async function GET() {
 
     return NextResponse.json({ success: true, associates: serialized })
   } catch (error) {
-    console.error("[v0] Error fetching associates:", error)
     return NextResponse.json({ success: false, associates: [], error: "Failed to fetch associates" }, { status: 500 })
   }
 }

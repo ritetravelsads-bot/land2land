@@ -41,7 +41,6 @@ export default function TrendingTabsSection({ limit = 8 }: TrendingTabsSectionPr
         )
         setProperties(fetchedData)
       } catch (error) {
-        console.error("[v0] Error fetching properties:", error)
       } finally {
         setLoading(false)
       }

@@ -124,7 +124,6 @@ export async function GET() {
               .limit(section.display_limit)
               .toArray()
           } catch (error) {
-            console.warn(`[v0] Failed to fetch properties for section ${section._id}:`, error)
           }
         }
 
@@ -144,7 +143,6 @@ export async function GET() {
 
     return Response.json(sectionsWithProperties)
   } catch (error) {
-    console.error("[v0] Error fetching sections with properties:", error)
     return Response.json({ error: "Failed to fetch sections" }, { status: 500 })
   }
 }

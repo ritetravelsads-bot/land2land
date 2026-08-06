@@ -39,7 +39,7 @@ export async function GET() {
 
     return NextResponse.json(serializedUsers)
   } catch (error) {
-    console.error("[v0] Error fetching users:", error)
+
     return NextResponse.json({ error: "Failed to fetch users" }, { status: 500 })
   }
 }
@@ -122,7 +122,7 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     )
   } catch (error) {
-    console.error("[v0] Error creating user:", error)
+
     return NextResponse.json({ error: "Failed to create user" }, { status: 500 })
   }
 }
@@ -166,7 +166,7 @@ export async function DELETE(request: NextRequest) {
 
     return NextResponse.json({ success: true, message: "User deleted successfully" })
   } catch (error) {
-    console.error("[v0] Error deleting user:", error)
+
     return NextResponse.json({ error: "Failed to delete user" }, { status: 500 })
   }
 }

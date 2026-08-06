@@ -109,7 +109,7 @@ export async function POST(request: Request) {
       }
     )
   } catch (error) {
-    console.error("[v0] Error creating blog tag:", error)
+
     const errorMessage = error instanceof Error ? error.message : "Failed to create tag"
     const statusCode = errorMessage === "Unauthorized" ? 401 : 500
 

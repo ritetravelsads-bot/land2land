@@ -24,7 +24,6 @@ export async function GET() {
     
     return NextResponse.json(developersWithCounts)
   } catch (error) {
-    console.error("[v0] Error fetching developers:", error)
     return NextResponse.json({ error: "Failed to fetch developers" }, { status: 500 })
   }
 }

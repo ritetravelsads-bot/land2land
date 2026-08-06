@@ -118,7 +118,6 @@ export async function GET(request: NextRequest) {
       stats,
     })
   } catch (error) {
-    console.error("[v0] Error fetching associate leads:", error)
     return NextResponse.json({ error: "Failed to fetch leads" }, { status: 500 })
   }
 }

@@ -52,7 +52,6 @@ export default function SearchContent() {
         setCategories(await categoriesRes.json())
         setDevelopers(await developersRes.json()) // Set developers
       } catch (error) {
-        console.error("[v0] Error loading search results:", error)
       } finally {
         setLoading(false)
       }

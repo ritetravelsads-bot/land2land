@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(serialized)
   } catch (error) {
-    console.error("[v0] Error fetching SEO pages:", error)
+
     return NextResponse.json({ error: "Failed to fetch SEO pages" }, { status: 500 })
   }
 }
@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
     const result = await db.collection("seo_pages").insertOne(seoPage)
     return NextResponse.json({ _id: result.insertedId.toString(), ...seoPage }, { status: 201 })
   } catch (error) {
-    console.error("[v0] Error creating SEO page:", error)
+
     return NextResponse.json({ error: "Failed to create SEO page" }, { status: 500 })
   }
 }

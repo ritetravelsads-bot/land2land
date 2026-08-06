@@ -18,7 +18,7 @@ export default function AdminCategoriesPage() {
       const data = await res.json()
       setCategories(data)
     } catch (error) {
-      console.error("[v0] Error loading categories:", error)
+
       toast({
         title: "Error",
         description: "Failed to load categories",
@@ -51,7 +51,7 @@ export default function AdminCategoriesPage() {
           })
         }
       } catch (error) {
-        console.error("[v0] Error deleting category:", error)
+
         toast({
           title: "Error",
           description: "Failed to delete category",

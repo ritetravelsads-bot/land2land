@@ -46,7 +46,7 @@ export default function EditDeveloperPage() {
           setLogoPreview(data.logo_url)
         }
       } catch (error) {
-        console.error("[v0] Error loading developer:", error)
+
         toast.error("Failed to load developer")
       } finally {
         setLoading(false)
@@ -94,7 +94,7 @@ export default function EditDeveloperPage() {
         setLogoPreview(formData.logo_url)
       }
     } catch (error) {
-      console.error("[v0] Error uploading image:", error)
+
       toast.error("Error uploading logo")
       setLogoPreview(formData.logo_url)
     } finally {
@@ -140,7 +140,7 @@ export default function EditDeveloperPage() {
         toast.error(data.error || "Failed to update developer")
       }
     } catch (error) {
-      console.error("[v0] Error updating developer:", error)
+
       toast.error("Error updating developer")
     } finally {
       setSaving(false)

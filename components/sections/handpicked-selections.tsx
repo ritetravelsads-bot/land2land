@@ -22,7 +22,6 @@ export default function HandpickedSelections({ limit = 4 }: HandpickedSelections
         const data = await response.json()
         setProperties(data.properties || [])
       } catch (error) {
-        console.error("[v0] Error fetching properties:", error)
       } finally {
         setLoading(false)
       }

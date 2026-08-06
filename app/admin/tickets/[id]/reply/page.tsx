@@ -26,7 +26,7 @@ export default function AdminTicketReplyPage() {
         setTicket(data)
         setFormData((prev) => ({ ...prev, status: data.status }))
       } catch (error) {
-        console.error("[v0] Error loading ticket:", error)
+
       } finally {
         setInitialLoading(false)
       }
@@ -53,7 +53,7 @@ export default function AdminTicketReplyPage() {
         router.push(`/admin/tickets/${id}`)
       }
     } catch (error) {
-      console.error("[v0] Error replying to ticket:", error)
+
     } finally {
       setLoading(false)
     }

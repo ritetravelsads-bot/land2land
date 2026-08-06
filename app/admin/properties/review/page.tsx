@@ -20,7 +20,7 @@ export default function AdminReviewQueuePage() {
       setProperties(data.properties || [])
       if (data.counts) setCounts(data.counts)
     } catch (error) {
-      console.error("[v0] Error loading review queue:", error)
+
     } finally {
       setLoading(false)
     }

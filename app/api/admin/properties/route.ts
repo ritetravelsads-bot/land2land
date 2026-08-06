@@ -116,7 +116,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json(serializedProperties)
   } catch (error) {
-    console.error("[v0] Error fetching admin properties:", error)
+
     return NextResponse.json({ error: "Failed to fetch properties" }, { status: 500 })
   }
 }
@@ -150,11 +150,6 @@ export async function POST(req: NextRequest) {
     }
 
     // Debug: Log SEO fields being saved
-    console.log("[v0] API POST - SEO fields being saved:", {
-      meta_title: body.meta_title,
-      meta_description: body.meta_description,
-      meta_keywords: body.meta_keywords,
-    })
 
     const property = {
       ...body,
@@ -166,7 +161,7 @@ export async function POST(req: NextRequest) {
     const result = await db.collection("listings").insertOne(property)
     return NextResponse.json({ _id: result.insertedId, ...property }, { status: 201 })
   } catch (error) {
-    console.error("[v0] Error creating property:", error)
+
     return NextResponse.json({ error: "Failed to create property" }, { status: 500 })
   }
 }

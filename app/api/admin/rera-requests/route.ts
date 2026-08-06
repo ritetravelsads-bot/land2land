@@ -52,7 +52,7 @@ export async function GET(req: NextRequest) {
       counts,
     })
   } catch (error) {
-    console.error("[v0] Error loading admin RERA requests:", error)
+
     return NextResponse.json({ error: "Failed to load RERA requests" }, { status: 500 })
   }
 }

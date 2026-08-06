@@ -27,7 +27,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 
     return NextResponse.json({ ...page, _id: page._id.toString() })
   } catch (error) {
-    console.error("[v0] Error fetching SEO page:", error)
+
     return NextResponse.json({ error: "Failed to fetch SEO page" }, { status: 500 })
   }
 }
@@ -77,7 +77,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     const updated = await db.collection("seo_pages").findOne({ _id: objectId })
     return NextResponse.json({ ...updated, _id: updated?._id.toString() })
   } catch (error) {
-    console.error("[v0] Error updating SEO page:", error)
+
     return NextResponse.json({ error: "Failed to update SEO page" }, { status: 500 })
   }
 }
@@ -106,7 +106,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error deleting SEO page:", error)
+
     return NextResponse.json({ error: "Failed to delete SEO page" }, { status: 500 })
   }
 }

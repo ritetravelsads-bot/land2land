@@ -208,7 +208,7 @@ export async function GET(req: NextRequest) {
       })
     }
   } catch (error) {
-    console.error("[v0] Error generating sample:", error)
+
     return NextResponse.json({ error: "Failed to generate sample" }, { status: 400 })
   }
 }

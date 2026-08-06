@@ -46,7 +46,6 @@ export default function AssociateTicketDetailPage() {
       const data = await res.json()
       setTicket(data)
     } catch (error) {
-      console.error("[v0] Error loading ticket:", error)
     } finally {
       setLoading(false)
     }
@@ -68,7 +67,6 @@ export default function AssociateTicketDetailPage() {
         loadTicket()
       }
     } catch (error) {
-      console.error("[v0] Error submitting reply:", error)
     } finally {
       setSubmitting(false)
     }

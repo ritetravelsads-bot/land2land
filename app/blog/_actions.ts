@@ -4,7 +4,6 @@ const mongoUrl = process.env.MONGODB_URI || ""
 
 export async function getBlogPostBySlug(slug: string, includeUnpublished: boolean = false) {
   if (!mongoUrl) {
-    console.error("[v0] MongoDB URI not configured")
     return null
   }
 
@@ -34,7 +33,6 @@ export async function getBlogPostBySlug(slug: string, includeUnpublished: boolea
       author: post.author?.toString?.() || post.author,
     }
   } catch (error) {
-    console.error("[v0] Error fetching blog post by slug:", error)
     return null
   } finally {
     await client.close()
@@ -43,7 +41,6 @@ export async function getBlogPostBySlug(slug: string, includeUnpublished: boolea
 
 export async function getBlogPostById(id: string) {
   if (!mongoUrl) {
-    console.error("[v0] MongoDB URI not configured")
     return null
   }
 
@@ -68,11 +65,8 @@ export async function getBlogPostById(id: string) {
     }
 
     if (!post) {
-      console.log("[v0] Blog post not found for ID/slug:", id)
       return null
     }
-
-    console.log("[v0] Found blog post:", post.title)
 
     // Serialize properly for client consumption
     return {
@@ -83,7 +77,6 @@ export async function getBlogPostById(id: string) {
       readTime: post.readTime?.toString() || post.read_time?.toString() || "5",
     }
   } catch (error) {
-    console.error("[v0] Error fetching blog post by ID:", error)
     return null
   } finally {
     await client.close()

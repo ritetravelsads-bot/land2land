@@ -25,7 +25,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
       },
     })
   } catch (error) {
-    console.error("[v0] Error fetching developer:", error)
+
     return NextResponse.json({ error: "Failed to fetch developer" }, { status: 500 })
   }
 }
@@ -65,7 +65,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
 
     return NextResponse.json({ message: "Developer updated", developer: updatedDeveloper })
   } catch (error) {
-    console.error("[v0] Error updating developer:", error)
+
     return NextResponse.json({ error: "Failed to update developer" }, { status: 500 })
   }
 }
@@ -87,7 +87,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
 
     return NextResponse.json({ message: "Developer deleted" })
   } catch (error) {
-    console.error("[v0] Error deleting developer:", error)
+
     return NextResponse.json({ error: "Failed to delete developer" }, { status: 500 })
   }
 }

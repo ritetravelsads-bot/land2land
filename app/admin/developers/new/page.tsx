@@ -56,7 +56,7 @@ export default function AdminAddDeveloperPage() {
         setLogoPreview("")
       }
     } catch (error) {
-      console.error("[v0] Error uploading image:", error)
+
       toast.error("Error uploading logo")
       setLogoPreview("")
     } finally {
@@ -99,7 +99,7 @@ export default function AdminAddDeveloperPage() {
         toast.error(data.error || "Failed to create developer")
       }
     } catch (error) {
-      console.error("[v0] Error creating developer:", error)
+
       toast.error("Error creating developer")
     } finally {
       setLoading(false)

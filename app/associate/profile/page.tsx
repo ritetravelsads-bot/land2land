@@ -33,7 +33,6 @@ export default function AssociateProfilePage() {
           setProfilePicture(u.profile_picture || null)
         }
       } catch (error) {
-        console.error("[v0] Error loading user:", error)
       } finally {
         setLoading(false)
       }

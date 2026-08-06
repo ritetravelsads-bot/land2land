@@ -80,10 +80,9 @@ export default function AdminPropertiesPage() {
     }
     
     try {
-      console.log("[v0] Deleting property with id:", id)
+
       const res = await fetch(`/api/admin/properties/${id}`, { method: "DELETE" })
-      console.log("[v0] Delete response status:", res.status)
-      
+
       if (res.ok) {
         setProperties(properties.filter((p) => p._id !== id))
         toast({
@@ -92,7 +91,7 @@ export default function AdminPropertiesPage() {
         })
       } else {
         const errorData = await res.json().catch(() => ({}))
-        console.error("[v0] Delete error:", res.status, errorData)
+
         toast({
           title: "Error",
           description: errorData.error || "Failed to delete property",
@@ -100,7 +99,7 @@ export default function AdminPropertiesPage() {
         })
       }
     } catch (error) {
-      console.error("[v0] Error deleting property:", error)
+
       toast({
         title: "Error",
         description: "Error deleting property. Please try again.",
@@ -292,7 +291,7 @@ export default function AdminPropertiesPage() {
                             alt="thumbnail"
                             className="w-12 h-12 object-cover rounded"
                             onError={(e) => {
-                              console.error("[v0] Failed to load thumbnail for property:", property._id, property.main_thumbnail)
+
                               e.currentTarget.src = "/placeholder.svg"
                             }}
                           />

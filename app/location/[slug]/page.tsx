@@ -140,7 +140,6 @@ export default function LocationPage() {
           setPagination(data.pagination)
         }
       } catch (error) {
-        console.error('[v0] Error fetching location:', error)
       } finally {
         setLoading(false)
       }

@@ -180,7 +180,7 @@ export async function GET() {
       },
     })
   } catch (error) {
-    console.error("[v0] Error building analytics:", error)
+
     return NextResponse.json({ error: "Failed to build analytics" }, { status: 500 })
   }
 }

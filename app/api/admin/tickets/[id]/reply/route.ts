@@ -42,7 +42,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error replying to ticket:", error)
+
     return NextResponse.json({ error: "Failed to reply to ticket" }, { status: 500 })
   }
 }

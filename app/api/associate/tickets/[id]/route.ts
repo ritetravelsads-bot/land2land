@@ -23,7 +23,6 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 
     return NextResponse.json(ticket)
   } catch (error) {
-    console.error("[v0] Error fetching ticket:", error)
     return NextResponse.json({ error: "Failed to fetch ticket" }, { status: 500 })
   }
 }
@@ -72,7 +71,6 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error("[v0] Error adding reply:", error)
     return NextResponse.json({ error: "Failed to add reply" }, { status: 500 })
   }
 }

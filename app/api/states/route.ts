@@ -8,7 +8,6 @@ export async function GET() {
 
     return NextResponse.json(states)
   } catch (error) {
-    console.error("[v0] Error fetching states:", error)
     return NextResponse.json({ error: "Failed to fetch states" }, { status: 500 })
   }
 }
