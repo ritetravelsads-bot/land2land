@@ -2,6 +2,7 @@ import { getDatabase } from "@/lib/mongodb"
 import bcrypt from "bcryptjs"
 import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
+import { rateLimitByIp, createRateLimitResponse } from "@/lib/rate-limit"
 
 /**
  * POST /api/auth/buyer-quick-register
@@ -15,11 +16,16 @@ import { NextResponse } from "next/server"
  *
  * Returns: { success, user: { id, username, email, user_type, phone_number }, isNew }
  */
-export async function POST(request: Request) {  const user = await requireAuthWithCsrf(request)
-
+export async function POST(request: Request) {
   try {
+    // Rate limit: 3 attempts per hour per IP
+    const rateLimitResult = rateLimitByIp(request, 3, 60 * 60 * 1000)
+    if (!rateLimitResult.allowed) {
+      return createRateLimitResponse(rateLimitResult.retryAfter)
+    }
+
     const body = await request.json()
-    const { name, phone }} = body
+    const { name, phone } = body
 
     if (!name || !phone) {
       return NextResponse.json(

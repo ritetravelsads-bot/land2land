@@ -1,6 +1,7 @@
 import { MongoClient } from "mongodb"
 import bcrypt from "bcryptjs"
 import { cookies } from "next/headers"
+import { rateLimitByIpAndEmail, createRateLimitResponse } from "@/lib/rate-limit"
 
 const mongoUrl = process.env.MONGODB_URI || ""
 
@@ -46,17 +47,22 @@ async function loginUser(email: string, password: string) {
   }
 }
 
-export async function POST(request: Request) {  const user = await requireAuthWithCsrf(request)
-
+export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { email, password }} = body
+    const { email, password } = body
 
     if (!email || !password) {
       return new Response(JSON.stringify({ error: "Missing email or password" }), {
         status: 400,
         headers: { "Content-Type": "application/json" },
       })
+    }
+
+    // Rate limit: 5 attempts per 15 minutes per IP+email
+    const rateLimitResult = rateLimitByIpAndEmail(request, email, 5, 15 * 60 * 1000)
+    if (!rateLimitResult.allowed) {
+      return createRateLimitResponse(rateLimitResult.retryAfter)
     }
 
     const user = await loginUser(email, password)

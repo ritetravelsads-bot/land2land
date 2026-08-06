@@ -6,11 +6,11 @@ import {
   welcomeUserTemplate,
   newUserAdminTemplate,
 } from "@/lib/email"
+import { rateLimitByIpAndEmail, createRateLimitResponse } from "@/lib/rate-limit"
 
 const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.comfobirth@gmail.com"
 
-export async function POST(request: Request) {  const user = await requireAuthWithCsrf(request)
-
+export async function POST(request: Request) {
   try {
     if (!process.env.MONGODB_URI) {
       return NextResponse.json(
@@ -28,6 +28,12 @@ export async function POST(request: Request) {  const user = await requireAuthWi
         { error: "Missing required fields" },
         { status: 400 }
       )
+    }
+
+    // Rate limit: 3 attempts per hour per IP+email
+    const rateLimitResult = rateLimitByIpAndEmail(request, email, 3, 60 * 60 * 1000)
+    if (!rateLimitResult.allowed) {
+      return createRateLimitResponse(rateLimitResult.retryAfter)
     }
 
     // Validate email
