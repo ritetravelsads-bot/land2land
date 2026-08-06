@@ -5,6 +5,7 @@ import { ObjectId } from "mongodb"
 import type { NextRequest } from "next/server"
 import type { LeadStatus, LeadPriority } from "@/lib/models"
 import { escapeRegexChars } from "@/lib/sanitize-regex"
+import { requireAdminWithCsrf } from "@/lib/auth"
 
 // GET all leads for admin with filtering and pagination
 export async function GET(request: NextRequest) {
@@ -100,9 +101,7 @@ export async function GET(request: NextRequest) {
 }
 
 // POST create a new lead (admin can create leads manually)
-export async function POST(request: NextRequest) {
-  try {
-    const user = await getCurrentUser()
+export async function POST(request: NextRequest) { try { const user = await requireAdminWithCsrf(request)
     if (!user || user.user_type !== "admin") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }

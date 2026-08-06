@@ -1,6 +1,7 @@
 import { cookies } from "next/headers"
 
-export async function POST() {
+export async function POST() {  const user = await requireAuthWithCsrf(request)
+
   const cookieStore = await cookies()
   cookieStore.delete("auth_token")
 
@@ -8,7 +9,7 @@ export async function POST() {
     JSON.stringify({
       success: true,
       message: "Logged out successfully",
-    }),
+    }}),
     {
       status: 200,
       headers: { "Content-Type": "application/json" },

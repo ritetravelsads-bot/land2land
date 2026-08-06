@@ -842,7 +842,8 @@ export async function GET(req: NextRequest) {
   }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {  const user = await requireAuthWithCsrf(request)
+
   try {
     const body = await req.json()
     const query = body.query || body.q || ""
@@ -867,7 +868,7 @@ export async function POST(req: NextRequest) {
     if (userCity) url.searchParams.set("city", userCity)
     
     return GET(new NextRequest(url))
-  } catch (error) {
+  }} catch (error) {
     return NextResponse.json(
       { error: "Failed to process voice search" },
       { status: 500 }

@@ -98,10 +98,11 @@ async function handleGoogleAuth(payload: GoogleAuthPayload) {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: Request) {  const user = await requireAuthWithCsrf(request)
+
   try {
     const body = await request.json()
-    const { idToken, email, displayName, photoURL, uid, userType } = body
+    const { idToken, email, displayName, photoURL, uid, userType }} = body
 
     if (!email || !uid) {
       return new Response(

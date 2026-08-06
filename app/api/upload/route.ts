@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
 import { uploadToImageKit } from "@/lib/imagekit"
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {  const user = await requireAuthWithCsrf(request)
+
   try {
     const privateKey = process.env.IMAGEKIT_PRIVATE_KEY
     if (!privateKey) {
       return NextResponse.json(
-        { error: "ImageKit is not configured. Please set IMAGEKIT_PRIVATE_KEY." },
+        { error: "ImageKit is not configured. Please set IMAGEKIT_PRIVATE_KEY." }},
         { status: 500 }
       )
     }

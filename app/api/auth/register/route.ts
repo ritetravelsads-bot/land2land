@@ -9,11 +9,12 @@ import {
 
 const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.comfobirth@gmail.com"
 
-export async function POST(request: Request) {
+export async function POST(request: Request) {  const user = await requireAuthWithCsrf(request)
+
   try {
     if (!process.env.MONGODB_URI) {
       return NextResponse.json(
-        { error: "Database is not configured. Please contact the administrator." },
+        { error: "Database is not configured. Please contact the administrator." }},
         { status: 503 }
       )
     }

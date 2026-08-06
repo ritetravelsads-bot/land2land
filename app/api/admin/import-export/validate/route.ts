@@ -1,6 +1,7 @@
 import { getCurrentUser } from "@/lib/auth"
 import { type NextRequest, NextResponse } from "next/server"
 import { parseCSV, parseXLSX, generateValidationReport } from "@/lib/import-export"
+import { requireAdminWithCsrf } from "@/lib/auth"
 
 export async function POST(req: NextRequest) {
   try {

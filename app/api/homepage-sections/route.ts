@@ -17,9 +17,10 @@ export async function GET() {
   }
 }
 
-export async function POST(req: Request) {
+export async function POST(req: Request) {  const user = await requireAuthWithCsrf(request)
+
   try {
-    const { db } = await connectToDatabase()
+    const { db }} = await connectToDatabase()
     const section: HomepageSection = await req.json()
 
     section.created_at = new Date()

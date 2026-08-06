@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth"
 import { COLLECTIONS, type ReraRequest, type ReraStageEvent } from "@/lib/models"
 import { ObjectId } from "mongodb"
 import { type NextRequest, NextResponse } from "next/server"
+import { requireAssociateWithCsrf } from "@/lib/auth"
 
 export const dynamic = "force-dynamic"
 export const revalidate = 0

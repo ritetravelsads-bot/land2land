@@ -28,9 +28,10 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
   }
 }
 
-export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {  const user = await requireAdminWithCsrf(request)
+
   try {
-    const { id } = await params
+    const { id }} = await params
     const user = await getCurrentUser()
     if (!user || user.user_type !== "admin") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -87,9 +88,10 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {  const user = await requireAdminWithCsrf(request)
+
   try {
-    const { id } = await params
+    const { id }} = await params
     const user = await getCurrentUser()
     if (!user || user.user_type !== "admin") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })

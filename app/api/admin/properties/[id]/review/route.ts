@@ -8,9 +8,10 @@ export const revalidate = 0
 
 // POST /api/admin/properties/[id]/review
 // body: { action: "approve" | "reject", notes?: string }
-export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {  const user = await requireAdminWithCsrf(request)
+
   try {
-    const { id } = await params
+    const { id }} = await params
 
     const user = await getCurrentUser()
     if (!user || user.user_type !== "admin") {

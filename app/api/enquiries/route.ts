@@ -10,7 +10,8 @@ import {
 
 const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.comfobirth@gmail.com"
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {  const user = await requireAuthWithCsrf(request)
+
   try {
     const body = await req.json()
 
@@ -26,7 +27,7 @@ export async function POST(req: NextRequest) {
       property_id,
       property_name,
       property_slug,
-    } = body
+    }} = body
 
     // Validate required fields
     if (!name || !phone) {

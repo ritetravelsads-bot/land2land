@@ -6,9 +6,10 @@ import { ObjectId } from "mongodb"
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
-) {
+) {  const user = await requireAuthWithCsrf(request)
+
   try {
-    const { id } = await params
+    const { id }} = await params
     const user = await getCurrentUser()
     if (!user || user.user_type !== "admin") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -30,9 +31,10 @@ export async function POST(
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string; propertyId?: string }> }
-) {
+) {  const user = await requireAuthWithCsrf(request)
+
   try {
-    const { id, propertyId: paramPropertyId } = await params
+    const { id, propertyId: paramPropertyId }} = await params
     const user = await getCurrentUser()
     if (!user || user.user_type !== "admin") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })

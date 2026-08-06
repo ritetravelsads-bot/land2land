@@ -1,6 +1,7 @@
 import { connectToDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
 import type { HomepageSection } from "@/lib/schemas"
+import { requireAdminWithCsrf } from "@/lib/auth"
 
 const PREDEFINED_SECTIONS = [
   {

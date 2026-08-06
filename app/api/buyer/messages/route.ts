@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth"
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import { ObjectId } from "mongodb"
+import { requireAuthWithCsrf } from "@/lib/auth"
 
 // GET — list all message threads for the authenticated buyer
 export async function GET(request: NextRequest) {
@@ -30,9 +31,7 @@ export async function GET(request: NextRequest) {
 }
 
 // POST — create a new message thread (buyer sends a new message)
-export async function POST(request: NextRequest) {
-  try {
-    const user = await getCurrentUser()
+export async function POST(request: NextRequest) { try { const user = await requireAuthWithCsrf(request)
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }

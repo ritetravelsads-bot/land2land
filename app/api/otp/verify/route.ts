@@ -1,9 +1,10 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { verifyOtp } from "@/lib/otp"
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {  const user = await requireAuthWithCsrf(request)
+
   try {
-    const { phone, code, sessionId } = await req.json()
+    const { phone, code, sessionId }} = await req.json()
 
     if (!phone || !code || !sessionId) {
       return NextResponse.json(

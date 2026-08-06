@@ -87,10 +87,11 @@ function callbackAdminTemplate({ name, phone, message }: { name: string; phone: 
   `
 }
 
-export async function POST(request: Request) {
+export async function POST(request: Request) {  const user = await requireAuthWithCsrf(request)
+
   try {
     const body = await request.json()
-    const { name, phone, message, source } = body
+    const { name, phone, message, source }} = body
 
     // Validate required fields - only name and phone required for callback
     if (!name || !phone) {

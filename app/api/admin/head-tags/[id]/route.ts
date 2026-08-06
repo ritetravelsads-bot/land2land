@@ -33,9 +33,10 @@ export async function GET(
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
-) {
+) {  const user = await requireAdminWithCsrf(request)
+
   try {
-    const { id } = await params
+    const { id }} = await params
     const body = await request.json()
     
     if (!ObjectId.isValid(id)) {
@@ -83,9 +84,10 @@ export async function PUT(
 export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
-) {
+) {  const user = await requireAdminWithCsrf(request)
+
   try {
-    const { id } = await params
+    const { id }} = await params
     
     if (!ObjectId.isValid(id)) {
       return NextResponse.json({ error: "Invalid ID" }, { status: 400 })

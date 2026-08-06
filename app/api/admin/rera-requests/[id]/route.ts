@@ -49,9 +49,10 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
 //   { action: "approve", rera_number, note? }
 //   { action: "reject", reason }
 //   { action: "update_notes", admin_notes }
-export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {  const user = await requireAdminWithCsrf(request)
+
   try {
-    const { id } = await params
+    const { id }} = await params
     const user = await getCurrentUser()
     if (!user || user.user_type !== "admin") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })

@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth"
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import { ObjectId } from "mongodb"
+import { requireAdminWithCsrf } from "@/lib/auth"
 
 // GET a single thread (admin)
 export async function GET(

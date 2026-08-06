@@ -95,7 +95,8 @@ async function autoRegisterBuyer(
   return { userId, username, email: userEmail, userType, isNew }
 }
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {  const user = await requireAuthWithCsrf(request)
+
   try {
     const body = await req.json()
 
@@ -116,7 +117,7 @@ export async function POST(req: NextRequest) {
       preferred_bhk,
       preferred_location,
       verification_token,
-    } = body
+    }} = body
 
     // Validate required fields
     if (!name || !phone) {

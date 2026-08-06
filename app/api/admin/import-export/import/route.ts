@@ -3,6 +3,7 @@ import { getDatabase } from "@/lib/mongodb"
 import { type NextRequest, NextResponse } from "next/server"
 import { parseCSV, parseXLSX, validateRecord } from "@/lib/import-export"
 import { escapeRegexChars } from "@/lib/sanitize-regex"
+import { requireAdminWithCsrf } from "@/lib/auth"
 
 interface ConfigCreationResult {
   type: "category" | "state" | "amenity" | "developer" | "facility"

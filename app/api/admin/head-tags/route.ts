@@ -26,10 +26,11 @@ export async function GET() {
 }
 
 // POST create new head tag
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest) {  const user = await requireAdminWithCsrf(request)
+
   try {
     const body = await request.json()
-    const { tag_content, tag_type, description, is_active } = body
+    const { tag_content, tag_type, description, is_active }} = body
     
     // Validate the tag content
     if (!tag_content || typeof tag_content !== "string") {

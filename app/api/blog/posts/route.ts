@@ -117,11 +117,12 @@ export async function GET(
 export async function PUT(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
-) {
+) {  const user = await requireAuthWithCsrf(request)
+
   try {
     await requireAdmin()
 
-    const { id } = await params
+    const { id }} = await params
 
     if (!mongoUrl) {
       return new Response(JSON.stringify({ error: "Database not configured" }), {
@@ -281,11 +282,12 @@ export async function PUT(
 export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> }
-) {
+) {  const user = await requireAuthWithCsrf(request)
+
   try {
     await requireAdmin()
 
-    const { id } = await params
+    const { id }} = await params
 
     if (!mongoUrl) {
       return new Response(JSON.stringify({ error: "Database not configured" }), {

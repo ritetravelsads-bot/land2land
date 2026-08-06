@@ -46,9 +46,10 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ id:
 // PATCH /api/associate/rera-requests/[id]
 // Associate responds to a document request by uploading files.
 // body: { documents: [{ key, file }] }
-export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {  const user = await requireAssociateWithCsrf(request)
+
   try {
-    const { id } = await params
+    const { id }} = await params
     const user = await getCurrentUser()
     if (!user || (user.user_type !== "associate" && user.user_type !== "admin")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })

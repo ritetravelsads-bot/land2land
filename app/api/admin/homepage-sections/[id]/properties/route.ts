@@ -2,6 +2,7 @@ import { connectToDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
 import type { HomepageSection } from "@/lib/schemas"
 import { ObjectId } from "mongodb"
+import { requireAdminWithCsrf } from "@/lib/auth"
 
 export async function POST(req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {

@@ -1,6 +1,7 @@
 import { cookies } from "next/headers"
 import { MongoClient, ObjectId } from "mongodb"
 import bcrypt from "bcryptjs"
+import { requireValidCsrfToken } from "@/lib/csrf"
 
 const mongoUrl = process.env.MONGODB_URI || ""
 
@@ -74,4 +75,41 @@ export async function hashPassword(password: string): Promise<string> {
 
 export async function verifyPassword(password: string, hash: string): Promise<boolean> {
   return bcrypt.compare(password, hash)
+}
+
+/**
+ * Combined auth + CSRF validation for protected mutation endpoints
+ * Use at the start of POST/PUT/DELETE/PATCH handlers
+ */
+export async function requireAuthWithCsrf(request: Request) {
+  // Validate CSRF token first
+  await requireValidCsrfToken(request)
+
+  // Then validate auth
+  const user = await requireAuth()
+  return user
+}
+
+/**
+ * Combined admin + CSRF validation for protected admin mutation endpoints
+ */
+export async function requireAdminWithCsrf(request: Request) {
+  // Validate CSRF token first
+  await requireValidCsrfToken(request)
+
+  // Then validate admin auth
+  const user = await requireAdmin()
+  return user
+}
+
+/**
+ * Combined associate + CSRF validation for protected associate mutation endpoints
+ */
+export async function requireAssociateWithCsrf(request: Request) {
+  // Validate CSRF token first
+  await requireValidCsrfToken(request)
+
+  // Then validate associate auth
+  const user = await requireAssociate()
+  return user
 }

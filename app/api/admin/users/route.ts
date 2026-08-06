@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs"
 import { NextResponse } from "next/server"
 import { ObjectId } from "mongodb"
 import type { NextRequest } from "next/server"
+import { requireAdminWithCsrf } from "@/lib/auth"
 
 const ALLOWED_USER_TYPES = ["admin", "associate", "customer", "buyer", "seller", "builder"]
 
@@ -44,9 +45,7 @@ export async function GET() {
   }
 }
 
-export async function POST(request: NextRequest) {
-  try {
-    const user = await getCurrentUser()
+export async function POST(request: NextRequest) { try { const user = await requireAdminWithCsrf(request)
     if (!user || user.user_type !== "admin") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
@@ -127,9 +126,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function DELETE(request: NextRequest) {
-  try {
-    const user = await getCurrentUser()
+export async function DELETE(request: NextRequest) { try { const user = await requireAdminWithCsrf(request)
     if (!user || user.user_type !== "admin") {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }

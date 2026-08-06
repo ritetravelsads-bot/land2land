@@ -8,7 +8,8 @@ import {
 
 const ADMIN_EMAIL = "info@land2land.com"
 
-export async function POST(request: Request) {
+export async function POST(request: Request) {  const user = await requireAuthWithCsrf(request)
+
   try {
     const body = await request.json()
 
@@ -24,7 +25,7 @@ export async function POST(request: Request) {
       ownerName,
       ownerPhone,
       ownerEmail,
-    } = body
+    }} = body
 
     // Required field validation
     if (!ownerName || !ownerPhone || !propertyType || !size || !location) {

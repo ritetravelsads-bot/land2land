@@ -2,6 +2,7 @@ import { getDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
 import { ObjectId } from "mongodb"
 import { type NextRequest, NextResponse } from "next/server"
+import { requireAuthWithCsrf } from "@/lib/auth"
 
 // Shared profile-update endpoint for ALL user types (customer, buyer, seller,
 // associate, builder, admin). Only whitelisted, non-privileged fields can be

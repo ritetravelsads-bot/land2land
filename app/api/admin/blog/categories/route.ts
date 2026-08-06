@@ -59,12 +59,13 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: Request) {  const user = await requireAdminWithCsrf(request)
+
   try {
     await requireAdmin()
 
     if (!mongoUrl) {
-      return new Response(JSON.stringify({ error: "Database not configured" }), {
+      return new Response(JSON.stringify({ error: "Database not configured" }}), {
         status: 500,
         headers: { "Content-Type": "application/json" },
       })
@@ -151,12 +152,13 @@ export async function POST(request: Request) {
   }
 }
 
-export async function DELETE(request: Request) {
+export async function DELETE(request: Request) {  const user = await requireAdminWithCsrf(request)
+
   try {
     await requireAdmin()
 
     if (!mongoUrl) {
-      return new Response(JSON.stringify({ error: "Database not configured" }), {
+      return new Response(JSON.stringify({ error: "Database not configured" }}), {
         status: 500,
         headers: { "Content-Type": "application/json" },
       })

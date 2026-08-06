@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth"
 import { NextResponse } from "next/server"
 import { ObjectId } from "mongodb"
 import type { NextRequest } from "next/server"
+import { requireAdminWithCsrf } from "@/lib/auth"
 
 // POST add a note to a lead
 export async function POST(

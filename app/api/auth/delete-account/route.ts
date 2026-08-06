@@ -2,6 +2,7 @@ import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
 import { MongoClient, ObjectId } from "mongodb"
 import { getCurrentUser } from "@/lib/auth"
+import { requireAuthWithCsrf } from "@/lib/auth"
 
 // Never cache an account-mutating endpoint
 export const dynamic = "force-dynamic"

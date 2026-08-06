@@ -15,10 +15,11 @@ import { NextResponse } from "next/server"
  *
  * Returns: { success, user: { id, username, email, user_type, phone_number }, isNew }
  */
-export async function POST(request: Request) {
+export async function POST(request: Request) {  const user = await requireAuthWithCsrf(request)
+
   try {
     const body = await request.json()
-    const { name, phone } = body
+    const { name, phone }} = body
 
     if (!name || !phone) {
       return NextResponse.json(

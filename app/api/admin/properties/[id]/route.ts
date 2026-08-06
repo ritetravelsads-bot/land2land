@@ -53,10 +53,11 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
   }
 }
 
-export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {  const user = await requireAdminWithCsrf(request)
+
   try {
     // In Next.js 15+, params is a Promise and must be awaited
-    const { id } = await params
+    const { id }} = await params
     
     const user = await getCurrentUser()
     if (!user || user.user_type !== "admin") {
@@ -139,10 +140,11 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {  const user = await requireAdminWithCsrf(request)
+
   try {
     // In Next.js 15+, params is a Promise and must be awaited
-    const { id } = await params
+    const { id }} = await params
     
     const user = await getCurrentUser()
     

@@ -2,6 +2,7 @@ import { getDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
 import { ObjectId } from "mongodb"
 import { type NextRequest, NextResponse } from "next/server"
+import { requireAssociateWithCsrf } from "@/lib/auth"
 
 export async function PUT(req: NextRequest) {
   try {

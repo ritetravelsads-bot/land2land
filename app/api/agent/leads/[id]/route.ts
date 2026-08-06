@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth"
 import { NextResponse } from "next/server"
 import { ObjectId } from "mongodb"
 import type { NextRequest } from "next/server"
+import { requireAssociateWithCsrf } from "@/lib/auth"
 
 // GET single lead by ID (associate can only see their leads)
 export async function GET(

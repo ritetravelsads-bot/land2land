@@ -2,10 +2,11 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
-export async function POST(request: Request) {
+export async function POST(request: Request) {  const user = await requireAuthWithCsrf(request)
+
   try {
     const body = await request.json();
-    const { user_name, user_phone, user_email, configuration } = body;
+    const { user_name, user_phone, user_email, configuration }} = body;
 
     // 1. Configure the SMTP transporter using your environment variables
     const transporter = nodemailer.createTransport({

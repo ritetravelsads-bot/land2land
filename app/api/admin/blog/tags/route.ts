@@ -53,12 +53,13 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: Request) {  const user = await requireAdminWithCsrf(request)
+
   try {
     await requireAdmin()
 
     const body = await request.json()
-    const { name } = body
+    const { name }} = body
 
     if (!name || typeof name !== "string" || name.trim().length === 0) {
       return new Response(

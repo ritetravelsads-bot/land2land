@@ -14,12 +14,13 @@ import { fetchPropertyCandidates, injectPropertyLinks } from "@/lib/blog-auto-li
 
 const mongoUrl = process.env.MONGODB_URI || ""
 
-export async function POST(request: Request) {
+export async function POST(request: Request) {  const user = await requireAdminWithCsrf(request)
+
   try {
     await requireAdmin()
 
     if (!mongoUrl) {
-      return Response.json({ error: "Database not configured" }, { status: 500 })
+      return Response.json({ error: "Database not configured" }}, { status: 500 })
     }
 
     const body = await request.json()

@@ -46,10 +46,11 @@ async function loginUser(email: string, password: string) {
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: Request) {  const user = await requireAuthWithCsrf(request)
+
   try {
     const body = await request.json()
-    const { email, password } = body
+    const { email, password }} = body
 
     if (!email || !password) {
       return new Response(JSON.stringify({ error: "Missing email or password" }), {

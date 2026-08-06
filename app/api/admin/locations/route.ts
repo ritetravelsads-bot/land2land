@@ -2,6 +2,7 @@ import { getDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
 import { type NextRequest, NextResponse } from "next/server"
 import { escapeRegexChars } from "@/lib/sanitize-regex"
+import { requireAdminWithCsrf } from "@/lib/auth"
 
 export async function GET(req: NextRequest) {
   try {

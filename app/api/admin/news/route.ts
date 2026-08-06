@@ -1,6 +1,7 @@
 import { getCurrentUser } from "@/lib/auth"
 import { connectDB } from "@/lib/mongodb"
 import { ObjectId } from "mongodb"
+import { requireAdminWithCsrf } from "@/lib/auth"
 
 export async function GET() {
   try {

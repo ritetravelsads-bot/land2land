@@ -2,6 +2,7 @@ import { connectToDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
 import { ObjectId } from "mongodb"
 import type { HomepageSection } from "@/lib/schemas"
+import { requireAdminWithCsrf } from "@/lib/auth"
 
 interface Context {
   params: Promise<{ id: string }>

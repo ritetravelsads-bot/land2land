@@ -1,9 +1,10 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { sendOtp } from "@/lib/otp"
 
-export async function POST(req: NextRequest) {
+export async function POST(req: NextRequest) {  const user = await requireAuthWithCsrf(request)
+
   try {
-    const { phone } = await req.json()
+    const { phone }} = await req.json()
 
     if (!phone || typeof phone !== "string") {
       return NextResponse.json({ error: "Phone number is required." }, { status: 400 })
