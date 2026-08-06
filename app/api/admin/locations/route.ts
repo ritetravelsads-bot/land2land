@@ -1,6 +1,7 @@
 import { getDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
 import { type NextRequest, NextResponse } from "next/server"
+import { escapeRegexChars } from "@/lib/sanitize-regex"
 
 export async function GET(req: NextRequest) {
   try {
@@ -12,11 +13,15 @@ export async function GET(req: NextRequest) {
     const query: Record<string, any> = {}
     if (type) query.type = type
     if (search) {
-      query.$or = [
-        { name: { $regex: search, $options: "i" } },
-        { city: { $regex: search, $options: "i" } },
-        { state: { $regex: search, $options: "i" } },
-      ]
+      // Sanitize search input to prevent ReDoS attacks
+      const escapedSearch = escapeRegexChars(search)
+      if (escapedSearch) {
+        query.$or = [
+          { name: { $regex: escapedSearch, $options: "i" } },
+          { city: { $regex: escapedSearch, $options: "i" } },
+          { state: { $regex: escapedSearch, $options: "i" } },
+        ]
+      }
     }
 
     const locations = await db

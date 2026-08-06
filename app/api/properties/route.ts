@@ -1,6 +1,7 @@
 import { getDatabase } from "@/lib/mongodb"
 import { type NextRequest, NextResponse } from "next/server"
 import { ObjectId } from "mongodb"
+import { escapeRegexChars } from "@/lib/sanitize-regex"
 
 // Disable caching for this route to ensure fresh data
 export const dynamic = "force-dynamic"
@@ -31,88 +32,116 @@ export async function GET(req: NextRequest) {
     })
 
     // Search query - property name, address, neighborhood, city, developer
+    // Sanitized to prevent ReDoS attacks
     const search = searchParams.get("search")
     if (search) {
-      andConditions.push({
-        $or: [
-          { property_name: { $regex: search, $options: "i" } },
-          { address: { $regex: search, $options: "i" } },
-          { neighborhood: { $regex: search, $options: "i" } },
-          { city: { $regex: search, $options: "i" } },
-          { state: { $regex: search, $options: "i" } },
-          { seller_name: { $regex: search, $options: "i" } },
-          { zoning: { $regex: search, $options: "i" } },
-        ]
-      })
+      const escapedSearch = escapeRegexChars(search)
+      if (escapedSearch) {
+        andConditions.push({
+          $or: [
+            { property_name: { $regex: escapedSearch, $options: "i" } },
+            { address: { $regex: escapedSearch, $options: "i" } },
+            { neighborhood: { $regex: escapedSearch, $options: "i" } },
+            { city: { $regex: escapedSearch, $options: "i" } },
+            { state: { $regex: escapedSearch, $options: "i" } },
+            { seller_name: { $regex: escapedSearch, $options: "i" } },
+            { zoning: { $regex: escapedSearch, $options: "i" } },
+          ]
+        })
+      }
     }
 
-    // State filter
+    // State filter - sanitized to prevent ReDoS
     const state = searchParams.get("state")
     if (state) {
-      andConditions.push({ state: { $regex: state, $options: "i" } })
+      const escapedState = escapeRegexChars(state)
+      if (escapedState) {
+        andConditions.push({ state: { $regex: escapedState, $options: "i" } })
+      }
     }
 
-    // City filter
+    // City filter - sanitized to prevent ReDoS
     const city = searchParams.get("city")
     if (city) {
-      andConditions.push({ city: { $regex: city, $options: "i" } })
+      const escapedCity = escapeRegexChars(city)
+      if (escapedCity) {
+        andConditions.push({ city: { $regex: escapedCity, $options: "i" } })
+      }
     }
 
-    // Location filter (searches address, neighborhood, city, area)
+    // Location filter - sanitized to prevent ReDoS (searches address, neighborhood, city, area)
     const location = searchParams.get("location")
     if (location) {
-      andConditions.push({
-        $or: [
-          { address: { $regex: location, $options: "i" } },
-          { neighborhood: { $regex: location, $options: "i" } },
-          { city: { $regex: location, $options: "i" } },
-          { state: { $regex: location, $options: "i" } },
-          { property_name: { $regex: location, $options: "i" } },
-        ]
-      })
+      const escapedLocation = escapeRegexChars(location)
+      if (escapedLocation) {
+        andConditions.push({
+          $or: [
+            { address: { $regex: escapedLocation, $options: "i" } },
+            { neighborhood: { $regex: escapedLocation, $options: "i" } },
+            { city: { $regex: escapedLocation, $options: "i" } },
+            { state: { $regex: escapedLocation, $options: "i" } },
+            { property_name: { $regex: escapedLocation, $options: "i" } },
+          ]
+        })
+      }
     }
 
-    // Category / Property Type filter
+    // Category / Property Type filter - sanitized to prevent ReDoS
     const category = searchParams.get("category")
     if (category) {
-      andConditions.push({
-        $or: [
-          { property_type: { $regex: category, $options: "i" } },
-          { property_category: { $regex: category, $options: "i" } }
-        ]
-      })
+      const escapedCategory = escapeRegexChars(category)
+      if (escapedCategory) {
+        andConditions.push({
+          $or: [
+            { property_type: { $regex: escapedCategory, $options: "i" } },
+            { property_category: { $regex: escapedCategory, $options: "i" } }
+          ]
+        })
+      }
     }
 
-    // Property Type specific filter - supports multiple values (OR condition)
+    // Property Type filter - sanitized to prevent ReDoS, supports multiple values (OR condition)
     const propertyTypes = searchParams.getAll("property_type")
     if (propertyTypes.length > 0) {
-      andConditions.push({
-        $or: propertyTypes.map(pt => ({ property_type: { $regex: `^${pt}$`, $options: "i" } }))
-      })
+      const escapedTypes = propertyTypes.map(escapeRegexChars).filter(Boolean)
+      if (escapedTypes.length > 0) {
+        andConditions.push({
+          $or: escapedTypes.map(pt => ({ property_type: { $regex: `^${pt}$`, $options: "i" } }))
+        })
+      }
     }
 
-    // Property Category filter - supports multiple values (OR condition)
+    // Property Category filter - sanitized to prevent ReDoS, supports multiple values (OR condition)
     const propertyCategories = searchParams.getAll("property_category")
     if (propertyCategories.length > 0) {
-      andConditions.push({
-        $or: propertyCategories.map(pc => ({ property_category: { $regex: `^${pc}$`, $options: "i" } }))
-      })
+      const escapedCategories = propertyCategories.map(escapeRegexChars).filter(Boolean)
+      if (escapedCategories.length > 0) {
+        andConditions.push({
+          $or: escapedCategories.map(pc => ({ property_category: { $regex: `^${pc}$`, $options: "i" } }))
+        })
+      }
     }
 
-    // Target Segment filter - supports multiple values (OR condition)
+    // Target Segment filter - sanitized to prevent ReDoS, supports multiple values (OR condition)
     const targetSegments = searchParams.getAll("target_segment")
     if (targetSegments.length > 0) {
-      andConditions.push({
-        $or: targetSegments.map(ts => ({ target_segment: { $regex: `^${ts}$`, $options: "i" } }))
-      })
+      const escapedSegments = targetSegments.map(escapeRegexChars).filter(Boolean)
+      if (escapedSegments.length > 0) {
+        andConditions.push({
+          $or: escapedSegments.map(ts => ({ target_segment: { $regex: `^${ts}$`, $options: "i" } }))
+        })
+      }
     }
 
-    // Possession Type filter - supports multiple values (OR condition)
+    // Possession Type filter - sanitized to prevent ReDoS, supports multiple values (OR condition)
     const possessionTypes = searchParams.getAll("possession_type")
     if (possessionTypes.length > 0) {
-      andConditions.push({
-        $or: possessionTypes.map(pt => ({ possession_type: { $regex: `^${pt}$`, $options: "i" } }))
-      })
+      const escapedPossessionTypes = possessionTypes.map(escapeRegexChars).filter(Boolean)
+      if (escapedPossessionTypes.length > 0) {
+        andConditions.push({
+          $or: escapedPossessionTypes.map(pt => ({ possession_type: { $regex: `^${pt}$`, $options: "i" } }))
+        })
+      }
     }
 
     // Listing Type filter (builder_project, resale, rental, new)

@@ -1,5 +1,6 @@
 import { MongoClient, ObjectId } from "mongodb"
 import { requireAdmin } from "@/lib/auth"
+import { escapeRegexChars } from "@/lib/sanitize-regex"
 
 const mongoUrl = process.env.MONGODB_URI || ""
 
@@ -89,15 +90,19 @@ export async function POST(request: Request) {
       const db = client.db("land2land")
       const collection = db.collection("blog_categories")
 
-      const slug = slugify(name.trim())
+      const trimmedName = name.trim()
+      const slug = slugify(trimmedName)
 
-      // Check if category already exists
-      const existingCategory = await collection.findOne({
-        $or: [
-          { name: { $regex: `^${name.trim()}$`, $options: "i" } },
-          { slug: slug },
-        ],
-      })
+      // Check if category already exists - sanitize to prevent ReDoS
+      const escapedName = escapeRegexChars(trimmedName)
+      const existingCategory = escapedName
+        ? await collection.findOne({
+            $or: [
+              { name: { $regex: `^${escapedName}$`, $options: "i" } },
+              { slug: slug },
+            ],
+          })
+        : null
 
       if (existingCategory) {
         return new Response(

@@ -1,6 +1,7 @@
 import { getDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
 import { type NextRequest, NextResponse } from "next/server"
+import { escapeRegexChars } from "@/lib/sanitize-regex"
 
 // Disable caching for admin routes
 export const dynamic = "force-dynamic"
@@ -19,16 +20,19 @@ export async function GET(req: NextRequest) {
     // Build query from filters
     const query: Record<string, any> = {}
     
-    // Search filter (property name, address, developer)
+    // Search filter - sanitized to prevent ReDoS (property name, address, developer)
     const search = searchParams.get("search")
     if (search) {
-      query.$or = [
-        { property_name: { $regex: search, $options: "i" } },
-        { address: { $regex: search, $options: "i" } },
-        { developer_name: { $regex: search, $options: "i" } },
-        { city: { $regex: search, $options: "i" } },
-        { neighborhood: { $regex: search, $options: "i" } },
-      ]
+      const escapedSearch = escapeRegexChars(search)
+      if (escapedSearch) {
+        query.$or = [
+          { property_name: { $regex: escapedSearch, $options: "i" } },
+          { address: { $regex: escapedSearch, $options: "i" } },
+          { developer_name: { $regex: escapedSearch, $options: "i" } },
+          { city: { $regex: escapedSearch, $options: "i" } },
+          { neighborhood: { $regex: escapedSearch, $options: "i" } },
+        ]
+      }
     }
     
     // Property type filter
@@ -55,16 +59,22 @@ export async function GET(req: NextRequest) {
       query.ownership_type = ownershipType
     }
     
-    // City filter
+    // City filter - sanitized to prevent ReDoS
     const city = searchParams.get("city")
     if (city) {
-      query.city = { $regex: city, $options: "i" }
+      const escapedCity = escapeRegexChars(city)
+      if (escapedCity) {
+        query.city = { $regex: escapedCity, $options: "i" }
+      }
     }
     
-    // Developer filter
+    // Developer filter - sanitized to prevent ReDoS
     const developer = searchParams.get("developer")
     if (developer) {
-      query.developer_name = { $regex: developer, $options: "i" }
+      const escapedDeveloper = escapeRegexChars(developer)
+      if (escapedDeveloper) {
+        query.developer_name = { $regex: escapedDeveloper, $options: "i" }
+      }
     }
     
     // Price range filter

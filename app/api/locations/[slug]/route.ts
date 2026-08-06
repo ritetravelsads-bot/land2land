@@ -1,5 +1,6 @@
 import { getDatabase } from "@/lib/mongodb"
 import { type NextRequest, NextResponse } from "next/server"
+import { escapeRegexChars } from "@/lib/sanitize-regex"
 
 export async function GET(req: NextRequest, { params }: { params: Promise<{ slug: string }> }) {
   try {

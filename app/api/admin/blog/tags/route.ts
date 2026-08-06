@@ -1,5 +1,6 @@
 import { connectToDatabase } from "@/lib/mongodb"
 import { requireAdmin } from "@/lib/auth"
+import { escapeRegexChars } from "@/lib/sanitize-regex"
 
 export async function GET() {
   try {
@@ -72,10 +73,14 @@ export async function POST(request: Request) {
     const { db } = await connectToDatabase()
     const collection = db.collection("blog_tags")
 
-    // Check if tag already exists
-    const existingTag = await collection.findOne({
-      name: { $regex: `^${name.trim()}$`, $options: "i" },
-    })
+    // Check if tag already exists - sanitize to prevent ReDoS
+    const trimmedName = name.trim()
+    const escapedName = escapeRegexChars(trimmedName)
+    const existingTag = escapedName
+      ? await collection.findOne({
+          name: { $regex: `^${escapedName}$`, $options: "i" },
+        })
+      : null
 
     if (existingTag) {
       return new Response(

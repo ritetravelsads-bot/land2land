@@ -1,5 +1,6 @@
 import { getDatabase } from "@/lib/mongodb"
 import { NextRequest, NextResponse } from "next/server"
+import { escapeRegexChars } from "@/lib/sanitize-regex"
 
 // Disable caching for this route
 export const dynamic = "force-dynamic"

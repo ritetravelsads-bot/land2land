@@ -2,6 +2,7 @@ import { getDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
+import { escapeRegexChars } from "@/lib/sanitize-regex"
 
 // GET — list all buyer message threads (admin only)
 export async function GET(request: NextRequest) {
@@ -23,12 +24,16 @@ export async function GET(request: NextRequest) {
     const filter: any = {}
     if (status && status !== "all") filter.status = status
     if (search) {
-      filter.$or = [
-        { subject: { $regex: search, $options: "i" } },
-        { buyer_name: { $regex: search, $options: "i" } },
-        { buyer_phone: { $regex: search, $options: "i" } },
-        { buyer_email: { $regex: search, $options: "i" } },
-      ]
+      // Sanitize search input to prevent ReDoS attacks
+      const escapedSearch = escapeRegexChars(search)
+      if (escapedSearch) {
+        filter.$or = [
+          { subject: { $regex: escapedSearch, $options: "i" } },
+          { buyer_name: { $regex: escapedSearch, $options: "i" } },
+          { buyer_phone: { $regex: escapedSearch, $options: "i" } },
+          { buyer_email: { $regex: escapedSearch, $options: "i" } },
+        ]
+      }
     }
 
     const skip = (page - 1) * limit

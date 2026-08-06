@@ -1,5 +1,6 @@
 import { getDatabase } from "@/lib/mongodb"
 import { type NextRequest, NextResponse } from "next/server"
+import { escapeRegexChars } from "@/lib/sanitize-regex"
 import { ObjectId } from "mongodb"
 
 export async function GET(

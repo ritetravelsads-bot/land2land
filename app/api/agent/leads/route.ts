@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth"
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import type { LeadStatus, LeadPriority } from "@/lib/models"
+import { escapeRegexChars } from "@/lib/sanitize-regex"
 
 // GET leads for associate (leads assigned to them OR leads on their properties)
 export async function GET(request: NextRequest) {
@@ -50,18 +51,22 @@ export async function GET(request: NextRequest) {
     if (priority) filter.priority = priority
     
     if (search) {
-      filter.$and = [
-        baseFilter,
-        {
-          $or: [
-            { name: { $regex: search, $options: "i" } },
-            { email: { $regex: search, $options: "i" } },
-            { phone: { $regex: search, $options: "i" } },
-            { property_name: { $regex: search, $options: "i" } },
-          ]
-        }
-      ]
-      delete filter.$or
+      // Sanitize search input to prevent ReDoS attacks
+      const escapedSearch = escapeRegexChars(search)
+      if (escapedSearch) {
+        filter.$and = [
+          baseFilter,
+          {
+            $or: [
+              { name: { $regex: escapedSearch, $options: "i" } },
+              { email: { $regex: escapedSearch, $options: "i" } },
+              { phone: { $regex: escapedSearch, $options: "i" } },
+              { property_name: { $regex: escapedSearch, $options: "i" } },
+            ]
+          }
+        ]
+        delete filter.$or
+      }
     }
 
     const skip = (page - 1) * limit

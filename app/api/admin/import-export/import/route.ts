@@ -2,6 +2,7 @@ import { getCurrentUser } from "@/lib/auth"
 import { getDatabase } from "@/lib/mongodb"
 import { type NextRequest, NextResponse } from "next/server"
 import { parseCSV, parseXLSX, validateRecord } from "@/lib/import-export"
+import { escapeRegexChars } from "@/lib/sanitize-regex"
 
 interface ConfigCreationResult {
   type: "category" | "state" | "amenity" | "developer" | "facility"
@@ -20,10 +21,13 @@ async function findOrCreateConfigEntry(
     return { _id: "", isNew: false }
   }
 
-  // Try to find existing entry (case-insensitive)
-  const existing = await db.collection(collection).findOne({
-    name: { $regex: new RegExp(`^${normalizedName}$`, "i") },
-  })
+  // Try to find existing entry (case-insensitive) - sanitize to prevent ReDoS
+  const escapedName = escapeRegexChars(normalizedName)
+  const existing = escapedName
+    ? await db.collection(collection).findOne({
+        name: { $regex: new RegExp(`^${escapedName}$`, "i") },
+      })
+    : null
 
   if (existing) {
     return { _id: existing._id.toString(), isNew: false }
