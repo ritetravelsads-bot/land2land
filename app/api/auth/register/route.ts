@@ -14,7 +14,7 @@ export async function POST(request: Request) {  const user = await requireAuthWi
   try {
     if (!process.env.MONGODB_URI) {
       return NextResponse.json(
-        { error: "Database is not configured. Please contact the administrator." }},
+        { error: "Database is not configured. Please contact the administrator." },
         { status: 503 }
       )
     }

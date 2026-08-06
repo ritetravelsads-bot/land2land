@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   typescript: {
+    // SECURITY: This flag silences real TypeScript errors that can ship to production
+    // Status: 71 errors remain after fixing 5 JSON object brace issues
+    // Action Required: Remove this and fix remaining errors before shipping
+    // See docs/TYPESCRIPT_ERRORS.md for detailed error analysis and fix strategy
     ignoreBuildErrors: true,
   },
   images: {

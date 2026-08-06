@@ -20,7 +20,7 @@ export async function POST(request: Request) {  const user = await requireAdminW
     await requireAdmin()
 
     if (!mongoUrl) {
-      return Response.json({ error: "Database not configured" }}, { status: 500 })
+      return Response.json({ error: "Database not configured" }, { status: 500 })
     }
 
     const body = await request.json()

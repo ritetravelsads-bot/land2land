@@ -868,7 +868,7 @@ export async function POST(req: NextRequest) {  const user = await requireAuthWi
     if (userCity) url.searchParams.set("city", userCity)
     
     return GET(new NextRequest(url))
-  }} catch (error) {
+  } catch (error) {
     return NextResponse.json(
       { error: "Failed to process voice search" },
       { status: 500 }

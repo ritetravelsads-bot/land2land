@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {  const user = await requireAuthWi
     const privateKey = process.env.IMAGEKIT_PRIVATE_KEY
     if (!privateKey) {
       return NextResponse.json(
-        { error: "ImageKit is not configured. Please set IMAGEKIT_PRIVATE_KEY." }},
+        { error: "ImageKit is not configured. Please set IMAGEKIT_PRIVATE_KEY." },
         { status: 500 }
       )
     }
