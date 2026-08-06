@@ -20,7 +20,6 @@ export default function AssociateDashboardNav() {
     { href: "/associate/dashboard", label: "Dashboard", icon: Home },
     { href: "/associate/properties", label: "Properties", icon: Package },
     { href: "/associate/leads", label: "Leads", icon: UserPlus },
-    { href: "/associate/reviews", label: "Reviews", icon: Star },
     { href: "/associate/tickets", label: "Support Tickets", icon: MessageSquare },
     { href: "/associate/profile", label: "Profile", icon: User },
   ]
