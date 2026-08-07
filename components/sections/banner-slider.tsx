@@ -70,8 +70,8 @@ function FirstSlideStatic() {
           fill
           priority
           fetchPriority="high"
-          sizes="100vw"
-          quality={80}
+          sizes="(max-width: 767px) 480px, (max-width: 1079px) 828px, 1080px"
+          quality={75}
           className="object-cover"
         />
       </div>
@@ -152,8 +152,8 @@ const SlideImage = memo(function SlideImage({
         alt={slide.title || "Banner"}
         fill
         loading="lazy"
-        sizes="100vw"
-        quality={78}
+        sizes="(max-width: 767px) 480px, (max-width: 1079px) 828px, 1080px"
+        quality={70}
         fetchPriority="low"
         decoding="async"
         className={cn("object-cover", !isActive && "opacity-0")}

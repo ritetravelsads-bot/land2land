@@ -129,9 +129,9 @@ export default function MegaMenuHeader() {
         className={`fixed top-0 left-0 right-0 z-50 w-full bg-white border-b border-gray-200 flex-none header-scroll-aware${headerHidden ? " header-hidden" : ""}${headerScrolled ? " header-scrolled" : ""}`}
         style={{ height: "64px" }}
       >
-        <nav className="flex items-center justify-between px-4 md:px-6 w-full h-full overflow-hidden">
+        <nav aria-label="Main navigation" className="flex items-center justify-between px-4 md:px-6 w-full h-full overflow-hidden">
           {/* Logo Container - Hardlocked with inline minWidth/minHeight to prevent WebView squishing */}
-          <Link href="/" className="flex items-center shrink-0">
+          <Link href="/" className="flex items-center shrink-0" aria-label="Land2Land home">
             <Image
               src="/images/logo.png"
               alt="Land2Land Logo"
@@ -284,6 +284,8 @@ export default function MegaMenuHeader() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="app-bar-action p-2 text-gray-700 hover:text-[#125007] transition-colors rounded-full shrink-0"
               aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
             >
               {mobileMenuOpen ? (
                 <X size={22} className="shrink-0" style={{ minWidth: "22px", minHeight: "22px" }} />
@@ -300,7 +302,9 @@ export default function MegaMenuHeader() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div
+        <nav
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
           className="lg:hidden border-t border-gray-200 bg-white fixed left-0 right-0 bottom-0 z-40 overflow-y-auto"
           style={{ top: "64px" }} // Perfectly aligns just beneath the 64px fixed header
         >
@@ -396,7 +400,7 @@ export default function MegaMenuHeader() {
               </div>
             )}
           </div>
-        </div>
+        </nav>
       )}
     </>
   )

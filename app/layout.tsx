@@ -3,7 +3,6 @@ import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import Script from "next/script" // <-- Imported next/script
 import "./globals.css"
-import "@/styles/blog-content.css"
 import FrontendLayout from "@/components/layout/frontend-layout"
 import CustomHeadTags from "@/components/layout/custom-head-tags"
 import HeadTagsInjector from "@/components/layout/head-tags-injector"
@@ -114,19 +113,19 @@ export default function RootLayout({
       <head>
         {/* CRITICAL: Preload LCP images FIRST - before any other resources */}
         {/* These must be at the very top of <head> for maximum priority */}
-        {/* Mobile LCP image preload */}
+        {/* Mobile LCP image preload - matches banner-slider first slide at 480w */}
         <link
           rel="preload"
           as="image"
-          href="/_next/image?url=%2Fbanners%2Fhome-mob-banner-1.webp&w=640&q=75"
+          href="/_next/image?url=%2Fbanners%2Fbanner-all.png&w=480&q=75"
           media="(max-width: 767px)"
           fetchPriority="high"
         />
-        {/* Desktop LCP image preload */}
+        {/* Desktop LCP image preload - matches banner-slider first slide at 1080w */}
         <link
           rel="preload"
           as="image"
-          href="/_next/image?url=%2Fhome-banner-1.webp&w=1200&q=80"
+          href="/_next/image?url=%2Fbanners%2Fbanner-all.png&w=1080&q=75"
           media="(min-width: 768px)"
           fetchPriority="high"
         />

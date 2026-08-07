@@ -121,6 +121,7 @@ export default function HeaderSearch() {
             <input
               ref={inputRef}
               type="text"
+              aria-label="Search properties and locations"
               placeholder="Search properties, locations..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}

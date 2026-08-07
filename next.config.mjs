@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Enable gzip/brotli compression for all responses (fixes Lighthouse "text compression" audit)
+  compress: true,
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -166,6 +168,17 @@ const nextConfig = {
         source: "/:filename(home-banner-.*)",
         headers: [
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        // Security + Best Practices headers for all pages
+        source: "/(.*)",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Strict-Transport-Security", value: "max-age=63072000" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(self)" },
         ],
       },
     ]
