@@ -403,6 +403,7 @@ export default function AdvancedSearch() {
               <input
                 ref={inputRef}
                 type="text"
+                aria-label="Search land and properties"
                 placeholder={searchTerm ? "" : `Search "${displayedPlaceholder}|"`}
                 value={searchTerm}
                 onChange={(e) => {

@@ -89,7 +89,7 @@ export function TableOfContents({ content }: { content: string }) {
         <BookOpen className="h-4 w-4 text-primary" />
         <span className="text-sm font-semibold">Table of Contents</span>
       </div>
-      <nav className="space-y-1">
+      <nav aria-label="Table of contents" className="space-y-1">
         {headings.map((h) => (
           <a
             key={h.id}

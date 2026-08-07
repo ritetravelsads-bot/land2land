@@ -68,7 +68,7 @@ export default function BottomNav() {
         style={{ height: "calc(5rem + env(safe-area-inset-bottom, 0px))" }}
       />
 
-      <nav className="bottom-nav-container">
+      <nav aria-label="Bottom navigation" className="bottom-nav-container">
         <div className="bottom-nav">
           <Link href="/properties" className={`bottom-nav-item ${isActive("/properties") ? "active" : ""}`}>
             <Search size={20} />

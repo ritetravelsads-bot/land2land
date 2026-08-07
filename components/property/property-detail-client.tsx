@@ -253,7 +253,7 @@ export function PropertyDetailClient({
       {/* Breadcrumb */}
       <div className="bg-muted/30 border-b border-border">
         <div className="max-w-6xl mx-auto px-4 py-3">
-          <nav className="flex items-center gap-1.5 text-xs text-muted-foreground overflow-x-auto">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted-foreground overflow-x-auto">
             <Link href="/" className="hover:text-primary transition-colors whitespace-nowrap">Home</Link>
             <ChevronRightIcon className="h-3 w-3 flex-shrink-0" />
             <Link href="/properties" className="hover:text-primary transition-colors whitespace-nowrap">Properties</Link>
@@ -287,15 +287,17 @@ export function PropertyDetailClient({
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsLiked(!isLiked)}
+              aria-label={isLiked ? "Remove from saved" : "Save property"}
+              aria-pressed={isLiked}
               className={cn(
                 "p-2 rounded-lg transition-colors",
                 isLiked ? "bg-rose-100 text-rose-500" : "hover:bg-muted"
               )}
             >
-              <Heart className={cn("h-4 w-4", isLiked && "fill-current")} />
+              <Heart className={cn("h-4 w-4", isLiked && "fill-current")} aria-hidden="true" />
             </button>
-            <button className="p-2 hover:bg-muted rounded-lg transition-colors">
-              <Share2 className="h-4 w-4" />
+            <button aria-label="Share property" className="p-2 hover:bg-muted rounded-lg transition-colors">
+              <Share2 className="h-4 w-4" aria-hidden="true" />
             </button>
             <Button size="sm" asChild>
               <a href="#enquiry">Enquire Now</a>

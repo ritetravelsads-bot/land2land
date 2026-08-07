@@ -244,7 +244,9 @@ export default function Footer() {
             ) : (
               <form onSubmit={handleFormSubmit} className="space-y-4">
                 <div>
+                  <label htmlFor="footer-callback-name" className="sr-only">Your Name</label>
                   <input
+                    id="footer-callback-name"
                     type="text"
                     placeholder="Your Name"
                     required
@@ -254,7 +256,9 @@ export default function Footer() {
                   />
                 </div>
                 <div>
+                  <label htmlFor="footer-callback-phone" className="sr-only">Phone Number</label>
                   <input
+                    id="footer-callback-phone"
                     type="tel"
                     placeholder="Phone Number"
                     required

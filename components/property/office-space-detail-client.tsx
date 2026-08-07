@@ -156,7 +156,7 @@ export function OfficeSpaceDetailClient({ property, developer }: OfficeSpaceDeta
       {/* Breadcrumb Navigation */}
       <div className="bg-muted/30 border-b border-border">
         <div className="max-w-6xl mx-auto px-4 py-3">
-          <nav className="flex items-center gap-1.5 text-xs text-muted-foreground overflow-x-auto">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-muted-foreground overflow-x-auto">
             <Link href="/" className="hover:text-primary transition-colors whitespace-nowrap">Home</Link>
             <ChevronRightIcon className="h-3 w-3 flex-shrink-0" />
             <Link href="/office-space" className="hover:text-primary transition-colors whitespace-nowrap">Office Spaces</Link>

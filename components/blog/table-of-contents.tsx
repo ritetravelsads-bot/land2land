@@ -58,7 +58,7 @@ export default function TableOfContents({ content }: TableOfContentsProps) {
         <CardTitle className="text-sm">Table of Contents</CardTitle>
       </CardHeader>
       <CardContent>
-        <nav className="space-y-1">
+        <nav aria-label="Table of contents" className="space-y-1">
           {toc.map((item) => (
             <a
               key={item.id}

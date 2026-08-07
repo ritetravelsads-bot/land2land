@@ -79,7 +79,7 @@ export default function SiteMapPage() {
       <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-gray-500 mb-8">
+          <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-sm text-gray-500 mb-8">
             <Link href="/" className="hover:text-[#125007] transition-colors">
               Home
             </Link>

@@ -58,7 +58,7 @@ export default async function LandTypePage({ params }: PageProps) {
           />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 py-20 md:py-28">
-          <nav className="text-sm text-white/80 mb-4">
+          <nav aria-label="Breadcrumb" className="text-sm text-white/80 mb-4">
             <Link href="/" className="hover:text-white">
               Home
             </Link>
