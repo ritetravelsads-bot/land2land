@@ -10,7 +10,7 @@ import { ArrowRight, MapPin } from "lucide-react"
 const slides = [
   {
     id: 1,
-    image: "/banners/banner-all.png",
+    image: "/banners/banner-all.webp",
     tag: "All Land Types — One Platform",
     title: "Every Type of Land, One Marketplace",
     subtitle: "1 lakh+ verified listings across India with clear titles and live pricing.",
@@ -18,7 +18,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "/banners/banner-residential.png",
+    image: "/banners/banner-residential.webp",
     tag: "Residential Land & NA Plots",
     title: "Ready-to-Build Residential Land",
     subtitle: "Demarcated plots in approved layouts with paved roads and legal clearances.",
@@ -26,7 +26,7 @@ const slides = [
   },
   {
     id: 3,
-    image: "/banners/banner-commercial.png",
+    image: "/banners/banner-commercial.webp",
     tag: "Commercial Land",
     title: "Prime Commercial Land on Key Corridors",
     subtitle: "Highway-facing land with verified zoning and government approvals.",
@@ -34,7 +34,7 @@ const slides = [
   },
   {
     id: 4,
-    image: "/banners/banner-industrial.png",
+    image: "/banners/banner-industrial.webp",
     tag: "Industrial Land",
     title: "Industrial & Logistics Land Parcels",
     subtitle: "Industrial-zone plots with wide access roads and power availability.",
@@ -42,7 +42,7 @@ const slides = [
   },
   {
     id: 5,
-    image: "/banners/banner-agricultural.png",
+    image: "/banners/banner-agricultural.webp",
     tag: "Agricultural Land",
     title: "Fertile Agricultural Land",
     subtitle: "Irrigated crop land with verified water rights and clear titles.",
@@ -50,7 +50,7 @@ const slides = [
   },
   {
     id: 6,
-    image: "/banners/banner-farmland.png",
+    image: "/banners/banner-farmland.webp",
     tag: "Farmland & Orchards",
     title: "Invest in Managed Farmland",
     subtitle: "Managed orchards and mixed-crop farms — a green, appreciating asset.",
@@ -65,7 +65,7 @@ function FirstSlideStatic() {
     <div className="absolute inset-0 z-10">
       <div className="absolute inset-0">
         <Image
-          src="/banners/banner-all.png"
+          src="/banners/banner-all.webp"
           alt="Land2Land — Buy, Sell and Invest in Every Type of Land Across India"
           fill
           priority

@@ -117,7 +117,7 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/_next/image?url=%2Fbanners%2Fbanner-all.png&w=480&q=75"
+          href="/_next/image?url=%2Fbanners%2Fbanner-all.webp&w=480&q=75"
           media="(max-width: 767px)"
           fetchPriority="high"
         />
@@ -125,7 +125,7 @@ export default function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="/_next/image?url=%2Fbanners%2Fbanner-all.png&w=1080&q=75"
+          href="/_next/image?url=%2Fbanners%2Fbanner-all.webp&w=1080&q=75"
           media="(min-width: 768px)"
           fetchPriority="high"
         />
