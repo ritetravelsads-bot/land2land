@@ -137,13 +137,21 @@ const SlideImage = memo(function SlideImage({
   slide,
   index,
   isActive,
+  shouldLoad,
 }: {
   slide: (typeof slides)[0]
   index: number
   isActive: boolean
+  shouldLoad: boolean
 }) {
   // Skip first slide as it's rendered statically
   if (index === 0) return null
+
+  // Don't mount the image at all until this slide is about to be shown.
+  // Without this, every slide would be fetched immediately after hydration
+  // since they're all absolutely positioned inside the (visible) hero, making
+  // `loading="lazy"` a no-op and wasting ~800KB of bandwidth on first load.
+  if (!shouldLoad) return null
 
   return (
     <>
@@ -167,6 +175,11 @@ const SlideImage = memo(function SlideImage({
 function BannerSlider() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isHydrated, setIsHydrated] = useState(false)
+  // Tracks which slide images have been mounted so far. Slide 0 is rendered
+  // statically and never needs its own entry here. We add the *next* slide a
+  // couple seconds before it becomes active so its image has time to fetch
+  // and decode, avoiding a visible flash without downloading all 6 upfront.
+  const [loadedIndices, setLoadedIndices] = useState<Set<number>>(() => new Set())
 
   const nextSlide = useCallback(() => {
     startTransition(() => {
@@ -197,6 +210,26 @@ function BannerSlider() {
     return () => clearInterval(timer)
   }, [isHydrated, nextSlide])
 
+  // Preload each slide's image a couple seconds before it becomes active,
+  // instead of mounting all 6 images the moment the carousel hydrates.
+  useEffect(() => {
+    if (!isHydrated) return
+
+    const nextIndex = (currentSlide + 1) % slides.length
+    const timeout = setTimeout(() => {
+      setLoadedIndices((prev) => (prev.has(nextIndex) ? prev : new Set(prev).add(nextIndex)))
+    }, 4000) // fires ~2s before the 6s auto-advance, plenty of time to fetch/decode
+
+    return () => clearTimeout(timeout)
+  }, [isHydrated, currentSlide])
+
+  // If the user manually jumps to a slide via the dots, make sure its image
+  // is mounted immediately rather than waiting for the preload timer.
+  useEffect(() => {
+    if (!isHydrated || currentSlide === 0) return
+    setLoadedIndices((prev) => (prev.has(currentSlide) ? prev : new Set(prev).add(currentSlide)))
+  }, [isHydrated, currentSlide])
+
   return (
     <div className="relative w-full overflow-hidden bg-gray-100 aspect-[4/5] sm:aspect-[16/9] md:aspect-[16/6]">
       {/* Static first slide - always visible initially for instant LCP */}
@@ -213,7 +246,12 @@ function BannerSlider() {
             )}
           >
             <div className="absolute inset-0">
-              <SlideImage slide={slide} index={index} isActive={index === currentSlide} />
+              <SlideImage
+                slide={slide}
+                index={index}
+                isActive={index === currentSlide}
+                shouldLoad={loadedIndices.has(index)}
+              />
             </div>
             {index !== 0 && <SlideContent slide={slide} active={index === currentSlide} />}
           </div>

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { PlayCircle, UserPlus, MapPin, FileCheck, ArrowRight } from "lucide-react"
+import { UserPlus, MapPin, FileCheck, ArrowRight } from "lucide-react"
+import YouTubeFacade from "./youtube-facade"
 
 export default function ListYourLandGuide() {
   const steps = [
@@ -45,17 +46,12 @@ export default function ListYourLandGuide() {
         {/* Content Grid */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
-          {/* Left Column: YouTube Video Embed */}
-          <div className="relative group rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5 bg-slate-200 aspect-video">
-            {/* Replace 'YOUR_VIDEO_ID' in the src below with your actual YouTube video ID */}
-            <iframe
-              className="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/SCUpYV5-I18?si=4X9YKdnEDkZSX9hd" 
-              title="How to list your land on Land2Land"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
+          {/* Left Column: YouTube Video Embed (lazy facade - real iframe loads only on click) */}
+          <YouTubeFacade
+            videoId="SCUpYV5-I18"
+            title="How to list your land on Land2Land"
+            className="relative group rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5 bg-slate-200 aspect-video w-full"
+          />
 
           {/* Right Column: Steps Timeline */}
           <div className="space-y-8">

@@ -12,6 +12,7 @@ const nextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "countryroof.in" },
       { protocol: "https", hostname: "www.countryroof.in" },
+      { protocol: "https", hostname: "i.ytimg.com" },
     ],
     formats: ["image/avif", "image/webp"],
     // Optimized device sizes for mobile-first LCP
