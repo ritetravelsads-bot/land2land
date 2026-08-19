@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Script from "next/script"
 import Link from "next/link"
-import { Handshake, Sparkles, Check, ShieldCheck, ArrowRight, Phone } from "lucide-react"
+import { Handshake, Sparkles, Check, ShieldCheck, ArrowRight, Phone, MapPin, TrendingUp, FileText, Users } from "lucide-react"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
@@ -175,6 +175,64 @@ export default function PricingPage() {
             <p className="text-xs text-muted-foreground text-center mt-6">
               Contact our team for full plan details and pricing tailored to your listing volume.
             </p>
+          </div>
+        </section>
+
+        {/* How we help you price land fairly */}
+        <section className="w-full py-16 md:py-20 px-4 border-t border-border">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center max-w-2xl mx-auto mb-10 space-y-2">
+              <p className="text-primary font-semibold text-sm tracking-wider uppercase">Fair Valuation</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground text-balance">
+                How We Help You Price Land Fairly
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Land pricing in India is often opaque, leaving buyers and sellers guessing. Our associates weigh
+                four reference points before recommending a price for any listing.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {[
+                {
+                  icon: FileText,
+                  title: "Government Circle Rate",
+                  desc: "The official minimum registration value set by the local Tehsil/Revenue Department for that area.",
+                },
+                {
+                  icon: Handshake,
+                  title: "Seller's Ask",
+                  desc: "What the seller wants for their land, based on their own expectations and urgency to sell.",
+                },
+                {
+                  icon: TrendingUp,
+                  title: "Land2Land Range",
+                  desc: "Our associate network's ground assessment, factoring in road access, water source, and connectivity.",
+                },
+                {
+                  icon: MapPin,
+                  title: "Nearby Sale Prices",
+                  desc: "Recent comparable deals in the same village or tehsil, gathered by our local associates.",
+                },
+              ].map((item) => (
+                <div key={item.title} className="bg-card border border-border rounded-2xl p-5">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
+                    <item.icon className="h-5 w-5 text-primary" />
+                  </div>
+                  <p className="text-sm font-semibold text-foreground mb-1.5">{item.title}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 flex items-start gap-3 bg-muted/50 border border-border rounded-xl p-4 max-w-3xl mx-auto">
+              <Users className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <p className="text-sm text-foreground/90 leading-relaxed">
+                We don&apos;t publish a single automated &quot;fair price&quot; number on listings — every parcel of
+                land is different. Instead, your assigned local associate walks you through all four reference
+                points for your specific plot before you decide on an asking price.
+              </p>
+            </div>
           </div>
         </section>
 
