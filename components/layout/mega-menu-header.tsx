@@ -173,20 +173,6 @@ export default function MegaMenuHeader() {
               Find Associate
             </Link>
 
-            <Link
-              href="/how-it-works"
-              className="px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors whitespace-nowrap"
-            >
-              How It Works
-            </Link>
-
-            <Link
-              href="/pricing"
-              className="px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
-            >
-              Pricing
-            </Link>
-
             {/* Land Types Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -354,20 +340,6 @@ export default function MegaMenuHeader() {
               className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] hover:bg-gray-50 rounded transition-colors"
             >
               Find Associate
-            </Link>
-
-            <Link
-              href="/how-it-works"
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] hover:bg-gray-50 rounded transition-colors"
-            >
-              How It Works
-            </Link>
-
-            <Link
-              href="/pricing"
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] hover:bg-gray-50 rounded transition-colors"
-            >
-              Pricing
             </Link>
 
             <div className="border-t border-gray-100 my-2" />
