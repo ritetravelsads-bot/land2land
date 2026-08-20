@@ -740,13 +740,13 @@ export default function AdvancedSearch() {
               <ArrowRight className="h-3 w-3" />
             </Link>
           </div>
-          <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+          <div className="min-w-0 max-w-full flex flex-nowrap gap-2 overflow-x-auto overflow-y-hidden overscroll-x-contain pb-1 scrollbar-hide">
             {CATEGORIES.map((category) => (
               <Link
                 key={category.name}
                 href={category.href}
                 className={cn(
-                  "flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap",
+                  "shrink-0 flex items-center gap-2 px-4 py-2 rounded-full whitespace-nowrap",
                   "border border-border bg-background",
                   "hover:border-primary/30 hover:shadow-sm",
                   "transition-all duration-200",
