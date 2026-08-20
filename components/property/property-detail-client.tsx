@@ -28,6 +28,7 @@ import { DeveloperProjects } from "@/components/property/developer-projects"
 import { PropertyFaq } from "@/components/property/property-faq"
 import { BrochureDownload } from "@/components/property/brochure-download"
 import { SpecialSectionsRenderer } from "@/components/property/special-section"
+import { VerificationScorecard } from "@/components/property/verification-scorecard"
 
 // --- helpers ---
 
@@ -385,6 +386,9 @@ export function PropertyDetailClient({
                 </div>
               </section>
             )}
+
+            {/* Verification Scorecard */}
+            <VerificationScorecard />
 
             {/* Legal Documents (blurred — unlock via enquiry) */}
             <PropertyDocuments onUnlock={() => setShowDocsEnquiry(true)} />

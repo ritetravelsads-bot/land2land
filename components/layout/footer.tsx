@@ -87,6 +87,8 @@ export default function Footer() {
   const quickLinks = [
     { name: "Home", href: "/" },
     { name: "About Land2Land", href: "/about" },
+    { name: "How It Works", href: "/how-it-works" },
+    { name: "Pricing & Fees", href: "/pricing" },
     { name: "Buy Land", href: "/properties" },
     { name: "Sell Land", href: "/sell" },
     { name: "Farm Blog", href: "/blogs" },

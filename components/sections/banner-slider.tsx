@@ -10,7 +10,7 @@ import { ArrowRight, MapPin } from "lucide-react"
 const slides = [
   {
     id: 1,
-    image: "/banners/banner-all.png",
+    image: "/banners/banner-all.webp",
     tag: "All Land Types — One Platform",
     title: "Every Type of Land, One Marketplace",
     subtitle: "1 lakh+ verified listings across India with clear titles and live pricing.",
@@ -18,7 +18,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "/banners/banner-residential.png",
+    image: "/banners/banner-residential.webp",
     tag: "Residential Land & NA Plots",
     title: "Ready-to-Build Residential Land",
     subtitle: "Demarcated plots in approved layouts with paved roads and legal clearances.",
@@ -26,7 +26,7 @@ const slides = [
   },
   {
     id: 3,
-    image: "/banners/banner-commercial.png",
+    image: "/banners/banner-commercial.webp",
     tag: "Commercial Land",
     title: "Prime Commercial Land on Key Corridors",
     subtitle: "Highway-facing land with verified zoning and government approvals.",
@@ -34,7 +34,7 @@ const slides = [
   },
   {
     id: 4,
-    image: "/banners/banner-industrial.png",
+    image: "/banners/banner-industrial.webp",
     tag: "Industrial Land",
     title: "Industrial & Logistics Land Parcels",
     subtitle: "Industrial-zone plots with wide access roads and power availability.",
@@ -42,7 +42,7 @@ const slides = [
   },
   {
     id: 5,
-    image: "/banners/banner-agricultural.png",
+    image: "/banners/banner-agricultural.webp",
     tag: "Agricultural Land",
     title: "Fertile Agricultural Land",
     subtitle: "Irrigated crop land with verified water rights and clear titles.",
@@ -50,7 +50,7 @@ const slides = [
   },
   {
     id: 6,
-    image: "/banners/banner-farmland.png",
+    image: "/banners/banner-farmland.webp",
     tag: "Farmland & Orchards",
     title: "Invest in Managed Farmland",
     subtitle: "Managed orchards and mixed-crop farms — a green, appreciating asset.",
@@ -65,7 +65,7 @@ function FirstSlideStatic() {
     <div className="absolute inset-0 z-10">
       <div className="absolute inset-0">
         <Image
-          src="/banners/banner-all.png"
+          src="/banners/banner-all.webp"
           alt="Land2Land — Buy, Sell and Invest in Every Type of Land Across India"
           fill
           priority
@@ -137,13 +137,21 @@ const SlideImage = memo(function SlideImage({
   slide,
   index,
   isActive,
+  shouldLoad,
 }: {
   slide: (typeof slides)[0]
   index: number
   isActive: boolean
+  shouldLoad: boolean
 }) {
   // Skip first slide as it's rendered statically
   if (index === 0) return null
+
+  // Don't mount the image at all until this slide is about to be shown.
+  // Without this, every slide would be fetched immediately after hydration
+  // since they're all absolutely positioned inside the (visible) hero, making
+  // `loading="lazy"` a no-op and wasting ~800KB of bandwidth on first load.
+  if (!shouldLoad) return null
 
   return (
     <>
@@ -167,6 +175,11 @@ const SlideImage = memo(function SlideImage({
 function BannerSlider() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isHydrated, setIsHydrated] = useState(false)
+  // Tracks which slide images have been mounted so far. Slide 0 is rendered
+  // statically and never needs its own entry here. We add the *next* slide a
+  // couple seconds before it becomes active so its image has time to fetch
+  // and decode, avoiding a visible flash without downloading all 6 upfront.
+  const [loadedIndices, setLoadedIndices] = useState<Set<number>>(() => new Set())
 
   const nextSlide = useCallback(() => {
     startTransition(() => {
@@ -197,6 +210,26 @@ function BannerSlider() {
     return () => clearInterval(timer)
   }, [isHydrated, nextSlide])
 
+  // Preload each slide's image a couple seconds before it becomes active,
+  // instead of mounting all 6 images the moment the carousel hydrates.
+  useEffect(() => {
+    if (!isHydrated) return
+
+    const nextIndex = (currentSlide + 1) % slides.length
+    const timeout = setTimeout(() => {
+      setLoadedIndices((prev) => (prev.has(nextIndex) ? prev : new Set(prev).add(nextIndex)))
+    }, 4000) // fires ~2s before the 6s auto-advance, plenty of time to fetch/decode
+
+    return () => clearTimeout(timeout)
+  }, [isHydrated, currentSlide])
+
+  // If the user manually jumps to a slide via the dots, make sure its image
+  // is mounted immediately rather than waiting for the preload timer.
+  useEffect(() => {
+    if (!isHydrated || currentSlide === 0) return
+    setLoadedIndices((prev) => (prev.has(currentSlide) ? prev : new Set(prev).add(currentSlide)))
+  }, [isHydrated, currentSlide])
+
   return (
     <div className="relative w-full overflow-hidden bg-gray-100 aspect-[4/5] sm:aspect-[16/9] md:aspect-[16/6]">
       {/* Static first slide - always visible initially for instant LCP */}
@@ -213,7 +246,12 @@ function BannerSlider() {
             )}
           >
             <div className="absolute inset-0">
-              <SlideImage slide={slide} index={index} isActive={index === currentSlide} />
+              <SlideImage
+                slide={slide}
+                index={index}
+                isActive={index === currentSlide}
+                shouldLoad={loadedIndices.has(index)}
+              />
             </div>
             {index !== 0 && <SlideContent slide={slide} active={index === currentSlide} />}
           </div>

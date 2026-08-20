@@ -147,28 +147,28 @@ export default function MegaMenuHeader() {
           <div className="hidden lg:flex items-center gap-1">
             <Link
               href="/"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
+              className="px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
             >
               Home
             </Link>
 
             <Link
               href="/properties"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
+              className="px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
             >
               Buy
             </Link>
 
             <Link
               href="/sell"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
+              className="px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
             >
               Sell
             </Link>
 
             <Link
               href="/find-associate"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
+              className="px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
             >
               Find Associate
             </Link>
@@ -176,7 +176,7 @@ export default function MegaMenuHeader() {
             {/* Land Types Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors flex items-center gap-1">
+                <button className="px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors flex items-center gap-1 whitespace-nowrap">
                   <Map className="h-4 w-4" />
                   Land Types
                   <ChevronDown className="h-4 w-4" />
@@ -195,7 +195,7 @@ export default function MegaMenuHeader() {
 
             <Link
               href="/investments"
-              className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors flex items-center gap-1"
+              className="px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors flex items-center gap-1 whitespace-nowrap"
             >
               <TrendingUp className="h-4 w-4" />
               Investments

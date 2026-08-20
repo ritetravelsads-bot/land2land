@@ -53,6 +53,8 @@ const VALID_ROUTES = [
   "/terms-and-conditions",
   "/account/delete",
   "/area-converter",
+  "/how-it-works",
+  "/pricing",
 ]
 
 /**
