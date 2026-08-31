@@ -20,18 +20,13 @@ export interface LinkValidationResult {
  * Update this as needed when pages are created or removed
  */
 const LINK_REDIRECTS: Record<string, string> = {
-  "/career": "/",
-  "/sell": "/",
-  "/investments": "/",
-  "/find-associate": "/",
-  "/property-management": "/",
-  "/farms": "/",
   "/tools/land-calculator": "/area-converter",
-  "/farm-advisory": "/",
-  "/site-map": "/",
-  "/grievance-redressal": "/",
-  "/cookie-policy": "/",
-  "/disclaimer": "/",
+  "/agricultural-land": "/land/agricultural",
+  "/farmland": "/land/farmland",
+  "/plots-vacant": "/land/vacant",
+  "/land-with-infrastructure": "/land/infrastructure",
+  "/orchard-land": "/land/orchard",
+  "/irrigation-land": "/land/irrigation",
 }
 
 /**
@@ -51,6 +46,17 @@ const VALID_ROUTES = [
   "/irrigation-land",
   "/privacy-policy",
   "/terms-and-conditions",
+  "/cookie-policy",
+  "/disclaimer",
+  "/grievance-redressal",
+  "/site-map",
+  "/career",
+  "/sell",
+  "/investments",
+  "/find-associate",
+  "/property-management",
+  "/farms",
+  "/farm-advisory",
   "/account/delete",
   "/area-converter",
   "/how-it-works",
