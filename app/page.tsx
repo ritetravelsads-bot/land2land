@@ -55,11 +55,6 @@ const PopularRegions = dynamic(() => import("@/components/sections/popular-regio
   loading: () => <div className="h-64 bg-slate-50 animate-pulse" />,
 })
 
-const PopularCities = dynamic(() => import("@/components/sections/popular-cities"), {
-  ssr: true,
-  loading: () => <div className="h-64 bg-[var(--land-cream)] animate-pulse" />,
-})
-
 const StateDocuments = dynamic(() => import("@/components/sections/state-documents"), {
   ssr: true,
   loading: () => <div className="h-96 bg-white animate-pulse" />,
@@ -135,11 +130,6 @@ export default function Home() {
       {/* Lands For You / Browse by Region */}
       <Suspense fallback={<div className="h-64 bg-slate-50 animate-pulse" />}>
         <PopularRegions />
-      </Suspense>
-
-      {/* Explore Land by City */}
-      <Suspense fallback={<div className="h-64 bg-[var(--land-cream)] animate-pulse" />}>
-        <PopularCities />
       </Suspense>
 
       {/* State-wise Document Guide */}
