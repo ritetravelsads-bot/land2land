@@ -4,42 +4,186 @@ import { useState } from "react"
 import { ChevronDown, HelpCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const faqs = [
+type FAQPoint = { label: string; text: string }
+type FAQ = {
+  id: number
+  question: string
+  answer: string
+  points?: FAQPoint[]
+}
+
+const faqs: FAQ[] = [
   {
     id: 1,
-    question: "What types of land can I buy on Land2Land?",
+    question: "Can I buy land online?",
     answer:
-      "Land2Land offers agricultural land, residential plots, commercial land, industrial land, farm land, development land, warehouses and investment properties across India.",
+      "Yes, you can legally discover, evaluate, and purchase verified land completely online by utilizing digital land platforms.",
+    points: [
+      {
+        label: "Discovery & Due Diligence",
+        text: "Search verified land listings on platforms like Land2Land, utilizing 3D GIS boundary mapping and digital satellite overlay tools.",
+      },
+      {
+        label: "Title Verification",
+        text: "Download digital encumbrance certificates (EC) and historical land ownership deeds directly via official state revenue department portals.",
+      },
+      {
+        label: "Digital Token Booking",
+        text: "Secure the plot remotely using encrypted payment gateways to lock the sale agreement prior to registry.",
+      },
+      {
+        label: "e-Registration",
+        text: "Execute deed registration through your local state portal (such as e-Registration or Kaveri/Dharani portals) followed by an in-person or biometric verification at the Sub-Registrar Office (SRO).",
+      },
+    ],
   },
   {
     id: 2,
-    question: "How do I find land for sale in my city or state?",
+    question: "How can I sell my land online?",
     answer:
-      "Search by state, city, district, village, property type or budget to discover verified land listings across India.",
+      "You can sell your land online by listing your property on specialized land marketplaces, completing digital ownership verification, and marketing directly to vetted buyers.",
+    points: [
+      {
+        label: "List Your Property",
+        text: "Create an online listing uploading exact geo-coordinates, plot dimension boundaries (in acres or sq. ft.), and verified site photos/drone footage.",
+      },
+      {
+        label: "Upload Title Documents",
+        text: "Attach key records including the 7/12 extract, Patta/Khata, encumbrance certificate, and approved layout plan for buyer confidence.",
+      },
+      {
+        label: "Filter Verified Buyers",
+        text: "Leverage direct buyer query dashboards to screen serious cash or loan-backed buyers without intermediary broker markups.",
+      },
+      {
+        label: "Execute Sale Agreement",
+        text: "Draft digital sale agreements online and manage escrow or token transfers safely via registered banking channels.",
+      },
+    ],
   },
   {
     id: 3,
-    question: "Can I invest in land through Land2Land?",
+    question: "What should I check before buying agricultural land?",
     answer:
-      "Yes. Explore high-growth land investment opportunities, commercial land, industrial plots, farmland and residential developments in prime locations.",
+      "Before buying agricultural land, you must verify clear title deeds, confirm state-specific buyer eligibility laws, ensure zero encumbrances, and inspect soil, water, and road access.",
+    points: [
+      {
+        label: "Title & Encumbrance Check",
+        text: "Inspect 30 years of mother deeds and secure a current Encumbrance Certificate (EC) to guarantee clear, unencumbered ownership.",
+      },
+      {
+        label: "State Eligibility Verification",
+        text: "Ensure you meet regional statutory rules (e.g., in states like Maharashtra or Karnataka, non-farmers must obtain permission or meet specific income criteria).",
+      },
+      {
+        label: "Revenue Record Audit",
+        text: "Cross-verify the 7/12 extract, RTC, or Khata/Patta records to confirm accurate land classification, mutation entries, and exact boundary extent.",
+      },
+      {
+        label: "Physical & Legal Constraints",
+        text: "Verify the availability of perennial water sources, soil quality, physical road access, and ensure the land does not fall under ceiling limits or government acquisition zones.",
+      },
+    ],
   },
   {
     id: 4,
-    question: "How do I contact a property owner?",
+    question: "How do I verify land ownership?",
     answer:
-      "Open any property listing and submit an enquiry to connect directly with the property owner, seller or authorised representative.",
+      "You verify land ownership by cross-referencing state digital land record portals (like MeeBhoomi, AnyRoR, or Dharani) and auditing historical title documents at the Sub-Registrar Office.",
+    points: [
+      {
+        label: "Extract Current Land Records",
+        text: "Fetch official state revenue documents like the 7/12 extract, Record of Rights (RTC), Patta/Khata, or Khasra-Khateuni using the plot's survey number.",
+      },
+      {
+        label: "Trace Historical Title (30-Year Ownership Chain)",
+        text: "Inspect sequential sale deeds, partition deeds, gift deeds, or legal heir inheritance records covering at least the last 30 years to verify continuous title validity.",
+      },
+      {
+        label: "Run an Encumbrance Search",
+        text: "Obtain an Encumbrance Certificate (EC) via Form 15 from the local registrar's office to ensure there are no registered mortgages, pending bank claims, or attachments.",
+      },
+      {
+        label: "Cross-Check Spatial Boundaries",
+        text: "Order a physical survey through the District Land Survey Department to match ground measurements against the official revenue map (FMB/Tippan).",
+      },
+    ],
   },
   {
     id: 5,
-    question: "Which states have the most land listings?",
+    question: "How can I confirm that a property's title is clear?",
     answer:
-      "Browse thousands of land listings in Uttar Pradesh, Maharashtra, Gujarat, Rajasthan, Haryana, Madhya Pradesh, Punjab and many other states.",
+      "Confirm a clear title by systematically auditing encumbrance status, ownership sequence, litigation risk, tax dues, and regulatory clearances.",
+    points: [
+      {
+        label: "Encumbrance Status — Encumbrance Certificate (Form 15)",
+        text: "Ensure zero outstanding bank mortgages, liens, or recorded court litigation.",
+      },
+      {
+        label: "Ownership Sequence — 30-Year Mother Deeds",
+        text: "Confirm an unbroken legal chain of title transfers between previous buyers and sellers.",
+      },
+      {
+        label: "Litigation Risk — Public Legal Notice",
+        text: "Publish a public notice in two local newspapers to surface third-party legal claims before buying.",
+      },
+      {
+        label: "Tax & Local Dues — Tax Receipts & No-Objection Certificates",
+        text: "Verify that local property/land revenue taxes, water dues, and utility bills are paid up to date.",
+      },
+      {
+        label: "Regulatory Clearances — Layout Sanction / Zoning Clearance",
+        text: "Confirm the land does not fall within restricted forest buffers, eco-sensitive zones, or government land acquisition plans.",
+      },
+    ],
   },
   {
     id: 6,
-    question: "Why choose Land2Land?",
+    question: "Can anyone buy agricultural land in India?",
     answer:
-      "Land2Land makes it easy to buy, sell and invest in land with powerful search tools, location-based discovery and thousands of property opportunities across India.",
+      "No, not everyone can freely purchase agricultural land in India, as individual state land ceiling acts enforce specific eligibility restrictions based on farming history, income thresholds, or residency status.",
+    points: [
+      {
+        label: "State Farmer Directives",
+        text: "In states like Maharashtra, Gujarat, and Himachal Pradesh, only individuals who already hold agricultural status (or inherited farmland) are legally permitted to buy agricultural land.",
+      },
+      {
+        label: "Income & Regional Limits",
+        text: "Certain states restrict non-farmers from buying farmland unless their annual non-agricultural income falls below specified legal thresholds or special collector permissions are granted.",
+      },
+      {
+        label: "Unrestricted States",
+        text: "Regions such as Tamil Nadu, Andhra Pradesh, and Karnataka allow non-farmers to purchase agricultural land up to statutory land-ceiling acreage limits without prior farming credentials.",
+      },
+      {
+        label: "Government Approval Routes",
+        text: "Non-farmers seeking to purchase farmland in restricted states must obtain formal permission from the District Collector or apply for Non-Agricultural (NA) land conversion.",
+      },
+    ],
+  },
+  {
+    id: 7,
+    question: "Can NRIs buy agricultural land in India?",
+    answer:
+      "FEMA Statutory Alert: Under Reserve Bank of India regulations and the Foreign Exchange Management Act (FEMA), Non-Resident Indians (NRIs) and Overseas Citizens of India (OCIs) are strictly prohibited from purchasing agricultural land, plantation properties, or farmhouses in India.",
+    points: [
+      {
+        label: "Acquisition via Inheritance",
+        text: "NRIs can legally inherit agricultural land from resident Indians or deceased owners who held valid legal titles.",
+      },
+      {
+        label: "Acquisition via Gift",
+        text: "NRIs may receive farmland as a gift, but only from a resident Indian citizen who is an immediate relative (e.g., parents, spouse, or siblings).",
+      },
+      {
+        label: "Pre-NRI Status Retention",
+        text: "Farmland legally purchased while the individual was still a resident Indian citizen can be retained without penalty after changing status to an NRI.",
+      },
+      {
+        label: "Converted NA Land",
+        text: "NRIs can legally purchase plots that have been officially converted from agricultural use to Non-Agricultural (NA) residential, commercial, or industrial status.",
+      },
+    ],
   },
 ]
 
@@ -116,12 +260,29 @@ export default function FAQs() {
                   role="region"
                   className={cn(
                     "overflow-hidden transition-all duration-300 ease-in-out",
-                    isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                    isOpen ? "max-h-[60rem] opacity-100" : "max-h-0 opacity-0"
                   )}
                 >
-                  <p className="px-6 pb-5 pt-1 pl-[3.75rem] text-muted-foreground leading-relaxed text-base">
-                    {faq.answer}
-                  </p>
+                  <div className="px-6 pb-6 pt-1 pl-[3.75rem]">
+                    <p className="text-muted-foreground leading-relaxed text-base">
+                      {faq.answer}
+                    </p>
+                    {faq.points && (
+                      <ul className="mt-4 flex flex-col gap-3">
+                        {faq.points.map((point) => (
+                          <li key={point.label} className="flex gap-3">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-800" />
+                            <p className="text-muted-foreground leading-relaxed text-[15px]">
+                              <span className="font-semibold text-gray-900">
+                                {point.label}:
+                              </span>{" "}
+                              {point.text}
+                            </p>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
               </div>
             )
