@@ -13,6 +13,7 @@ const regions = [
     image: "/regions/punjab.png",
     href: "/buy?region=punjab",
     accent: "from-amber-600/80 to-amber-900/80",
+    cities: ["Gurugram", "Faridabad", "Sonipat"],
   },
   {
     name: "Punjab",
@@ -21,6 +22,7 @@ const regions = [
     image: "/regions/haryana.png",
     href: "/buy?region=haryana",
     accent: "from-slate-700/80 to-slate-900/80",
+    cities: ["Ludhiana", "Amritsar", "Mohali"],
   },
   {
     name: "Uttar Pradesh",
@@ -29,6 +31,7 @@ const regions = [
     image: "/regions/up.png",
     href: "/buy?region=uttar-pradesh",
     accent: "from-emerald-700/80 to-emerald-900/80",
+    cities: ["Noida", "Lucknow", "Ghaziabad"],
   },
   {
     name: "Rajasthan",
@@ -37,6 +40,7 @@ const regions = [
     image: "/regions/rajasthan.png",
     href: "/buy?region=rajasthan",
     accent: "from-orange-600/80 to-orange-900/80",
+    cities: ["Jaipur", "Bhiwadi", "Alwar"],
   },
   {
     name: "Madhya Pradesh",
@@ -45,6 +49,7 @@ const regions = [
     image: "/regions/mp.png",
     href: "/buy?region=madhya-pradesh",
     accent: "from-stone-600/80 to-stone-900/80",
+    cities: ["Indore", "Bhopal", "Ujjain"],
   },
   {
     name: "Maharashtra",
@@ -53,6 +58,7 @@ const regions = [
     image: "/regions/maharashtra.png",
     href: "/buy?region=maharashtra",
     accent: "from-blue-700/80 to-blue-900/80",
+    cities: ["Pune", "Nagpur", "Nashik"],
   },
 ]
 
@@ -80,7 +86,7 @@ export default function PopularRegions() {
             <Link
               key={region.name}
               href={region.href}
-              className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-52"
+              className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 h-56"
             >
               {/* Real photo background */}
               <Image
@@ -101,12 +107,33 @@ export default function PopularRegions() {
                     {region.count} listings
                   </div>
                 </div>
-                <div>
-                  <h3 className="text-xl md:text-2xl font-bold mb-1">{region.name}</h3>
-                  <p className="text-xs text-white/85 line-clamp-2 mb-3">{region.description}</p>
-                  <div className="flex items-center gap-1 text-xs font-semibold text-white/90 group-hover:text-white transition-colors">
-                    Explore land <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+
+                {/* Bottom block: name, cities, and corner explore button */}
+                <div className="flex items-end justify-between gap-3">
+                  <div className="min-w-0">
+                    <h3 className="text-xl md:text-2xl font-bold mb-2">{region.name}</h3>
+                    <p className="text-[11px] uppercase tracking-wide text-white/70 font-semibold mb-1.5">
+                      Popular cities
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {region.cities.map((city) => (
+                        <span
+                          key={city}
+                          className="inline-flex items-center rounded-full bg-white/15 backdrop-blur-sm px-2 py-0.5 text-[11px] font-medium text-white/95"
+                        >
+                          {city}
+                        </span>
+                      ))}
+                    </div>
                   </div>
+
+                  {/* Explore button - bottom right corner */}
+                  <span
+                    aria-hidden="true"
+                    className="flex-shrink-0 flex h-11 w-11 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm border border-white/30 group-hover:bg-white group-hover:text-gray-900 transition-all duration-300"
+                  >
+                    <ArrowRight size={18} className="group-hover:translate-x-0.5 transition-transform" />
+                  </span>
                 </div>
               </div>
             </Link>
