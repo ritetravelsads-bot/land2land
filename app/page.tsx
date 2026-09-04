@@ -117,21 +117,6 @@ export default function Home() {
         <LandTypesBrowse />
       </Suspense>
 
-      {/* List Your Land Guide */}
-      <Suspense fallback={<div className="h-48 bg-slate-50 animate-pulse" />}>
-        <ListYourLandGuide />
-      </Suspense>
-
-      {/* Search land anywhere promo band */}
-      <Suspense fallback={<div className="h-64 bg-[#f2efe9] animate-pulse" />}>
-        <SearchMapPromo />
-      </Suspense>
-
-      {/* Trending Properties */}
-      <Suspense fallback={<div className="h-96 bg-slate-50 animate-pulse" />}>
-        <TrendingLandProperties />
-      </Suspense>
-
       {/* Verified Properties */}
       <Suspense fallback={<div className="h-96 bg-white animate-pulse" />}>
         <VerifiedProperties />
@@ -140,16 +125,6 @@ export default function Home() {
       {/* Lands For You / Browse by Region */}
       <Suspense fallback={<div className="h-64 bg-slate-50 animate-pulse" />}>
         <PopularRegions />
-      </Suspense>
-
-      {/* Popular Locations pill strip */}
-      <Suspense fallback={<div className="h-40 bg-[#f8faf5] animate-pulse" />}>
-        <PopularLocations />
-      </Suspense>
-
-      {/* Properties in Popular States */}
-      <Suspense fallback={<div className="h-64 bg-white animate-pulse" />}>
-        <PopularStates />
       </Suspense>
 
       {/* Investment Opportunities */}

@@ -81,19 +81,6 @@ export default function FarmTestimonials() {
           ))}
         </div>
 
-        {/* Stats row */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-8 border-t border-[var(--land-border)]">
-          {[
-            { value: "15,000+", label: "Successful Transactions" },
-            { value: "₹2,500+ Cr", label: "Land Traded" },
-            { value: "98%", label: "Customer Satisfaction" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-3xl md:text-4xl font-bold text-[var(--land-primary)] mb-1">{stat.value}</p>
-              <p className="text-[var(--land-earth)]/60 text-sm">{stat.label}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   )
