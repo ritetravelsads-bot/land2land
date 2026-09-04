@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import LoginForm from "@/components/forms/login-form"
+import ListLandPromo from "@/components/auth/list-land-promo"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -9,7 +10,14 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center px-4 py-12 median-auth-page">
+    <main className="min-h-screen w-full median-auth-page lg:grid lg:grid-cols-[65fr_35fr]">
+      {/* Left: List Your Land promo (65%) — hidden on small screens */}
+      <section className="relative hidden lg:block" aria-label="List your land on Land2Land">
+        <ListLandPromo />
+      </section>
+
+      {/* Right: Login form (35%) */}
+      <section className="flex items-center justify-center px-4 py-12 sm:px-6">
         <div className="w-full max-w-sm">
           <div className="space-y-6">
             <div className="space-y-2 text-center">
@@ -21,7 +29,7 @@ export default function LoginPage() {
 
             <div className="space-y-2 text-center text-sm">
               <p className="text-muted-foreground">
-                Don't have an account?{" "}
+                Don&apos;t have an account?{" "}
                 <Link href="/auth/register" className="text-primary hover:underline font-medium">
                   Create one
                 </Link>
@@ -32,6 +40,7 @@ export default function LoginPage() {
             </div>
           </div>
         </div>
+      </section>
     </main>
   )
 }
