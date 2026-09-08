@@ -15,7 +15,7 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "Sunita & Vikram Nair",
+    name: "Vikram Nair",
     location: "Gurugram",
     property_bought: "3 BHK on Golf Course Extension Road",
     rating: 5,
@@ -23,22 +23,14 @@ const testimonials = [
   },
   {
     id: 3,
-    name: "Arun Khanna",
-    location: "Delhi",
-    property_bought: "3 BHK on Dwarka Expressway",
-    rating: 5,
-    text: "Land2Land did not push us toward expensive options. They understood our budget and lifestyle, and recommended only what fit. The advisory approach is genuinely different.",
-  },
-  {
-    id: 4,
-    name: "Meera & Suresh Iyer",
+    name: "Meera Iyer",
     location: "Gurugram",
     property_bought: "Senior-Friendly 3 BHK in Sector 57",
     rating: 5,
     text: "My parents needed a ground-floor, lift-accessible home near a hospital. Land2Land found exactly that — and even helped with the documentation. Truly went above and beyond.",
   },
   {
-    id: 5,
+    id: 4,
     name: "Priya Malhotra",
     location: "Dwarka Expressway",
     property_bought: "4 BHK on Golf Course Road",

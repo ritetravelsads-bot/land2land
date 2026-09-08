@@ -6,6 +6,8 @@ import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
 import LandTypeListings from "@/components/land/land-type-listings"
 import { LAND_TYPE_LIST, getLandTypeBySlug } from "@/lib/land-types-content"
+import { getCategoryFAQs } from "@/lib/category-faqs"
+import CategoryFAQs from "@/components/land/category-faqs"
 
 interface PageProps {
   params: Promise<{ type: string }>
@@ -43,6 +45,7 @@ export default async function LandTypePage({ params }: PageProps) {
   }
 
   const otherTypes = LAND_TYPE_LIST.filter((t) => t.slug !== content.slug)
+  const categoryFAQs = getCategoryFAQs(content.type)
 
   return (
     <main className="min-h-screen flex flex-col">
@@ -120,18 +123,19 @@ export default async function LandTypePage({ params }: PageProps) {
         <LandTypeListings landType={content.type} label={content.label} />
       </section>
 
-      {/* FAQ */}
-      <section className="bg-muted/40 border-t border-border py-14">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-2xl font-bold text-foreground mb-6 text-center">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {content.faqs.map((faq) => (
-              <div key={faq.question} className="bg-card border border-border rounded-lg p-5">
-                <h3 className="font-semibold text-foreground mb-2">{faq.question}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{faq.answer}</p>
-              </div>
-            ))}
+      {/* Category-specific FAQ */}
+      <section className="border-t border-border bg-muted/40 py-14">
+        <div className="mx-auto max-w-4xl px-4">
+          <div className="mb-8 text-center">
+            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-[#125007]">Land2Land guide</p>
+            <h2 className="text-2xl font-bold text-foreground md:text-3xl">Frequently Asked Questions</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+              Practical answers to help you evaluate {content.label.toLowerCase()}, verify documents, and understand the rules before you buy.
+            </p>
           </div>
+          <CategoryFAQs
+            faqs={categoryFAQs ?? content.faqs.map((faq) => ({ question: faq.question, answer: faq.answer, points: [] }))}
+          />
         </div>
       </section>
 

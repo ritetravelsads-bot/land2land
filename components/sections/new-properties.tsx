@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { MapPin, Maximize2, Clock, ChevronRight, ChevronLeft } from "lucide-react"
+import { MapPin, Maximize2, Clock, ChevronRight, ChevronLeft, BadgeCheck } from "lucide-react"
 import { formatPriceRange, getPropertyUrl } from "@/lib/utils"
 
 export default function NewProperties() {
@@ -52,8 +52,8 @@ export default function NewProperties() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-2">
-              <Clock size={12} />
-              Just Added
+              <BadgeCheck size={12} />
+              Verified Listings
             </span>
             <h2 className="text-2xl md:text-3xl font-bold text-primary">Latest Land & Property Listings Across India</h2>
             <p className="text-sm text-gray-600">Browse agricultural land, residential plots, commercial properties, industrial land, farmhouses, villas, and investment opportunities with verified ownership records, transparent pricing, and complete property details all in one trusted marketplace.</p>
@@ -95,7 +95,7 @@ export default function NewProperties() {
                     />
                     <div className="absolute top-3 left-3 bg-primary text-primary-foreground px-2 py-0.5 rounded-full text-xs font-medium flex items-center gap-1 shadow">
                       <Clock size={10} />
-                      New
+                      Verified
                     </div>
                   </div>
 

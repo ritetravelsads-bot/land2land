@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { Star } from "lucide-react"
 
 const testimonials = [
@@ -7,6 +8,7 @@ const testimonials = [
     name: "Rajesh Kumar",
     title: "Farmer, Punjab",
     initials: "RK",
+    image: "/testimonials/1.png",
     quote: "Found the right investment opportunity much faster than expected. The location filters were exactly what I needed.",
     rating: 5,
   },
@@ -14,6 +16,7 @@ const testimonials = [
     name: "Priya Sharma",
     title: "Land Buyer, Bengaluru",
     initials: "PS",
+    image: "/testimonials/3.png",
     quote: "I explored multiple locations across different states without visiting each one. It saved weeks of research.",
     rating: 5,
   },
@@ -21,6 +24,7 @@ const testimonials = [
     name: "Vikram Singh",
     title: "Investor, Haryana",
     initials: "VS",
+    image: "/testimonials/2.png",
     quote: "The platform helped me discover emerging growth corridors that I would have otherwise missed.",
     rating: 5,
   },
@@ -28,6 +32,7 @@ const testimonials = [
     name: "Anita Patel",
     title: "Business Owner, Gujarat",
     initials: "AP",
+    image: "/testimonials/4.png",
     quote: "Everything I needed—from location insights to investment options—was available in one place.",
     rating: 5,
   },
@@ -69,9 +74,13 @@ export default function FarmTestimonials() {
 
               {/* Author */}
               <div className="flex items-center gap-3 pt-4 border-t border-[var(--land-border)]">
-                <div className="w-10 h-10 rounded-full bg-[var(--land-primary)] flex items-center justify-center text-white text-sm font-bold shrink-0">
-                  {testimonial.initials}
-                </div>
+                <Image
+                  src={testimonial.image}
+                  alt={`${testimonial.name}, ${testimonial.title}`}
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded-full object-cover shrink-0"
+                />
                 <div>
                   <p className="font-semibold text-[var(--land-earth)] text-sm">{testimonial.name}</p>
                   <p className="text-xs text-[var(--land-earth)]/55">{testimonial.title}</p>
