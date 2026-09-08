@@ -1,4 +1,5 @@
 import Link from "next/link"
+import YouTubeFacade from "@/components/sections/youtube-facade"
 import { UserPlus, MapPin, FileCheck, ArrowRight, ShieldCheck } from "lucide-react"
 
 const steps = [
@@ -47,24 +48,31 @@ export default function ListLandPromo() {
             <ShieldCheck size={16} className="text-[var(--land-ochre)]" />
             <span className="text-xs font-semibold uppercase tracking-widest">Seller Guide</span>
           </div>
-          <div className="space-y-4 max-w-xl">
-            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-balance">
+          <div className="max-w-xl space-y-3">
+            <h2 className="text-2xl font-bold leading-tight text-balance lg:text-3xl xl:text-4xl">
               List Your Land. Reach Thousands of Verified Buyers.
             </h2>
-            <p className="text-white/80 text-base lg:text-lg leading-relaxed">
+            <p className="text-sm leading-relaxed text-white/80 lg:text-base">
               Sign in to manage your listings, or create an account and get your property in front of serious investors in three simple steps.
             </p>
+          </div>
+          <div className="max-w-xl overflow-hidden rounded-xl border border-white/20 bg-black/20 shadow-lg">
+            <YouTubeFacade
+              videoId="SCUpYV5-I18"
+              title="How to List Your Property on Land2Land"
+              className="group relative aspect-video w-full"
+            />
           </div>
         </div>
 
         {/* Middle: steps timeline */}
-        <div className="my-10 space-y-6 max-w-xl">
+        <div className="my-5 max-w-xl space-y-3 lg:my-6">
           {steps.map((step, index) => {
             const Icon = step.icon
             return (
               <div key={index} className="flex items-start gap-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/25 backdrop-blur-sm">
-                  <Icon size={20} strokeWidth={2.5} className="text-white" />
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-white/15 ring-1 ring-white/25 backdrop-blur-sm">
+                  <Icon size={17} strokeWidth={2.5} className="text-white" />
                 </div>
                 <div>
                   <h3 className="font-bold text-white leading-snug">

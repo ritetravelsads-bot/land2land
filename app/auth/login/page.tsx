@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <main className="min-h-screen w-full median-auth-page lg:grid lg:grid-cols-[65fr_35fr]">
+    <main className="min-h-screen w-full median-auth-page lg:grid lg:min-h-0 lg:h-[calc(100vh-4rem)] lg:grid-cols-[65fr_35fr] lg:overflow-hidden">
       {/* Left: List Your Land promo (65%) — hidden on small screens */}
       <section className="relative hidden lg:block" aria-label="List your land on Land2Land">
         <ListLandPromo />

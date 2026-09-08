@@ -26,6 +26,8 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
                          pathname?.startsWith("/dashboard") ||
                          pathname?.startsWith("/associate")
   
+  const isAuthPage = pathname?.startsWith("/auth")
+
   // Don't render the mega menu header and footer for dashboard pages
   if (isDashboardPage) {
     return (
@@ -47,9 +49,11 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
       </Suspense>
       <RoutePrefetcher />
       <PageTransition>{children}</PageTransition>
-      <Suspense fallback={<div className="min-h-[600px] bg-gradient-to-b from-gray-50 to-white" />}>
-        <Footer />
-      </Suspense>
+      {!isAuthPage && (
+        <Suspense fallback={<div className="min-h-[600px] bg-gradient-to-b from-gray-50 to-white" />}>
+          <Footer />
+        </Suspense>
+      )}
       <Suspense fallback={null}>
         <BottomNav />
       </Suspense>
