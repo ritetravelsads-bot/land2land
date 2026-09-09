@@ -17,7 +17,7 @@ export default function LoginPage() {
       </section>
 
       {/* Right: Login form (35%) */}
-      <section className="flex items-center justify-center px-4 py-12 sm:px-6">
+      <section className="flex justify-center px-4 py-12 sm:px-6">
         <div className="w-full max-w-sm">
           <div className="space-y-6">
             <div className="space-y-2 text-center">
