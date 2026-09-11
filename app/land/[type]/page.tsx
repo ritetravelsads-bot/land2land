@@ -8,6 +8,7 @@ import LandTypeListings from "@/components/land/land-type-listings"
 import { LAND_TYPE_LIST, getLandTypeBySlug } from "@/lib/land-types-content"
 import { getCategoryFAQs } from "@/lib/category-faqs"
 import CategoryFAQs from "@/components/land/category-faqs"
+import BreadcrumbJsonLd from "@/components/seo/breadcrumb-json-ld"
 
 interface PageProps {
   params: Promise<{ type: string }>
@@ -50,6 +51,12 @@ export default async function LandTypePage({ params }: PageProps) {
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "https://land2land.com/" },
+          { name: content.label, url: `https://land2land.com/land/${content.slug}` },
+        ]}
+      />
 
       {/* Hero */}
       <section className="relative bg-[#125007]">
