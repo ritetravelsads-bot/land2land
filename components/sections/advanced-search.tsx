@@ -392,7 +392,7 @@ export default function AdvancedSearch() {
               <Sparkles className="h-5 w-5 text-primary" />
             </div>
             <div>
-              <h2 className="text-lg md:text-xl font-bold text-foreground">Discover Verified Land & Property Across India</h2>
+              <h2 className="text-lg md:text-xl font-bold text-foreground">Buy, Sell & Invest in Verified Land Across India with Complete Title Clarity</h2>
               <p className="text-xs text-muted-foreground">Browse thousands of verified agricultural, residential, commercial and industrial properties across India. Compare prices, verify ownership records and connect directly with trusted buyers, sellers and real estate professionals.</p>
             </div>
           </div>
