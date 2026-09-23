@@ -12,8 +12,8 @@ const slides = [
     id: 1,
     image: "/banners/banner-all.webp",
     tag: "All Land Types — One Platform",
-    title: "Every Type of Land, One Marketplace",
-    subtitle: "1 lakh+ verified listings across India with clear titles and live pricing.",
+    title: "Buy, Sell & Invest in Verified Land Across India with Complete Title Clarity",
+    subtitle: "Browse thousands of verified agricultural plots, residential layouts, and commercial land parcels with clear ownership records and direct seller contacts.",
     cta: { label: "Browse All Land", href: "/properties" },
   },
   {

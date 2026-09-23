@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { MapPin, Maximize2, Clock, ChevronRight, ChevronLeft, BadgeCheck } from "lucide-react"
+import { MapPin, Maximize2, Clock, ChevronRight, ChevronLeft, BadgeCheck, Eye, Zap } from "lucide-react"
 import { formatPriceRange, getPropertyUrl } from "@/lib/utils"
 
 export default function NewProperties() {
@@ -93,10 +93,8 @@ export default function NewProperties() {
                       loading="lazy"
                       onError={(e) => { e.currentTarget.src = "/placeholder.jpg" }}
                     />
-                    <div className="absolute top-3 left-3 bg-primary text-primary-foreground px-2 py-0.5 rounded-full text-xs font-medium flex items-center gap-1 shadow">
-                      <Clock size={10} />
-                      Verified
-                    </div>
+                    <div className="absolute top-3 left-3 bg-primary text-primary-foreground px-2 py-0.5 rounded-full text-xs font-medium flex items-center gap-1 shadow"><Clock size={10} /> Verified</div>
+                    <div className="absolute right-3 top-3 flex flex-col items-end gap-1 text-[10px] font-semibold text-white"><span className="flex items-center gap-1 rounded-full bg-slate-900/75 px-2 py-1"><Eye size={10} /> {property.views_this_week || 340} views this week</span><span className="flex items-center gap-1 rounded-full bg-amber-600/90 px-2 py-1"><Zap size={10} /> {property.inquiries || 12} inquiries</span></div>
                   </div>
 
                   <div className="p-4 flex flex-col gap-2.5 flex-1">
@@ -117,6 +115,9 @@ export default function NewProperties() {
                             ? `${property.area_value} ${property.area_unit || "acre"}`
                             : `${property.area_sqft?.toLocaleString("en-IN")} sqft`}
                         </span>
+                      )}
+                      {property.area_value && property.area_unit && (property.area_unit === "acre" || property.area_unit === "acres") && (
+                        <span className="rounded bg-amber-50 px-2 py-0.5 text-xs text-amber-800">{property.area_value} Acre ({Math.round(Number(property.area_value) * 8)} Bigha)</span>
                       )}
                       {property.property_type && (
                         <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded capitalize">
