@@ -99,15 +99,15 @@ export default function Footer() {
   ]
 
   const landCategories = [
-    { name: "Agricultural Land", href: "/agricultural-land" },
-    { name: "Farmland", href: "/farmland" },
+    { name: "Agricultural Land", href: "/land/agricultural" },
+    { name: "Farmland", href: "/land/farmland" },
     { name: "Farmland & Agro-Forestry", href: "/land/farmland" },
     { name: "Industrial & Logistics Land", href: "/land/industrial" },
     { name: "Commercial Highway Plots", href: "/land/commercial-plot" },
-    { name: "Plots & Vacant Land", href: "/plots-vacant" },
-    { name: "Land with Infrastructure", href: "/land-with-infrastructure" },
-    { name: "Orchard Land", href: "/orchard-land" },
-    { name: "Irrigation Land", href: "/irrigation-land" },
+    { name: "Plots & Vacant Land", href: "/land/vacant" },
+    { name: "Land with Infrastructure", href: "/land/industrial" },
+    { name: "Orchard Land", href: "/land/agricultural" },
+    { name: "Irrigation Land", href: "/land/agricultural" },
   ]
 
   const landTypes = [
