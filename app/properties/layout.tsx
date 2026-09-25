@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import BreadcrumbJsonLd from "@/components/seo/breadcrumb-json-ld"
 
 export const metadata: Metadata = {
   title: "Buy Luxury Properties in Gurgaon | 3 BHK, 4 BHK, Villas & Plots | Land2Land",
@@ -19,5 +20,5 @@ export default function PropertiesLayout({
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return <><BreadcrumbJsonLd items={[{ name: "Home", url: "https://land2land.com/" }, { name: "Buy Land", url: "https://land2land.com/properties" }]} />{children}</>
 }

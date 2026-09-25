@@ -11,6 +11,7 @@ const landTypes = [
     href: "/land/agricultural",
     badge: "Most Popular",
     badgeColor: "bg-amber-500",
+    microLinks: [["Fertile Farmland", "/land/agricultural"], ["Farmhouses", "/land/farmland"], ["Solar Land", "/land/industrial"]],
   },
   {
     name: "Residential Land",
@@ -20,6 +21,7 @@ const landTypes = [
     href: "/land/residential-plot",
     badge: "High Demand",
     badgeColor: "bg-primary",
+    microLinks: [["Gated Layouts", "/land/residential-plot"], ["NA Plots", "/land/vacant"], ["Villa Plots", "/land/residential-plot"]],
   },
   {
     name: "Commercial Land",
@@ -91,12 +93,13 @@ export default function LandTypesBrowse() {
         {/* Bento grid layout */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {landTypes.map((type, index) => (
-            <Link
+            <div
               key={type.name}
               href={type.href}
               className={`group relative overflow-hidden rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300  col-span-2 md:col-span-1 row-span-1 h-52 md:h-52`}
             >
               {/* Photo */}
+              <Link href={type.href} className="absolute inset-0 z-0" aria-label={`Explore ${type.name}`} />
               <Image
                 src={type.image}
                 alt={type.name}
@@ -126,11 +129,10 @@ export default function LandTypesBrowse() {
                 <p className="text-[11px] text-white/75 leading-tight line-clamp-1 hidden md:block">
                   {type.description}
                 </p>
-                <div className="flex items-center gap-1 mt-2 text-[11px] font-semibold text-white/80 group-hover:text-white transition-colors">
-                  Explore <ArrowRight size={10} className="group-hover:translate-x-0.5 transition-transform" />
-                </div>
+                <div className="flex items-center gap-1 mt-2 text-[11px] font-semibold text-white/80 group-hover:text-white transition-colors">Explore <ArrowRight size={10} /></div>
+                {type.microLinks && <div className="mt-2 flex flex-wrap gap-x-2 gap-y-1 text-[10px] text-white/80">{type.microLinks.map(([label, href]) => <Link key={label} href={href} className="underline decoration-white/40 underline-offset-2 hover:text-white">{label}</Link>)}</div>}
               </div>
-            </Link>
+            </div>
           ))}
         </div>
 

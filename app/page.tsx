@@ -40,6 +40,9 @@ const SearchMapPromo = dynamic(() => import("@/components/sections/search-map-pr
   loading: () => <div className="h-64 bg-[#f2efe9] animate-pulse" />,
 })
 
+const SellerRoadblocks = dynamic(() => import("@/components/sections/seller-roadblocks"), { ssr: true })
+const UnitConverterPromo = dynamic(() => import("@/components/sections/unit-converter-promo"), { ssr: true })
+
 const TrendingLandProperties = dynamic(() => import("@/components/sections/trending-land-properties"), {
   ssr: true,
   loading: () => <div className="h-96 bg-slate-50 animate-pulse" />,
@@ -121,6 +124,10 @@ export default function Home() {
       <Suspense fallback={<div className="h-64 bg-white animate-pulse" />}>
         <LandTypesBrowse />
       </Suspense>
+
+      <SellerRoadblocks />
+      <UnitConverterPromo />
+      <SearchMapPromo />
 
       {/* Verified Properties */}
       <Suspense fallback={<div className="h-96 bg-white animate-pulse" />}>

@@ -90,19 +90,24 @@ export default function Footer() {
     { name: "How It Works", href: "/how-it-works" },
     { name: "Pricing & Fees", href: "/pricing" },
     { name: "Buy Land", href: "/properties" },
+    { name: "Post Property Free", href: "/sell" },
     { name: "Sell Land", href: "/sell" },
+    { name: "Land Valuation Calculator", href: "/area-converter" },
     { name: "Farm Blog", href: "/blogs" },
     { name: "Career", href: "/career" },
     { name: "Contact", href: "/contact" },
   ]
 
   const landCategories = [
-    { name: "Agricultural Land", href: "/agricultural-land" },
-    { name: "Farmland", href: "/farmland" },
-    { name: "Plots & Vacant Land", href: "/plots-vacant" },
-    { name: "Land with Infrastructure", href: "/land-with-infrastructure" },
-    { name: "Orchard Land", href: "/orchard-land" },
-    { name: "Irrigation Land", href: "/irrigation-land" },
+    { name: "Agricultural Land", href: "/land/agricultural" },
+    { name: "Farmland", href: "/land/farmland" },
+    { name: "Farmland & Agro-Forestry", href: "/land/farmland" },
+    { name: "Industrial & Logistics Land", href: "/land/industrial" },
+    { name: "Commercial Highway Plots", href: "/land/commercial-plot" },
+    { name: "Plots & Vacant Land", href: "/land/vacant" },
+    { name: "Land with Infrastructure", href: "/land/industrial" },
+    { name: "Orchard Land", href: "/land/agricultural" },
+    { name: "Irrigation Land", href: "/land/agricultural" },
   ]
 
   const landTypes = [
@@ -115,6 +120,10 @@ export default function Footer() {
   ]
 
   const toolsServices = [
+    { name: "State Land Unit Converter", href: "/area-converter" },
+    { name: "Land Pricing & Rate Trends", href: "/area-converter" },
+    { name: "State-Wise Land Purchase Guidelines", href: "/services/legal" },
+    { name: "Seller Documentation Checklist", href: "/services/legal" },
     { name: "Land Calculator", href: "/tools/land-calculator" },
     { name: "Farm Advisory", href: "/farm-advisory" },
     { name: "Blogs", href: "/blogs" },

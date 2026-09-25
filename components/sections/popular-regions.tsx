@@ -10,17 +10,18 @@ const regions = [
     name: "Haryana",
     description: "Explore NCR, industrial, residential & investment land in Haryana.",
     count: "1,240+",
-    image: "/regions/punjab.png",
-    href: "/buy?region=punjab",
+    image: "/regions/haryana.png",
+    href: "/buy?region=haryana",
     accent: "from-amber-600/80 to-amber-900/80",
-    cities: ["Gurugram", "Faridabad", "Sonipat"],
+    cities: ["Gurugram", "Faridabad", "Panipat"],
+    trend: "Gurugram: Avg ₹4.5 Cr/Acre (↑ 6% YoY)",
   },
   {
     name: "Punjab",
     description: "Verified agricultural, residential, commercial & industrial land across Punjab.",
     count: "980+",
-    image: "/regions/haryana.png",
-    href: "/buy?region=haryana",
+    image: "/regions/punjab.png",
+    href: "/buy?region=punjab",
     accent: "from-slate-700/80 to-slate-900/80",
     cities: ["Ludhiana", "Amritsar", "Mohali"],
   },
@@ -72,8 +73,8 @@ export default function PopularRegions() {
               <MapPin size={20} className="text-stone-600" />
             </div>
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Lands For You</h2>
-              <p className="text-sm text-gray-500 font-medium">Explore Verified Land for Sale Across India by State</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Find Verified Land &amp; Plots by State</h2>
+              <p className="text-sm text-gray-500 font-medium">Explore top investment corridors, agricultural land, and residential plots across India&apos;s fastest-growing states and key cities.</p>
             </div>
           </div>
           <Button asChild variant="ghost" size="sm" className="hidden md:flex text-gray-500 hover:text-gray-800">
@@ -112,9 +113,8 @@ export default function PopularRegions() {
                 <div className="flex items-end justify-between gap-3">
                   <div className="min-w-0">
                     <h3 className="text-xl md:text-2xl font-bold mb-2">{region.name}</h3>
-                    <p className="text-[11px] uppercase tracking-wide text-white/70 font-semibold mb-1.5">
-                      Popular cities
-                    </p>
+                    <p className="text-[11px] uppercase tracking-wide text-white/70 font-semibold mb-1.5">Top Cities: {region.cities.join(", ")}</p>
+                    {region.trend && <p className="mb-1.5 text-[10px] font-semibold text-emerald-200">{region.trend}</p>}
                     <div className="flex flex-wrap gap-1.5">
                       {region.cities.map((city) => (
                         <span
