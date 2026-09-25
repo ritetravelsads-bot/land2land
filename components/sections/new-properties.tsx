@@ -17,9 +17,11 @@ export default function NewProperties() {
   const scrollListings = (direction: "next" | "previous") => {
     const slider = sliderRef.current
     if (!slider) return
-    const amount = slider.clientWidth >= 768 ? slider.clientWidth / 3 : slider.clientWidth
+    const firstCard = slider.firstElementChild as HTMLElement | null
+    const amount = firstCard ? firstCard.getBoundingClientRect().width + 24 : slider.clientWidth
     const nextIndex = direction === "next" ? scrollIndex + 1 : Math.max(0, scrollIndex - 1)
-    const maxIndex = Math.max(0, properties.length - (slider.clientWidth >= 768 ? 3 : 1))
+    const visibleCards = slider.clientWidth >= 768 ? 3 : 1
+    const maxIndex = Math.max(0, properties.length - visibleCards)
     if (direction === "next" && scrollIndex >= maxIndex) {
       slider.scrollTo({ left: 0, behavior: "smooth" })
       setScrollIndex(0)
@@ -47,13 +49,13 @@ export default function NewProperties() {
   }, [])
 
   useEffect(() => {
-    if (properties.length < 4 || isPaused) return
+    if (properties.length <= 3 || isPaused) return
     const interval = window.setInterval(() => scrollListings("next"), 5000)
     return () => window.clearInterval(interval)
   }, [isPaused, properties.length, scrollIndex])
 
   const canScrollLeft = scrollIndex > 0
-  const canScrollRight = scrollIndex < Math.max(0, properties.length - 3)
+  const canScrollRight = properties.length > 3
 
   if (loading) {
     return (
