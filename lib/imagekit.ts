@@ -1,16 +1,6 @@
-import ImageKit from "imagekit"
 import crypto from "crypto"
 
-const publicKey = process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY || ""
 const privateKey = process.env.IMAGEKIT_PRIVATE_KEY || ""
-const urlEndpoint = process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT || "https://ik.imagekit.io/countryroofdata"
-
-// Keep SDK instance for auth parameter generation (pure HMAC, no HTTP)
-const imagekit = new ImageKit({
-  publicKey,
-  privateKey,
-  urlEndpoint,
-})
 
 export function getImageKitAuthenticationParameters() {
   if (!privateKey) {
