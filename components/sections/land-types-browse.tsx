@@ -129,7 +129,7 @@ export default function LandTypesBrowse() {
                 </p>
                 <div className="flex items-center gap-1 mt-2 text-[11px] font-semibold text-white/80 group-hover:text-white transition-colors">Explore <ArrowRight size={10} /></div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
