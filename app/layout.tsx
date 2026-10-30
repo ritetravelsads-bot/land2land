@@ -6,6 +6,7 @@ import "./globals.css"
 import FrontendLayout from "@/components/layout/frontend-layout"
 import CustomHeadTags from "@/components/layout/custom-head-tags"
 import HeadTagsInjector from "@/components/layout/head-tags-injector"
+import OneSignalWebPush from "@/components/mobile/onesignal-web-push"
 
 // Disable caching for this layout to ensure custom head tags are always fresh
 export const revalidate = 0
@@ -251,21 +252,8 @@ export default function RootLayout({
         />
         {/* ------------------------------------------- */}
 
-        {/* Register service worker for offline support and Play Store quality check */}
-        <Script
-          id="sw-register"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js', { scope: '/' })
-                    .catch(function() {});
-                });
-              }
-            `,
-          }}
-        />
+        {/* OneSignal web push (registers /OneSignalSDKWorker.js as the root service worker) */}
+        <OneSignalWebPush />
         <HeadTagsInjector />
         <FrontendLayout>
           {children}
