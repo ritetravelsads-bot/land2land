@@ -179,9 +179,20 @@ const nextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Strict-Transport-Security", value: "max-age=63072000" },
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(self)" },
+          { key: "Permissions-Policy", value: "camera=(self), microphone=(), geolocation=(self)" },
         ],
       },
+    ]
+  },
+
+  async rewrites() {
+    return [
+      { source: "/.well-known/assetlinks.json", destination: "/api/well-known/assetlinks" },
+      {
+        source: "/.well-known/apple-app-site-association",
+        destination: "/api/well-known/apple-app-site-association",
+      },
+      { source: "/apple-app-site-association", destination: "/api/well-known/apple-app-site-association" },
     ]
   },
 

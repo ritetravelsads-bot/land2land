@@ -29,6 +29,7 @@ import { PropertyFaq } from "@/components/property/property-faq"
 import { BrochureDownload } from "@/components/property/brochure-download"
 import { SpecialSectionsRenderer } from "@/components/property/special-section"
 import { VerificationScorecard } from "@/components/property/verification-scorecard"
+import { ReportContentDialog } from "@/components/property/report-content-dialog"
 
 // --- helpers ---
 
@@ -300,6 +301,7 @@ export function PropertyDetailClient({
             <button aria-label="Share property" className="p-2 hover:bg-muted rounded-lg transition-colors">
               <Share2 className="h-4 w-4" aria-hidden="true" />
             </button>
+            <ReportContentDialog targetType="property" targetId={String(property._id)} />
             <Button size="sm" asChild>
               <a href="#enquiry">Enquire Now</a>
             </Button>

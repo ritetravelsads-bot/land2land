@@ -1,4 +1,5 @@
 import { getDatabase } from "@/lib/mongodb"
+import { createSessionToken } from "@/lib/session-token"
 import { type NextRequest, NextResponse } from "next/server"
 import { ObjectId } from "mongodb"
 import bcrypt from "bcryptjs"
@@ -82,7 +83,7 @@ async function autoRegisterBuyer(
   }
 
   // Set auth_token cookie so user is immediately logged in
-  const token = Buffer.from(JSON.stringify({ userId, email: userEmail })).toString("base64")
+  const token = createSessionToken({ userId, email: userEmail })
   const cookieStore = await cookies()
   cookieStore.set("auth_token", token, {
     httpOnly: true,

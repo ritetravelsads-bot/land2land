@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import GoogleSignInButton from "@/components/auth/google-sign-in-button"
+import AppleSignInButton from "@/components/auth/apple-sign-in-button"
 import { toast } from "sonner"
 import type { UserType } from "@/lib/agreement-links"
 
@@ -208,14 +209,24 @@ export default function RegisterForm() {
         </div>
       </div>
 
-      <GoogleSignInButton 
-        mode="register" 
-        userType={formData.user_type as "customer" | "associate"}
-        onError={(err) => {
-          setGoogleError(err)
-          setError("")
-        }}
-      />
+      <div className="flex flex-col gap-2">
+        <AppleSignInButton
+          mode="register"
+          userType={formData.user_type as "customer" | "associate"}
+          onError={(err) => {
+            setGoogleError(err)
+            setError("")
+          }}
+        />
+        <GoogleSignInButton 
+          mode="register" 
+          userType={formData.user_type as "customer" | "associate"}
+          onError={(err) => {
+            setGoogleError(err)
+            setError("")
+          }}
+        />
+      </div>
 
       <p className="text-xs text-muted-foreground text-center">
         By creating an account, you agree to our Terms of Service and Privacy Policy
