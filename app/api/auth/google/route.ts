@@ -10,6 +10,7 @@ interface GoogleAuthPayload {
   photoURL: string | null
   uid: string
   userType?: "customer" | "associate"
+  provider?: "google" | "apple"
 }
 
 async function handleGoogleAuth(payload: GoogleAuthPayload) {
@@ -70,7 +71,7 @@ async function handleGoogleAuth(payload: GoogleAuthPayload) {
         date_joined: new Date(),
         last_login: new Date(),
         firebase_uid: payload.uid,
-        auth_provider: "google",
+        auth_provider: payload.provider === "apple" ? "apple" : "google",
         is_verified: true, // Google accounts are pre-verified
       }
 
@@ -101,7 +102,7 @@ async function handleGoogleAuth(payload: GoogleAuthPayload) {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { idToken, email, displayName, photoURL, uid, userType } = body
+    const { idToken, email, displayName, photoURL, uid, userType, provider } = body
 
     if (!email || !uid) {
       return new Response(
@@ -120,6 +121,7 @@ export async function POST(request: Request) {
       photoURL,
       uid,
       userType,
+      provider,
     })
 
     // Set secure HTTP-only cookie

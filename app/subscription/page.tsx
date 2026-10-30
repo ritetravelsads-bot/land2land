@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { Check, X } from "lucide-react"
 import Header from "@/components/layout/header"
 import Footer from "@/components/layout/footer"
+import { HideInIosApp } from "@/components/mobile/hide-in-ios-app"
 
 export const metadata: Metadata = {
   title: "Subscription Plans | Land2Land",
@@ -135,15 +136,23 @@ export default function SubscriptionPage() {
                   <span className="text-gray-600 ml-2 text-lg">{plan.period}</span>
                 </div>
 
-                <button
-                  className={`w-full px-6 py-3 rounded-lg font-semibold transition-all mb-8 ${
-                    plan.popular
-                      ? "bg-gradient-to-r from-[#125007] to-[#4a7c2e] hover:shadow-lg text-white"
-                      : "border-2 border-[#125007] text-[#125007] hover:bg-green-50"
-                  }`}
+                <HideInIosApp
+                  fallback={
+                    <p className="w-full px-6 py-3 rounded-lg mb-8 text-sm text-center text-gray-600 border border-gray-200">
+                      Plans are managed on land2land.com
+                    </p>
+                  }
                 >
-                  {plan.cta}
-                </button>
+                  <button
+                    className={`w-full px-6 py-3 rounded-lg font-semibold transition-all mb-8 ${
+                      plan.popular
+                        ? "bg-gradient-to-r from-[#125007] to-[#4a7c2e] hover:shadow-lg text-white"
+                        : "border-2 border-[#125007] text-[#125007] hover:bg-green-50"
+                    }`}
+                  >
+                    {plan.cta}
+                  </button>
+                </HideInIosApp>
 
                 <div className="space-y-4">
                   {plan.features.map((feature) => (

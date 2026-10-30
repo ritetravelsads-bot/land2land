@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import GoogleSignInButton from "@/components/auth/google-sign-in-button"
+import AppleSignInButton from "@/components/auth/apple-sign-in-button"
 
 export default function LoginForm() {
   const router = useRouter()
@@ -104,13 +105,22 @@ export default function LoginForm() {
         </div>
       </div>
 
-      <GoogleSignInButton 
-        mode="login" 
-        onError={(err) => {
-          setGoogleError(err)
-          setError("")
-        }}
-      />
+      <div className="flex flex-col gap-2">
+        <AppleSignInButton
+          mode="login"
+          onError={(err) => {
+            setGoogleError(err)
+            setError("")
+          }}
+        />
+        <GoogleSignInButton 
+          mode="login" 
+          onError={(err) => {
+            setGoogleError(err)
+            setError("")
+          }}
+        />
+      </div>
     </form>
   )
 }

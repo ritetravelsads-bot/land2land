@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu, X, LogOut, User, ChevronDown, Map, TrendingUp, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { HideInNativeApp } from "@/components/mobile/hide-in-ios-app"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -227,12 +228,12 @@ export default function MegaMenuHeader() {
                       <Link href={getDashboardLink()}>{getDashboardLabel()}</Link>
                     </DropdownMenuItem>
                     {currentUser.user_type === "admin" && (
-                      <>
+                      <HideInNativeApp>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem asChild>
                           <Link href="/admin/dashboard">Admin Settings</Link>
                         </DropdownMenuItem>
-                      </>
+                      </HideInNativeApp>
                     )}
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={handleLogout}>
