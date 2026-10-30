@@ -130,7 +130,7 @@ export default function NewProperties() {
                       onError={(e) => { e.currentTarget.src = "/placeholder.jpg" }}
                     />
                     <div className="absolute top-3 left-3 bg-primary text-primary-foreground px-2 py-0.5 rounded-full text-xs font-medium flex items-center gap-1 shadow"><Clock size={10} /> Verified</div>
-                    <div className="absolute right-3 top-3 flex flex-col items-end gap-1 text-[10px] font-semibold text-white"><span className="flex items-center gap-1 rounded-full bg-slate-900/75 px-2 py-1"><Eye size={10} /> {weeklyViews[property._id] ?? 20} views this week</span><span className="flex items-center gap-1 rounded-full bg-amber-600/90 px-2 py-1"><Zap size={10} /> {property.inquiries || 12} inquiries</span></div>
+                    <div className="absolute right-3 top-3 flex flex-col items-end gap-1 text-[10px] font-semibold text-white"><span className="flex items-center gap-1 rounded-full bg-slate-900/75 px-2 py-1"><Eye size={10} /> {weeklyViews[property._id] ?? 20} views this week</span><span className="flex items-center gap-1 rounded-full bg-amber-600/90 px-2 py-1"><Zap size={10} /> {property.inquiries ?? 12} inquiries</span></div>
                   </div>
 
                   <div className="p-4 flex flex-col gap-2.5 flex-1">
