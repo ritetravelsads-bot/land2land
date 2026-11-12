@@ -20,6 +20,11 @@ import { useEffect } from "react"
 
 // Minimal typing for the parts of the Median bridge we touch.
 type MedianBridge = {
+  socialLogin?: {
+    apple?: {
+      login?: (options: { callback: (result: { idToken?: string; firstName?: string; lastName?: string }) => void }) => void
+    }
+  }
   onesignal?: {
     register?: () => void
     userId?: () => Promise<unknown>

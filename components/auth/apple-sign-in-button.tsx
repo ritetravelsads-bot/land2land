@@ -9,21 +9,6 @@ type AppleLoginResult = {
   lastName?: string
 }
 
-type MedianAppleBridge = {
-  socialLogin?: {
-    apple?: {
-      login?: (options: { callback: (result: AppleLoginResult) => void }) => void
-    }
-  }
-}
-
-declare global {
-  interface Window {
-    median?: MedianAppleBridge
-    gonative?: MedianAppleBridge
-  }
-}
-
 interface AppleSignInButtonProps {
   mode: "login" | "register"
   userType?: "customer" | "associate"
