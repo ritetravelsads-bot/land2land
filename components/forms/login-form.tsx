@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import GoogleSignInButton from "@/components/auth/google-sign-in-button"
+import AppleSignInButton from "@/components/auth/apple-sign-in-button"
 
 export default function LoginForm() {
   const router = useRouter()
@@ -13,6 +14,7 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [googleError, setGoogleError] = useState("")
+  const [appleError, setAppleError] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -111,6 +113,14 @@ export default function LoginForm() {
           setError("")
         }}
       />
+      <AppleSignInButton
+        mode="login"
+        onError={(err) => {
+          setAppleError(err)
+          setError("")
+        }}
+      />
+      {appleError && <p role="alert" className="text-xs text-red-600 bg-red-50 p-2 rounded">{appleError}</p>}
     </form>
   )
 }

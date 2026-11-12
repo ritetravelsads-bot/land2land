@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import GoogleSignInButton from "@/components/auth/google-sign-in-button"
+import AppleSignInButton from "@/components/auth/apple-sign-in-button"
 import { toast } from "sonner"
 import type { UserType } from "@/lib/agreement-links"
 
@@ -23,6 +24,7 @@ export default function RegisterForm() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [googleError, setGoogleError] = useState("")
+  const [appleError, setAppleError] = useState("")
   const [agreementAccepted, setAgreementAccepted] = useState<Record<string, boolean>>({})
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -216,6 +218,15 @@ export default function RegisterForm() {
           setError("")
         }}
       />
+      <AppleSignInButton
+        mode="register"
+        userType={formData.user_type as "customer" | "associate"}
+        onError={(err) => {
+          setAppleError(err)
+          setError("")
+        }}
+      />
+      {appleError && <p role="alert" className="text-xs text-red-600 bg-red-50 p-2 rounded">{appleError}</p>}
 
       <p className="text-xs text-muted-foreground text-center">
         By creating an account, you agree to our Terms of Service and Privacy Policy
