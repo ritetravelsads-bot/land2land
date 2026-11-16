@@ -3,6 +3,7 @@
 import type React from "react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
@@ -25,7 +26,7 @@ export default function RegisterForm() {
   const [error, setError] = useState("")
   const [googleError, setGoogleError] = useState("")
   const [appleError, setAppleError] = useState("")
-  const [agreementAccepted, setAgreementAccepted] = useState<Record<string, boolean>>({})
+  const [termsAccepted, setTermsAccepted] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -34,11 +35,6 @@ export default function RegisterForm() {
 
   const handleUserTypeChange = (value: string) => {
     setFormData((prev) => ({ ...prev, user_type: value }))
-    setAgreementAccepted({})
-  }
-
-  const handleAgreementChange = (agreementId: string, accepted: boolean) => {
-    setAgreementAccepted((prev) => ({ ...prev, [agreementId]: accepted }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -55,10 +51,8 @@ export default function RegisterForm() {
       return
     }
 
-    // Check if all required agreements are accepted
-    const requiredAgreements = Object.values(agreementAccepted)
-    if (requiredAgreements.length > 0 && !requiredAgreements.every((accepted) => accepted)) {
-      setError("You must accept all agreements to continue")
+    if (!termsAccepted) {
+      setError("Accept the Terms of Service and Privacy Policy to create an account")
       return
     }
 
@@ -194,6 +188,29 @@ export default function RegisterForm() {
       </div>
 
 
+      <div className="flex items-start gap-2 text-xs text-muted-foreground">
+        <input
+          id="signup-terms"
+          type="checkbox"
+          checked={termsAccepted}
+          onChange={(event) => {
+            setTermsAccepted(event.target.checked)
+            setError("")
+          }}
+          required
+          aria-describedby="signup-terms-links"
+          className="mt-0.5 size-4 shrink-0 accent-primary"
+        />
+        <div className="flex flex-col gap-1">
+          <label htmlFor="signup-terms" className="font-medium text-foreground">
+            I agree to the Terms of Service and Privacy Policy.
+          </label>
+          <p id="signup-terms-links">
+            Read the <Link href="/terms-and-conditions" className="font-medium text-primary underline underline-offset-2">Terms of Service</Link> and <Link href="/privacy-policy" className="font-medium text-primary underline underline-offset-2">Privacy Policy</Link>.
+          </p>
+        </div>
+      </div>
+
       {error && <p className="text-xs text-red-600 bg-red-50 p-2 rounded">{error}</p>}
       {googleError && <p className="text-xs text-red-600 bg-red-50 p-2 rounded">{googleError}</p>}
 
@@ -220,6 +237,7 @@ export default function RegisterForm() {
       />
       <AppleSignInButton
         mode="register"
+        disabled={!termsAccepted}
         userType={formData.user_type as "customer" | "associate"}
         onError={(err) => {
           setAppleError(err)
@@ -228,9 +246,6 @@ export default function RegisterForm() {
       />
       {appleError && <p role="alert" className="text-xs text-red-600 bg-red-50 p-2 rounded">{appleError}</p>}
 
-      <p className="text-xs text-muted-foreground text-center">
-        By creating an account, you agree to our Terms of Service and Privacy Policy
-      </p>
     </form>
   )
 }

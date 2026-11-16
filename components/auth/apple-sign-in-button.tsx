@@ -3,19 +3,14 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 
-type AppleLoginResult = {
-  idToken?: string
-  firstName?: string
-  lastName?: string
-}
-
 interface AppleSignInButtonProps {
   mode: "login" | "register"
   userType?: "customer" | "associate"
+  disabled?: boolean
   onError: (message: string) => void
 }
 
-export default function AppleSignInButton({ mode, userType = "customer", onError }: AppleSignInButtonProps) {
+export default function AppleSignInButton({ mode, userType = "customer", disabled = false, onError }: AppleSignInButtonProps) {
   const [loading, setLoading] = useState(false)
 
   const handleAppleSignIn = () => {
@@ -30,8 +25,10 @@ export default function AppleSignInButton({ mode, userType = "customer", onError
     setLoading(true)
     try {
       login({
+        scope: "full_name email",
         callback: async (result) => {
           try {
+            if (result?.error) throw new Error(result.error)
             if (!result?.idToken) throw new Error("Apple did not return an identity token. Please try again.")
             const response = await fetch("/api/auth/apple", {
               method: "POST",
@@ -70,7 +67,7 @@ export default function AppleSignInButton({ mode, userType = "customer", onError
       type="button"
       variant="outline"
       onClick={handleAppleSignIn}
-      disabled={loading}
+      disabled={loading || disabled}
       className="w-full h-9 text-xs flex items-center justify-center gap-2"
     >
       {loading ? (

@@ -22,7 +22,10 @@ import { useEffect } from "react"
 type MedianBridge = {
   socialLogin?: {
     apple?: {
-      login?: (options: { callback: (result: { idToken?: string; firstName?: string; lastName?: string }) => void }) => void
+      login?: (options: {
+        callback: (result: { idToken?: string; firstName?: string; lastName?: string; error?: string }) => void
+        scope?: string
+      }) => void
     }
   }
   onesignal?: {
