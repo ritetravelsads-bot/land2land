@@ -14,6 +14,7 @@ export default function LoginForm() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [googleError, setGoogleError] = useState("")
+  const [appleError, setAppleError] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -105,22 +106,21 @@ export default function LoginForm() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <AppleSignInButton
-          mode="login"
-          onError={(err) => {
-            setGoogleError(err)
-            setError("")
-          }}
-        />
-        <GoogleSignInButton 
-          mode="login" 
-          onError={(err) => {
-            setGoogleError(err)
-            setError("")
-          }}
-        />
-      </div>
+      <GoogleSignInButton 
+        mode="login" 
+        onError={(err) => {
+          setGoogleError(err)
+          setError("")
+        }}
+      />
+      <AppleSignInButton
+        mode="login"
+        onError={(err) => {
+          setAppleError(err)
+          setError("")
+        }}
+      />
+      {appleError && <p role="alert" className="text-xs text-red-600 bg-red-50 p-2 rounded">{appleError}</p>}
     </form>
   )
 }

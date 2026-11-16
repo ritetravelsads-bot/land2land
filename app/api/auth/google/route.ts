@@ -1,5 +1,4 @@
 import { MongoClient } from "mongodb"
-import { createSessionToken } from "@/lib/session-token"
 import { cookies } from "next/headers"
 
 const mongoUrl = process.env.MONGODB_URI || ""
@@ -11,31 +10,6 @@ interface GoogleAuthPayload {
   photoURL: string | null
   uid: string
   userType?: "customer" | "associate"
-  provider?: "google" | "apple"
-}
-
-async function verifyFirebaseIdToken(idToken: string) {
-  const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY
-  if (!apiKey) throw new Error("Firebase is not configured")
-
-  const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${apiKey}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ idToken }),
-    cache: "no-store",
-  })
-  if (!res.ok) return null
-
-  const data = await res.json().catch(() => null)
-  const account = data?.users?.[0]
-  if (!account?.localId || !account?.email) return null
-
-  return {
-    uid: account.localId as string,
-    email: account.email as string,
-    displayName: (account.displayName as string | undefined) ?? "",
-    photoURL: (account.photoUrl as string | undefined) ?? null,
-  }
 }
 
 async function handleGoogleAuth(payload: GoogleAuthPayload) {
@@ -96,7 +70,7 @@ async function handleGoogleAuth(payload: GoogleAuthPayload) {
         date_joined: new Date(),
         last_login: new Date(),
         firebase_uid: payload.uid,
-        auth_provider: payload.provider === "apple" ? "apple" : "google",
+        auth_provider: "google",
         is_verified: true, // Google accounts are pre-verified
       }
 
@@ -106,7 +80,9 @@ async function handleGoogleAuth(payload: GoogleAuthPayload) {
 
     // Create session token - user is guaranteed to be non-null here
     const currentUser = user!
-    const token = createSessionToken({ userId: currentUser._id, email: currentUser.email })
+    const token = Buffer.from(
+      JSON.stringify({ userId: currentUser._id, email: currentUser.email })
+    ).toString("base64")
 
     return {
       id: currentUser._id,
@@ -125,29 +101,7 @@ async function handleGoogleAuth(payload: GoogleAuthPayload) {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { idToken, displayName: clientDisplayName, userType: rawUserType, provider } = body
-
-    if (typeof idToken !== "string" || !idToken) {
-      return new Response(JSON.stringify({ error: "Missing sign-in token" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      })
-    }
-
-    const verified = await verifyFirebaseIdToken(idToken)
-    if (!verified) {
-      return new Response(JSON.stringify({ error: "Invalid or expired sign-in token" }), {
-        status: 401,
-        headers: { "Content-Type": "application/json" },
-      })
-    }
-
-    // Never trust identity fields from the client — use what Firebase verified.
-    const email = verified.email
-    const uid = verified.uid
-    const photoURL = verified.photoURL
-    const displayName = verified.displayName || (typeof clientDisplayName === "string" ? clientDisplayName : "")
-    const userType = rawUserType === "associate" ? "associate" : "customer"
+    const { idToken, email, displayName, photoURL, uid, userType } = body
 
     if (!email || !uid) {
       return new Response(
@@ -166,7 +120,6 @@ export async function POST(request: Request) {
       photoURL,
       uid,
       userType,
-      provider,
     })
 
     // Set secure HTTP-only cookie

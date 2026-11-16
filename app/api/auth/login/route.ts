@@ -1,5 +1,4 @@
 import { MongoClient } from "mongodb"
-import { createSessionToken } from "@/lib/session-token"
 import bcrypt from "bcryptjs"
 import { cookies } from "next/headers"
 
@@ -33,7 +32,7 @@ async function loginUser(email: string, password: string) {
     await collection.updateOne({ _id: user._id }, { $set: { last_login: new Date() } })
 
     // Create session token
-    const token = createSessionToken({ userId: user._id, email: user.email })
+    const token = Buffer.from(JSON.stringify({ userId: user._id, email: user.email })).toString("base64")
 
     return {
       id: user._id,

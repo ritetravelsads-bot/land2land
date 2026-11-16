@@ -1,7 +1,6 @@
 import { cookies } from "next/headers"
 import { MongoClient, ObjectId } from "mongodb"
 import bcrypt from "bcryptjs"
-import { verifySessionToken } from "@/lib/session-token"
 
 const mongoUrl = process.env.MONGODB_URI || ""
 
@@ -24,8 +23,7 @@ export async function getCurrentUser(): Promise<User | null> {
 
     if (!token) return null
 
-    const decoded = verifySessionToken(token)
-    if (!decoded || !ObjectId.isValid(decoded.userId)) return null
+    const decoded = JSON.parse(Buffer.from(token, "base64").toString())
 
     const client = new MongoClient(mongoUrl)
     try {

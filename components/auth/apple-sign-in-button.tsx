@@ -1,45 +1,66 @@
 "use client"
 
 import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { isFirebaseConfigured } from "@/lib/firebase"
-import { useAppPlatform } from "@/lib/median"
-import { dashboardPathFor, socialSignIn } from "@/lib/social-auth"
 import { Button } from "@/components/ui/button"
 
-interface AppleSignInButtonProps {
-  mode?: "login" | "register"
-  userType?: "customer" | "associate"
-  onSuccess?: () => void
-  onError?: (error: string) => void
+type AppleLoginResult = {
+  idToken?: string
+  firstName?: string
+  lastName?: string
 }
 
-const showOnWeb = process.env.NEXT_PUBLIC_ENABLE_APPLE_SIGNIN === "true"
+interface AppleSignInButtonProps {
+  mode: "login" | "register"
+  userType?: "customer" | "associate"
+  onError: (message: string) => void
+}
 
-export default function AppleSignInButton({
-  mode = "login",
-  userType = "customer",
-  onSuccess,
-  onError,
-}: AppleSignInButtonProps) {
-  const router = useRouter()
-  const platform = useAppPlatform()
+export default function AppleSignInButton({ mode, userType = "customer", onError }: AppleSignInButtonProps) {
   const [loading, setLoading] = useState(false)
 
-  // Required in the iOS app (App Store Guideline 4.8); optional elsewhere.
-  const visible = platform === "median-ios" || (platform === "web" && showOnWeb)
-  if (!isFirebaseConfigured || !visible) return null
+  const handleAppleSignIn = () => {
+    const bridge = window.median || window.gonative
+    const login = bridge?.socialLogin?.apple?.login
 
-  const handleAppleSignIn = async () => {
+    if (typeof login !== "function") {
+      onError("Apple sign-in is available in the Median app. Please open this page in the app and try again.")
+      return
+    }
+
     setLoading(true)
     try {
-      const user = await socialSignIn("apple", mode === "register" ? userType : undefined)
-      onSuccess?.()
-      router.push(dashboardPathFor(user?.user_type))
+      login({
+        callback: async (result) => {
+          try {
+            if (!result?.idToken) throw new Error("Apple did not return an identity token. Please try again.")
+            const response = await fetch("/api/auth/apple", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              credentials: "include",
+              body: JSON.stringify({
+                idToken: result.idToken,
+                firstName: result.firstName,
+                lastName: result.lastName,
+                userType: mode === "register" ? userType : undefined,
+              }),
+            })
+            const data = await response.json()
+            if (!response.ok) throw new Error(data.error || "Apple sign-in failed")
+
+            const destination = data.user.user_type === "associate"
+              ? "/associate/dashboard"
+              : data.user.user_type === "admin"
+                ? "/admin/dashboard"
+                : "/buyer"
+            window.location.assign(destination)
+          } catch (error) {
+            onError(error instanceof Error ? error.message : "Apple sign-in failed")
+            setLoading(false)
+          }
+        },
+      })
     } catch (error) {
-      console.error("Apple sign-in error:", error)
-      onError?.(error instanceof Error ? error.message : "Apple sign-in failed")
-    } finally {
+      onError(error instanceof Error ? error.message : "Could not start Apple sign-in. Please try again.")
       setLoading(false)
     }
   }
@@ -47,16 +68,17 @@ export default function AppleSignInButton({
   return (
     <Button
       type="button"
+      variant="outline"
       onClick={handleAppleSignIn}
       disabled={loading}
-      className="w-full h-9 text-xs flex items-center justify-center gap-2 bg-foreground text-background hover:bg-foreground/90"
+      className="w-full h-9 text-xs flex items-center justify-center gap-2"
     >
       {loading ? (
         <span>Connecting...</span>
       ) : (
         <>
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M16.37 1.43c0 1.14-.42 2.2-1.25 3.09-.9.96-1.98 1.52-3.16 1.42-.02-.11-.03-.23-.03-.36 0-1.09.48-2.26 1.32-3.18.42-.47.96-.86 1.6-1.17.64-.3 1.25-.47 1.82-.5.02.23.03.47.03.7zm4.33 15.88c-.36.83-.78 1.6-1.27 2.3-.67.96-1.22 1.62-1.64 1.99-.66.6-1.36.91-2.12.93-.54 0-1.2-.15-1.96-.47-.77-.31-1.47-.47-2.12-.47-.68 0-1.4.16-2.17.47-.78.32-1.4.48-1.88.5-.73.03-1.45-.29-2.17-.96-.46-.4-1.04-1.08-1.73-2.06-.74-1.04-1.35-2.25-1.83-3.62C1.3 14.45 1.04 13 1.04 11.6c0-1.6.35-2.98 1.04-4.14.54-.93 1.27-1.66 2.17-2.2.91-.53 1.89-.8 2.95-.82.58 0 1.34.18 2.28.53.94.35 1.54.53 1.8.53.2 0 .87-.21 2.02-.62 1.08-.39 2-.55 2.75-.49 2.03.16 3.56.97 4.57 2.42-1.82 1.1-2.72 2.65-2.7 4.63.02 1.55.58 2.83 1.68 3.85.5.47 1.05.84 1.67 1.1-.13.39-.28.76-.43 1.13z" />
+          <svg aria-hidden="true" className="h-4 w-4 fill-current" viewBox="0 0 24 24">
+            <path d="M16.37 12.2c.02 2.2 1.93 2.93 1.95 2.94-.02.05-.3 1.04-1 2.06-.6.88-1.23 1.76-2.21 1.78-.96.02-1.27-.57-2.37-.57s-1.45.55-2.36.59c-.95.04-1.67-.95-2.27-1.82-1.23-1.78-2.17-5.04-.91-7.24.63-1.09 1.76-1.78 2.98-1.8.93-.02 1.8.63 2.37.63.57 0 1.64-.78 2.77-.66.47.02 1.8.19 2.65 1.44-.07.04-1.58.92-1.6 2.65ZM14.55 6.9c.5-.6.84-1.43.75-2.26-.72.03-1.59.48-2.11 1.08-.46.53-.87 1.37-.76 2.18.8.06 1.62-.4 2.12-1Z" />
           </svg>
           <span>{mode === "register" ? "Sign up with Apple" : "Sign in with Apple"}</span>
         </>

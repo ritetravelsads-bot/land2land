@@ -6,7 +6,6 @@ import "./globals.css"
 import FrontendLayout from "@/components/layout/frontend-layout"
 import CustomHeadTags from "@/components/layout/custom-head-tags"
 import HeadTagsInjector from "@/components/layout/head-tags-injector"
-import OneSignalWebPush from "@/components/mobile/onesignal-web-push"
 
 // Disable caching for this layout to ensure custom head tags are always fresh
 export const revalidate = 0
@@ -58,14 +57,8 @@ export const metadata: Metadata = {
     google: "HMLmt_V-xGPk7KOvW60EO-cNggppOdM6OHT47vFLdQM",
   },
   icons: {
-    icon: [
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon-64x64.png", sizes: "64x64", type: "image/png" },
-      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
-    ],
-    apple: "/apple-touch-icon.png",
+    icon: [{ url: "/favicon-land2land.jpeg", type: "image/jpeg" }],
+    apple: [{ url: "/favicon-land2land.jpeg", type: "image/jpeg" }],
   },
   openGraph: {
     type: "website",
@@ -252,8 +245,21 @@ export default function RootLayout({
         />
         {/* ------------------------------------------- */}
 
-        {/* OneSignal web push (registers /OneSignalSDKWorker.js as the root service worker) */}
-        <OneSignalWebPush />
+        {/* Register service worker for offline support and Play Store quality check */}
+        <Script
+          id="sw-register"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                    .catch(function() {});
+                });
+              }
+            `,
+          }}
+        />
         <HeadTagsInjector />
         <FrontendLayout>
           {children}

@@ -55,7 +55,7 @@ export default function manifest(): MetadataRoute.Manifest {
         name: "Post a Property",
         short_name: "Post",
         description: "List your land for sale",
-        url: "/sell?source=shortcut",
+        url: "/post-property?source=shortcut",
         icons: [{ src: "/icons/icon-192.png", sizes: "192x192" }],
       },
       {
