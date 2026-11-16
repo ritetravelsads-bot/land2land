@@ -145,7 +145,7 @@ export default function TrendingLandProperties() {
 
         <div className="flex justify-center pt-8">
           <Button asChild size="lg" className="bg-slate-900 hover:bg-slate-800 text-white">
-            <Link href="/buy">Browse All Land Listings</Link>
+            <Link href="/properties">Browse All Land Listings</Link>
           </Button>
         </div>
       </div>

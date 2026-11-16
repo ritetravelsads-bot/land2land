@@ -2,8 +2,6 @@ import type { Metadata } from "next"
 import Script from "next/script"
 import Link from "next/link"
 import { Handshake, Sparkles, Check, ShieldCheck, ArrowRight, Phone, MapPin, TrendingUp, FileText, Users } from "lucide-react"
-import Header from "@/components/layout/header"
-import Footer from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
 import { generateWebPageSchema } from "@/lib/schema-markup-generator"
 
@@ -47,7 +45,6 @@ export default function PricingPage() {
           />
         ))}
 
-      <Header />
       <main className="min-h-screen bg-background">
         {/* Hero */}
         <section className="relative w-full py-16 md:py-24 px-4 bg-gradient-to-br from-primary/10 via-primary/5 to-background overflow-hidden">
@@ -263,7 +260,6 @@ export default function PricingPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   )
 }
