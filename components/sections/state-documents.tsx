@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import {
+import Link from "next/link"
+import { ArrowRight,
   FileText,
   ScrollText,
   FileCheck2,
@@ -232,6 +233,16 @@ export default function StateDocuments() {
               commercial). Always consult a local revenue expert before purchase.
             </p>
           </div>
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <Link
+            href="/state-land-portals"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full border border-[var(--land-primary)]/30 px-5 py-2.5 text-sm font-semibold text-[var(--land-primary)] transition-colors hover:bg-[var(--land-primary)]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--land-primary)] focus-visible:ring-offset-2"
+          >
+            Explore state portals and land rules
+            <ArrowRight size={16} aria-hidden="true" />
+          </Link>
         </div>
       </div>
     </section>

@@ -83,7 +83,7 @@ export default function LandTypesBrowse() {
             </h2>
           </div>
           <Link
-            href="/buy"
+            href="/properties"
             className="hidden md:flex items-center gap-1.5 text-sm font-medium text-[var(--land-sage)] hover:text-[var(--land-primary)] transition-colors shrink-0"
           >
             View all <ArrowRight size={14} />
@@ -95,8 +95,7 @@ export default function LandTypesBrowse() {
           {landTypes.map((type, index) => (
             <div
               key={type.name}
-              href={type.href}
-              className={`group relative overflow-hidden rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300  col-span-2 md:col-span-1 row-span-1 h-52 md:h-52`}
+              className="group relative col-span-2 h-52 overflow-hidden rounded-2xl border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg md:col-span-1 md:h-52"
             >
               {/* Photo */}
               <Link href={type.href} className="absolute inset-0 z-0" aria-label={`Explore ${type.name}`} />
@@ -139,7 +138,7 @@ export default function LandTypesBrowse() {
         {/* Mobile "View all" */}
         <div className="flex justify-center pt-6 md:hidden">
           <Link
-            href="/buy"
+            href="/properties"
             className="flex items-center gap-1.5 text-sm font-medium text-[var(--land-primary)] border border-[var(--land-primary)]/40 px-5 py-2 rounded-full hover:bg-[var(--muted)] transition-colors"
           >
             View all land types <ArrowRight size={14} />

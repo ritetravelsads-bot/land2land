@@ -92,7 +92,7 @@ export default function Footer() {
     { name: "Buy Land", href: "/properties" },
     { name: "Post Property Free", href: "/sell" },
     { name: "Sell Land", href: "/sell" },
-    { name: "Land Valuation Calculator", href: "/area-converter" },
+    { name: "Land Area Converter", href: "/area-converter" },
     { name: "Farm Blog", href: "/blogs" },
     { name: "Career", href: "/career" },
     { name: "Contact", href: "/contact" },
@@ -120,11 +120,9 @@ export default function Footer() {
   ]
 
   const toolsServices = [
-    { name: "State Land Unit Converter", href: "/area-converter" },
-    { name: "Land Pricing & Rate Trends", href: "/area-converter" },
+    { name: "State Land Portal Index", href: "/state-land-portals" },
     { name: "State-Wise Land Purchase Guidelines", href: "/services/legal" },
     { name: "Seller Documentation Checklist", href: "/services/legal" },
-    { name: "Land Calculator", href: "/tools/land-calculator" },
     { name: "Farm Advisory", href: "/farm-advisory" },
     { name: "Blogs", href: "/blogs" },
     { name: "Privacy Policy", href: "/privacy-policy" },
