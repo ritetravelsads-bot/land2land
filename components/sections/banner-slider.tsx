@@ -38,7 +38,7 @@ const slides = [
     tag: "Industrial Land",
     title: "Industrial & Logistics Land Parcels",
     subtitle: "Industrial-zone plots with wide access roads and power availability.",
-    cta: { label: "View Industrial Land", href: "/land/industrial-plot" },
+    cta: { label: "View Industrial Land", href: "/land/industrial" },
   },
   {
     id: 5,
@@ -46,7 +46,7 @@ const slides = [
     tag: "Agricultural Land",
     title: "Fertile Agricultural Land",
     subtitle: "Irrigated crop land with verified water rights and clear titles.",
-    cta: { label: "Browse Agricultural Land", href: "/land/agricultural-land" },
+    cta: { label: "Browse Agricultural Land", href: "/land/agricultural" },
   },
   {
     id: 6,
@@ -54,7 +54,7 @@ const slides = [
     tag: "Farmland & Orchards",
     title: "Invest in Managed Farmland",
     subtitle: "Managed orchards and mixed-crop farms — a green, appreciating asset.",
-    cta: { label: "Browse Farmland", href: "/land/agricultural-land" },
+    cta: { label: "Browse Farmland", href: "/land/farmland" },
   },
 ]
 
