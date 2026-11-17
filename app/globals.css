@@ -861,6 +861,16 @@ header.header-scroll-aware.header-scrolled {
   align-items: center;
 }
 
+.median-app header + div[aria-hidden="true"],
+.pwa-standalone header + div[aria-hidden="true"] {
+  height: calc(64px + env(safe-area-inset-top, 0px)) !important;
+}
+
+.median-app .mobile-navigation,
+.pwa-standalone .mobile-navigation {
+  top: calc(64px + env(safe-area-inset-top, 0px)) !important;
+}
+
 /* ---- Hide footer in the app wrapper — bottom nav replaces it ---- */
 .median-app footer,
 .pwa-standalone footer {
