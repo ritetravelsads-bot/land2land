@@ -305,8 +305,7 @@ export default function MegaMenuHeader() {
         <nav
           id="mobile-navigation"
           aria-label="Mobile navigation"
-          className="lg:hidden border-t border-gray-200 bg-white fixed left-0 right-0 bottom-0 z-40 overflow-y-auto"
-          style={{ top: "64px" }} // Perfectly aligns just beneath the 64px fixed header
+          className="mobile-navigation lg:hidden border-t border-gray-200 bg-white fixed left-0 right-0 bottom-0 top-16 z-40 overflow-y-auto"
         >
           <div className="flex flex-col gap-1 px-4 py-3">
             {/* Mobile Search Bar */}
