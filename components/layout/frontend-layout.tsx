@@ -4,6 +4,7 @@ import type React from "react"
 import { Suspense, lazy } from "react"
 import { usePathname } from "next/navigation"
 import MegaMenuHeader from "./mega-menu-header"
+import MedianAppHeader from "@/components/mobile/median-app-header"
 import NavigationProgress from "./navigation-progress"
 import RoutePrefetcher from "./route-prefetcher"
 import MedianBridge from "@/components/mobile/median-bridge"
@@ -17,7 +18,7 @@ const Footer = lazy(() => import("./footer"))
 const BottomNav = lazy(() => import("./bottom-nav"))
 const WhatsAppButton = lazy(() => import("@/components/ui/whatsapp-button"))
 
-export default function FrontendLayout({ children }: { children: React.ReactNode }) {
+export default function FrontendLayout({ children, isMedianApp }: { children: React.ReactNode; isMedianApp: boolean }) {
   const pathname = usePathname()
   
   // Check if we're on a dashboard page
@@ -42,7 +43,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
   
   return (
     <>
-      <MegaMenuHeader />
+      {isMedianApp ? <MedianAppHeader /> : <MegaMenuHeader />}
       <MedianBridge />
       <PullToRefresh />
       <Suspense fallback={null}>
@@ -50,8 +51,8 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
       </Suspense>
       <RoutePrefetcher />
       <PageTransition>{children}</PageTransition>
-      {!isAuthPage && <AndroidAppDownloadPrompt />}
-      {!isAuthPage && (
+      {!isAuthPage && !isMedianApp && <AndroidAppDownloadPrompt />}
+      {!isAuthPage && !isMedianApp && (
         <Suspense fallback={<div className="min-h-[600px] bg-gradient-to-b from-gray-50 to-white" />}>
           <Footer />
         </Suspense>

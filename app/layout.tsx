@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import Script from "next/script" // <-- Imported next/script
+import { headers } from "next/headers"
 import "./globals.css"
 import FrontendLayout from "@/components/layout/frontend-layout"
 import CustomHeadTags from "@/components/layout/custom-head-tags"
@@ -97,13 +98,16 @@ export const viewport: Viewport = {
   ],
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const userAgent = (await headers()).get("user-agent") ?? ""
+  const isMedianApp = /median|gonative/i.test(userAgent)
+
   return (
-    <html lang="en" className="bg-white">
+    <html lang="en" className={isMedianApp ? "bg-white median-app" : "bg-white"}>
       <head>
         {/* CRITICAL: Preload LCP images FIRST - before any other resources */}
         {/* These must be at the very top of <head> for maximum priority */}
@@ -261,7 +265,7 @@ export default function RootLayout({
           }}
         />
         <HeadTagsInjector />
-        <FrontendLayout>
+        <FrontendLayout isMedianApp={isMedianApp}>
           {children}
         </FrontendLayout>
       </body>
