@@ -7,6 +7,7 @@ import MegaMenuHeader from "./mega-menu-header"
 import NavigationProgress from "./navigation-progress"
 import RoutePrefetcher from "./route-prefetcher"
 import MedianBridge from "@/components/mobile/median-bridge"
+import AndroidAppDownloadPrompt from "@/components/mobile/android-app-download-prompt"
 import PullToRefresh from "@/components/mobile/pull-to-refresh"
 import PageTransition from "./page-transition"
 import { Toaster } from "@/components/ui/sonner"
@@ -49,6 +50,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
       </Suspense>
       <RoutePrefetcher />
       <PageTransition>{children}</PageTransition>
+      {!isAuthPage && <AndroidAppDownloadPrompt />}
       {!isAuthPage && (
         <Suspense fallback={<div className="min-h-[600px] bg-gradient-to-b from-gray-50 to-white" />}>
           <Footer />
