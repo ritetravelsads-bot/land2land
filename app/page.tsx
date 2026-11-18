@@ -1,5 +1,7 @@
 import { Suspense } from "react"
+import { headers } from "next/headers"
 import dynamic from "next/dynamic"
+import MedianHomePage from "@/components/mobile/median-home-page"
 import BannerSlider from "@/components/sections/banner-slider"
 
 // Lazy load AdvancedSearch but keep it visible above fold with SSR
@@ -108,7 +110,7 @@ const ListYourLandGuide = dynamic(() => import("@/components/sections/list-your-
   loading: () => <div className="h-48 bg-slate-50 animate-pulse" />,
 })
 
-export default function Home() {
+function WebsiteHome() {
   return (
     <main>
       {/* Critical above-the-fold content - loads immediately */}
@@ -170,4 +172,11 @@ export default function Home() {
       </Suspense>
     </main>
   )
+}
+
+export default async function Home() {
+  const userAgent = (await headers()).get("user-agent") ?? ""
+  const isMedianApp = /median|gonative/i.test(userAgent)
+
+  return isMedianApp ? <MedianHomePage /> : <WebsiteHome />
 }
