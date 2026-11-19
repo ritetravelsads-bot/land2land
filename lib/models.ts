@@ -18,6 +18,12 @@ export const COLLECTIONS = {
   LEADS: "leads",
   TESTIMONIALS: "testimonials",
   RERA_REQUESTS: "rera_requests",
+  SUBSCRIPTION_PLANS: "subscription_plans",
+  AGENT_SUBSCRIPTIONS: "agent_subscriptions",
+  AGENT_CREDIT_LOTS: "agent_credit_lots",
+  AGENT_QUOTA_TRANSACTIONS: "agent_quota_transactions",
+  AGENT_SUBSCRIPTION_PAYMENTS: "agent_subscription_payments",
+  ADMIN_ACTIVITY_LOGS: "admin_activity_logs",
 }
 
 // User types
@@ -34,6 +40,110 @@ export interface User {
   date_joined: Date
   last_login?: Date
   is_verified?: boolean
+  account_status?: AgentAccountStatus
+  admin_notes?: string
+}
+
+export type AgentAccountStatus = "active" | "inactive" | "suspended"
+export type SubscriptionPlanCode = "free" | "basic" | "standard" | "premium" | "business"
+export type SubscriptionPlanStatus = "active" | "inactive"
+export type SubscriptionBillingCycle = "free" | "monthly" | "yearly" | "custom"
+export type AgentSubscriptionStatus = "active" | "expired" | "superseded" | "cancelled"
+export type SubscriptionPaymentStatus = "pending" | "paid" | "failed" | "refunded"
+
+export interface SubscriptionPlan {
+  _id?: string
+  plan_code: SubscriptionPlanCode
+  name: string
+  description: string
+  billing_cycle: SubscriptionBillingCycle | null
+  price_amount: number | null
+  currency: string
+  duration_days: number | null
+  publishing_limit: number | null
+  benefits: string[]
+  status: SubscriptionPlanStatus
+  display_order: number
+  featured: boolean
+  purchase_enabled: boolean
+  refund_on_unpublish: boolean
+  created_at: Date | string
+  updated_at: Date | string
+}
+
+export interface AgentSubscription {
+  _id?: string
+  agent_id: string
+  plan_id?: string | null
+  plan_code: SubscriptionPlanCode
+  plan_name: string
+  status: AgentSubscriptionStatus
+  plan_quota: number
+  plan_used: number
+  refund_on_unpublish: boolean
+  starts_at: Date | string
+  expires_at?: Date | string | null
+  assigned_by?: string
+  admin_notes?: string
+  created_at: Date | string
+  updated_at: Date | string
+}
+
+export interface AgentCreditLot {
+  _id?: string
+  agent_id: string
+  granted_credits: number
+  remaining_credits: number
+  expires_at?: Date | string | null
+  granted_by: string
+  note?: string
+  created_at: Date | string
+}
+
+export interface AgentQuotaTransaction {
+  _id?: string
+  agent_id: string
+  subscription_id?: string | null
+  listing_id?: string | null
+  credit_lot_id?: string | null
+  type: string
+  source: string
+  amount: number
+  balance_after?: number
+  note?: string
+  actor_id?: string
+  idempotency_key: string
+  created_at: Date | string
+}
+
+export interface AgentSubscriptionPayment {
+  _id?: string
+  agent_id: string
+  subscription_id?: string | null
+  plan_id: string
+  plan_code?: SubscriptionPlanCode
+  amount: number
+  currency: string
+  status: SubscriptionPaymentStatus
+  provider?: string | null
+  provider_reference?: string | null
+  verified_at?: Date | string | null
+  verified_by?: string | null
+  created_at: Date | string
+  updated_at: Date | string
+}
+
+export interface AdminActivityLog {
+  _id?: string
+  actor_id: string
+  agent_id?: string
+  entity_type: "agent" | "subscription_plan" | "listing"
+  entity_id: string
+  action: string
+  note?: string
+  before?: Record<string, unknown>
+  after?: Record<string, unknown>
+  created_at: Date | string
 }
 
 // Land2Land land categories (top-level "Property Category")

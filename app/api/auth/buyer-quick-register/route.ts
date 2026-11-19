@@ -2,6 +2,7 @@ import { getDatabase } from "@/lib/mongodb"
 import bcrypt from "bcryptjs"
 import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
+import { createSessionToken } from "@/lib/session-token"
 
 /**
  * POST /api/auth/buyer-quick-register
@@ -109,9 +110,8 @@ export async function POST(request: Request) {
       userType = "customer"
     }
 
-    // --- Create auth token (same format as login route) ---
-    const tokenPayload = { userId, email: userEmail }
-    const token = Buffer.from(JSON.stringify(tokenPayload)).toString("base64")
+    // --- Create a signed, expiring auth token ---
+    const token = createSessionToken({ userId, email: userEmail })
 
     // --- Set HTTP-only cookie ---
     const cookieStore = await cookies()

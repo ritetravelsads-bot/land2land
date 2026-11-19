@@ -1,6 +1,7 @@
 import { createPublicKey, verify as verifySignature } from "node:crypto"
 import { cookies } from "next/headers"
 import { MongoClient } from "mongodb"
+import { createSessionToken } from "@/lib/session-token"
 
 const mongoUrl = process.env.MONGODB_URI || ""
 const appleKeysUrl = "https://appleid.apple.com/auth/keys"
@@ -110,7 +111,7 @@ export async function POST(request: Request) {
       }
 
       if (!user) throw new Error("Unable to create or locate your account")
-      const token = Buffer.from(JSON.stringify({ userId: user._id, email: user.email })).toString("base64")
+      const token = createSessionToken({ userId: user._id, email: user.email })
       const cookieStore = await cookies()
       cookieStore.set("auth_token", token, {
         httpOnly: true,

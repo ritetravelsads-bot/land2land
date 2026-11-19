@@ -2,6 +2,7 @@ import { getDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
 import { ObjectId } from "mongodb"
 import { type NextRequest, NextResponse } from "next/server"
+import { AgentSubscriptionError, removeListingWithQuotaRefund, updateAssociateListingWithQuota } from "@/lib/agent-subscriptions"
 
 export async function GET(
   req: NextRequest,
@@ -87,32 +88,23 @@ export async function PUT(
       ...safeBody
     } = body as Record<string, any>
 
-    const moderationUpdate = isAdmin
-      ? {}
-      : {
-          review_status: "pending",
-          review_notes: "",
-          submitted_at: new Date(),
-          reviewed_at: null,
-          reviewed_by: null,
-        }
-
     // Associates can only update their own listings; admins can update any.
     const ownershipFilter = isAdmin
       ? { _id: new ObjectId(id) }
       : { _id: new ObjectId(id), associate: { $in: [user._id, user._id?.toString()] } }
 
-    // Each associate resubmission counts as a new review attempt.
-    const incUpdate = isAdmin ? {} : { $inc: { submission_count: 1 } }
+    if (!isAdmin) {
+      await updateAssociateListingWithQuota({ listingId: id, agentId: user._id, body: { ...safeBody, slug } })
+      const updatedProperty = await db.collection("listings").findOne({ _id: new ObjectId(id) })
+      return NextResponse.json({ success: true, property: updatedProperty })
+    }
 
     const result = await db.collection("listings").updateOne(ownershipFilter, {
       $set: {
         ...safeBody,
         slug,
-        ...moderationUpdate,
         updated_at: new Date(),
       },
-      ...incUpdate,
     })
 
     if (result.matchedCount === 0) {
@@ -122,6 +114,7 @@ export async function PUT(
     const updatedProperty = await db.collection("listings").findOne({ _id: new ObjectId(id) })
     return NextResponse.json({ success: true, property: updatedProperty })
   } catch (error) {
+    if (error instanceof AgentSubscriptionError) return NextResponse.json({ error: error.message, code: error.code }, { status: error.status })
     console.error("[v0] Error updating property:", error)
     return NextResponse.json({ error: "Failed to update property" }, { status: 500 })
   }
@@ -138,20 +131,15 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const db = await getDatabase()
-    // Associates can only delete their own listings; admins can delete any.
-    const deleteFilter =
-      user.user_type === "admin"
-        ? { _id: new ObjectId(id) }
-        : { _id: new ObjectId(id), associate: { $in: [user._id, user._id?.toString()] } }
-    const result = await db.collection("listings").deleteOne(deleteFilter)
-
-    if (result.deletedCount === 0) {
-      return NextResponse.json({ error: "Property not found or unauthorized" }, { status: 404 })
-    }
-
+    await removeListingWithQuotaRefund({
+      listingId: id,
+      actorId: user._id,
+      agentId: user.user_type === "associate" ? user._id : null,
+      reason: user.user_type === "associate" ? "Agent deleted listing" : "Admin deleted listing",
+    })
     return NextResponse.json({ success: true })
   } catch (error) {
+    if (error instanceof AgentSubscriptionError) return NextResponse.json({ error: error.message, code: error.code }, { status: error.status })
     console.error("[v0] Error deleting property:", error)
     return NextResponse.json({ error: "Failed to delete property" }, { status: 500 })
   }

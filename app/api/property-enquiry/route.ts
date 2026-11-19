@@ -10,6 +10,7 @@ import {
 } from "@/lib/email"
 import type { LeadSource } from "@/lib/models"
 import { verifyVerificationToken } from "@/lib/otp"
+import { createSessionToken } from "@/lib/session-token"
 
 const COMPANY_EMAIL = process.env.SMTP_USER || "land2land.comfobirth@gmail.com"
 
@@ -82,7 +83,7 @@ async function autoRegisterBuyer(
   }
 
   // Set auth_token cookie so user is immediately logged in
-  const token = Buffer.from(JSON.stringify({ userId, email: userEmail })).toString("base64")
+  const token = createSessionToken({ userId, email: userEmail })
   const cookieStore = await cookies()
   cookieStore.set("auth_token", token, {
     httpOnly: true,

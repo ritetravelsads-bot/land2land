@@ -1,5 +1,6 @@
 import { getDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
+import { ObjectId } from "mongodb"
 import { type NextRequest, NextResponse } from "next/server"
 
 // Disable caching for admin routes
@@ -120,6 +121,17 @@ export async function POST(req: NextRequest) {
 
     const db = await getDatabase()
     const body = await req.json()
+    let agentOwner: ObjectId | null = null
+    if (body.associate) {
+      if (!ObjectId.isValid(String(body.associate))) {
+        return NextResponse.json({ error: "Invalid agent owner ID" }, { status: 400 })
+      }
+      agentOwner = new ObjectId(String(body.associate))
+      const owner = await db.collection("users").findOne({ _id: agentOwner })
+      if (!owner || owner.user_type !== "associate") {
+        return NextResponse.json({ error: "Listings can only be assigned to an existing agent account" }, { status: 400 })
+      }
+    }
 
     // Generate slug from property name if not provided
     let slug = body.slug
@@ -146,11 +158,26 @@ export async function POST(req: NextRequest) {
       meta_keywords: body.meta_keywords,
     })
 
+    delete body.quota_consumed
+    delete body.quota_source
+    delete body.quota_subscription_id
+    delete body.quota_credit_lot_id
+    delete body.quota_cycle
+    delete body.reviewed_at
+    delete body.reviewed_by
+    const now = new Date()
     const property = {
       ...body,
+      ...(agentOwner ? {
+        associate: agentOwner,
+        review_status: "pending",
+        review_notes: "",
+        submission_count: 1,
+        submitted_at: now,
+      } : {}),
       slug,
-      created_at: new Date(),
-      updated_at: new Date(),
+      created_at: now,
+      updated_at: now,
     }
 
     const result = await db.collection("listings").insertOne(property)
