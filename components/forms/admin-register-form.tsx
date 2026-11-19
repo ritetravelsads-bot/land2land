@@ -41,7 +41,7 @@ export default function AdminRegisterForm() {
     setLoading(true)
 
     try {
-      const response = await fetch("/api/auth/register", {
+      const response = await fetch("/api/admin/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -59,7 +59,7 @@ export default function AdminRegisterForm() {
         throw new Error(data.error || "Registration failed")
       }
 
-      router.push("/admin/login?success=registered")
+      router.push("/admin/users")
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred")
     } finally {

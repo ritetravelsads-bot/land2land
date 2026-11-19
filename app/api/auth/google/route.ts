@@ -1,15 +1,95 @@
+import { createPublicKey, verify as verifySignature } from "node:crypto"
 import { MongoClient } from "mongodb"
 import { cookies } from "next/headers"
+import { createSessionToken } from "@/lib/session-token"
 
 const mongoUrl = process.env.MONGODB_URI || ""
 
 interface GoogleAuthPayload {
-  idToken: string
   email: string
   displayName: string
   photoURL: string | null
   uid: string
   userType?: "customer" | "associate"
+}
+
+type FirebaseKey = { kid: string; n: string; e: string; kty: string }
+
+class GoogleAuthError extends Error {
+  constructor(message: string, readonly status: number = 401) {
+    super(message)
+  }
+}
+
+type FirebaseClaims = {
+  aud?: string | string[]
+  iss?: string
+  sub?: string
+  exp?: number
+  iat?: number
+  email?: string
+  email_verified?: boolean | string
+  name?: string
+  picture?: string
+}
+
+const firebaseKeysUrl = "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com"
+
+function decodeFirebaseTokenPart<T>(part: string): T {
+  try {
+    return JSON.parse(Buffer.from(part, "base64url").toString()) as T
+  } catch {
+    throw new GoogleAuthError("Invalid Google identity token")
+  }
+}
+
+async function verifyFirebaseIdToken(token: string): Promise<GoogleAuthPayload> {
+  const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
+  if (!projectId) throw new GoogleAuthError("Google sign-in is not configured on the server", 503)
+  const parts = token.split(".")
+  if (parts.length !== 3) throw new GoogleAuthError("Invalid Google identity token")
+
+  const header = decodeFirebaseTokenPart<{ alg?: string; kid?: string }>(parts[0])
+  if (header.alg !== "RS256" || !header.kid) throw new GoogleAuthError("Invalid Google identity token")
+  const response = await fetch(firebaseKeysUrl, { next: { revalidate: 3600 } })
+  if (!response.ok) throw new GoogleAuthError("Unable to verify Google identity", 503)
+  const { keys } = await response.json() as { keys: FirebaseKey[] }
+  const jwk = keys.find((key) => key.kid === header.kid && key.kty === "RSA")
+  if (!jwk) throw new GoogleAuthError("Unable to verify Google identity", 503)
+
+  const key = createPublicKey({ key: jwk, format: "jwk" })
+  const valid = verifySignature(
+    "RSA-SHA256",
+    Buffer.from(`${parts[0]}.${parts[1]}`),
+    key,
+    Buffer.from(parts[2], "base64url"),
+  )
+  if (!valid) throw new GoogleAuthError("Invalid Google identity token")
+
+  const claims = decodeFirebaseTokenPart<FirebaseClaims>(parts[1])
+  const audiences = Array.isArray(claims.aud) ? claims.aud : [claims.aud]
+  const emailVerified = claims.email_verified === true || claims.email_verified === "true"
+  const now = Date.now() / 1000
+  if (
+    claims.iss !== `https://securetoken.google.com/${projectId}` ||
+    !audiences.includes(projectId) ||
+    !claims.sub ||
+    !claims.exp ||
+    claims.exp <= now ||
+    !claims.iat ||
+    claims.iat > now + 60 ||
+    !claims.email ||
+    !emailVerified
+  ) {
+    throw new GoogleAuthError("Google identity token is invalid, expired, or unverified")
+  }
+
+  return {
+    uid: claims.sub,
+    email: claims.email.toLowerCase(),
+    displayName: claims.name || "",
+    photoURL: claims.picture || null,
+  }
 }
 
 async function handleGoogleAuth(payload: GoogleAuthPayload) {
@@ -80,9 +160,7 @@ async function handleGoogleAuth(payload: GoogleAuthPayload) {
 
     // Create session token - user is guaranteed to be non-null here
     const currentUser = user!
-    const token = Buffer.from(
-      JSON.stringify({ userId: currentUser._id, email: currentUser.email })
-    ).toString("base64")
+    const token = createSessionToken({ userId: currentUser._id, email: currentUser.email })
 
     return {
       id: currentUser._id,
@@ -101,26 +179,23 @@ async function handleGoogleAuth(payload: GoogleAuthPayload) {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { idToken, email, displayName, photoURL, uid, userType } = body
+    const { idToken, userType } = body
 
-    if (!email || !uid) {
-      return new Response(
-        JSON.stringify({ error: "Missing required Google auth data" }),
-        {
-          status: 400,
-          headers: { "Content-Type": "application/json" },
-        }
-      )
+    if (userType !== undefined && userType !== "customer" && userType !== "associate") {
+      return new Response(JSON.stringify({ error: "This account type must be created by an administrator" }), {
+        status: 403,
+        headers: { "Content-Type": "application/json" },
+      })
+    }
+    if (typeof idToken !== "string" || !idToken) {
+      return new Response(JSON.stringify({ error: "Missing Google identity token" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      })
     }
 
-    const user = await handleGoogleAuth({
-      idToken,
-      email,
-      displayName,
-      photoURL,
-      uid,
-      userType,
-    })
+    const verifiedIdentity = await verifyFirebaseIdToken(idToken)
+    const user = await handleGoogleAuth({ ...verifiedIdentity, userType })
 
     // Set secure HTTP-only cookie
     const cookieStore = await cookies()
@@ -157,7 +232,7 @@ export async function POST(request: Request) {
       error instanceof Error ? error.message : "Google authentication failed"
 
     return new Response(JSON.stringify({ error: errorMessage }), {
-      status: 500,
+      status: error instanceof GoogleAuthError ? error.status : 500,
       headers: { "Content-Type": "application/json" },
     })
   }

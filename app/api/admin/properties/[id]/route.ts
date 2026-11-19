@@ -2,6 +2,7 @@ import { getDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
 import { ObjectId } from "mongodb"
 import { type NextRequest, NextResponse } from "next/server"
+import { AgentSubscriptionError, removeListingWithQuotaRefund, parseObjectId } from "@/lib/agent-subscriptions"
 
 // Disable caching for this route
 export const dynamic = "force-dynamic"
@@ -92,9 +93,28 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 })
     }
 
-    // Remove any _id field from the body to prevent conflicts
+    // Keep moderation and quota state on the dedicated review/quota workflow.
+    const currentProperty = await db.collection("listings").findOne({ _id: objectId })
+    if (!currentProperty) return NextResponse.json({ error: "Property not found" }, { status: 404 })
+    if (body.review_status !== undefined && body.review_status !== currentProperty.review_status) {
+      return NextResponse.json({ error: "Use the review queue to approve or reject a listing." }, { status: 409 })
+    }
+    if (body.associate !== undefined && String(body.associate || "") !== String(currentProperty.associate || "")) {
+      return NextResponse.json({ error: "Agent ownership cannot be changed from the property editor." }, { status: 409 })
+    }
     delete body._id
-    
+    delete body.review_status
+    delete body.review_notes
+    delete body.reviewed_at
+    delete body.reviewed_by
+    delete body.quota_consumed
+    delete body.quota_source
+    delete body.quota_subscription_id
+    delete body.quota_credit_lot_id
+    delete body.quota_cycle
+    delete body.quota_refunded_at
+    delete body.associate
+
     // Generate slug from property name if not provided or if property name changed
     let slug = body.slug
     if (!slug && body.property_name) {
@@ -174,25 +194,17 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const db = await getDatabase()
-    
-    let objId
-    try {
-      objId = new ObjectId(id)
-    } catch (e) {
-      console.error("[v0] Invalid ObjectId format for deletion:", id, e)
-      return NextResponse.json({ error: "Invalid property ID format" }, { status: 400 })
-    }
-
-    const result = await db.collection("listings").deleteOne({ _id: objId })
-
-    if (result.deletedCount === 0) {
-      return NextResponse.json({ error: "Property not found" }, { status: 404 })
-    }
-
+    await removeListingWithQuotaRefund({
+      listingId: id,
+      actorId: parseObjectId(user._id, "admin ID"),
+      reason: "Admin deleted published listing",
+    })
     return NextResponse.json({ success: true })
   } catch (error) {
+    if (error instanceof AgentSubscriptionError) {
+      return NextResponse.json({ error: error.message, code: error.code }, { status: error.status })
+    }
     console.error("[v0] Error deleting property:", error)
-    return NextResponse.json({ error: "Failed to delete property", details: String(error) }, { status: 500 })
+    return NextResponse.json({ error: "Failed to delete property" }, { status: 500 })
   }
 }

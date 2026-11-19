@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import AgentSubscriptionSummaryCard from "@/components/associate/agent-subscription-summary-card"
+
 
 export default function AssociateDashboardPage() {
   const [stats, setStats] = useState({
@@ -81,6 +83,8 @@ export default function AssociateDashboardPage() {
           <p className="text-2xl font-bold text-primary mt-2">{stats.rating.toFixed(1)}</p>
         </div>
       </div>
+
+      <AgentSubscriptionSummaryCard />
 
       <div className="space-y-3">
         <h2 className="text-lg font-semibold text-foreground">Quick Actions</h2>

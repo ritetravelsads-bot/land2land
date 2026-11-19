@@ -20,6 +20,11 @@ export async function POST(request: Request) {
 
     const body = await request.json()
     const { username, email, password, phone_number, user_type } = body
+    const userType = user_type || "customer"
+
+    if (userType !== "customer" && userType !== "associate") {
+      return NextResponse.json({ error: "This account type must be created by an administrator." }, { status: 403 })
+    }
 
     // Validate required fields
     if (!username || !email || !password || !phone_number) {
@@ -68,7 +73,6 @@ export async function POST(request: Request) {
     const hashedPassword = await bcrypt.hash(password, 10)
 
     // Create user
-    const userType = user_type || "customer"
     const result = await collection.insertOne({
       username: username.toLowerCase(),
       email: email.toLowerCase(),

@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Package, Users, Star, MessageSquare, Building2, MapPin, Zap, ArrowRight, UserPlus } from "lucide-react"
 import PageHeader from "@/components/dashboard/page-header"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import AgentSubscriptionAnalytics from "@/components/admin/agent-subscription-analytics"
 
 export default function AdminDashboardPage() {
   const [stats, setStats] = useState({
@@ -100,6 +101,8 @@ export default function AdminDashboardPage() {
           )
         })}
       </div>
+
+      <AgentSubscriptionAnalytics />
 
       {/* Quick Actions and Configuration */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
