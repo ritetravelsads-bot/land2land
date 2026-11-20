@@ -35,12 +35,12 @@ export default function MedianPopularLocations() {
 
   return (
     <section aria-labelledby="app-locations-heading" className="py-5">
-      <div className="mb-3 flex items-end justify-between gap-3 px-4">
+      <div className="mb-4 flex items-end justify-between gap-3 px-5 sm:px-6">
         <div>
-          <h2 id="app-locations-heading" className="text-base font-bold">Explore popular locations</h2>
-          <p className="mt-0.5 text-xs text-muted-foreground">Places with published land listings.</p>
+          <h2 id="app-locations-heading" className="text-[17px] font-bold tracking-[-0.02em]">Explore popular locations</h2>
+          <p className="mt-0.5 text-[11px] text-muted-foreground">Places with published land listings.</p>
         </div>
-        <MapPin className="mb-1 size-5 text-primary" aria-hidden="true" />
+        <span className="mb-1 flex size-9 items-center justify-center rounded-xl bg-[#edf3e9] text-primary"><MapPin className="size-[17px]" aria-hidden="true" /></span>
       </div>
 
       {isLoading ? (
@@ -53,7 +53,7 @@ export default function MedianPopularLocations() {
             <Link
               key={city}
               href={`/properties?city=${encodeURIComponent(city)}`}
-              className="group relative flex h-28 w-40 shrink-0 snap-start items-end overflow-hidden rounded-2xl border border-border bg-muted p-3 text-white shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="group relative flex h-[132px] w-[178px] shrink-0 snap-start items-end overflow-hidden rounded-[19px] border border-white/20 bg-muted p-3.5 text-white shadow-[0_8px_22px_-15px_rgba(10,25,10,0.75)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {(property.main_thumbnail || property.images?.[0]) && (
                 <img

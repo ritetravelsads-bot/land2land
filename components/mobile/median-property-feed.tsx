@@ -81,41 +81,41 @@ function PropertyCard({ listing }: { listing: ListingSummary }) {
   }
 
   return (
-    <article className="group relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow hover:shadow-md">
+    <article className="group relative overflow-hidden rounded-[19px] border border-border/80 bg-card shadow-[0_7px_24px_-19px_rgba(30,50,30,0.55)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-18px_rgba(30,50,30,0.45)]">
       <Link href={getPropertyUrl(listing)} className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring">
-        <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden bg-muted">
+        <div className="relative flex aspect-[1.32/1] items-center justify-center overflow-hidden bg-[#e9eee5]">
           {image ? (
             <img
               src={image}
               alt={listing.property_name || "Land listing"}
               loading="lazy"
               decoding="async"
-              className="absolute inset-0 size-full object-cover transition-transform duration-300 group-hover:scale-105"
+              className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
             />
           ) : (
-            <Map className="size-10 text-muted-foreground/45" aria-hidden="true" />
+            <Map className="size-10 text-primary/40" aria-hidden="true" />
           )}
+          <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/25 to-transparent" aria-hidden="true" />
           {(listing.is_featured || listing.is_verified) && (
-            <span className="absolute left-2.5 top-2.5 rounded-full bg-card/95 px-2.5 py-1 text-[10px] font-semibold text-primary shadow-sm">
+            <span className="absolute left-2.5 top-2.5 inline-flex items-center gap-1 rounded-full border border-white/60 bg-white/95 px-2.5 py-1 text-[9px] font-bold tracking-wide text-primary shadow-sm">
               {listing.is_verified ? "Verified" : "Featured"}
             </span>
           )}
         </div>
-        <div className="flex min-h-32 flex-col gap-2 p-3">
-          <h3 className="line-clamp-2 text-sm font-semibold text-foreground">{listing.property_name || "Land listing"}</h3>
+        <div className="flex min-h-[132px] flex-col gap-2.5 p-3">
+          <h3 className="line-clamp-2 text-[13px] font-bold leading-[1.3] tracking-[-0.01em] text-foreground">{listing.property_name || "Land listing"}</h3>
           {(listing.property_type || location) && (
-            <p className="flex items-center gap-1 text-[11px] text-muted-foreground">
-              {listing.property_type && <span className="truncate">{listing.property_type}</span>}
-              {listing.property_type && location && <span aria-hidden="true">·</span>}
-              {location && <><MapPin className="size-3 shrink-0" aria-hidden="true" /><span className="truncate">{location}</span></>}
-            </p>
+            <div className="flex min-w-0 flex-col gap-1.5 text-[10px] font-medium text-muted-foreground">
+              {location && <p className="flex min-w-0 items-center gap-1"><MapPin className="size-3 shrink-0 text-primary/80" aria-hidden="true" /><span className="truncate">{location}</span></p>}
+              {listing.property_type && <p className="truncate pl-4 text-[9px] uppercase tracking-[0.08em]">{listing.property_type}</p>}
+            </div>
           )}
-          <div className="mt-auto flex items-end justify-between gap-2 border-t border-border pt-2">
-            <p className="line-clamp-1 text-xs font-bold text-primary">
+          <div className="mt-auto flex items-end justify-between gap-1.5 border-t border-border/70 pt-2.5">
+            <p className="min-w-0 truncate text-[12px] font-bold leading-tight text-primary">
               {listing.price_range || formatPriceRange(listing.lowest_price, listing.max_price) || "Price on request"}
             </p>
             {area && (
-              <span className="flex shrink-0 items-center gap-1 text-[10px] text-muted-foreground">
+              <span className="flex shrink-0 items-center gap-1 rounded-md bg-muted/70 px-1.5 py-1 text-[9px] font-medium text-muted-foreground">
                 <Maximize2 className="size-3" aria-hidden="true" />
                 {area}
               </span>
@@ -128,9 +128,9 @@ function PropertyCard({ listing }: { listing: ListingSummary }) {
         onClick={toggleSaved}
         aria-label={isSaved ? `Remove ${listing.property_name || "property"} from saved properties` : `Save ${listing.property_name || "property"}`}
         aria-pressed={isSaved}
-        className="absolute right-2.5 top-2.5 flex size-10 items-center justify-center rounded-full bg-card/95 text-foreground shadow-sm transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="absolute right-2.5 top-2.5 flex size-9 items-center justify-center rounded-full border border-white/60 bg-white/95 text-foreground shadow-[0_2px_9px_rgba(0,0,0,0.14)] transition-transform hover:scale-105 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
-        <Heart className={`size-5 ${isSaved ? "fill-primary text-primary" : ""}`} aria-hidden="true" />
+        <Heart className={`size-[17px] ${isSaved ? "fill-primary text-primary" : ""}`} aria-hidden="true" />
       </button>
     </article>
   )
@@ -151,10 +151,10 @@ export default function MedianPropertyFeed({
 
   return (
     <section aria-labelledby={`${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-heading`} className="py-5">
-      <div className="mb-3 flex items-end justify-between gap-3 px-4">
+      <div className="mb-4 flex items-end justify-between gap-3 px-5 sm:px-6">
         <div>
-          <h2 id={`${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-heading`} className="text-lg font-bold text-foreground">{title}</h2>
-          <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
+          <h2 id={`${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-heading`} className="text-[18px] font-bold tracking-[-0.025em] text-foreground">{title}</h2>
+          <p className="mt-0.5 text-[11px] text-muted-foreground">{description}</p>
         </div>
         <Link href={href} className="flex min-h-10 shrink-0 items-center gap-1 text-xs font-semibold text-primary">
           See all <ArrowRight className="size-3.5" aria-hidden="true" />

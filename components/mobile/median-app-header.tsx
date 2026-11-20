@@ -5,7 +5,7 @@ import { Bell, UserRound } from "lucide-react"
 export default function MedianAppHeader() {
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/95 shadow-[0_3px_14px_-13px_rgba(30,50,30,0.45)] backdrop-blur-md">
         <nav aria-label="App navigation" className="mx-auto flex h-full max-w-2xl items-center justify-between px-4">
           <Link href="/" aria-label="Land2Land home" className="flex min-h-11 items-center">
             <Image
