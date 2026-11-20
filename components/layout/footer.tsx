@@ -3,10 +3,17 @@
 import type React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Phone, Mail, ChevronDown, Send, Instagram, Facebook, Youtube } from "lucide-react"
 import { toast } from "sonner"
 import { getCorrectHref } from "@/lib/link-validator"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -15,6 +22,14 @@ export default function Footer() {
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [formLoading, setFormLoading] = useState(false)
   const [formError, setFormError] = useState("")
+  const [callbackOpen, setCallbackOpen] = useState(false)
+
+  useEffect(() => {
+    if (window.sessionStorage.getItem("land2land-callback-popup-dismissed") === "1") return
+
+    const timer = window.setTimeout(() => setCallbackOpen(true), 8000)
+    return () => window.clearTimeout(timer)
+  }, [])
 
   const toggleSection = (section: string) => {
     setExpandedSections((prev) => ({
@@ -50,6 +65,8 @@ export default function Footer() {
         description: "Our team will contact you within 30 minutes.",
       })
       setTimeout(() => {
+        window.sessionStorage.setItem("land2land-callback-popup-dismissed", "1")
+        setCallbackOpen(false)
         setFormData({ name: "", phone: "", message: "" })
         setFormSubmitted(false)
       }, 3000)
@@ -237,62 +254,72 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Unique Enquiry Form */}
-          <div className="bg-gradient-to-br from-[#125007] to-[#4a7c2e] rounded-2xl p-8 text-white shadow-lg">
-            <h3 className="text-xl font-bold mb-2">Get Instant Callback</h3>
-            <p className="text-sm text-green-100 mb-6">
-              Get expert advice on your land investment. Our team will contact you within 30 minutes.
-            </p>
+          <Dialog
+            open={callbackOpen}
+            onOpenChange={(open) => {
+              setCallbackOpen(open)
+              if (!open) window.sessionStorage.setItem("land2land-callback-popup-dismissed", "1")
+            }}
+          >
+            <DialogContent className="overflow-hidden border-0 bg-gradient-to-br from-[#125007] to-[#4a7c2e] p-0 text-white sm:rounded-2xl">
+              <div className="p-6 sm:p-8">
+                <DialogHeader className="mb-6 text-left">
+                  <DialogTitle className="text-2xl font-bold text-white">Get Instant Callback</DialogTitle>
+                  <DialogDescription className="text-green-100">
+                    Get expert advice on your land investment. Our team will contact you within 30 minutes.
+                  </DialogDescription>
+                </DialogHeader>
 
-            {formSubmitted ? (
-              <div className="flex flex-col items-center justify-center py-12 text-center">
-                <div className="w-16 h-16 bg-green-400 rounded-full flex items-center justify-center mb-4">
-                  <Send size={28} className="text-white" />
-                </div>
-                <p className="text-lg font-semibold mb-1">Thank you!</p>
-                <p className="text-sm text-blue-100">We'll contact you soon</p>
-              </div>
-            ) : (
-              <form onSubmit={handleFormSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="footer-callback-name" className="sr-only">Your Name</label>
-                  <input
-                    id="footer-callback-name"
-                    type="text"
-                    placeholder="Your Name"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-green-100 text-sm focus:outline-none focus:border-white/40 transition-colors"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="footer-callback-phone" className="sr-only">Phone Number</label>
-                  <input
-                    id="footer-callback-phone"
-                    type="tel"
-                    placeholder="Phone Number"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
-                    className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-green-100 text-sm focus:outline-none focus:border-white/40 transition-colors"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  disabled={formLoading}
-                  className="w-full bg-white hover:bg-gray-100 disabled:opacity-70 disabled:cursor-not-allowed text-[#125007] font-semibold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 flex items-center justify-center gap-2"
-                >
-                  <span>{formLoading ? "Submitting..." : "Get Callback"}</span>
-                  {!formLoading && <Send size={16} aria-hidden="true" />}
-                </button>
-                {formError && (
-                  <p className="text-xs text-red-300 text-center">{formError}</p>
+                {formSubmitted ? (
+                  <div className="flex flex-col items-center justify-center py-8 text-center">
+                    <div className="mb-4 flex size-16 items-center justify-center rounded-full bg-green-400">
+                      <Send size={28} className="text-white" />
+                    </div>
+                    <p className="mb-1 text-lg font-semibold">Thank you!</p>
+                    <p className="text-sm text-green-100">Our team will contact you soon.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleFormSubmit} className="flex flex-col gap-4">
+                    <div>
+                      <label htmlFor="callback-popup-name" className="mb-1.5 block text-sm font-medium">Your name</label>
+                      <input
+                        id="callback-popup-name"
+                        type="text"
+                        autoComplete="name"
+                        placeholder="Your Name"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+                        className="w-full rounded-lg border border-white/30 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-green-100 focus:outline-none focus:ring-2 focus:ring-white/70"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="callback-popup-phone" className="mb-1.5 block text-sm font-medium">Phone number</label>
+                      <input
+                        id="callback-popup-phone"
+                        type="tel"
+                        autoComplete="tel"
+                        placeholder="Phone Number"
+                        required
+                        value={formData.phone}
+                        onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
+                        className="w-full rounded-lg border border-white/30 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-green-100 focus:outline-none focus:ring-2 focus:ring-white/70"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={formLoading}
+                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-white py-3 font-semibold text-[#125007] transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-70"
+                    >
+                      <span>{formLoading ? "Submitting..." : "Get Callback"}</span>
+                      {!formLoading && <Send size={16} aria-hidden="true" />}
+                    </button>
+                    {formError && <p role="alert" className="text-center text-xs text-red-100">{formError}</p>}
+                  </form>
                 )}
-                <p className="text-xs text-green-100 text-center">Get expert advice on your land investment.</p>
-              </form>
-            )}
-          </div>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
 
         {/* Links Sections */}

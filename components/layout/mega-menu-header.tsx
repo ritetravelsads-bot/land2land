@@ -168,7 +168,7 @@ export default function MegaMenuHeader() {
 
             <Link
               href="/find-associate"
-              className="px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
+              className="hidden xl:inline-flex px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors"
             >
               Find Associate
             </Link>
@@ -195,7 +195,7 @@ export default function MegaMenuHeader() {
 
             <Link
               href="/investments"
-              className="px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors flex items-center gap-1 whitespace-nowrap"
+              className="hidden xl:flex px-2.5 py-2 text-sm font-medium text-gray-700 hover:text-[#125007] transition-colors items-center gap-1 whitespace-nowrap"
             >
               <TrendingUp className="h-4 w-4" />
               Investments
@@ -203,7 +203,7 @@ export default function MegaMenuHeader() {
           </div>
 
           {/* Desktop Search */}
-          <div className="hidden lg:block relative flex-1 max-w-md mx-4">
+          <div className="hidden xl:block relative flex-1 max-w-md mx-4">
             <HeaderSearch />
           </div>
 
@@ -247,12 +247,12 @@ export default function MegaMenuHeader() {
                     asChild
                     variant="outline"
                     size="sm"
-                    className="text-sm h-9 border-[#125007] text-[#125007] bg-transparent hover:bg-[#125007]/5 flex-none"
+                    className="max-w-[140px] whitespace-normal text-center text-sm leading-tight border-[#125007] text-[#125007] bg-transparent hover:bg-[#125007]/5 flex-none"
                   >
-                    <Link href="/auth/login">List Land</Link>
+                    <Link href="/auth/login">Post Here to Sell Land</Link>
                   </Button>
-                  <Button asChild size="sm" className="text-sm h-9 bg-[#125007] hover:bg-[#1d3610] flex-none">
-                    <Link href="/auth/register">Sign Up</Link>
+                  <Button asChild size="sm" className="max-w-[140px] whitespace-normal text-center text-sm leading-tight bg-[#125007] hover:bg-[#1d3610] flex-none">
+                    <Link href="/auth/register">Post Here to Buy Land</Link>
                   </Button>
                 </>
               )
@@ -389,10 +389,10 @@ export default function MegaMenuHeader() {
                       size="sm"
                       className="text-xs h-9 flex-1 border-[#125007] text-[#125007] bg-transparent"
                     >
-                      <Link href="/auth/login">List Land</Link>
+                      <Link href="/auth/login" className="whitespace-normal text-center leading-tight">Post Here to Sell Land</Link>
                     </Button>
                     <Button asChild size="sm" className="text-xs h-9 flex-1 bg-[#125007] hover:bg-[#1d3610]">
-                      <Link href="/auth/register">Sign Up</Link>
+                      <Link href="/auth/register" className="whitespace-normal text-center leading-tight">Post Here to Buy Land</Link>
                     </Button>
                   </>
                 )}

@@ -231,7 +231,7 @@ function BannerSlider() {
   }, [isHydrated, currentSlide])
 
   return (
-    <div className="relative w-full overflow-hidden bg-gray-100 aspect-[4/5] sm:aspect-[16/9] md:aspect-[16/6]">
+    <div className="home-banner-container relative w-full overflow-hidden bg-gray-100">
       {/* Static first slide - always visible initially for instant LCP */}
       <FirstSlideStatic />
 
