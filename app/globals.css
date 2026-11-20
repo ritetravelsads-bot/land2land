@@ -862,6 +862,42 @@ header.header-scroll-aware.header-scrolled {
   height: calc(64px + env(safe-area-inset-top, 0px)) !important;
 }
 
+.median-app .bottom-nav-container,
+.pwa-standalone .bottom-nav-container {
+  padding: 0 2px env(safe-area-inset-bottom, 0px);
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.median-app .bottom-nav,
+.pwa-standalone .bottom-nav {
+  min-height: 5rem;
+  margin: 0 2px;
+  padding: 0.5rem 0.5rem 0.35rem;
+  border: 1px solid color-mix(in oklab, var(--border) 55%, transparent);
+  border-radius: 2.5rem;
+  background: color-mix(in oklab, white 94%, transparent);
+  box-shadow: 0 -5px 26px -13px rgba(25, 45, 25, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.median-app .fab,
+.pwa-standalone .fab {
+  top: -1.15rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 8px 20px -8px color-mix(in oklab, var(--primary) 75%, transparent), 0 0 0 4px white;
+}
+
+.median-app .bottom-nav-item,
+.pwa-standalone .bottom-nav-item {
+  gap: 0.35rem;
+  font-size: 0.7rem;
+}
+
 .median-app .mobile-navigation,
 .pwa-standalone .mobile-navigation {
   top: calc(64px + env(safe-area-inset-top, 0px)) !important;

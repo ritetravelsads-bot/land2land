@@ -70,29 +70,29 @@ export default function BottomNav() {
 
       <nav aria-label="Bottom navigation" className="bottom-nav-container">
         <div className="bottom-nav">
+          <Link href="/" className={`bottom-nav-item ${pathname === "/" ? "active" : ""}`}>
+            <Home size={20} />
+            <span>Home</span>
+          </Link>
+
           <Link href="/properties" className={`bottom-nav-item ${isActive("/properties") ? "active" : ""}`}>
             <Search size={20} />
-            <span>Search</span>
+            <span>Explore</span>
+          </Link>
+
+          {/* Floating Action Button for Add Property - Always visible */}
+          <Link
+            href={isBuilder ? "/associate/properties/new" : "/auth/login?redirect=/associate/properties/new"}
+            className="fab"
+            aria-label="Add property"
+            title="Add Property"
+          >
+            <Plus size={27} />
           </Link>
 
           <Link href="/favorites" className={`bottom-nav-item ${isActive("/favorites") ? "active" : ""}`}>
             <Heart size={20} />
             <span>Saved</span>
-          </Link>
-
-          {/* Floating Action Button for Add Property - Always visible */}
-          <Link 
-            href={isBuilder ? "/associate/properties/new" : "/auth/login?redirect=/associate/properties/new"} 
-            className="fab" 
-            aria-label="Add property" 
-            title="Add Property"
-          >
-            <Plus size={24} />
-          </Link>
-
-          <Link href="/" className={`bottom-nav-item ${pathname === "/" ? "active" : ""}`}>
-            <Home size={20} />
-            <span>Home</span>
           </Link>
 
           <Link

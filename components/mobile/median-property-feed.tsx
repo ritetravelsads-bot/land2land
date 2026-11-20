@@ -83,7 +83,7 @@ function PropertyCard({ listing }: { listing: ListingSummary }) {
   return (
     <article className="group relative overflow-hidden rounded-[19px] border border-border/80 bg-card shadow-[0_7px_24px_-19px_rgba(30,50,30,0.55)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-18px_rgba(30,50,30,0.45)]">
       <Link href={getPropertyUrl(listing)} className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring">
-        <div className="relative flex aspect-[1.32/1] items-center justify-center overflow-hidden bg-[#e9eee5]">
+        <div className="relative flex aspect-[1.48/1] items-center justify-center overflow-hidden bg-[#e9eee5]">
           {image ? (
             <img
               src={image}
@@ -97,7 +97,7 @@ function PropertyCard({ listing }: { listing: ListingSummary }) {
           )}
           <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-black/25 to-transparent" aria-hidden="true" />
           {(listing.is_featured || listing.is_verified) && (
-            <span className="absolute left-2.5 top-2.5 inline-flex items-center gap-1 rounded-full border border-white/60 bg-white/95 px-2.5 py-1 text-[9px] font-bold tracking-wide text-primary shadow-sm">
+            <span className={`absolute left-2.5 top-2.5 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[9px] font-bold tracking-wide text-white shadow-sm ${listing.is_verified ? "bg-emerald-700" : "bg-primary/90"}`}>
               {listing.is_verified ? "Verified" : "Featured"}
             </span>
           )}
@@ -151,15 +151,14 @@ export default function MedianPropertyFeed({
 
   return (
     <section aria-labelledby={`${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-heading`} className="py-5">
-      <div className="mb-4 flex items-end justify-between gap-3 px-5 sm:px-6">
-        <div>
-          <h2 id={`${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-heading`} className="text-[18px] font-bold tracking-[-0.025em] text-foreground">{title}</h2>
-          <p className="mt-0.5 text-[11px] text-muted-foreground">{description}</p>
+        <div className="mb-3 flex items-center justify-between gap-3 px-5 sm:px-6 lg:px-10">
+          <div className="min-w-0">
+            <h2 id={`${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-heading`} className="border-l-[5px] border-primary pl-3 text-[19px] font-bold tracking-[-0.03em] text-foreground">{title}</h2>
+          </div>
+          <Link href={href} className="flex min-h-10 shrink-0 items-center gap-1 text-xs font-semibold text-primary">
+            See All <ArrowRight className="size-3.5" aria-hidden="true" />
+          </Link>
         </div>
-        <Link href={href} className="flex min-h-10 shrink-0 items-center gap-1 text-xs font-semibold text-primary">
-          See all <ArrowRight className="size-3.5" aria-hidden="true" />
-        </Link>
-      </div>
 
       {isLoading ? (
         <div className={layout === "grid" ? "grid grid-cols-2 gap-3 px-4" : "flex gap-3 overflow-hidden px-4"} aria-label={`Loading ${title.toLowerCase()}`}>
