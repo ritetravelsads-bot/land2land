@@ -1440,3 +1440,180 @@ header.header-scroll-aware.header-scrolled {
 .blog-content a:visited {
   @apply text-primary/80;
 }
+
+/* ========================================================================== 
+   LAND2LAND MOBILE APP — REFERENCE SCREEN DESIGN OVERRIDES
+   Scoped to Median / standalone app so the desktop website is not changed.
+   These styles complement the Tailwind classes in the mobile components.
+   ========================================================================== */
+
+:root {
+  --land2land-green: #08752b;
+  --land2land-green-dark: #064d22;
+  --land2land-green-soft: #edf5eb;
+  --land2land-page: #fbfbf8;
+  --land2land-text: #111b22;
+  --land2land-muted: #68717a;
+}
+
+.median-app,
+.pwa-standalone {
+  background: var(--land2land-page);
+  color: var(--land2land-text);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.median-app body,
+.pwa-standalone body {
+  min-height: 100%;
+  margin: 0;
+  background: var(--land2land-page);
+  color: var(--land2land-text);
+  font-family: "Geist", "Geist Fallback", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.median-app main,
+.pwa-standalone main {
+  width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+  background: var(--land2land-page);
+}
+
+/* Prevent accidental sideways page scrolling; horizontal carousels remain usable. */
+.median-app #__next,
+.pwa-standalone #__next {
+  min-height: 100%;
+  overflow-x: clip;
+}
+
+.median-app img,
+.pwa-standalone img {
+  max-width: 100%;
+}
+
+/* Keep mobile app headings compact and consistent with the supplied design. */
+@media (max-width: 767px) {
+  .median-app main h1,
+  .pwa-standalone main h1 {
+    font-size: clamp(1.8rem, 7vw, 2.65rem);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+  }
+
+  .median-app main h2,
+  .pwa-standalone main h2 {
+    font-size: 1.2rem;
+    line-height: 1.25;
+    letter-spacing: -0.035em;
+  }
+
+  .median-app main h3,
+  .pwa-standalone main h3 {
+    font-size: 1rem;
+    line-height: 1.3;
+  }
+
+  .median-app main p,
+  .pwa-standalone main p {
+    line-height: 1.45;
+  }
+}
+
+/* Native-feeling horizontal category, property and location carousels. */
+.median-app .scrollbar-hide,
+.pwa-standalone .scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.median-app .scrollbar-hide::-webkit-scrollbar,
+.pwa-standalone .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Refined tap feedback without overriding the centering of the raised plus button. */
+@media (pointer: coarse) {
+  .median-app a,
+  .median-app button,
+  .pwa-standalone a,
+  .pwa-standalone button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .median-app a:active,
+  .median-app button:active,
+  .pwa-standalone a:active,
+  .pwa-standalone button:active {
+    transition-duration: 100ms;
+  }
+}
+
+/* Floating bottom navigation used by the updated BottomNav component. */
+.median-app nav[aria-label="Bottom navigation"],
+.pwa-standalone nav[aria-label="Bottom navigation"] {
+  isolation: isolate;
+  padding-left: max(8px, env(safe-area-inset-left, 0px));
+  padding-right: max(8px, env(safe-area-inset-right, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.median-app nav[aria-label="Bottom navigation"] > div,
+.pwa-standalone nav[aria-label="Bottom navigation"] > div {
+  overflow: visible;
+}
+
+.median-app nav[aria-label="Bottom navigation"] a,
+.pwa-standalone nav[aria-label="Bottom navigation"] a {
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+}
+
+/* Keep the central add action above the white navigation surface. */
+.median-app nav[aria-label="Bottom navigation"] a[aria-label="Add or sell property"],
+.pwa-standalone nav[aria-label="Bottom navigation"] a[aria-label="Add or sell property"] {
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+/* Avoid hover-only motion on touch screens. */
+@media (hover: none) {
+  .median-app .group:hover img,
+  .pwa-standalone .group:hover img {
+    transform: none;
+  }
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .median-app *,
+  .median-app *::before,
+  .median-app *::after,
+  .pwa-standalone *,
+  .pwa-standalone *::before,
+  .pwa-standalone *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Small-screen viewport stability for modern iOS and Android WebViews. */
+@supports (height: 100dvh) {
+  .median-app,
+  .pwa-standalone {
+    min-height: 100dvh;
+  }
+
+  .median-app body,
+  .pwa-standalone body {
+    min-height: 100dvh;
+  }
+}
