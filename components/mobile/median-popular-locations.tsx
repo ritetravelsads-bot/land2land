@@ -3,7 +3,7 @@
 
 import Link from "next/link"
 import useSWR from "swr"
-import { ArrowRight, MapPin, Map } from "lucide-react"
+import { ArrowRight, MapPin, Map as MapIcon } from "lucide-react"
 
 interface PropertySummary {
   city?: string
@@ -146,7 +146,7 @@ export default function MedianPopularLocations() {
                 />
               ) : (
                 <div className="absolute inset-0 flex items-center justify-center bg-[#e9efe5]">
-                  <Map className="size-8 text-primary/40" aria-hidden="true" />
+                  <MapIcon className="size-8 text-primary/40" aria-hidden="true" />
                 </div>
               )}
 
