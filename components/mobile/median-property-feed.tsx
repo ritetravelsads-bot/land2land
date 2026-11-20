@@ -83,7 +83,7 @@ function PropertyCard({ listing }: { listing: ListingSummary }) {
   return (
     <article className="group relative overflow-hidden rounded-[19px] border border-border/80 bg-card shadow-[0_7px_24px_-19px_rgba(30,50,30,0.55)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-18px_rgba(30,50,30,0.45)]">
       <Link href={getPropertyUrl(listing)} className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring">
-        <div className="relative flex aspect-[1.48/1] items-center justify-center overflow-hidden bg-[#e9eee5]">
+        <div className="relative flex aspect-[1.9/1] items-center justify-center overflow-hidden bg-[#e9eee5]">
           {image ? (
             <img
               src={image}
@@ -102,24 +102,19 @@ function PropertyCard({ listing }: { listing: ListingSummary }) {
             </span>
           )}
         </div>
-        <div className="flex min-h-[132px] flex-col gap-2.5 p-3">
-          <h3 className="line-clamp-2 text-[13px] font-bold leading-[1.3] tracking-[-0.01em] text-foreground">{listing.property_name || "Land listing"}</h3>
-          {(listing.property_type || location) && (
-            <div className="flex min-w-0 flex-col gap-1.5 text-[10px] font-medium text-muted-foreground">
-              {location && <p className="flex min-w-0 items-center gap-1"><MapPin className="size-3 shrink-0 text-primary/80" aria-hidden="true" /><span className="truncate">{location}</span></p>}
-              {listing.property_type && <p className="truncate pl-4 text-[9px] uppercase tracking-[0.08em]">{listing.property_type}</p>}
-            </div>
-          )}
-          <div className="mt-auto flex items-end justify-between gap-1.5 border-t border-border/70 pt-2.5">
-            <p className="min-w-0 truncate text-[12px] font-bold leading-tight text-primary">
-              {listing.price_range || formatPriceRange(listing.lowest_price, listing.max_price) || "Price on request"}
-            </p>
-            {area && (
-              <span className="flex shrink-0 items-center gap-1 rounded-md bg-muted/70 px-1.5 py-1 text-[9px] font-medium text-muted-foreground">
-                <Maximize2 className="size-3" aria-hidden="true" />
+        <div className="flex min-h-[112px] flex-col gap-1.5 p-3 sm:p-3.5">
+          <h3 className="line-clamp-1 text-[13px] font-bold leading-[1.3] tracking-[-0.02em] text-foreground sm:text-[15px]">{listing.property_name || "Land listing"}</h3>
+          {location && <p className="flex min-w-0 items-center gap-1 text-[10px] font-medium text-muted-foreground sm:text-[12px]"><MapPin className="size-3 shrink-0 text-muted-foreground" aria-hidden="true" /><span className="truncate">{location}</span></p>}
+          <div className="mt-auto flex items-center justify-between gap-1.5 border-t border-border/70 pt-2">
+            {area ? (
+              <span className="flex min-w-0 items-center gap-1 truncate text-[10px] font-medium text-muted-foreground sm:text-[12px]">
+                <Maximize2 className="size-3 shrink-0 text-primary" aria-hidden="true" />
                 {area}
               </span>
-            )}
+            ) : <span />}
+            <p className="min-w-0 truncate text-right text-[13px] font-bold leading-tight text-primary sm:text-[16px]">
+              {listing.price_range || formatPriceRange(listing.lowest_price, listing.max_price) || "Price on request"}
+            </p>
           </div>
         </div>
       </Link>

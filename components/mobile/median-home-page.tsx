@@ -39,7 +39,7 @@ const landServices = [
 export default function MedianHomePage() {
   return (
     <main className="land-app-home mx-auto min-h-screen w-full max-w-5xl overflow-hidden bg-background pb-8 text-foreground">
-      <section className="px-5 pb-3 pt-5 sm:px-6 lg:px-10">
+      <section className="px-5 pb-2 pt-5 sm:px-6 lg:px-10">
         <p className="flex items-center gap-2 text-[14px] font-semibold tracking-[-0.02em] text-muted-foreground"><Sprout className="size-4 text-primary" aria-hidden="true" />Explore land that fits your plans</p>
         <h1 className="mt-2 text-[28px] font-bold leading-[1.12] tracking-[-0.04em] text-foreground sm:text-[36px]">Find your place to <span className="text-primary">grow.</span></h1>
         <form action="/properties" method="get" role="search" className="mt-5 flex min-h-[58px] items-center gap-2.5 rounded-[18px] border border-border/80 bg-card p-1.5 pl-4 shadow-[0_5px_18px_-12px_rgba(25,55,30,0.35)] transition-shadow focus-within:border-primary/40 focus-within:ring-2 focus-within:ring-primary/15">
@@ -116,30 +116,6 @@ export default function MedianHomePage() {
         </div>
       </section>
 
-      <section aria-labelledby="app-resources-heading" className="px-5 py-5 sm:px-6">
-        <div className="mb-3 flex items-center gap-2.5">
-          <span className="flex size-9 items-center justify-center rounded-xl bg-[#edf3e9] text-primary"><FileCheck2 className="size-[18px]" aria-hidden="true" /></span>
-          <div>
-            <h2 id="app-resources-heading" className="text-[17px] font-bold tracking-[-0.02em]">Land buyer resources</h2>
-            <p className="text-[11px] text-muted-foreground">Helpful guides for a confident purchase</p>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 gap-2.5">
-          <Link href="/how-it-works" className="flex min-h-[62px] items-center justify-between gap-2 rounded-[15px] border border-border/80 bg-card p-3 text-[12px] font-semibold shadow-[0_3px_12px_-11px_rgba(30,50,30,0.4)]">How it works <ArrowRight className="size-4 shrink-0 text-primary" aria-hidden="true" /></Link>
-          <Link href="/state-land-portals" className="flex min-h-[62px] items-center justify-between gap-2 rounded-[15px] border border-border/80 bg-card p-3 text-[12px] font-semibold shadow-[0_3px_12px_-11px_rgba(30,50,30,0.4)]">State land portals <ArrowRight className="size-4 shrink-0 text-primary" aria-hidden="true" /></Link>
-          <Link href="/blogs" className="flex min-h-[62px] items-center justify-between gap-2 rounded-[15px] border border-border/80 bg-card p-3 text-[12px] font-semibold shadow-[0_3px_12px_-11px_rgba(30,50,30,0.4)]">Land buying guides <ArrowRight className="size-4 shrink-0 text-primary" aria-hidden="true" /></Link>
-          <Link href="/area-converter" className="flex min-h-[62px] items-center justify-between gap-2 rounded-[15px] border border-border/80 bg-card p-3 text-[12px] font-semibold shadow-[0_3px_12px_-11px_rgba(30,50,30,0.4)]">Area converter <ArrowRight className="size-4 shrink-0 text-primary" aria-hidden="true" /></Link>
-        </div>
-        <details className="group mt-3 rounded-[16px] border border-border/80 bg-card p-3.5">
-          <summary className="flex min-h-10 cursor-pointer list-none items-center justify-between gap-3 text-[13px] font-semibold [&::-webkit-details-marker]:hidden">
-            What should I check before buying land?
-            <ArrowRight className="size-4 shrink-0 rotate-90 text-muted-foreground transition-transform group-open:-rotate-90" aria-hidden="true" />
-          </summary>
-          <p className="pb-1 pt-2 text-[12px] leading-relaxed text-muted-foreground">
-            Review ownership and revenue records, land use, access, and boundaries. Requirements vary by state and parcel, so confirm details with local authorities or a qualified professional.
-          </p>
-        </details>
-      </section>
     </main>
   )
 }
