@@ -5,11 +5,14 @@ import { useSyncExternalStore } from "react"
 export type AppPlatform = "web" | "median-ios" | "median-android"
 
 export function detectPlatform(): AppPlatform {
-  if (typeof navigator === "undefined") return "web"
-  const ua = navigator.userAgent.toLowerCase()
-  const isMedian = ua.includes("median") || ua.includes("gonative")
+  if (typeof window === "undefined") return "web"
+  const ua = window.navigator.userAgent.toLowerCase()
+  const isMedian = Boolean((window as MedianWindow).median || (window as MedianWindow).gonative) || /median|gonative/.test(ua)
   if (!isMedian) return "web"
-  return /iphone|ipad|ipod/.test(ua) ? "median-ios" : "median-android"
+
+  const isIOS = /iphone|ipad|ipod/.test(ua) ||
+    (/macintosh/.test(ua) && window.navigator.maxTouchPoints > 1)
+  return isIOS ? "median-ios" : "median-android"
 }
 
 const noopSubscribe = () => () => {}

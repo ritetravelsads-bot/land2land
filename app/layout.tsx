@@ -7,6 +7,7 @@ import "./globals.css"
 import FrontendLayout from "@/components/layout/frontend-layout"
 import CustomHeadTags from "@/components/layout/custom-head-tags"
 import HeadTagsInjector from "@/components/layout/head-tags-injector"
+import { isMedianUserAgent } from "@/lib/median-server"
 
 // Disable caching for this layout to ensure custom head tags are always fresh
 export const revalidate = 0
@@ -103,8 +104,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const userAgent = (await headers()).get("user-agent") ?? ""
-  const isMedianApp = /median|gonative/i.test(userAgent)
+  const userAgent = (await headers()).get("user-agent")
+  const isMedianApp = isMedianUserAgent(userAgent)
 
   return (
     <html lang="en" className={isMedianApp ? "bg-white median-app" : "bg-white"}>
