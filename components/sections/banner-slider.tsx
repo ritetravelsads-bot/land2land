@@ -76,7 +76,7 @@ function FirstSlideStatic() {
         />
       </div>
       {/* Very light dark overlay to reduce brightness */}
-      <div className="absolute inset-0 bg-black/25" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/10" />
       <SlideContent slide={slide} active />
       {/* SEO H1 - Visually hidden but accessible to search engines */}
       <h1 className="sr-only">Land2Land — Buy, Sell & Invest in All Types of Land in India</h1>
@@ -87,8 +87,8 @@ function FirstSlideStatic() {
 function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: boolean }) {
   return (
     <div className="absolute inset-0 flex items-center">
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-10">
-        <div className="max-w-2xl space-y-4 md:space-y-6">
+      <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+        <div className="max-w-3xl space-y-3 sm:space-y-5 md:space-y-6">
           <span
             className={cn(
               "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/90 text-white text-xs md:text-sm font-semibold transition-all duration-700",
@@ -100,7 +100,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
           </span>
           <h2
             className={cn(
-              "text-3xl md:text-5xl lg:text-6xl font-bold text-white text-balance leading-tight transition-all duration-700 delay-100 [text-shadow:0_2px_12px_rgba(0,0,0,0.35)]",
+              "text-[clamp(2rem,5.2vw,4.5rem)] font-extrabold text-white text-balance leading-[1.04] tracking-[-0.035em] transition-all duration-700 delay-100 [text-shadow:0_2px_16px_rgba(0,0,0,0.5)]",
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
@@ -108,7 +108,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
           </h2>
           <p
             className={cn(
-              "text-base md:text-xl text-white max-w-xl text-pretty transition-all duration-700 delay-200 [text-shadow:0_1px_8px_rgba(0,0,0,0.35)]",
+              "max-w-xl text-sm sm:text-base md:text-lg font-medium leading-relaxed text-white/95 text-pretty transition-all duration-700 delay-200 [text-shadow:0_1px_10px_rgba(0,0,0,0.55)]",
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
@@ -231,9 +231,9 @@ function BannerSlider() {
   }, [isHydrated, currentSlide])
 
   return (
-    <div className="relative w-full overflow-hidden bg-gray-100 aspect-[4/5] sm:aspect-[16/9] md:aspect-[16/6]">
-      {/* Static first slide - always visible initially for instant LCP */}
-      <FirstSlideStatic />
+    <div className="home-banner-container relative w-full overflow-hidden bg-gray-100">
+      {/* Keep the server-rendered slide for instant LCP, then retire it as the carousel advances. */}
+      {currentSlide === 0 && <FirstSlideStatic />}
 
       {/* Dynamic slides - only rendered after hydration */}
       {isHydrated &&

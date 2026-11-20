@@ -6,15 +6,40 @@
 /* Critical CSS for CLS Prevention */
 /* Reserve space for common UI elements to prevent layout shift */
 
-/* Banner/Hero section - reserve fixed height */
-.banner-container {
-  min-height: 75vh;
+/* Keep the homepage search visible within short desktop and mobile viewports. */
+.home-banner-container {
+  height: clamp(350px, 58vh, 520px);
+  min-height: 350px;
   contain: layout style;
 }
 
 @media (min-width: 768px) {
-  .banner-container {
-    min-height: 30vw;
+  .home-banner-container {
+    height: clamp(360px, 58vh, 560px);
+    min-height: 360px;
+  }
+}
+
+@media (max-height: 600px) {
+  .home-search-description,
+  .home-search-icon {
+    display: none;
+  }
+
+  .home-search-intro {
+    margin-bottom: 0;
+  }
+
+  .home-search-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 }
 
