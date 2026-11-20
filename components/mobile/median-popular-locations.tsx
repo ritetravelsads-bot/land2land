@@ -35,12 +35,11 @@ export default function MedianPopularLocations() {
 
   return (
     <section aria-labelledby="app-locations-heading" className="py-5">
-      <div className="mb-4 flex items-end justify-between gap-3 px-5 sm:px-6">
-        <div>
-          <h2 id="app-locations-heading" className="text-[17px] font-bold tracking-[-0.02em]">Explore popular locations</h2>
-          <p className="mt-0.5 text-[11px] text-muted-foreground">Places with published land listings.</p>
-        </div>
-        <span className="mb-1 flex size-9 items-center justify-center rounded-xl bg-[#edf3e9] text-primary"><MapPin className="size-[17px]" aria-hidden="true" /></span>
+      <div className="mb-3 flex items-center justify-between gap-3 px-5 sm:px-6">
+        <h2 id="app-locations-heading" className="border-l-[5px] border-primary pl-3 text-[19px] font-bold tracking-[-0.03em]">Popular Locations</h2>
+        <Link href="/properties" className="flex min-h-10 shrink-0 items-center gap-1 text-xs font-semibold text-primary">
+          See All <ArrowRight className="size-3.5" aria-hidden="true" />
+        </Link>
       </div>
 
       {isLoading ? (
