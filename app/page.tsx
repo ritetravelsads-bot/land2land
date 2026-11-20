@@ -3,6 +3,7 @@ import { headers } from "next/headers"
 import dynamic from "next/dynamic"
 import MedianHomePage from "@/components/mobile/median-home-page"
 import BannerSlider from "@/components/sections/banner-slider"
+import { isMedianUserAgent } from "@/lib/median-server"
 
 // Lazy load AdvancedSearch but keep it visible above fold with SSR
 const AdvancedSearch = dynamic(() => import("@/components/sections/advanced-search"), {
@@ -175,8 +176,8 @@ function WebsiteHome() {
 }
 
 export default async function Home() {
-  const userAgent = (await headers()).get("user-agent") ?? ""
-  const isMedianApp = /median|gonative/i.test(userAgent)
+  const userAgent = (await headers()).get("user-agent")
+  const isMedianApp = isMedianUserAgent(userAgent)
 
   return isMedianApp ? <MedianHomePage /> : <WebsiteHome />
 }

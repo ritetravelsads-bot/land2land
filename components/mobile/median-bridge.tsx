@@ -144,6 +144,8 @@ export default function MedianBridge() {
                 document.documentElement.setAttribute("data-biometrics", "available")
               }
             }
+          }).catch(() => {
+            // Native biometric support is optional and may be unavailable.
           })
         } catch {
           // Never surface bridge errors to the user.
@@ -175,6 +177,8 @@ export default function MedianBridge() {
             if (info?.platform) {
               document.documentElement.setAttribute("data-median-platform", info.platform)
             }
+          }).catch(() => {
+            // Device metadata is optional and may be unavailable.
           })
         } catch {
           // Never surface bridge errors to the user.
