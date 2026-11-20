@@ -8,15 +8,15 @@
 
 /* Keep the homepage search visible within short desktop and mobile viewports. */
 .home-banner-container {
-  height: min(48vh, 320px);
-  min-height: 240px;
+  height: clamp(350px, 58vh, 520px);
+  min-height: 350px;
   contain: layout style;
 }
 
 @media (min-width: 768px) {
   .home-banner-container {
-    height: min(48vh, 520px);
-    min-height: 260px;
+    height: clamp(360px, 58vh, 560px);
+    min-height: 360px;
   }
 }
 

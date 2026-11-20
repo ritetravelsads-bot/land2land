@@ -208,7 +208,7 @@ export default function MegaMenuHeader() {
           </div>
 
           {/* Desktop Auth - Locked minimum width so it doesn't shift other elements when it loads */}
-          <div className="hidden lg:flex items-center gap-2 shrink-0 justify-end" style={{ minWidth: "150px" }}>
+          <div className="hidden lg:flex items-center gap-1.5 shrink-0 justify-end">
             {mounted ? (
               currentUser ? (
                 <DropdownMenu>
@@ -247,11 +247,11 @@ export default function MegaMenuHeader() {
                     asChild
                     variant="outline"
                     size="sm"
-                    className="max-w-[140px] whitespace-normal text-center text-sm leading-tight border-[#125007] text-[#125007] bg-transparent hover:bg-[#125007]/5 flex-none"
+                    className="min-h-10 w-[116px] whitespace-normal px-2 text-center text-xs font-semibold leading-[1.15] border-[#125007] text-[#125007] bg-white hover:bg-[#125007]/5 flex-none xl:w-[132px] xl:text-[13px]"
                   >
                     <Link href="/auth/login">Post Here to Sell Land</Link>
                   </Button>
-                  <Button asChild size="sm" className="max-w-[140px] whitespace-normal text-center text-sm leading-tight bg-[#125007] hover:bg-[#1d3610] flex-none">
+                  <Button asChild size="sm" className="min-h-10 w-[116px] whitespace-normal px-2 text-center text-xs font-semibold leading-[1.15] bg-[#125007] hover:bg-[#1d3610] flex-none xl:w-[132px] xl:text-[13px]">
                     <Link href="/auth/register">Post Here to Buy Land</Link>
                   </Button>
                 </>
