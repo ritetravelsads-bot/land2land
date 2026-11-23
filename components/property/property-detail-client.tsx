@@ -30,6 +30,8 @@ import { BrochureDownload } from "@/components/property/brochure-download"
 import { SpecialSectionsRenderer } from "@/components/property/special-section"
 import { VerificationScorecard } from "@/components/property/verification-scorecard"
 import { ReportContentDialog } from "@/components/property/report-content-dialog"
+import { PropertyReviews } from "@/components/property/property-reviews"
+
 
 // --- helpers ---
 
@@ -391,6 +393,8 @@ export function PropertyDetailClient({
 
             {/* Verification Scorecard */}
             <VerificationScorecard />
+
+            <PropertyReviews propertyId={String(property._id)} />
 
             {/* Legal Documents (blurred — unlock via enquiry) */}
             <PropertyDocuments onUnlock={() => setShowDocsEnquiry(true)} />

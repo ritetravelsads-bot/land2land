@@ -128,10 +128,6 @@ function WebsiteHome() {
         <LandTypesBrowse />
       </Suspense>
 
-      <SellerRoadblocks />
-      <UnitConverterPromo />
-      <SearchMapPromo />
-
       {/* Verified Properties */}
       <Suspense fallback={<div className="h-96 bg-white animate-pulse" />}>
         <VerifiedProperties />

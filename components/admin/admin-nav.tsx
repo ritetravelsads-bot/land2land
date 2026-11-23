@@ -20,6 +20,7 @@ import {
   Search,
   UserPlus,
   ClipboardCheck,
+  Award,
 } from "lucide-react"
 
 export default function AdminNav() {
@@ -46,6 +47,8 @@ export default function AdminNav() {
         { href: "/admin/leads", label: "Leads", icon: UserPlus },
         { href: "/admin/users", label: "Users", icon: Users },
         { href: "/admin/reviews", label: "Reviews", icon: Star },
+        { href: "/admin/reward-center", label: "Reward Tasks", icon: Award },
+        { href: "/admin/rewards", label: "Points & Redemptions", icon: Award },
         { href: "/admin/tickets", label: "Support Tickets", icon: MessageSquare },
         { href: "/admin/contacts", label: "Contacts", icon: MessageCircle },
       ],

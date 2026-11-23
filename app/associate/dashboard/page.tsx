@@ -12,6 +12,10 @@ export default function AssociateDashboardPage() {
     rating: 0,
     totalLeads: 0,
     newLeads: 0,
+    points: 0,
+    pointsThisMonth: 0,
+    pendingTasks: 0,
+    availableTasks: 0,
   })
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
@@ -19,25 +23,32 @@ export default function AssociateDashboardPage() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [userRes, propsRes, leadsRes] = await Promise.all([
+        const [userRes, propsRes, leadsRes, rewardsRes, reviewsRes] = await Promise.all([
           fetch("/api/auth/me", { cache: "no-store", credentials: "include" }),
           fetch("/api/associate/properties"),
           fetch("/api/associate/leads?limit=1"),
+          fetch("/api/associate/rewards", { cache: "no-store" }),
+          fetch("/api/associate/reviews", { cache: "no-store" }),
         ])
         
         const userData = await userRes.json()
         setUser(userData)
 
-        const propsData = await propsRes.json()
-        const leadsData = await leadsRes.json()
+        const [propsData, leadsData, rewardsData, reviewsData] = await Promise.all([propsRes.json(), leadsRes.json(), rewardsRes.json(), reviewsRes.json()])
+        const reviews = Array.isArray(reviewsData) ? reviewsData : []
+        const averageRating = reviews.length ? reviews.reduce((sum: number, review: any) => sum + Number(review.overall_rating || review.rating || 0), 0) / reviews.length : 0
 
         setStats({
-          active: propsData.filter((p: any) => p.status === "active").length,
-          sold: propsData.filter((p: any) => p.status === "sold").length,
-          reviews: 0,
-          rating: 4.5,
+          active: Array.isArray(propsData) ? propsData.filter((p: any) => p.status === "active").length : 0,
+          sold: Array.isArray(propsData) ? propsData.filter((p: any) => p.status === "sold").length : 0,
+          reviews: reviews.length,
+          rating: Number(averageRating.toFixed(1)),
           totalLeads: leadsData.stats?.total || 0,
           newLeads: leadsData.stats?.new || 0,
+          points: Number(rewardsData.account?.available_points || 0),
+          pointsThisMonth: Number(rewardsData.points_earned_this_month || 0),
+          pendingTasks: Array.isArray(rewardsData.submissions) ? rewardsData.submissions.filter((submission: any) => submission.status === "pending").length : 0,
+          availableTasks: Array.isArray(rewardsData.tasks) ? rewardsData.tasks.length : 0,
         })
       } catch (error) {
         console.error("Error loading associate data:", error)
@@ -56,7 +67,7 @@ export default function AssociateDashboardPage() {
         <p className="text-sm text-muted-foreground">Welcome back, {user?.username}!</p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         <div className="p-4 border border-border rounded-lg">
           <p className="text-xs text-muted-foreground">Active Listings</p>
           <p className="text-2xl font-bold text-primary mt-2">{stats.active}</p>
@@ -81,6 +92,22 @@ export default function AssociateDashboardPage() {
           <p className="text-xs text-muted-foreground">Rating</p>
           <p className="text-2xl font-bold text-primary mt-2">{stats.rating.toFixed(1)}</p>
         </div>
+        <Link href="/associate/rewards" className="p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+          <p className="text-xs text-muted-foreground">Available points</p>
+          <p className="text-2xl font-bold text-primary mt-2">{stats.points}</p>
+        </Link>
+        <Link href="/associate/rewards#history" className="p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+          <p className="text-xs text-muted-foreground">Earned this month</p>
+          <p className="text-2xl font-bold text-primary mt-2">{stats.pointsThisMonth}</p>
+        </Link>
+        <Link href="/associate/rewards#submissions" className="p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+          <p className="text-xs text-muted-foreground">Pending approvals</p>
+          <p className="text-2xl font-bold text-primary mt-2">{stats.pendingTasks}</p>
+        </Link>
+        <Link href="/associate/rewards#tasks" className="p-4 border border-border rounded-lg hover:bg-muted/50 transition-colors">
+          <p className="text-xs text-muted-foreground">Available tasks</p>
+          <p className="text-2xl font-bold text-primary mt-2">{stats.availableTasks}</p>
+        </Link>
       </div>
 
       <AgentSubscriptionSummaryCard />

@@ -616,6 +616,7 @@ export async function adjustAgentCredits(input: {
   amount: number
   expiresAt?: string | null
   note?: string
+  idempotencyKey?: string
 }) {
   const agentId = parseObjectId(input.agentId, "agent ID")
   if (!Number.isInteger(input.amount) || input.amount < 1) throw new AgentSubscriptionError("Credit amount must be a positive whole number.")
@@ -629,6 +630,11 @@ export async function adjustAgentCredits(input: {
 
     if (input.action === "grant") {
       if (expiresAt && expiresAt <= now) throw new AgentSubscriptionError("Credit expiry must be in the future.")
+      const idempotencyKey = input.idempotencyKey?.trim()
+      if (idempotencyKey) {
+        const prior = await db.collection(SUBSCRIPTION_COLLECTIONS.quotaTransactions).findOne({ idempotency_key: idempotencyKey }, { session })
+        if (prior) return { success: true, alreadyGranted: true, transaction: serializeMongoValue(prior) }
+      }
       const lot = {
         agent_id: agentId,
         granted_credits: input.amount,
@@ -647,7 +653,7 @@ export async function adjustAgentCredits(input: {
         amount: input.amount,
         note: input.note,
         actorId: input.actorId,
-        idempotencyKey: `credit-grant:${inserted.insertedId.toHexString()}`,
+        idempotencyKey: idempotencyKey || `credit-grant:${inserted.insertedId.toHexString()}`,
       })
       await recordAgentAdminActivity(db, session, {
         actorId: input.actorId,

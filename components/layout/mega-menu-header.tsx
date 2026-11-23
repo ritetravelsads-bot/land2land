@@ -247,11 +247,11 @@ export default function MegaMenuHeader() {
                     asChild
                     variant="outline"
                     size="sm"
-                    className="min-h-10 w-[116px] whitespace-normal px-2 text-center text-xs font-semibold leading-[1.15] border-[#125007] text-[#125007] bg-white hover:bg-[#125007]/5 flex-none xl:w-[132px] xl:text-[13px]"
+                    className="h-10 w-[150px] whitespace-nowrap px-2 text-center text-[11px] font-semibold leading-none border-[#125007] text-[#125007] bg-white hover:bg-[#125007]/5 flex-none xl:w-[160px] xl:text-xs"
                   >
                     <Link href="/auth/login">Post Here to Sell Land</Link>
                   </Button>
-                  <Button asChild size="sm" className="min-h-10 w-[116px] whitespace-normal px-2 text-center text-xs font-semibold leading-[1.15] bg-[#125007] hover:bg-[#1d3610] flex-none xl:w-[132px] xl:text-[13px]">
+                  <Button asChild size="sm" className="h-10 w-[150px] whitespace-nowrap px-2 text-center text-[11px] font-semibold leading-none bg-[#125007] hover:bg-[#1d3610] flex-none xl:w-[160px] xl:text-xs">
                     <Link href="/auth/register">Post Here to Buy Land</Link>
                   </Button>
                 </>
@@ -387,12 +387,12 @@ export default function MegaMenuHeader() {
                       asChild
                       variant="outline"
                       size="sm"
-                      className="text-xs h-9 flex-1 border-[#125007] text-[#125007] bg-transparent"
+                      className="h-10 min-w-0 flex-1 whitespace-nowrap px-1.5 text-[10px] font-semibold sm:text-[11px] border-[#125007] text-[#125007] bg-transparent"
                     >
-                      <Link href="/auth/login" className="whitespace-normal text-center leading-tight">Post Here to Sell Land</Link>
+                      <Link href="/auth/login" className="whitespace-nowrap text-center">Post Here to Sell Land</Link>
                     </Button>
-                    <Button asChild size="sm" className="text-xs h-9 flex-1 bg-[#125007] hover:bg-[#1d3610]">
-                      <Link href="/auth/register" className="whitespace-normal text-center leading-tight">Post Here to Buy Land</Link>
+                    <Button asChild size="sm" className="h-10 min-w-0 flex-1 whitespace-nowrap px-1.5 text-[10px] font-semibold sm:text-[11px] bg-[#125007] hover:bg-[#1d3610]">
+                      <Link href="/auth/register" className="whitespace-nowrap text-center">Post Here to Buy Land</Link>
                     </Button>
                   </>
                 )}
