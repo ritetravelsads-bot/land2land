@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Home, Package, MessageSquare, Star, LogOut, User, UserPlus } from "lucide-react"
+import { Home, Package, MessageSquare, Star, LogOut, User, UserPlus, Award } from "lucide-react"
 
 export default function AssociateDashboardNav() {
   const pathname = usePathname()
@@ -20,7 +20,12 @@ export default function AssociateDashboardNav() {
     { href: "/associate/dashboard", label: "Dashboard", icon: Home },
     { href: "/associate/properties", label: "Properties", icon: Package },
     { href: "/associate/leads", label: "Leads", icon: UserPlus },
-    { href: "/associate/reviews", label: "Reviews", icon: Star },
+    { href: "/associate/reviews", label: "My Reputation", icon: Star },
+    { href: "/associate/rewards#tasks", label: "Available Tasks", icon: Award },
+    { href: "/associate/rewards#submissions", label: "My Submissions", icon: Award },
+    { href: "/associate/rewards", label: "My Rewards", icon: Award },
+    { href: "/associate/rewards#redeem", label: "Redeem Points", icon: Award },
+    { href: "/associate/rewards#history", label: "Points History", icon: Award },
     { href: "/associate/tickets", label: "Support Tickets", icon: MessageSquare },
     { href: "/associate/profile", label: "Profile", icon: User },
   ]
