@@ -88,7 +88,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
   return (
     <div className="absolute inset-0 flex items-center">
       <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-        <div className="max-w-3xl space-y-3 sm:space-y-5 md:space-y-6">
+        <div className="max-w-2xl space-y-3 sm:space-y-4 md:space-y-5">
           <span
             className={cn(
               "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/90 text-white text-xs md:text-sm font-semibold transition-all duration-700",
@@ -100,7 +100,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
           </span>
           <h2
             className={cn(
-              "text-[clamp(2rem,5.2vw,4.5rem)] font-extrabold text-white text-balance leading-[1.04] tracking-[-0.035em] transition-all duration-700 delay-100 [text-shadow:0_2px_16px_rgba(0,0,0,0.5)]",
+              "text-[clamp(1.875rem,4.4vw,3.5rem)] font-extrabold text-white text-balance leading-[1.08] tracking-[-0.03em] transition-all duration-700 delay-100 [text-shadow:0_2px_16px_rgba(0,0,0,0.5)]",
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
@@ -108,7 +108,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
           </h2>
           <p
             className={cn(
-              "max-w-xl text-sm sm:text-base md:text-lg font-medium leading-relaxed text-white/95 text-pretty transition-all duration-700 delay-200 [text-shadow:0_1px_10px_rgba(0,0,0,0.55)]",
+              "max-w-lg text-sm sm:text-base font-medium leading-relaxed text-white/95 text-pretty transition-all duration-700 delay-200 [text-shadow:0_1px_10px_rgba(0,0,0,0.55)]",
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
@@ -120,7 +120,7 @@ function SlideContent({ slide, active }: { slide: (typeof slides)[0]; active: bo
               active ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
             )}
           >
-            <Button asChild size="lg" className="bg-[var(--land-ochre)] hover:bg-[var(--land-ochre)]/85 text-[var(--land-earth)] font-bold h-12 px-7 text-base shadow-lg">
+            <Button asChild size="lg" className="h-11 px-5 text-sm font-bold shadow-lg bg-[var(--land-ochre)] text-[var(--land-earth)] hover:bg-[var(--land-ochre)]/85 sm:h-12 sm:px-6 sm:text-base">
               <Link href={slide.cta.href}>
                 {slide.cta.label}
                 <ArrowRight className="ml-2 h-5 w-5" />
