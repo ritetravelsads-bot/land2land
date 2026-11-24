@@ -379,7 +379,7 @@ export default function AdvancedSearch() {
   }
 
   return (
-    <div className="relative -mt-10 z-10 max-w-5xl mx-auto px-4">
+    <div className="relative -mt-10 z-10 max-w-8xl mx-auto px-4">
       {/* Fixed min-height to prevent CLS */}
       <div
         className="bg-white rounded-2xl shadow-2xl overflow-hidden min-h-[220px] md:min-h-[200px]"
