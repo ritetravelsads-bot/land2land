@@ -118,6 +118,8 @@ const getNavConfig = (role: UserRole): NavSection[] => {
             { href: "/associate/dashboard", label: "Dashboard", icon: Home },
             { href: "/associate/properties", label: "Properties", icon: Package },
             { href: "/associate/leads", label: "Leads", icon: Users },
+            { href: "/associate/rewards", label: "Tasks & Points", icon: CircleDollarSign },
+            { href: "/associate/reviews", label: "My Reviews", icon: Star },
             { href: "/associate/subscription", label: "My Plan", icon: Wallet },
             { href: "/associate/tickets", label: "Support Tickets", icon: MessageSquare },
             { href: "/associate/profile", label: "Profile", icon: User },

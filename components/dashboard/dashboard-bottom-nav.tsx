@@ -13,6 +13,8 @@ import {
   MessageSquare,
   BarChart3,
   Settings,
+  CircleDollarSign,
+  Star,
 } from "lucide-react"
 
 type UserRole = "admin" | "associate" | "builder" | "buyer" | "customer"
@@ -44,9 +46,9 @@ function getNavItems(userRole: UserRole): NavItem[] {
     case "associate":
       return [
         { label: "Dashboard", href: "/associate/dashboard", icon: LayoutDashboard },
-        { label: "Listings", href: "/associate/properties", icon: List },
+        { label: "Tasks & Points", href: "/associate/rewards", icon: CircleDollarSign },
         { label: "Add", href: "/associate/properties/new", icon: Plus, isFab: true },
-        { label: "Leads", href: "/associate/leads", icon: Users },
+        { label: "Reviews", href: "/associate/reviews", icon: Star },
         { label: "Profile", href: "/associate/profile", icon: User },
       ]
 
