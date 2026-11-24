@@ -32,7 +32,10 @@ import {
   PanelLeftOpen,
   Code2,
   ClipboardCheck,
+  ClipboardList,
+  CircleDollarSign,
   ShieldCheck,
+  Star,
   Wallet,
 } from "lucide-react"
 
@@ -75,6 +78,14 @@ const getNavConfig = (role: UserRole): NavSection[] => {
             { href: "/admin/messages", label: "Buyer Messages", icon: MessageCircle },
             { href: "/admin/contacts", label: "Contacts", icon: MessageCircle },
             { href: "/admin/quotes", label: "Quotes", icon: FileText },
+          ],
+        },
+        {
+          title: "Engagement",
+          items: [
+            { href: "/admin/reward-center", label: "Tasks & Submissions", icon: ClipboardList },
+            { href: "/admin/rewards", label: "Points & Redemptions", icon: CircleDollarSign },
+            { href: "/admin/reviews", label: "Reviews", icon: Star },
           ],
         },
         {
