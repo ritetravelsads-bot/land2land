@@ -1,7 +1,7 @@
 import Link from "next/link"
 
 const bannerImage =
-  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Serene%20Golden-Hour%20Urban%20Development-UsqHfb6lYtBFUTNFXgDnIUiCGob0y9.png"
+  "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_rw1mgrrw1mgrrw1m.png-TArvyfomfQGZQ0NmpoSjfG5V1N3hYV.webp"
 
 export default function BannerImage() {
   return (

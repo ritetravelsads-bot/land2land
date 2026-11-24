@@ -114,7 +114,7 @@ export default async function RootLayout({
         <link
           rel="preload"
           as="image"
-          href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Serene%20Golden-Hour%20Urban%20Development-UsqHfb6lYtBFUTNFXgDnIUiCGob0y9.png"
+          href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_rw1mgrrw1mgrrw1m.png-TArvyfomfQGZQ0NmpoSjfG5V1N3hYV.webp"
           crossOrigin="anonymous"
           fetchPriority="high"
         />
