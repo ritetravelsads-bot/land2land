@@ -2,7 +2,7 @@ import { Suspense } from "react"
 import { headers } from "next/headers"
 import dynamic from "next/dynamic"
 import MedianHomePage from "@/components/mobile/median-home-page"
-import BannerSlider from "@/components/sections/banner-slider"
+import BannerImage from "@/components/sections/banner-image"
 import { isMedianUserAgent } from "@/lib/median-server"
 
 // Lazy load AdvancedSearch but keep it visible above fold with SSR
@@ -115,7 +115,7 @@ function WebsiteHome() {
   return (
     <main>
       {/* Critical above-the-fold content - loads immediately */}
-      <BannerSlider />
+      <BannerImage />
       <AdvancedSearch />
 
       {/* Fresh Land Listings — shown first, right after search */}

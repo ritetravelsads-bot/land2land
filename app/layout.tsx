@@ -110,22 +110,12 @@ export default async function RootLayout({
   return (
     <html lang="en" className={isMedianApp ? "bg-white median-app" : "bg-white"}>
       <head>
-        {/* CRITICAL: Preload LCP images FIRST - before any other resources */}
-        {/* These must be at the very top of <head> for maximum priority */}
-        {/* Mobile LCP image preload - matches banner-slider first slide at 480w */}
+        <link rel="preconnect" href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com" crossOrigin="anonymous" />
         <link
           rel="preload"
           as="image"
-          href="/_next/image?url=%2Fbanners%2Fbanner-all.webp&w=480&q=75"
-          media="(max-width: 767px)"
-          fetchPriority="high"
-        />
-        {/* Desktop LCP image preload - matches banner-slider first slide at 1080w */}
-        <link
-          rel="preload"
-          as="image"
-          href="/_next/image?url=%2Fbanners%2Fbanner-all.webp&w=1080&q=75"
-          media="(min-width: 768px)"
+          href="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_rw1mgrrw1mgrrw1m.png-TArvyfomfQGZQ0NmpoSjfG5V1N3hYV.webp"
+          crossOrigin="anonymous"
           fetchPriority="high"
         />
         
