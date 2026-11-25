@@ -66,7 +66,7 @@ export default function AdminRewardCenterPage() {
   }
 
   return <div className="mx-auto max-w-6xl space-y-6">
-    <header className="flex flex-wrap items-end justify-between gap-3"><div><h1 className="text-2xl font-semibold">Rewards & tasks</h1><p className="mt-1 text-sm text-muted-foreground">Publish agent opportunities and review proof before points are issued.</p></div><Button variant="outline" onClick={() => void load()} disabled={loading}><RefreshCw data-icon="inline-start" />Refresh</Button></header>
+    <header className="flex flex-wrap items-end justify-between gap-3"><div><h1 className="text-2xl font-semibold">Rewards & tasks</h1><p className="mt-1 text-sm text-muted-foreground">Publish agent opportunities and review proof before points are issued.</p></div><div className="flex gap-2"><Button variant="outline" asChild><a href="/admin/reward-center/automatic">Automatic Reward Tasks</a></Button><Button variant="outline" onClick={() => void load()} disabled={loading}><RefreshCw data-icon="inline-start" />Refresh</Button></div></header>
     {message && <p role="status" className="rounded-md border bg-muted/40 px-4 py-3 text-sm">{message}</p>}
     <div className="grid gap-5 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
       <Card><CardHeader><CardTitle className="flex items-center gap-2"><ClipboardList />Create a task</CardTitle><CardDescription>Agents submit evidence; points are awarded only after approval.</CardDescription></CardHeader><CardContent><form onSubmit={createTask} className="flex flex-col gap-4">

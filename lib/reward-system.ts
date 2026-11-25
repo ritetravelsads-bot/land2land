@@ -1,5 +1,6 @@
 import { ObjectId, type Db } from "mongodb"
 import { runAgentTransaction } from "@/lib/agent-subscriptions"
+import { getDatabase } from "@/lib/mongodb"
 
 export class RewardError extends Error {
   status: number
@@ -24,6 +25,10 @@ export async function ensureRewardIndexes(db: Db) {
     db.collection("reward_transactions").createIndex({ idempotency_key: 1 }, { unique: true, partialFilterExpression: { idempotency_key: { $type: "string" } } }),
     db.collection("reward_redemptions").createIndex({ redemption_id: 1 }, { unique: true }),
     db.collection("reward_redemptions").createIndex({ idempotency_key: 1 }, { unique: true, partialFilterExpression: { idempotency_key: { $type: "string" } } }),
+    db.collection("automatic_reward_tasks").createIndex({ task_key: 1 }, { unique: true }),
+    db.collection("automatic_reward_tasks").createIndex({ active: 1, roles: 1, start_at: 1, end_at: 1 }),
+    db.collection("automatic_reward_completions").createIndex({ user_id: 1, task_id: 1 }, { unique: true }),
+    db.collection("automatic_reward_completions").createIndex({ task_id: 1, credited_at: -1 }),
   ])
 }
 
@@ -43,8 +48,9 @@ export async function getAgentRewardOverview(db: Db, agentId: ObjectId) {
 }
 
 export async function approveRewardSubmission(submissionId: ObjectId, actorId: ObjectId, action: "approved" | "rejected" | "revision_requested", feedback = "") {
+  const db = await getDatabase()
+  await ensureRewardIndexes(db)
   return runAgentTransaction(async (db, session) => {
-    await ensureRewardIndexes(db)
     const submission = await db.collection("reward_task_submissions").findOne({ _id: submissionId }, { session })
     if (!submission) throw new RewardError("Submission not found.", 404)
     if (submission.status !== "pending" && submission.status !== "revision_requested") throw new RewardError("This submission has already been reviewed.", 409)
@@ -74,8 +80,9 @@ export async function approveRewardSubmission(submissionId: ObjectId, actorId: O
 
 export async function adjustRewardPoints(agentId: ObjectId, actorId: ObjectId, action: "grant" | "deduct", points: number, reason: string) {
   if (!Number.isSafeInteger(points) || points < 1 || !reason.trim()) throw new RewardError("Enter a positive whole number of points and a reason.")
+  const db = await getDatabase()
+  await ensureRewardIndexes(db)
   return runAgentTransaction(async (db, session) => {
-    await ensureRewardIndexes(db)
     const agent = await db.collection("users").findOne({ _id: agentId, user_type: "associate" }, { session })
     if (!agent) throw new RewardError("Agent not found.", 404)
     const now = new Date()

@@ -8,6 +8,7 @@ import {
   type ReraRequestStatus,
 } from "@/lib/models"
 import { ObjectId } from "mongodb"
+import { creditAutomaticRewardsForEvent, seedAutomaticRewardTasks } from "@/lib/automatic-rewards"
 import { type NextRequest, NextResponse } from "next/server"
 
 export const dynamic = "force-dynamic"
@@ -177,6 +178,12 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     if (event) update.$push = { stage_history: event }
 
     await db.collection(COLLECTIONS.RERA_REQUESTS).updateOne({ _id: objectId }, update)
+
+    if (action === "approve" && ObjectId.isValid(String(existing.associate || ""))) {
+      const associateId = new ObjectId(String(existing.associate))
+      await seedAutomaticRewardTasks(db, user._id)
+      await creditAutomaticRewardsForEvent(associateId, "rera_approved")
+    }
 
     const updated = await db.collection(COLLECTIONS.RERA_REQUESTS).findOne({ _id: objectId })
     return NextResponse.json({
