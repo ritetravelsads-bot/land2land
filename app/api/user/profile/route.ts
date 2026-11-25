@@ -1,6 +1,8 @@
 import { getDatabase } from "@/lib/mongodb"
 import { getCurrentUser } from "@/lib/auth"
 import { ObjectId } from "mongodb"
+import { verifyVerificationToken } from "@/lib/otp"
+import { creditAutomaticRewardsForEvent, seedAutomaticRewardTasks } from "@/lib/automatic-rewards"
 import { type NextRequest, NextResponse } from "next/server"
 
 // Shared profile-update endpoint for ALL user types (customer, buyer, seller,
@@ -31,7 +33,17 @@ export async function PUT(req: NextRequest) {
       if (cleaned.length > 0 && !/^[6-9]\d{9}$/.test(cleaned)) {
         return NextResponse.json({ error: "Invalid phone number. Must be a 10-digit Indian mobile number." }, { status: 400 })
       }
-      updates.phone_number = cleaned || body.phone_number.trim()
+      const normalizedPhone = cleaned || body.phone_number.trim()
+      updates.phone_number = normalizedPhone
+      if (typeof body.verification_token === "string" && verifyVerificationToken(body.verification_token, normalizedPhone)) {
+        updates.phone_verified = true
+        updates.verified_phone = normalizedPhone
+        updates.phone_verified_at = new Date()
+      } else if (normalizedPhone !== user.phone_number) {
+        updates.phone_verified = false
+        updates.verified_phone = null
+        updates.phone_verified_at = null
+      }
     }
 
     if (typeof body.profile_picture === "string" || body.profile_picture === null) {
@@ -53,7 +65,18 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ error: "User not found" }, { status: 404 })
     }
 
-    return NextResponse.json({ success: true, profile_picture: updates.profile_picture })
+    const savedUser = await db.collection("users").findOne({ _id: new ObjectId(user._id) })
+    let newlyCredited: Array<{ task_title?: string; points?: number }> = []
+    if (savedUser?.user_type === "associate") {
+      await seedAutomaticRewardTasks(db, user._id)
+      const credits = await Promise.allSettled([
+        creditAutomaticRewardsForEvent(user._id, "profile_saved"),
+        creditAutomaticRewardsForEvent(user._id, "mobile_verified"),
+      ])
+      newlyCredited = credits.flatMap((entry) => entry.status === "fulfilled" ? entry.value.flatMap((credit) => credit.credited ? [{ task_title: credit.task_title, points: credit.points }] : []) : [])
+    }
+
+    return NextResponse.json({ success: true, profile_picture: updates.profile_picture, newly_credited: newlyCredited })
   } catch (error) {
     console.error("[v0] Error updating profile:", error)
     return NextResponse.json({ error: "Failed to update profile" }, { status: 500 })

@@ -1,10 +1,13 @@
 import { getCurrentUser } from "@/lib/auth"
+import { ObjectId } from "mongodb"
 import { NextResponse, type NextRequest } from "next/server"
 import {
   AgentSubscriptionError,
   parseObjectId,
   reviewListingWithQuota,
 } from "@/lib/agent-subscriptions"
+import { getDatabase } from "@/lib/mongodb"
+import { creditAutomaticRewardsForEvent, seedAutomaticRewardTasks } from "@/lib/automatic-rewards"
 
 export const dynamic = "force-dynamic"
 export const revalidate = 0
@@ -35,6 +38,12 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
       notes,
       actorId: parseObjectId(user._id, "admin ID"),
     })
+    const associateId = result.property?.associate
+    if (action === "approve" && !result.alreadyReviewed && typeof associateId === "string" && ObjectId.isValid(associateId)) {
+      const db = await getDatabase()
+      await seedAutomaticRewardTasks(db, user._id)
+      await creditAutomaticRewardsForEvent(new ObjectId(associateId), "listing_approved")
+    }
     return NextResponse.json(result)
   } catch (error) {
     if (error instanceof AgentSubscriptionError) {

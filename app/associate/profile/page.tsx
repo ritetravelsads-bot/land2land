@@ -4,9 +4,11 @@ import type React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useState, useEffect } from "react"
-import { Mail, Phone, User, Save, Loader2, CheckCircle, AlertCircle } from "lucide-react"
+import { Mail, User, Save, Loader2, CheckCircle, AlertCircle } from "lucide-react"
 import ProfileImageUpload from "@/components/account/profile-image-upload"
 import DeleteAccountSection from "@/components/account/delete-account-section"
+import { PhoneVerification } from "@/components/property/phone-verification"
+import { toast } from "sonner"
 
 type FeedbackState = { type: "success" | "error"; message: string } | null
 
@@ -19,6 +21,7 @@ export default function AssociateProfilePage() {
   const [displayName, setDisplayName] = useState("")
   const [phoneNumber, setPhoneNumber] = useState("")
   const [profilePicture, setProfilePicture] = useState<string | null>(null)
+  const [verificationToken, setVerificationToken] = useState("")
 
   useEffect(() => {
     const loadUser = async () => {
@@ -53,11 +56,14 @@ export default function AssociateProfilePage() {
           display_name: displayName,
           phone_number: phoneNumber,
           profile_picture: profilePicture,
+          verification_token: verificationToken || undefined,
         }),
       })
       const data = await res.json()
       if (res.ok) {
-        setFeedback({ type: "success", message: "Profile updated successfully." })
+        const credits = Array.isArray(data.newly_credited) ? data.newly_credited : []
+        credits.forEach((reward: { task_title?: string; points?: number }) => toast.success(`You earned ${reward.points} reward points`, { description: reward.task_title }))
+        setFeedback({ type: "success", message: credits.length ? `Profile updated and ${credits.reduce((sum: number, reward: { points?: number }) => sum + Number(reward.points || 0), 0)} reward points credited.` : "Profile updated successfully." })
         setUser((prev: any) => ({
           ...prev,
           display_name: displayName,
@@ -148,17 +154,12 @@ export default function AssociateProfilePage() {
 
           {/* Phone Number */}
           <div className="space-y-1.5">
-            <label className="text-sm font-medium text-foreground flex items-center gap-2">
-              <Phone className="h-4 w-4 text-muted-foreground" />
-              Phone Number
-            </label>
-            <Input
-              type="tel"
-              placeholder="10-digit mobile number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              pattern="[6-9][0-9]{9}"
-              title="Please enter a valid 10-digit Indian mobile number"
+            <PhoneVerification
+              phone={phoneNumber}
+              onPhoneChange={(value) => { setPhoneNumber(value); setVerificationToken("") }}
+              onVerified={setVerificationToken}
+              onUnverified={() => setVerificationToken("")}
+              required={false}
             />
             <p className="text-xs text-muted-foreground">Buyers may use this to contact you directly.</p>
           </div>
